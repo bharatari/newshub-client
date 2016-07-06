@@ -1,0 +1,722 @@
+:global {
+  @import 'base';
+
+  html {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  /**
+   *
+   * @section - 1. Structure
+   *
+   */
+
+  .navbar-page {
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 50px;
+  }
+
+  .navbar-inverse {
+    background-color: rgb(45, 45, 45);
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .navbar-inverse .navbar-nav>.active>a,
+  .navbar-inverse .navbar-nav>.active>a:focus,
+  .navbar-inverse .navbar-nav>.active>a:hover,
+  .navbar-inverse .navbar-nav>li>a:focus,
+  .navbar-inverse .navbar-nav>li>a:hover {
+    background-color: rgb(102, 102, 102);
+  }
+
+  .sidebar {
+    width: 250px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .sidebar-left {
+    float: left;
+    margin-left: -15px !important;
+  }
+
+  .sidebar-container {
+    margin-left: 300px;
+    padding: 30px;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 3px;
+  }
+
+  .footer {
+    margin-top: 100px;
+  }
+
+  .page-enter {
+    opacity: 0.01;
+  }
+
+  .page-enter-active {
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease-in;
+    -moz-transition: opacity 0.5s ease-in;
+    -ms-transition: opacity 0.5s ease-in;
+    -o-transition: opacity 0.5s ease-in;
+    transition: opacity 0.5s ease-in, transform 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  }
+
+  .page-leave {
+    opacity: 1;
+  }
+
+  .page-leave-active {
+    opacity: 0.01;
+    -webkit-transition: opacity 0.5s ease-out;
+    -moz-transition: opacity 0.5s ease-out;
+    -ms-transition: opacity 0.5s ease-out;
+    -o-transition: opacity 0.5s ease-out;
+    transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+  }
+
+  /**
+  *
+  * @section - 2. General
+  *
+  */
+
+  .loading-container {
+    height: 100vh;
+    width: 100vw;
+    padding-top: 40vh;
+    padding-left: 40vw;
+  }
+
+  .loading-spinner {
+    font-size: 40px;
+    z-index: 999;
+    position: fixed;
+    margin-top: -15px;
+    margin-left: -0px;
+    color: white;
+    -webkit-animation: spin 1s ease-in-out infinite;
+    -moz-animation: spin 1s ease-in-out infinite;
+    -ms-animation: spin 1s ease-in-out infinite;
+    -o-animation: spin 1s ease-in-out infinite;
+    animation: spin 1s ease-in-out infinite;
+  }
+
+  .loading-text {
+    margin-left: 50px;
+    margin-top: 10px;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 17px;
+  }
+
+  /**
+  *
+  * @section - 3. Typography
+  *
+  */
+
+  .navbar-brand {
+    font-family: 'Open Sans';
+    font-weight: 600;
+    letter-spacing: 3px;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  .centered-header {
+    font-family: 'Open Sans';
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: rgb(59, 59, 59);
+    text-align: center;
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    -ms-transition: color 0.2s ease-out;
+    -o-transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out;
+  }
+
+  .centered-header:hover {
+    color: rgb(128, 128, 128);
+  }
+
+  .sidebar-container-header {
+    color: black;
+    font-family: 'Open Sans';
+    margin-bottom: 20px;
+  }
+
+  .footer-text {
+    color: black;
+    font-weight: 400;
+  }
+
+  .text-loading {
+    font-family: 'Open Sans';
+    color: rgb(130, 130, 130);
+  }
+
+  .footer-text {
+    color: darkgray;
+  }
+
+  /**
+  *
+  * @section - 3. Utilities
+  *
+  */
+
+  .btn-margin-top {
+    margin-top: 15px;
+  }
+
+  .fixed-navbar-offset {
+    margin-top: 50px;
+  }
+
+  .container-padding-top {
+    padding-top: 50px;
+  }
+
+  .full-screen-container {
+    min-height: 75vh;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  /**
+  *
+  * @section - 3.1 Colors
+  *
+  */
+
+  .bg-yellow {
+    background-color: #e8d500;
+  }
+
+  .yellow {
+    color: #e8d500;
+  }
+
+  .bg-red {
+    background-color: #e04d4d;
+  }
+
+  .red {
+    color: #e04d4d;
+  }
+
+  .bg-dark-red {
+    background-color: #8f3838;
+  }
+
+  .dark-red {
+    color: #8f3838;
+  }
+
+  .bg-teal {
+    background-color: #00a588;
+  }
+
+  .teal {
+    color: #00a588;
+  }
+
+  .bg-white {
+    background-color: white;
+  }
+
+  .white {
+    color: white;
+  }
+
+  .bg-dark {
+    background-color: #353535;
+  }
+
+  .dark {
+    color: #353535;
+  }
+
+  /**
+  *
+  * @section - 4. Notifications
+  *
+  */
+
+  .notifications {
+    position: fixed;
+    overflow: hidden;
+    top: 20px;
+    margin-left: -40px;
+    z-index: 990;
+    pointer-events: none;
+  }
+
+  .notification {
+    overflow: hidden;
+    border-radius: 5px;
+    width: 230px;
+    opacity: 0.9;
+    z-index: 1050;
+    transition: left 0.6s ease-out 0s;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 7px;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+
+  .notification .notification-header {
+    font-family: 'Open Sans';
+    font-size: 14px;
+    color: white;
+    font-weight: 600;
+  }
+
+  .notification .notification-text {
+    font-family: 'Open Sans';
+    font-size: 12px;
+    color: white;
+  }
+
+  .notification-close {
+    font-weight: 800;
+    font-family: 'Open Sans';
+    font-size: 10px;
+    color: white;
+    margin-bottom: 15px;
+  }
+
+  .notification-enter {
+    opacity: 0.01;
+    transform: scale(0.50);
+  }
+
+  .notification-enter-active {
+    opacity: 1;
+    transform: scale(1.00);
+    -webkit-transition: opacity 0.5s ease-in;
+    -moz-transition: opacity 0.5s ease-in;
+    -ms-transition: opacity 0.5s ease-in;
+    -o-transition: opacity 0.5s ease-in;
+    transition: opacity 0.5s ease-in, transform 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  }
+
+  .notification-leave {
+    opacity: 1;
+    transform: scale(1.00);
+  }
+
+  .notification-leave-active {
+    opacity: 0.01;
+    transform: scale(0.50);
+    -webkit-transition: opacity 0.5s ease-out;
+    -moz-transition: opacity 0.5s ease-out;
+    -ms-transition: opacity 0.5s ease-out;
+    -o-transition: opacity 0.5s ease-out;
+    transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+  }
+
+
+  /**
+  *
+  * @section - 5. Controls
+  *
+  */
+
+  .btn-light {
+    color: white;
+    font-weight: 500;
+    font-family: 'Open Sans';
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    background-color: rgba(45, 45, 45, 1);
+    border: none;
+    border-radius: 4px;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
+  }
+
+  .btn-light:hover, btn-light:focus, btn-light:active {
+    background-color: #425b9e;
+  }
+
+  .btn-light-warning {
+    background-color: #ff7518;
+  }
+
+  .btn-light-warning:hover, btn-light-warning:focus, btn-light-warning:active {
+    background-color: #e45c00;
+  }
+
+  .nav-pills > li > a {
+    border-radius: 7px;
+    color: black;
+    font-weight: 600;
+    font-family: 'Open Sans';
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
+  }
+
+  .nav-pills > li > a {
+    border-radius: 7px;
+    color: rgb(187, 187, 187);
+    font-weight: 600;
+    font-family: 'Open Sans';
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
+  }
+
+  .nav-pills>li>a:focus,
+  .nav-pills>li>a:hover {
+    background-color: white;
+    color: black;
+  }
+
+  .nav-pills>li.active>a,
+  .nav-pills>li.active>a:focus,
+  .nav-pills>li.active>a:hover {
+    background-color: white;
+    color: black;
+  }
+
+  /**
+  * @note - To be used with the btn-light class.
+  */
+  .btn-light-mega {
+    width: 100% !important;
+  }
+
+  .btn-sidebar {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    margin-left: -15px;
+    background-color: rgba(60, 60, 60, 1);
+    border-radius: 0px;
+    border: none;
+    letter-spacing: 1px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    color: white;
+    text-align: left;
+    height: 50px;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
+  }
+
+  .btn-sidebar:hover, btn-sidebar:focus, btn-sidebar:active {
+    background-color: #232323;
+  }
+
+  .btn-transparent {
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+
+  .btn-transparent:hover, btn-transparent:focus, btn-transparent:active {
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+
+  .btn-right {
+    float: right;
+    margin-top: -60px;
+  }
+
+  .btn-icon {
+    font-size: 24px;
+  }
+
+  .form-margin {
+    margin-bottom: 15px;
+  }
+
+  .form-control {
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(205, 205, 205);
+    box-shadow: none;
+    -webkit-transition: border-color 0.2s ease-out;
+    -moz-transition: border-color 0.2s ease-out;
+    -ms-transition: border-color 0.2s ease-out;
+    -o-transition: border-color 0.2s ease-out;
+    transition: border-color 0.2s ease-out, transform 0.2s ease-out;
+  }
+
+  .form-control:focus {
+    box-shadow: none;
+    border-color: rgb(181, 181, 181);
+  }
+
+  .form-zoom {
+    -webkit-transition: transform 0.2s ease-out;
+    -moz-transition: transform 0.2s ease-out;
+    -ms-transition: transform 0.2s ease-out;
+    -o-transition: transform 0.2s ease-out;
+    transition: transform 0.2s ease-out;
+  }
+
+  .form-zoom:focus {
+    transform: scale(1.05);
+  }
+
+  .form-margin {
+    margin-bottom: 20px;
+  }
+
+  .label-margin {
+    margin-right: 10px;
+  }
+
+  .transparent-link {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .transparent-link:hover, .transparent-link:focus, .transparent-link:active {
+    text-decoration: none;
+    color: white;
+  }
+
+  .table-enter {
+    opacity: 0.01;
+    transform: scale(0.95);
+  }
+
+  .table-enter-active {
+    opacity: 1;
+    transform: scale(1.00);
+    -webkit-transition: opacity 0.5s ease-in;
+    -moz-transition: opacity 0.5s ease-in;
+    -ms-transition: opacity 0.5s ease-in;
+    -o-transition: opacity 0.5s ease-in;
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+  }
+
+  .table-leave {
+    opacity: 1;
+    transform: scale(1.00);
+  }
+
+  .table-leave-active {
+    opacity: 0.01;
+    transform: scale(0.95);
+    -webkit-transition: opacity 0.5s ease-out;
+    -moz-transition: opacity 0.5s ease-out;
+    -ms-transition: opacity 0.5s ease-out;
+    -o-transition: opacity 0.5s ease-out;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  /**
+  *
+  * @section - 6. Components
+  *
+  */
+
+  .reservation-device-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .reservation-device-label {
+    font-family: 'Open Sans';
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .reservation-device-description {
+    font-family: 'Open Sans';
+    font-size: 16px;
+    font-weight: 500;
+    color: darkgray;
+  }
+
+  .reservation-device {
+  }
+
+  .reservation-device-enter {
+    opacity: 0.01;
+    transform: scale(0.50);
+  }
+
+  .reservation-device-enter-active {
+    opacity: 1;
+    transform: scale(1.00);
+    -webkit-transition: opacity 0.5s ease-in;
+    -moz-transition: opacity 0.5s ease-in;
+    -ms-transition: opacity 0.5s ease-in;
+    -o-transition: opacity 0.5s ease-in;
+    transition: opacity 0.5s ease-in, transform 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  }
+
+  .reservation-device-leave {
+    opacity: 1;
+    transform: scale(1.00);
+  }
+
+  .reservation-device-leave-active {
+    opacity: 0.01;
+    transform: scale(0.50);
+    -webkit-transition: opacity 0.5s ease-out;
+    -moz-transition: opacity 0.5s ease-out;
+    -ms-transition: opacity 0.5s ease-out;
+    -o-transition: opacity 0.5s ease-out;
+    transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+  }
+
+  /**
+  *
+  * @section - 6. Home
+  *
+  */
+
+  .home-main {
+    height: 450px;
+    padding-top: 150px;
+    background-color: rgb(45, 45, 45);
+    margin-top: -21px;
+  }
+
+  .home-main-header {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 300;
+  }
+
+  /**
+  *
+  * @section - 6. Animations
+  *
+  */
+
+  @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+  @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+  @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
+
+  /**
+  *
+  * @section - 7. Media Queries
+  *
+  */
+
+  @media only screen and (max-width: 1530px) {
+    .sidebar-brand {
+      font-size: 55px;
+      margin-top: 43vh;
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    .column {
+      height: auto;
+    }
+
+    .sidebar-brand {
+      font-size: 55px;
+      padding-top: 100px;
+      padding-bottom: 100px;
+      margin-top: 0px;
+    }
+
+    .sidebar-left {
+      margin-top: -37px;
+      margin-bottom: -37px;
+    }
+
+    .data-column {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .data-column-header {
+      font-size: 16px;
+    }
+
+    .data-column-data {
+      font-size: 60px;
+      margin-top: 0px;
+    }
+
+    .btn-sidebar {
+      margin-top: -106px;
+      position: relative;
+      width: 100vw !important;
+    }
+
+    .sidebar {
+      width: 200px;
+      margin-top: 0px;
+    }
+
+    .sidebar-container {
+      margin-left: 250px;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .sidebar {
+      width: 98vw;
+      background-color: white;
+      z-index: 500;
+      position: relative;
+      margin-top: -30px;
+    }
+
+    .sidebar-container {
+      margin-left: 0px;
+    }
+
+    .hide-collapse {
+      display: none;
+    }
+  }
+  
+}
