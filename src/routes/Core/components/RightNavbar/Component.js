@@ -3,6 +3,11 @@ import classNames from 'classnames';
 import classes from './Styles.scss';
 import authentication from 'modules/authentication/utils';
 
+const button = classNames(
+  'ui inverted red button',
+  classes.button
+);
+
 export default class BidList extends React.Component {
   static propTypes = {
     data: PropTypes.object,
@@ -15,8 +20,8 @@ export default class BidList extends React.Component {
     this.props.actions.push('/app/login');
   };
   render() {
-    const logout = <button className="ui basic button" onClick={this.handleLogout}>Logout</button>;
-    const login = <button className="ui basic button" onClick={this.handleLogin}>Login</button>;
+    const logout = <button className={button} onClick={this.handleLogout}>Logout</button>;
+    const login = <button className={button} onClick={this.handleLogin}>Login</button>;
       
     const userName = this.props.data.user ? 
                      this.props.data.user.firstName + ' ' + this.props.data.user.lastName : 
