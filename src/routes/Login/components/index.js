@@ -1,5 +1,5 @@
-import LoginForm from './Form/Component';
+import Form from './Form/Component';
 
 export {
-  LoginForm,
+  Form,
 };
