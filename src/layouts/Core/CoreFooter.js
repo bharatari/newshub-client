@@ -8,14 +8,13 @@ const brand = classNames(
 );
 
 const footer = classNames(
-  'ui inverted vertical footer segment',
   classes.footer
 );
 
 function CoreLayout(props) {
   return (
-    <div className={footer}>
-      <div className="ui container">
+    <div className="ui container">
+      <div className={footer}>
         <p className={brand}>Hello from <strong>Dhahran.</strong></p>
       </div>
     </div>

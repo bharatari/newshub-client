@@ -5,8 +5,7 @@ import CoreFooter from './CoreFooter';
 import classNames from 'classnames';
 
 const contentMargin = classNames(
-  classes.contentMargin,
-  classes.background,
+  classes.contentMargin
 );
 
 function CoreLayout({ children, rightNavbar }) {
