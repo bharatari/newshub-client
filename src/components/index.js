@@ -5,6 +5,8 @@ import Notification from './Notifications/Notification';
 import FormatDate from './FormatDate';
 import Modal from './Modal';
 import TextLoading from './TextLoading';
+import SidebarPage from './SidebarPage/Component';
+import Table from './Table/Component';
 
 export {
   Notifications,
@@ -14,4 +16,6 @@ export {
   FormatDate,
   Modal,
   TextLoading,
+  SidebarPage,
+  Table,
 };
