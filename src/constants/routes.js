@@ -1,5 +1,5 @@
 export const navigationRoutes = [
-  { label: 'Dashboard', url: '/app/dashboard' },
-  { label: 'Reservations', url: '/app/reservations' },
-  { label: 'Devices', url: '/app/devices' }
+  { label: 'Dashboard', url: '/' },
+  { label: 'Reservations', url: '/app/reservation' },
+  { label: 'Devices', url: '/app/device' }
 ];
