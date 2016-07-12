@@ -6,6 +6,11 @@ const initialState = {
     reservations: null,
     error: null,
   },
+  createReservation: {
+    requesting: false,
+    reservation: null,
+    error: null,
+  },
 };
 
 export default handleActions({
