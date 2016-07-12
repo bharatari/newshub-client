@@ -23,11 +23,21 @@ export default class ReservationsView extends React.Component {
   componentDidMount() {
     this.props.actions.fetchReservations();
   }
+  handleClick = () => {
+    this.props.actions.push('/app/reservation/new');
+  };
   render() {
+    const right = <button className="ui animated button inverted blue button-light" onClick={this.handleClick}>
+                    <div className="visible content">ADD</div>
+                    <div className="hidden content">
+                      <i className="add circle icon"></i>
+                    </div>
+                  </button>;
+
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="Reservations">
+          header="Reservations" right={right}>
           { this.props.reservations ?
             <Table fields={this.state.fields}
               data={this.props.reservations} 
