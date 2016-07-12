@@ -46,5 +46,38 @@ export default handleActions({
         },
       };
     }
-  }
+  },
+  REQUEST_CREATE_RESERVATION: (state, action) => ({
+    ...state,
+    createReservation: {
+      ...state.createReservation,
+      requesting: true,
+      reservation: null,
+      error: null,
+    },
+  }),
+  RECEIVE_CREATE_RESERVATION: {
+    next(state, action) {
+      return {
+        ...state,
+        createReservation: {
+          ...state.createReservation,
+          requesting: false,
+          reservation: action.payload,
+          error: null,
+        },
+      };
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        createReservation: {
+          ...state.createReservation,
+          requesting: false,
+          reservation: null,
+          error: action.payload,
+        },
+      };
+    }
+  },
 }, initialState);

@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
+import data from 'utils/data';
 
 export const requestReservations = createAction('REQUEST_RESERVATIONS');
 export const receiveReservations = createAction('RECEIVE_RESERVATIONS');
@@ -18,5 +19,18 @@ export const receiveDeleteReservation = createAction('RECEIVE_DELETE_RESERVATION
 export function fetchReservations(filter, page) {
   return function (dispatch) {
     dispatch(requestReservations());
+  };
+}
+
+export function createReservation(body) {
+  return function (dispatch) {
+    dispatch(requestCreateReservation());
+
+    data.request('reservation', 'post', null, null, body)
+      .then(function (response) {
+        dispatch(receiveCreateReservation(response))
+      }).catch(function (e) {
+        dispatch(receiveCreateReservation(e));
+      });
   };
 }

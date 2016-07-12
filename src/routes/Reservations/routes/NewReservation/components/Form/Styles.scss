@@ -1,0 +1,29 @@
+.reservationDevice {
+  margin-bottom: 25px;
+}
+
+.reservationDeviceContainer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.reservationDeviceLabel {
+  font-family: 'Open Sans';
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.reservationDeviceQuantity {
+  font-family: 'Open Sans';
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: -2px;
+  margin-left: -5px;
+  padding: 4px 15px 8px;
+}
+
+.errorText {
+  font-family: 'Open Sans';
+  font-weight: 600;
+  color: red;
+}
