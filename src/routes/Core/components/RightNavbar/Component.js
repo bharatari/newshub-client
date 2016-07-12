@@ -4,8 +4,7 @@ import classes from './Styles.scss';
 import authentication from 'modules/authentication/utils';
 
 const button = classNames(
-  'ui inverted red button',
-  classes.button
+  'ui inverted red button button-light'
 );
 
 export default class BidList extends React.Component {

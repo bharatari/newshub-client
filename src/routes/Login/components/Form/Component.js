@@ -23,13 +23,12 @@ class LoginForm extends React.Component {
   render() {
     const { handleSubmit, pristine, reset, submitting, requestingLogin, error } = this.props;
     const button = classNames(
-      'ui fluid large black submit button',
+      'ui fluid large black submit button button-light',
       classes.button,
       { loading: requestingLogin }  
     );
     const signup = classNames(
-      'ui fluid large inverted blue submit button',
-      classes.signup,
+      'ui fluid large inverted blue submit button button-light',
     );
 
     return (
