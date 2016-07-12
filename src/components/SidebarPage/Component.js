@@ -14,7 +14,17 @@ export default class SidebarPage extends React.Component {
       <div className={main}>
         <Sidebar {...this.props} />
         <div className={classes.sidebarContainer}>
-          <h1 className={classes.sidebarContainerHeader}>{this.props.header}</h1>
+          <div className={classes.sidebarContainerHeaderBar}>
+              <div className="row">
+                <div>
+                  <h1 className={classes.sidebarContainerHeader}>{this.props.header}</h1>
+                </div>
+                <div className={classes.sidebarContainerHeaderRight}>
+                  {this.props.right}
+                </div>
+              </div>
+          </div>
+
           <div className={classes.sidebarContainerPadding}>
             {this.props.children}
           </div>
