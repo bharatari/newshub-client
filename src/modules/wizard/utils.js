@@ -6,5 +6,8 @@ export default {
     return _.differenceWith(devices, selectedDevices, function (a, b) {
       return a.id === b.id;
     });
-  }
+  },
+  groupDevices(devices) {
+    return _.groupBy(devices, 'type');
+  },
 };

@@ -4,12 +4,13 @@ import Item from './Item';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import array from 'utils/array';
 import classes from './Styles.scss';
+import Group from './Group';
 
 export default class NewReservationWizard extends React.Component {
   static propTypes = {
     value: PropTypes.any.isRequired,
     onChange: PropTypes.func.isRequired,
-    remainingDevices: PropTypes.array,
+    remainingDevices: PropTypes.object,
   };
   handleClick = (device) => {
     let selectedDevices = [
@@ -52,18 +53,22 @@ export default class NewReservationWizard extends React.Component {
       return list;
     }
 
-    const renderGrid = () => {
+    const renderGroups = () => {
       let list = [];
 
       if (this.props.remainingDevices) {
-        this.props.remainingDevices.forEach((device) => {
-          list.push(
-            <Item
-              key={device.id}
-              device={device}
-              onClick={this.handleClick} />
-          );
-        });
+        for (let property in this.props.remainingDevices) {
+          if (this.props.remainingDevices.hasOwnProperty(property)) {
+            list.push(
+              <Group
+                key={property}
+                name={property}
+                devices={this.props.remainingDevices[property]}
+                onClick={this.handleClick}
+              />
+            );
+          }
+        }        
       }
 
       return list;
@@ -71,8 +76,8 @@ export default class NewReservationWizard extends React.Component {
 
     return (
       <div>
-        <div className="ui cards">
-          {renderGrid()}
+        <div>
+          {renderGroups()}
         </div>
         <div className={classes.reservationDeviceContainer}>
           <ReactCSSTransitionGroup

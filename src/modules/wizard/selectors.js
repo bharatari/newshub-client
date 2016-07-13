@@ -12,3 +12,10 @@ export const getRemainingDevices = createSelector(
     return wizard.getRemainingDevices(devices, selectedDevices);
   }
 );
+
+export const groupDevices = createSelector(
+  getRemainingDevices,
+  (devices) => {
+    return wizard.groupDevices(devices);
+  }
+);

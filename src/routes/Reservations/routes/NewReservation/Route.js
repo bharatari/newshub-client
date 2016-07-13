@@ -4,12 +4,13 @@ import View from './View';
 import * as reservation from 'modules/reservation/actions';
 import * as device from 'modules/device/actions';
 import { routeActions } from 'react-router-redux';
-import { getRemainingDevices } from 'modules/wizard/selectors';
+import { groupDevices } from 'modules/wizard/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
-  remainingDevices: getRemainingDevices(state),
+  remainingDevices: groupDevices(state),
   requestingCreateReservation: state.reservation.createReservation.requesting,
+  createdReservation: state.reservation.createReservation.reservation,
 });
 
 const actionCreators = {
