@@ -1,29 +1,44 @@
 import { handleActions } from 'redux-actions';
 
 const initialState = {
-  requestingCreateUser: false,
-  error: null,
-  user: null,
+  createUser: {
+    requesting: false,
+    user: null,
+    error: null,
+  },
 };
 
 export default handleActions({
   REQUEST_CREATE_USER: (state, action) => ({
     ...state,
-    requestingCreateUser: true,
+    createUser: {
+      ...state.createUser,
+      requesting: true,
+      user: null,
+      error: null,
+    },
   }),
   RECEIVE_CREATE_USER: {
     next(state, action) {
       return {
         ...state,
-        requestingCreateUser: false,
-        user: action.payload,
+        createUser: {
+          ...state.createUser,
+          requesting: false,
+          user: action.payload,
+          error: null,
+        },
       };
     },
     throw(state, action) {
       return {
         ...state,
-        requestingCreateUser: false,
-        error: action.payload,
+        createUser: {
+          ...state.createUser,
+          requesting: false,
+          user: null,
+          error: action.payload,
+        },
       };
     }
   }
