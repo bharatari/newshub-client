@@ -28,7 +28,7 @@ export default class LoginView extends React.Component {
           <div className="four wide column">
             <h2 className={classes.header}>Login</h2>
             <Form onSubmit={this.handleSubmit} requestingLogin={this.props.requestingLogin}
-              error={this.props.error} />
+              error={this.props.error} actions={this.props.actions} />
           </div>
         </div>
       </div>

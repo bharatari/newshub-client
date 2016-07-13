@@ -20,6 +20,9 @@ class LoginForm extends React.Component {
     requestingLogin: PropTypes.bool.isRequired,
     error: PropTypes.any.isRequired,
   };
+  handleClick = () => {
+    this.props.actions.push('/app/signup');
+  };
   render() {
     const { handleSubmit, pristine, reset, submitting, requestingLogin, error } = this.props;
     const button = classNames(
@@ -50,9 +53,9 @@ class LoginForm extends React.Component {
           Login
         </button>
         <div className="ui error message">{error}</div>
-        <button className={signup}>
+        <div className={signup} onClick={this.handleClick}>
           Signup
-        </button>
+        </div>
       </form>
     );
   }
