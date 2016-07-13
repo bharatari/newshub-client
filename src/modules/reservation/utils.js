@@ -14,10 +14,6 @@ module.exports = {
       errors.purpose = 'Required';
     }
 
-    if (!values.notes) {
-      errors.notes = 'Required';
-    }
-
     if (!values.devices) {
       errors.devices = 'Required';
     }

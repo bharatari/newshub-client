@@ -14,7 +14,7 @@ export default class Item extends React.Component {
     return (
       <div className="card">
         <div className="image">
-          <img />
+          <img src={this.props.device.image} />
         </div>
         <div className="content">
           <a className="header">{this.props.device.label}</a>

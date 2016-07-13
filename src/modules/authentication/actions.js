@@ -8,17 +8,23 @@ export const receiveLogin = createAction('RECEIVE_LOGIN');
 export const requestAuthenticated = createAction('REQUEST_AUTHENTICATED');
 export const receiveAuthenticated = createAction('RECEIVE_AUTHENTICATED');
  
-export function login() {
+export function login(body) {
   return function (dispatch) {
     dispatch(requestLogin());
 
-    data.request('login')
+    data.request('login', 'post', null, null, body)
       .then(function (body) {
         localStorage.setItem(localStorageAuthToken, body.token);
         dispatch(receiveLogin());
       }).catch(function (e) {
         dispatch(receiveLogin(e));
       });
+  }
+}
+
+export function logout() {
+  return function (dispatch) {
+    
   }
 }
 

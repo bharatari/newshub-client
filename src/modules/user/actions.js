@@ -44,8 +44,7 @@ export function createUser(body) {
 export function updateUser(body, userId) {
   return function (dispatch) {
     dispatch(requestUpdateUser());
-    
-    console.log('requested');
+
     data.request('user', 'PATCH', userId, null, body)
       .then(function (user) {
         dispatch(receiveUpdateUser(user));

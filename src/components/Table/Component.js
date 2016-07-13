@@ -39,7 +39,6 @@ export default class Table extends React.Component {
         counter++;
       });
       
-      console.log(array);
       return array;
     };
 
