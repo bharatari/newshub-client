@@ -6,7 +6,7 @@ import user from 'modules/user/utils';
 
 const renderField = props => (
   <span>
-    <input {...props}/>
+    <input {...props.input}/>
     {props.touched && props.error && <span className={classes.errorText}>{props.error}</span>}
   </span>
 );
@@ -34,6 +34,22 @@ class SignupForm extends React.Component {
 
     return (
       <form onSubmit={handleSubmit} className={form}>
+      <div className="ui grid">
+          <div className="six wide column">
+            <h3>First Name</h3>
+          </div>
+          <div className="ten wide column">
+            <Field name="firstName" component={renderField} type="text" />
+          </div>
+        </div>
+        <div className="ui grid">
+          <div className="six wide column">
+            <h3>Last Name</h3>
+          </div>
+          <div className="ten wide column">
+            <Field name="lastName" component={renderField} type="text" />
+          </div>
+        </div>
         <div className="ui grid">
           <div className="six wide column">
             <h3>Username</h3>

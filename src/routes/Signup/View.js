@@ -12,6 +12,8 @@ export default class LoginView extends React.Component {
   };
   handleSubmit = (values) => {
     this.props.actions.createUser({
+      firstName: values.firstName,
+      lastName: values.lastName,
       username: values.username,
       password: values.password,
       email: values.email,
@@ -20,14 +22,14 @@ export default class LoginView extends React.Component {
   render() {
     const response = () => {
       if (this.props.error) {
-        return <div class="ui negative message">
-                <div class="header">
-                  Whoops, something went wrong there.
+        return <div className="ui negative message">
+                <div className="header">
+                  Whoops, something went wrong there. Check your fields and try again.
                 </div>
               </div>
       } else if (this.props.user) {
-        return <div class="ui success message">
-                <div class="header">
+        return <div className="ui success message">
+                <div className="header">
                   Your user registration was successful.
                 </div>
                 <p>You may now log in with your username</p>
