@@ -26,18 +26,26 @@ export default class NewReservationView extends React.Component {
       'ui animated button inverted blue button-light',
       { loading: this.props.requestingCreateReservation }
     );
-
-    const right = <button className={button} onClick={this.handleClick}>
+    const disable = this.props.requestingCreateReservation || this.props.createdReservation;
+    const right = <button className={button} disabled={disable}
+                    onClick={this.handleClick}>
                     <div className="visible content">SAVE</div>
                     <div className="hidden content">
                       <i className="checkmark icon"></i>
                     </div>
                   </button>;
+    const message = <div className="ui success message">
+                      <div className="header">
+                        Your reservation has been created.
+                      </div>
+                      <p>It will need to be approved by a member of management.</p>
+                    </div>
 
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="New Reservation" right={right}>
+          header="New Reservation" right={right} loading={this.props.requestingCreateReservation}>
+          { this.props.createdReservation ? message : null }
           <Form ref="form" remainingDevices={this.props.remainingDevices}
             requestingCreateReservation={this.props.requestingCreateReservation}
             onSubmit={this.handleSubmit} />
