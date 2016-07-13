@@ -14,7 +14,13 @@ export default function authenticated(Component) {
     }
     componentWillReceiveProps(nextProps) {
       if (!nextProps.requestingAuthenticated && !nextProps.authenticated) {
-        this.props.actions.replace(loginRedirect + '?next=' + nextProps.currentRoute);
+        if (nextProps.currentRoute !== loginRedirect) {
+          this.props.actions.replace(loginRedirect + '?next=' + nextProps.currentRoute);
+        }
+      }
+
+      if (nextProps.logout && (nextProps.currentRoute !== loginRedirect)) {
+        this.props.actions.replace(loginRedirect);
       }
     }
     render() {
@@ -35,9 +41,10 @@ export default function authenticated(Component) {
   const mapStateToProps = (state) => ({
     requestingAuthenticated: state.authentication.requestingAuthenticated,
     authenticated: state.authentication.authenticated,
-    requestingUser: state.user.requestingUser,
-    user: state.user.user,
+    requestingUser: state.user.fetchUser.requesting,
+    user: state.user.fetchUser.user,
     currentRoute: state.router.location.pathname,
+    logout: state.authentication.logout,
   });
 
   const actionCreators = {
