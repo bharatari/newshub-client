@@ -35,7 +35,8 @@ export default class Table extends React.Component {
 
       this.props.data.map((item) => {
         array.push(<Row key={counter} fields={this.props.fields}
-                    data={item} route={this.props.route} />);
+                    data={item} route={this.props.route}
+                    actions={this.props.actions} />);
         counter++;
       });
       

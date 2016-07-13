@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, Table } from 'components/';
+import { SidebarPage, Table, TextLoading } from 'components/';
+import general from 'utils/general';
 
 export default class ReservationsView extends React.Component {
   static propTypes = {
@@ -13,10 +14,9 @@ export default class ReservationsView extends React.Component {
   };
   state = {
     fields: [
-      { label: 'Equipment', property: 'devices.label' },
       { label: 'Name', property: 'user.fullName'},
       { label: 'Checked Out By', property: 'checkedOutBy.fullName' },
-      { label: 'Status', property: 'status' },
+      { label: 'Status', property: 'status', custom: general.getReservationStatus.bind(general) },
       { label: 'Created', property: 'createdAt', type: 'date' },
     ]
   };
@@ -37,13 +37,13 @@ export default class ReservationsView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="Reservations" right={right}>
+          header="Reservations" right={right} loading={this.props.requestingReservations}>
           { this.props.reservations ?
             <Table fields={this.state.fields}
               data={this.props.reservations} 
               actions={this.props.actions}
               route="/app/reservation" />
-            : null
+            : <TextLoading loading={this.props.requestingReservations} />
           }
         </SidebarPage>
       </div>

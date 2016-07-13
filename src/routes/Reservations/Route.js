@@ -7,6 +7,7 @@ import { routeActions } from 'react-router-redux';
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
   reservations: state.reservation.fetchReservations.reservations,
+  requestingReservations: state.reservation.fetchReservations.requesting,
 });
 
 const actionCreators = {

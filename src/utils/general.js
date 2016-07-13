@@ -53,5 +53,28 @@ export default {
     }
     
     return array;
+  },
+  computeReservationStatus(reservation) {
+    if (!reservation.approved) {
+      return 'NEEDS_APPROVAL';
+    } else if (reservation.approved && !reservation.checkedOut && !reservation.checkedIn) {
+      return 'APPROVED';
+    } else if (reservation.approved && reservation.checkedOut && !reservation.checkedIn) {
+      return 'CHECKED_OUT';
+    } else if (reservation.approved && reservation.checkedOut && reservation.checkedIn) {
+      return 'CHECKED_IN';
+    } else {
+      return 'UNKNOWN';
+    }
+  },
+  getReservationStatus(reservation) {
+    return this.reservationStatus[this.computeReservationStatus(reservation)];
+  },
+  reservationStatus: {
+    'NEEDS_APPROVAL': 'Needs Approval',
+    'APPROVED': 'Approved',
+    'CHECKED_OUT': 'Checked Out',
+    'CHECKED_IN': 'Checked In',
+    'UNKNOWN': 'Unknown',
   }
 }
