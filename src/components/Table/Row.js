@@ -16,13 +16,21 @@ export default class Row extends React.Component {
   };
   render() {
     const processField = (field, data) => {
+      let result;
+
+      if (field.custom) {
+        result = field.custom(data);
+      } else {
+        result = _.get(data, field.property);
+      }
+
       if (field.type) {
         if (field.type === 'date') {
-          return <FormatDate date={_.get(data, field.property)} />;
+          return <FormatDate date={result} />;
         }
       }
 
-      return _.get(data, field.property);
+      return result;
     };
     const cells = () => {
       let array = [];
