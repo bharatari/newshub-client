@@ -1,7 +1,7 @@
 .notifications {
     position: fixed;
     overflow: hidden;
-    top: 20px;
+    top: 30px;
     margin-left: -40px;
     z-index: 990;
     pointer-events: none;
@@ -51,27 +51,17 @@
 }
 
 .loadingSpinner {
-  font-size: 40px;
-  z-index: 999;
-  position: fixed;
-  margin-top: -15px;
-  margin-left: -0px;
-  color: white;
-  -webkit-animation: spin 1s ease-in-out infinite;
-  -moz-animation: spin 1s ease-in-out infinite;
-  -ms-animation: spin 1s ease-in-out infinite;
-  -o-animation: spin 1s ease-in-out infinite;
-  animation: spin 1s ease-in-out infinite;
+  margin-top: 10px !important;
 }
 
 .loadingText {
   margin-left: 50px;
-  margin-top: 10px;
+  margin-top: -25px;
   font-family: 'Open Sans';
   font-size: 14px;
   color: white;
   font-weight: 600;
-  margin-bottom: 17px;
+  padding-bottom: 25px;
 }
 
 .fixedNavbarOffset {

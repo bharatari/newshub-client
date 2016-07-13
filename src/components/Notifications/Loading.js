@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const spinner = classNames(
-  'ion-ios-loop',
+  'ui active inline loader',
   classes.loadingSpinner
 );
 
@@ -25,7 +25,7 @@ export default class Loading extends React.Component {
       loading =
         <li className={classes.notification}>
           <div>
-            <i className={spinner}></i>
+            <div className={spinner}></div>
             <p className={classes.loadingText}>Loading...</p>
           </div>
         </li>

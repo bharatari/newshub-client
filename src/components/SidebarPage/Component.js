@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Styles.scss';
 import Sidebar from './Sidebar';
 import classNames from 'classnames';
+import { Notifications } from 'components/'
 
 const main = classNames(
   classes.main,
@@ -12,6 +13,7 @@ export default class SidebarPage extends React.Component {
   render() {
     return (
       <div className={main}>
+        <Notifications loading={this.props.loading} />
         <Sidebar {...this.props} />
         <div className={classes.sidebarContainer}>
           <div className={classes.sidebarContainerHeaderBar}>
