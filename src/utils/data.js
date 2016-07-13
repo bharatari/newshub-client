@@ -2,15 +2,13 @@ import _ from 'lodash';
 import { localStorageAuthToken } from 'constants/keys';
 import feathers from 'feathers-client';
 import io from 'socket.io-client';
-import authentication from 'feathers-authentication/client';
 
 export default {
   configure() {
     let socket = io('http://localhost:3030');
     let app = feathers()
       .configure(feathers.hooks())
-      .configure(feathers.socketio(socket))
-      .configure(authentication());
+      .configure(feathers.socketio(socket));
 
     this.app = app;
   },
@@ -25,20 +23,24 @@ export default {
     return url;
   },
   apiRoot: '/api',
-  options: {},
+  options: {
+    headers: {},
+  },
 
   /**
    * Dynamically constructs JSON API request.
    *
    * @param {string} dataType
    * @param {string} method
-   * @param {Object} data
    * @param {string} id
+   * @param {Object} body
+   * @param {Object} settings
    * @return {Promise}
    */
-  request(dataType, method, id, query, body) {
+  request(dataType, method, id, query, body, settings) {
+    const { serialize, resolve } = this.processSettings(settings);
     const url = this.processUrl(dataType, id, query);
-    const options = this.processOptions(body, method);
+    const options = this.processOptions(body, method, serialize);
 
     return fetch(url, options)
       .then(this.checkStatus)
@@ -46,7 +48,7 @@ export default {
         return response.json();
       })
       .then((data) => {
-        return this.processResponse(data);
+        return this.processResponse(data, resolve);
       });
   },
 
@@ -69,25 +71,6 @@ export default {
     var service = this.app.service('api/' + dataType);
     service.on(action, cb);    
   },
-  
-  /**
-   * Specifically for authentication requests with a Feathers backend.
-   */
-  authenticate(username, password) {
-    if (this.app == null) {
-      throw new Error('Must call configure before use.');
-    }
-
-    this.app.authenticate({
-      'type': 'local',
-      'email': username,
-      'password': password,
-    }).then(function (result) {
-      console.log('Authenticated!', result);
-    }).catch(function (error) {
-      console.error('Error authenticating!', error);
-    });
-  },
   processUrl(dataType, id, query = '') {
     let url = this.base + this.apiRoot + '/' + dataType;
 
@@ -105,19 +88,22 @@ export default {
     
     return url;
   },
-  processOptions(body, method) {
+  processOptions(body, method, serialize) {
     let options = { 
       ...this.options
     };
 
     if (localStorage.getItem(localStorageAuthToken)) {
-      options.headers = {
-        'Authorization': 'Bearer ' + localStorage.getItem(localStorageAuthToken),
-      };
+      options.headers['Authorization'] = 'Bearer ' + localStorage.getItem(localStorageAuthToken);
     }
 
     if (body) {
-      options.body = JSON.stringify(body);
+      if (serialize) {
+        options.body = JSON.stringify(body);
+        options.headers['Content-Type'] = 'application/json; charset=utf-8';
+      } else {
+        options.body = body;
+      }
     }
 
     if (method) {
@@ -126,10 +112,12 @@ export default {
 
     return options;
   },
-  processResponse(body) {
+  processResponse(body, resolve) {
     if (body != null) {
-      if (body.data) {
-        return body.data;
+      if (resolve) {
+        if (body.data) {
+          return body.data;
+        }
       }
     }
    
@@ -159,5 +147,28 @@ export default {
     }
       
     return '?' + ret.join("&");
+  },
+  getAuthToken() {
+    return localStorage.getItem(localStorageAuthToken);
+  },
+  processSettings(settings) {
+    if (settings) {
+      if (settings.serialize == null) {
+        settings.serialize = true;
+      }
+
+      if (settings.resolve == null) {
+        settings.resolve = true;
+      }
+
+      return settings;
+    } else {
+      settings = {
+        serialize: true,
+        resolve: true,
+      };
+
+      return settings;
+    }
   }
 };
