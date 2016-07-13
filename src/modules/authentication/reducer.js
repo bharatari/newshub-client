@@ -1,31 +1,54 @@
 import { handleActions } from 'redux-actions';
 
 const initialState = {
+  login: {
+    requesting: false,
+    response: false,
+    error: null,
+  },
   error: null,
-  requestingLogin: false,
   authenticated: false,
   requestingAuthenticated: false,
+  logout: false,
 };
 
 export default handleActions({
+  
+  REQUEST_LOGOUT: (state, action) => ({
+    ...state,
+    logout: true,
+  }),
   REQUEST_LOGIN: (state, action) => ({
     ...state,
-    requestingLogin: true,
+    login: {
+      ...state.login,
+      requesting: true,
+      response: false,
+      error: null,
+    },
+    logout: false,
   }),
   RECEIVE_LOGIN: {
     next(state, action) {
       return {
         ...state,
-        requestingLogin: false,
-        authenticated: true,
+        login: {
+          ...state.login,
+          requesting: false,
+          response: action.payload,
+          error: null,
+        },
       };
     },
     throw(state, action) {
       return {
         ...state,
-        error: action.payload,
-        authenticated: false,
-        requestingLogin: false,
+        login: {
+          ...state.login,
+          requesting: false,
+          authenticated: false,
+          error: action.payload,
+        },
       }
     }
   },
