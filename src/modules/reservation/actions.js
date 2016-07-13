@@ -19,8 +19,17 @@ export const receiveDeleteReservation = createAction('RECEIVE_DELETE_RESERVATION
 export function fetchReservations(filter, page) {
   return function (dispatch) {
     dispatch(requestReservations());
+
+    data.request('reservation')
+      .then(function (response) {
+        dispatch(receiveReservations(response))
+      }).catch(function (e) {
+        dispatch(receiveReservations(e));
+      });
   };
 }
+
+
 
 export function createReservation(body) {
   return function (dispatch) {
