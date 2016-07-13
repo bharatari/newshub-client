@@ -4,7 +4,7 @@ import Loading from './Notifications/Loading';
 import Notification from './Notifications/Notification';
 import FormatDate from './FormatDate';
 import Modal from './Modal';
-import TextLoading from './TextLoading';
+import TextLoading from './TextLoading/Component';
 import SidebarPage from './SidebarPage/Component';
 import Table from './Table/Component';
 
