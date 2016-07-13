@@ -4,10 +4,11 @@ import View from './View';
 import * as authentication from 'modules/authentication/actions';
 import { routeActions } from 'react-router-redux';
 
-const mapStateToProps = (state) => ({
-  requestingLogin: state.authentication.requestingLogin,
-  error: state.authentication.error,
-  authenticated: state.authentication.authenticated,
+const mapStateToProps = (state, ownProps) => ({
+  query: ownProps.location.query,
+  requestingLogin: state.authentication.login.requesting,
+  error: state.authentication.login.error,
+  response: state.authentication.login.response,
 });
 
 const actionCreators = {

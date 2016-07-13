@@ -28,7 +28,7 @@ class LoginForm extends React.Component {
     const button = classNames(
       'ui fluid large black submit button button-light',
       classes.button,
-      { loading: requestingLogin }  
+      { loading: requestingLogin }
     );
     const signup = classNames(
       'ui fluid large inverted blue submit button button-light',
@@ -49,7 +49,7 @@ class LoginForm extends React.Component {
           </div>
         </div>
         <button type="submit" className={button}
-          disabled={this.props.requestingLogin}>
+          disabled={this.props.requestingLogin || this.props.response}>
           Login
         </button>
         <div className="ui error message">{error}</div>
