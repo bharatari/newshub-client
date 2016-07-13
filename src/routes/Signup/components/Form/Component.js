@@ -23,12 +23,17 @@ class SignupForm extends React.Component {
   render() {
     const { handleSubmit, pristine, reset, submitting, requestingCreateUser, error } = this.props;
     const button = classNames(
-      'ui fluid large teal submit button',
+      'ui fluid large inverted blue submit button button-light',
+      classes.button,
       { loading: requestingCreateUser }
     );
+    const form = classNames(
+      'ui form',
+      classes.form
+    )
 
     return (
-      <form onSubmit={handleSubmit} className="ui large form">
+      <form onSubmit={handleSubmit} className={form}>
         <div className="ui grid">
           <div className="six wide column">
             <h3>Username</h3>
@@ -73,7 +78,6 @@ class SignupForm extends React.Component {
           disabled={this.props.requestingCreateUser}>
           Signup
         </button>
-        <div className="ui error message">{error}</div>
       </form>
     );
   }

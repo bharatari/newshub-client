@@ -5,9 +5,9 @@ import * as user from 'modules/user/actions';
 import { routeActions } from 'react-router-redux';
 
 const mapStateToProps = (state) => ({
-  requestingCreateUser: state.user.requestingCreateUser,
-  error: state.user.error,
-  user: state.user.user,
+  requestingCreateUser: state.user.createUser.requesting,
+  error: state.user.createUser.error,
+  user: state.user.createUser.user,
 });
 
 const actionCreators = {
