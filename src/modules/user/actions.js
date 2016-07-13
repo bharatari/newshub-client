@@ -18,7 +18,7 @@ export function fetchUser() {
     if (localStorage.getItem(localStorageAuthToken)) {
       data.request('user')
         .then(function (user) {
-          dispatch(receiveUser(user));
+          dispatch(receiveUser(user[0]));
         }).catch(function (e) {
           dispatch(receiveUser(e));
         });
