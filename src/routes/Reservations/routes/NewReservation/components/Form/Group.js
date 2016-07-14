@@ -5,7 +5,7 @@ import Item from './Item';
 
 export default class Device extends React.Component {
   static propTypes = {
-    devices: PropTypes.object.isRequired,
+    devices: PropTypes.array.isRequired,
     onClick: PropTypes.func.isRequired,
   };
   render() {
