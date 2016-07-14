@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import View from './View';
 import * as reservation from 'modules/reservation/actions';
 import * as device from 'modules/device/actions';
+import * as wizard from 'modules/wizard/actions';
 import { routeActions } from 'react-router-redux';
 import { groupDevices } from 'modules/wizard/selectors';
 
@@ -11,12 +12,14 @@ const mapStateToProps = (state, ownProps) => ({
   remainingDevices: groupDevices(state),
   requestingCreateReservation: state.reservation.createReservation.requesting,
   createdReservation: state.reservation.createReservation.reservation,
+  selectedDevices: state.wizard.newReservation.selectedDevices,
 });
 
 const actionCreators = {
   ...routeActions,
   ...reservation,
   ...device,
+  ...wizard,
 };
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, Table } from 'components/';
-import { Form } from './components';
+import { Form, Wizard } from './components';
 
 export default class NewReservationView extends React.Component {
   static propTypes = {
@@ -48,7 +48,9 @@ export default class NewReservationView extends React.Component {
           { this.props.createdReservation ? message : null }
           <Form ref="form" remainingDevices={this.props.remainingDevices}
             requestingCreateReservation={this.props.requestingCreateReservation}
-            onSubmit={this.handleSubmit} />
+            onSubmit={this.handleSubmit} selectedDevices={this.props.selectedDevices} />
+          <Wizard actions={this.props.actions} selectedDevices={this.props.selectedDevices}
+            remainingDevices={this.props.remainingDevices} />
         </SidebarPage>
       </div>
     );
