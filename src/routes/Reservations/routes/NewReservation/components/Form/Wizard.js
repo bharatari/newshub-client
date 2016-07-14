@@ -5,6 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import array from 'utils/array';
 import classes from './Styles.scss';
 import Group from './Group';
+import ReactWinJS from 'react-winjs';
 
 export default class NewReservationWizard extends React.Component {
   static propTypes = {
@@ -17,8 +18,6 @@ export default class NewReservationWizard extends React.Component {
       ...this.props.selectedDevices,
       device,
     ];
-
-    console.log(selectedDevices);
 
     this.props.actions.setWizardValue({
       name: 'newReservation',
@@ -74,12 +73,13 @@ export default class NewReservationWizard extends React.Component {
         for (let property in this.props.remainingDevices) {
           if (this.props.remainingDevices.hasOwnProperty(property)) {
             list.push(
-              <Group
-                key={property}
-                name={property}
-                devices={this.props.remainingDevices[property]}
-                onClick={this.handleClick}
-              />
+              <ReactWinJS.Pivot.Item key={property} header={property}>
+                <Group
+                  key={property}
+                  name={property}
+                  devices={this.props.remainingDevices[property]}
+                  onClick={this.handleClick} />
+              </ReactWinJS.Pivot.Item>
             );
           }
         }        
@@ -90,8 +90,10 @@ export default class NewReservationWizard extends React.Component {
 
     return (
       <div>
-        <div>
-          {renderGroups()}
+        <div className={classes.pivotContainer}>
+          <ReactWinJS.Pivot>
+            {renderGroups()}
+          </ReactWinJS.Pivot>
         </div>
         <div className={classes.reservationDeviceContainer}>
           <ReactCSSTransitionGroup

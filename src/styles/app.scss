@@ -99,6 +99,16 @@
    *
    */
 
+  .win-pivot-header {
+    font-family: 'Open Sans';
+    font-weight: 600 !important;
+    font-size: 18px !important;
+  }
+
+  .win-pivot-item-content {
+    overflow-y: hidden;
+  }
+
   .button-light {
     font-family: 'Open Sans' !important;
     font-weight: 500 !important;

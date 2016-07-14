@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import classes from './Styles.scss';
 import Item from './Item';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactWinJS from 'react-winjs';
 
 export default class Device extends React.Component {
   static propTypes = {
@@ -26,9 +27,6 @@ export default class Device extends React.Component {
     }
     return (
       <div>
-        <div className="ui row">
-          <h1 className={classes.groupHeader}>{this.props.name}</h1>
-        </div>
         <ReactCSSTransitionGroup
           transitionName="device-group"
           component="div"
