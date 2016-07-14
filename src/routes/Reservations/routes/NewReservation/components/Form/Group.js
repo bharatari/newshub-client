@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import classes from './Styles.scss';
 import Item from './Item';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class Device extends React.Component {
   static propTypes = {
@@ -28,9 +29,13 @@ export default class Device extends React.Component {
         <div className="ui row">
           <h1 className={classes.groupHeader}>{this.props.name}</h1>
         </div>
-        <div className="ui four cards">
-          {renderDevices()}
-        </div>
+        <ReactCSSTransitionGroup
+          transitionName="device-group"
+          component="div"
+          className="ui four cards"
+          transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+            {renderDevices()}
+        </ReactCSSTransitionGroup>
       </div>
     )
   }
