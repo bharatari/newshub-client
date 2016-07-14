@@ -15,6 +15,24 @@ export default class NewReservationView extends React.Component {
   componentDidMount() {
     this.props.actions.fetchDevices();
   }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.newReservation) {
+      const { startDate, endDate } = nextProps.newReservation.values;
+      const { startDate: oldStartDate, endDate: oldEndDate } = this.props.newReservation.values;
+
+      if (startDate && endDate) {
+        if ((startDate !== oldStartDate) || (endDate !== oldEndDate)) {
+          this.props.actions.fetchDevices(startDate, endDate);
+        } else if (this.props.requestingDevices) {
+          this.props.actions.setWizardValue({
+            name: 'newReservation',
+            key: 'selectedDevices',
+            value: [],
+          });
+        }
+      }
+    }
+  }
   handleSubmit = (values) => {
     this.props.actions.createReservation(values);
   };
@@ -27,6 +45,7 @@ export default class NewReservationView extends React.Component {
       { loading: this.props.requestingCreateReservation }
     );
     const disable = this.props.requestingCreateReservation || this.props.createdReservation;
+    const loading = this.props.requestingCreateReservation || this.props.requestingDevices;
     const right = <button className={button} disabled={disable}
                     onClick={this.handleClick}>
                     <div className="visible content">SAVE</div>
@@ -44,7 +63,7 @@ export default class NewReservationView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="New Reservation" right={right} loading={this.props.requestingCreateReservation}>
+          header="New Reservation" right={right} loading={loading}>
           { this.props.createdReservation ? message : null }
           <Form ref="form" remainingDevices={this.props.remainingDevices}
             requestingCreateReservation={this.props.requestingCreateReservation}

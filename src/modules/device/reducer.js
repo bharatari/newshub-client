@@ -19,8 +19,6 @@ export default handleActions({
     fetchDevices: {
       ...state.fetchDevices,
       requesting: true,
-      devices: null,
-      error: null,
     },
   }),
   RECEIVE_DEVICES: {
