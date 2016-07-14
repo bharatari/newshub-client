@@ -4,7 +4,7 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 
 const table = classNames(
-  'ui very basic table',
+  'ui selectable very basic table',
   classes.table
 );
 

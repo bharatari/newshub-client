@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 import { FormatDate } from 'components/';
+import classes from './Styles.scss';
 
 export default class Row extends React.Component {
   static propTypes = {
@@ -45,7 +46,7 @@ export default class Row extends React.Component {
     };
 
     return (
-      <tr onClick={this.handleClick}>
+      <tr className={classes.clickable} onClick={this.handleClick}>
         {cells()}
       </tr>
     );
