@@ -10,6 +10,7 @@ import Devices from './Devices/Route';
 import NewDevice from './Devices/routes/NewDevice/Route';
 import Reservations from './Reservations/Route';
 import NewReservation from './Reservations/routes/NewReservation/Route';
+import Reservation from './Reservations/routes/Reservation/Route';
 import authenticated from 'containers/Authenticated';
 import unauthenticated from 'containers/Unauthenticated';
 
@@ -21,6 +22,7 @@ export default (store) => (
       <Route path="/app/device/new" component={NewDevice} />
       <Route path="/app/reservation" component={Reservations} />
       <Route path="/app/reservation/new" component={NewReservation} />
+      <Route path="/app/reservation/:id" component={Reservation} />
     </Route>
     <Route component={unauthenticated(Core)}>
       <Route path="/app/signup" component={Signup} />

@@ -23,5 +23,16 @@ module.exports = {
     }    
 
     return errors;
-  }
+  },
+  isAdmin(user) {
+    if (user) {
+      if (user.roles) {
+        if (_.isString(user.roles)) {
+          return user.roles.includes('admin');
+        }
+      }
+    }
+    
+    return false;
+  },
 };
