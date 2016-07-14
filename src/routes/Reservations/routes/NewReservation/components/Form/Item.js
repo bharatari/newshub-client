@@ -1,5 +1,21 @@
 import React, { PropTypes } from 'react'
 import classes from './Styles.scss';
+import classNames from 'classnames';
+
+const card = classNames(
+  'card',
+  classes.font
+);
+
+const header = classNames(
+  'header',
+  classes.font
+);
+
+const button = classNames(
+  'ui button attached button',
+  classes.font
+);
 
 export default class Item extends React.Component {
   static propTypes = {
@@ -12,12 +28,12 @@ export default class Item extends React.Component {
   };
   render() {
     return (
-      <div className="card">
+      <div className={card}>
         <div className="image">
           <img src={this.props.device.image} />
         </div>
         <div className="content">
-          <a className="header">{this.props.device.label}</a>
+          <a className={header}>{this.props.device.label}</a>
           <div className="meta">
             <p>{this.props.device.name}</p>
             <p>{this.props.device.type}</p>
@@ -27,7 +43,7 @@ export default class Item extends React.Component {
             <p>{this.props.device.availableQuantity} available</p>
           </div>
         </div>
-        <div className="ui bottom attached button" onClick={this.handleClick}>
+        <div className={button} onClick={this.handleClick}>
           <i className="add icon"></i>
           Add
         </div>

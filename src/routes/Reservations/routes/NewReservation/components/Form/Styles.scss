@@ -26,6 +26,8 @@
   font-family: 'Open Sans';
   font-weight: 600;
   color: red;
+  margin-top: 5px;
+  display: block;
 }
 
 .groupHeader {
@@ -33,4 +35,8 @@
   font-weight: 600;
   font-size: 20px;
   margin-bottom: 20px !important;
+}
+
+.font {
+  font-family: 'Open Sans' !important;
 }

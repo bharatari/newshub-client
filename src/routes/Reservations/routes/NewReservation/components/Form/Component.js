@@ -6,8 +6,10 @@ import reservation from 'modules/reservation/utils';
 import Wizard from './Wizard';
 
 const renderField = props => (
-  <div className="ui input">
-    <input {...props.input} />
+  <div>
+    <div className="ui input">
+      <input {...props.input} className={classes.font} />
+    </div>
     {props.touched && props.error && <span className={classes.errorText}>{props.error}</span>}
   </div>
 );
