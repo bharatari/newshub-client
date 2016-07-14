@@ -33,7 +33,9 @@ export function fetchReservations(filter, page) {
   return function (dispatch) {
     dispatch(requestReservations());
 
-    data.request('reservation')
+    let query = '?$sort[createdAt]=-1&$limit=10';
+
+    data.request('reservation', 'get', null, query)
       .then(function (response) {
         dispatch(receiveReservations(response))
       }).catch(function (e) {
