@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, Table, TextLoading } from 'components/';
-import general from 'utils/general';
+import reservation from 'modules/reservation/utils';
 
 export default class ReservationsView extends React.Component {
   static propTypes = {
@@ -16,7 +16,7 @@ export default class ReservationsView extends React.Component {
     fields: [
       { label: 'Name', property: 'user.fullName'},
       { label: 'Checked Out By', property: 'checkedOutBy.fullName' },
-      { label: 'Status', property: 'status', custom: general.getReservationStatus.bind(general) },
+      { label: 'Status', property: 'status', custom: reservation.getReservationStatus.bind(reservation) },
       { label: 'Created', property: 'createdAt', type: 'date' },
     ]
   };
