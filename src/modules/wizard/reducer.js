@@ -1,6 +1,10 @@
 import { handleActions } from 'redux-actions';
 
-const initialState = {};
+const initialState = {
+  newReservation: {
+    selectedDevices: [],
+  },
+};
 
 export default handleActions({
   SET_WIZARD_VALUE: (state, action) => ({

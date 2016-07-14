@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 module.exports = {
   validateNewReservation(values) {
     let errors = {};
@@ -14,8 +16,8 @@ module.exports = {
       errors.purpose = 'Required';
     }
 
-    if (!values.devices) {
-      errors.devices = 'Required';
+    if (!values.devices || _.isEmpty(values.devices)) {
+      errors.devices = 'Need to add at least one device to reservation';
     }
 
     return errors;

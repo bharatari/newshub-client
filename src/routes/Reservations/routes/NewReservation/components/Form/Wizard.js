@@ -8,38 +8,52 @@ import Group from './Group';
 
 export default class NewReservationWizard extends React.Component {
   static propTypes = {
-    value: PropTypes.any.isRequired,
-    onChange: PropTypes.func.isRequired,
+    selectedDevices: PropTypes.any,
+    actions: PropTypes.object.isRequired,
     remainingDevices: PropTypes.object,
   };
   handleClick = (device) => {
     let selectedDevices = [
-      ...this.props.value,
+      ...this.props.selectedDevices,
       device,
     ];
 
-    this.props.onChange(selectedDevices);
+    console.log(selectedDevices);
+
+    this.props.actions.setWizardValue({
+      name: 'newReservation',
+      key: 'selectedDevices',
+      value: selectedDevices
+    });
   };
   handleChange = (device) => {
-    let selectedDevices = this.props.value;
+    let selectedDevices = this.props.selectedDevices;
     selectedDevices = array.updateById(selectedDevices, device.id, device);
 
-    this.props.onChange(selectedDevices);
+    this.props.actions.setWizardValue({
+      name: 'newReservation',
+      key: 'selectedDevices',
+      value: selectedDevices
+    });
   };
   remove = (id) => {
     let selectedDevices = [
-      ...this.props.value,
+      ...this.props.selectedDevices,
     ];
     selectedDevices = array.deleteFromArrayById(selectedDevices, id);
 
-    this.props.onChange(selectedDevices);
+    this.props.actions.setWizardValue({
+      name: 'newReservation',
+      key: 'selectedDevices',
+      value: selectedDevices
+    });
   };
   render() {
     const renderList = () => {
       let list = [];
 
-      if (this.props.value) {
-        this.props.value.forEach((device) => {
+      if (this.props.selectedDevices) {
+        this.props.selectedDevices.forEach((device) => {
           list.push(
             <Device
               key={device.id}

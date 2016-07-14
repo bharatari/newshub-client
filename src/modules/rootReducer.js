@@ -16,4 +16,5 @@ export default combineReducers({
   reservation,
   user,  
   form,
+  wizard,
 });

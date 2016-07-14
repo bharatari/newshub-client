@@ -3,7 +3,7 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 import reservation from 'modules/reservation/utils';
-import Wizard from './Wizard';
+import Dummy from './Dummy';
 
 const renderField = props => (
   <div>
@@ -21,13 +21,15 @@ class NewReservationForm extends React.Component {
     reset: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
     remainingDevices: PropTypes.object,
+    selectedDevices: PropTypes.object,
   };
   render() {
-    const { handleSubmit, pristine, reset, submitting, remainingDevices } = this.props;
+    const { handleSubmit, pristine, reset, submitting, remainingDevices, selectedDevices } = this.props;
     const renderWizard = props => (
       <span>
-        <Wizard onChange={props.input.onChange} value={props.input.value}
-          remainingDevices={remainingDevices} />
+        <h2 className={classes.font}>Devices</h2>
+        <Dummy onChange={props.input.onChange} value={props.input.value}
+          remainingDevices={remainingDevices} selectedDevices={selectedDevices} />
         {props.touched && props.error && <span className={classes.errorText}>{props.error}</span>}
       </span>
     );
@@ -35,16 +37,20 @@ class NewReservationForm extends React.Component {
     return (
       <form onSubmit={handleSubmit} className="ui form">
         <div className="field">
+          <label className={classes.font}>Start Date</label>
           <Field name="startDate" type="date" placeholder="Start Date" component={renderField} />
         </div>
         <div className="field">
+          <label className={classes.font}>End Date</label>
           <Field name="endDate" type="date" placeholder="End Date" component={renderField} />
         </div>
         <div className="field">
-          <Field name="purpose" type="text" placeholder="Purpose" component={renderField} />
+          <label className={classes.font}>Purpose</label>
+          <Field name="purpose" type="text" component={renderField} />
         </div>
         <div className="field">
-          <Field name="notes" type="text" placeholder="Additional Notes" component={renderField} />
+          <label className={classes.font}>Additional Notes</label>
+          <Field name="notes" type="text" placeholder="Additional things to approve" component={renderField} />
         </div>
         <Field name="devices" component={renderWizard} />
       </form>
