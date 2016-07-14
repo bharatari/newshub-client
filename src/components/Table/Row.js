@@ -12,7 +12,7 @@ export default class Row extends React.Component {
     }).isRequired,
   };
   handleClick = () => {
-    this.props.actions.push(route + '/' + this.data.id);
+    this.props.actions.push(this.props.route + '/' + this.props.data.id);
   };
   render() {
     const processField = (field, data) => {
