@@ -10,7 +10,7 @@ export default class NewReservationWizard extends React.Component {
   static propTypes = {
     value: PropTypes.any.isRequired,
     onChange: PropTypes.func.isRequired,
-    remainingDevices: PropTypes.object,
+    remainingDevices: PropTypes.array,
   };
   handleClick = (device) => {
     let selectedDevices = [
