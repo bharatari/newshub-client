@@ -6,8 +6,6 @@ import Core from './Core/Route';
 import Dashboard from './Dashboard/Route';
 import Login from './Login/Route';
 import Signup from './Signup/Route';
-import Devices from './Devices/Route';
-import NewDevice from './Devices/routes/NewDevice/Route';
 import Reservations from './Reservations/Route';
 import NewReservation from './Reservations/routes/NewReservation/Route';
 import Reservation from './Reservations/routes/Reservation/Route';
@@ -18,8 +16,6 @@ export default (store) => (
   <Route path="/" component={PageTransition}>
     <Route component={authenticated(Core)}>
       <IndexRoute component={Dashboard} />
-      <Route path="/app/device" component={Devices} />
-      <Route path="/app/device/new" component={NewDevice} />
       <Route path="/app/reservation" component={Reservations} />
       <Route path="/app/reservation/new" component={NewReservation} />
       <Route path="/app/reservation/:id" component={Reservation} />
