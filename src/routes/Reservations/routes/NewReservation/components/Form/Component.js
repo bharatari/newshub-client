@@ -21,7 +21,7 @@ class NewReservationForm extends React.Component {
     reset: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
     remainingDevices: PropTypes.object,
-    selectedDevices: PropTypes.object,
+    selectedDevices: PropTypes.array,
   };
   render() {
     const { handleSubmit, pristine, reset, submitting, remainingDevices, selectedDevices } = this.props;
