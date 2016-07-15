@@ -49,8 +49,12 @@ class NewReservationForm extends React.Component {
           <Field name="purpose" type="text" component={renderField} />
         </div>
         <div className="field">
+          <label className={classes.font}>Special Requests</label>
+          <Field name="specialRequests" type="text" placeholder="Requests that require special approval" component={renderField} />
+        </div>
+        <div className="field">
           <label className={classes.font}>Additional Notes</label>
-          <Field name="notes" type="text" placeholder="Additional things to approve" component={renderField} />
+          <Field name="notes" type="text" component={renderField} />
         </div>
         <Field name="devices" component={renderWizard} />
       </form>

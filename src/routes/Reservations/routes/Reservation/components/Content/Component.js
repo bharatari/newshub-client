@@ -17,6 +17,12 @@ export default class Content extends React.Component {
         <p className={classes.content}>{this.props.reservation.user.fullName}</p>
         <p className={classes.header}>Purpose</p>
         <p className={classes.content}>{this.props.reservation.purpose}</p>
+        <p className={classes.header}>Notes</p>
+        <p className={classes.content}>{this.props.reservation.notes}</p>
+        <p className={classes.header}>Special Requests</p>
+        <p className={classes.content}>{this.props.reservation.specialRequests}</p>
+        <p className={classes.header}>Admin Notes</p>
+        <p className={classes.content}>{this.props.reservation.adminNotes}</p>
         <p className={classes.header}>Start Date</p>
         <p className={classes.content}><FormatDate date={this.props.reservation.startDate} /></p>
         <p className={classes.header}>End Date</p>
