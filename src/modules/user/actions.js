@@ -5,6 +5,9 @@ import data from 'utils/data';
 export const requestUser = createAction('REQUEST_USER');
 export const receiveUser = createAction('RECEIVE_USER');
 
+export const requestUsers = createAction('REQUEST_USERS');
+export const receiveUsers = createAction('RECEIVE_USERS');
+
 export const requestCreateUser = createAction('REQUEST_CREATE_USER');
 export const receiveCreateUser = createAction('RECEIVE_CREATE_USER');
 
@@ -25,6 +28,19 @@ export function fetchUser() {
     } else {
       dispatch(receiveUser(new Error('Unauthenticated')));
     }
+  }
+}
+
+export function fetchUsers() {
+  return function (dispatch) {
+    dispatch(requestUsers());
+
+    data.request('user', 'get')
+      .then(function (response) {
+        dispatch(receiveUsers(response));
+      }).catch(function (e) {
+        dispatch(receiveUsers(e));
+      })
   }
 }
 

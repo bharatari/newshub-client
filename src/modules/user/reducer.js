@@ -6,6 +6,11 @@ const initialState = {
     user: null,
     error: null,
   },
+  fetchUsers: {
+    requesting: false,
+    users: null,
+    error: null,
+  },
   createUser: {
     requesting: false,
     user: null,
@@ -42,6 +47,39 @@ export default handleActions({
           ...state.fetchUser,
           requesting: false,
           user: null,
+          error: action.payload,
+        },
+      };
+    }
+  },
+  REQUEST_USERS: (state, action) => ({
+    ...state,
+    fetchUsers: {
+      ...state.fetchUsers,
+      requesting: true,
+      users: null,
+      error: null,
+    },
+  }),
+  RECEIVE_USERS: {
+    next(state, action) {
+      return {
+        ...state,
+        fetchUsers: {
+          ...state.fetchUsers,
+          requesting: false,
+          users: action.payload,
+          error: null,
+        },
+      };
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        fetchUsers: {
+          ...state.fetchUsers,
+          requesting: false,
+          users: null,
           error: action.payload,
         },
       };

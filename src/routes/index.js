@@ -9,6 +9,8 @@ import Signup from './Signup/Route';
 import Reservations from './Reservations/Route';
 import NewReservation from './Reservations/routes/NewReservation/Route';
 import Reservation from './Reservations/routes/Reservation/Route';
+import User from './Users/Route';
+import NewUser from './Users/routes/NewUser/Route';
 import authenticated from 'containers/Authenticated';
 import unauthenticated from 'containers/Unauthenticated';
 
@@ -19,6 +21,8 @@ export default (store) => (
       <Route path="/app/reservation" component={Reservations} />
       <Route path="/app/reservation/new" component={NewReservation} />
       <Route path="/app/reservation/:id" component={Reservation} />
+      <Route path="/app/user" component={User} />
+      <Route path="/app/user/new" component={NewUser} />
     </Route>
     <Route component={unauthenticated(Core)}>
       <Route path="/app/signup" component={Signup} />

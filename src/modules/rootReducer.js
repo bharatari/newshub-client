@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { routeReducer as router } from 'react-router-redux';
 import { reducer as form } from 'redux-form';
 import authentication from './authentication/reducer';
+import signupToken from './signupToken/reducer';
 import component from './component/reducer';
 import wizard from './wizard/reducer';
 import device from './device/reducer';
@@ -17,4 +18,5 @@ export default combineReducers({
   user,  
   form,
   wizard,
+  signupToken,
 });
