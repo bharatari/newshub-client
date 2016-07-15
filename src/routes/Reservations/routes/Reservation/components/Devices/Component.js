@@ -12,7 +12,7 @@ export default class Devices extends React.Component {
 
       this.props.devices.map((device) => {
         list.push(
-          <div className={classes.device}>
+          <div className={classes.device} key={device.id}>
             <p className={classes.content}>{device.label}</p>
             <p className={classes.name}>{device.name}</p>
             <span className={classes.quantityHeader}>
