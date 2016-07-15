@@ -15,7 +15,9 @@ export default function authenticated(Component) {
     componentWillReceiveProps(nextProps) {
       if (!nextProps.requestingAuthenticated && !nextProps.authenticated) {
         if (nextProps.currentRoute !== loginRedirect) {
-          this.props.actions.replace(loginRedirect + '?next=' + nextProps.currentRoute);
+          setTimeout(() => {
+            this.props.actions.replace(loginRedirect + '?next=' + nextProps.currentRoute);
+          }, 2000);
         }
       }
 
