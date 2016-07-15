@@ -90,8 +90,17 @@ class SignupForm extends React.Component {
             <Field name="email" component={renderField} type="email" />
           </div>
         </div>
+        <div className="ui grid">
+          <div className="six wide column">
+            <h3>Signup Token</h3>
+            <p>This one-time-use token should be provided to you by management to give you permission to create an account.</p>
+          </div>
+          <div className="ten wide column">
+            <Field name="signupToken" component={renderField} type="text" />
+          </div>
+        </div>
         <button type="submit" className={button}
-          disabled={this.props.requestingCreateUser}>
+          disabled={this.props.requestingCreateUser || this.props.user}>
           Signup
         </button>
       </form>

@@ -20,7 +20,11 @@ module.exports = {
       if (values.password !== values.confirmPassword) {
         errors.confirmPassword = 'Passwords must match';
       }
-    }    
+    }
+
+    if (!values.signupToken) {
+      errors.signupToken = 'Required';
+    }
 
     return errors;
   },
