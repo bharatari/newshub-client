@@ -7,6 +7,7 @@ import Modal from './Modal';
 import TextLoading from './TextLoading/Component';
 import SidebarPage from './SidebarPage/Component';
 import Table from './Table/Component';
+import Response from './Response/Component';
 
 export {
   Notifications,
@@ -18,4 +19,5 @@ export {
   TextLoading,
   SidebarPage,
   Table,
+  Response,
 };
