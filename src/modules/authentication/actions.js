@@ -2,6 +2,7 @@ import { createAction } from 'redux-actions';
 import { localStorageAuthToken } from 'constants/keys';
 import data from 'utils/data';
 
+export const resetLogin = createAction('RESET_LOGIN');
 export const requestLogin = createAction('REQUEST_LOGIN');
 export const receiveLogin = createAction('RECEIVE_LOGIN');
 

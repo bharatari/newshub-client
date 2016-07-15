@@ -15,6 +15,9 @@ export default class LoginView extends React.Component {
     authenticated: PropTypes.bool,
     actions: PropTypes.object,
   };
+  componentDidMount() {
+    this.props.actions.resetLogin();
+  }
   handleSubmit = (values) => {
     this.props.actions.login({
       username: values.username,

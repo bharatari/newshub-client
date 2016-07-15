@@ -13,10 +13,18 @@ const initialState = {
 };
 
 export default handleActions({
-  
   REQUEST_LOGOUT: (state, action) => ({
     ...state,
     logout: true,
+  }),
+  RESET_LOGIN: (state, action) => ({
+    ...state,
+    login: {
+      ...state.login,
+      requesting: false,
+      response: false,
+      error: null,
+    },
   }),
   REQUEST_LOGIN: (state, action) => ({
     ...state,
