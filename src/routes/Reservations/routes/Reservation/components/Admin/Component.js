@@ -3,20 +3,35 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, Table, TextLoading } from 'components/';
 import reservationUtils from 'modules/reservation/utils';
+import Form from './Form';
 
 const buttonStyle = classNames(
   'ui button inverted blue button-light'
 );
+
+const negativeStyle = classNames(
+  'ui button inverted red button-light'
+);
+
 export default class Admin extends React.Component {
   static propTypes = {
     reservation: PropTypes.object,
     requestingReservation: PropTypes.bool,
   };
-  handleClick = (reject) => {
+  handleClick = () => {
     const status = reservationUtils.computeReservationStatus(this.props.reservation);
-    const body = reservationUtils.constructAdminAction(status, reject);
+    const body = reservationUtils.constructAdminAction(status);
 
     this.props.actions.updateReservation(this.props.reservation.id, body);
+  };
+  handleReject = () => {
+    const status = reservationUtils.computeReservationStatus(this.props.reservation);
+    const body = reservationUtils.constructAdminAction(status, true);
+
+    this.props.actions.updateReservation(this.props.reservation.id, body);
+  };
+  handleAdminNotes = (values) => {
+    this.props.actions.updateReservation(this.props.reservation.id, values);
   };
   render() {
     const { reservation } = this.props;
@@ -25,7 +40,7 @@ export default class Admin extends React.Component {
         const status = reservationUtils.computeReservationStatus(reservation);
         const needsApproval = <div>
                                 <button className={buttonStyle} onClick={this.handleClick}>APPROVE</button>
-                                <button className={buttonStyle} onClick={() => this.handleClick(true)}>REJECT</button>
+                                <button className={negativeStyle} onClick={this.handleReject}>REJECT</button>
                               </div>;
 
         if (status === 'NEEDS_APPROVAL') {
@@ -48,6 +63,7 @@ export default class Admin extends React.Component {
       <div>
         <p className={classes.header}>Actions</p>
         {button()}
+        <Form onSubmit={this.handleAdminNotes} />
       </div>
     );
   }
