@@ -18,7 +18,7 @@ class LoginForm extends React.Component {
     reset: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
     requestingLogin: PropTypes.bool.isRequired,
-    error: PropTypes.any.isRequired,
+    error: PropTypes.any,
   };
   handleClick = () => {
     this.props.actions.push('/app/signup');
