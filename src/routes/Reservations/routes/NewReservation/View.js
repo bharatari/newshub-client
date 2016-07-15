@@ -13,6 +13,7 @@ export default class NewReservationView extends React.Component {
     authenticated: PropTypes.bool,
   };
   componentDidMount() {
+    this.props.actions.resetCreateReservation();
     this.props.actions.fetchDevices();
   }
   componentWillReceiveProps(nextProps) {

@@ -16,6 +16,8 @@ export const receiveUpdateReservation = createAction('RECEIVE_UPDATE_RESERVATION
 export const requestDeleteReservation = createAction('REQUEST_DELETE_RESERVATION');
 export const receiveDeleteReservation = createAction('RECEIVE_DELETE_RESERVATION');
 
+export const resetCreateReservation = createAction('RESET_CREATE_RESERVATION');
+
 export function fetchReservation(id) {
   return function (dispatch) {
     dispatch(requestReservation());

@@ -13,6 +13,15 @@ export default class NewReservationWizard extends React.Component {
     actions: PropTypes.object.isRequired,
     remainingDevices: PropTypes.object,
   };
+  componentDidMount() {
+    let selectedDevices = [];
+
+    this.props.actions.setWizardValue({
+      name: 'newReservation',
+      key: 'selectedDevices',
+      value: selectedDevices
+    });
+  }
   handleClick = (device) => {
     let selectedDevices = [
       ...this.props.selectedDevices,

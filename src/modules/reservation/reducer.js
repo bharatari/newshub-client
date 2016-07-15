@@ -90,6 +90,15 @@ export default handleActions({
       };
     }
   },
+  RESET_CREATE_RESERVATION: (state, action) => ({
+    ...state,
+    createReservation: {
+      ...state.createReservation,
+      requesting: false,
+      reservation: null,
+      error: null,
+    },
+  }),
   REQUEST_CREATE_RESERVATION: (state, action) => ({
     ...state,
     createReservation: {
