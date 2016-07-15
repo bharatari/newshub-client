@@ -12,9 +12,9 @@ export default class Admin extends React.Component {
     reservation: PropTypes.object,
     requestingReservation: PropTypes.bool,
   };
-  handleClick = () => {
+  handleClick = (reject) => {
     const status = reservationUtils.computeReservationStatus(this.props.reservation);
-    const body = reservationUtils.constructAdminAction(status);
+    const body = reservationUtils.constructAdminAction(status, reject);
 
     this.props.actions.updateReservation(this.props.reservation.id, body);
   };
@@ -23,9 +23,13 @@ export default class Admin extends React.Component {
     const button = () => {
       if (reservation) {
         const status = reservationUtils.computeReservationStatus(reservation);
+        const needsApproval = <div>
+                                <button className={buttonStyle} onClick={this.handleClick}>APPROVE</button>
+                                <button className={buttonStyle} onClick={() => this.handleClick(true)}>REJECT</button>
+                              </div>;
 
         if (status === 'NEEDS_APPROVAL') {
-          return <button className={buttonStyle} onClick={this.handleClick}>APPROVE</button>;
+          return needsApproval;
         } else if (status === 'APPROVED') {
           return <button className={buttonStyle} onClick={this.handleClick}>CHECK OUT</button>;
         } else if (status === 'CHECKED_OUT') {

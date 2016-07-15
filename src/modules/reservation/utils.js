@@ -23,7 +23,9 @@ module.exports = {
     return errors;
   },
   computeReservationStatus(reservation) {
-    if (!reservation.approved) {
+    if (reservation.disabled) {
+      return 'DISABLED';
+    } else if (!reservation.approved) {
       return 'NEEDS_APPROVAL';
     } else if (reservation.approved && !reservation.checkedOut && !reservation.checkedIn) {
       return 'APPROVED';
@@ -39,17 +41,24 @@ module.exports = {
     return this.reservationStatus[this.computeReservationStatus(reservation)];
   },
   reservationStatus: {
+    'DISABLED': 'Disabled or Rejected',
     'NEEDS_APPROVAL': 'Needs Approval',
     'APPROVED': 'Approved',
     'CHECKED_OUT': 'Checked Out',
     'CHECKED_IN': 'Checked In',
     'UNKNOWN': 'Unknown',
   },
-  constructAdminAction(status) {
+  constructAdminAction(status, reject) {
     if (status === 'NEEDS_APPROVAL') {
-      return {
-        approved: true,
-      };
+      if (reject) {
+        return {
+          disabled: true,
+        };
+      } else {
+        return {
+          approved: true,
+        };
+      }
     } else if (status === 'APPROVED') {
       return {
         checkedOut: true,
