@@ -24,7 +24,6 @@ export default handleActions({
     fetchUser: {
       ...state.fetchUser,
       requesting: true,
-      user: null,
       error: null,
     },
   }),

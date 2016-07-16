@@ -35,8 +35,7 @@ export default function authenticated(Component) {
         <div>
           {
             this.props.user
-            ? <Component user={this.props.user}
-               {...this.props} />
+            ? <Component user={this.props.user} {...this.props} />
             : null
           }
         </div>
