@@ -42,6 +42,7 @@ const config = {
     'react-redux',
     'react-router',
     'react-router-redux',
+    'react-dom',
     'redux',
     'isomorphic-fetch',
     'lodash',
@@ -52,6 +53,9 @@ const config = {
     'reselect',
     'redux-form',
     'async',
+    'react-winjs',
+    'winjs',
+    'redux-thunk',
   ],
 
   // ----------------------------------
