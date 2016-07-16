@@ -10,7 +10,7 @@ const spinner = classNames(
 
 export default class Loading extends React.Component {
   static propTypes = {
-    display: PropTypes.bool.isRequired,
+    display: PropTypes.bool,
   };
   state = {
     display: this.props.display,

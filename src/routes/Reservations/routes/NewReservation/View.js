@@ -10,7 +10,6 @@ export default class NewReservationView extends React.Component {
       push: PropTypes.func.isRequired,
     }).isRequired,
     user: PropTypes.object,
-    authenticated: PropTypes.bool,
   };
   componentDidMount() {
     this.props.actions.resetCreateReservation();

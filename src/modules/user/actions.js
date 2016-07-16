@@ -18,16 +18,12 @@ export function fetchUser() {
   return function (dispatch) {
     dispatch(requestUser());
     
-    if (localStorage.getItem(localStorageAuthToken)) {
-      data.request('user')
-        .then(function (user) {
-          dispatch(receiveUser(user[0]));
-        }).catch(function (e) {
-          dispatch(receiveUser(e));
-        });
-    } else {
-      dispatch(receiveUser(new Error('Unauthenticated')));
-    }
+    data.request('user')
+      .then(function (user) {
+        dispatch(receiveUser(user[0]));
+      }).catch(function (e) {
+        dispatch(receiveUser(e));
+      });
   }
 }
 

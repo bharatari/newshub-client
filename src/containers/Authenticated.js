@@ -14,7 +14,7 @@ export default function authenticated(Component) {
         replace: PropTypes.func,
       }).isRequired,
       requestingUser: PropTypes.bool.isRequired,
-      user: PropTypes.object.isRequired,
+      user: PropTypes.object,
     };
     componentWillMount() {
       this.props.actions.fetchUser();
