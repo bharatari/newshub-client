@@ -8,7 +8,6 @@ export default class CoreView extends React.Component {
   static propTypes = {
     actions: PropTypes.object,
     user: PropTypes.object,
-    authenticated: PropTypes.bool,
   };
   render() {
     let data = {};

@@ -8,16 +8,21 @@ import { routeActions } from 'react-router-redux';
 
 export default function authenticated(Component) {
   class AuthenticatedComponent extends React.Component {
+    static propTypes = {
+      actions: PropTypes.shape({
+        fetchUser: PropTypes.func,
+        replace: PropTypes.func,
+      }).isRequired,
+      requestingUser: PropTypes.bool.isRequired,
+      user: PropTypes.object.isRequired,
+    };
     componentWillMount() {
-      this.props.actions.fetchAuthenticated();
       this.props.actions.fetchUser();
     }
     componentWillReceiveProps(nextProps) {
-      if (!nextProps.requestingAuthenticated && !nextProps.authenticated) {
+      if (!nextProps.requestingUser && !nextProps.user) {
         if (nextProps.currentRoute !== loginRedirect) {
-          setTimeout(() => {
-            this.props.actions.replace(loginRedirect + '?next=' + nextProps.currentRoute);
-          }, 2000);
+          this.props.actions.replace(loginRedirect + '?next=' + nextProps.currentRoute);
         }
       }
 
@@ -29,20 +34,17 @@ export default function authenticated(Component) {
       return (
         <div>
           {
-            this.props.authenticated
-            ? <Component user={this.props.user} 
-               authenticated={this.props.authenticated}
+            this.props.user
+            ? <Component user={this.props.user}
                {...this.props} />
             : null
           }
         </div>
-      )
+      );
     }
   }
-  
+
   const mapStateToProps = (state) => ({
-    requestingAuthenticated: state.authentication.requestingAuthenticated,
-    authenticated: state.authentication.authenticated,
     requestingUser: state.user.fetchUser.requesting,
     user: state.user.fetchUser.user,
     currentRoute: state.router.location.pathname,
@@ -53,10 +55,10 @@ export default function authenticated(Component) {
     ...routeActions,
     ...authentication,
     ...user,
-  }
-  
+  };
+
   const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(actionCreators, dispatch)
+    actions: bindActionCreators(actionCreators, dispatch),
   });
 
   return connect(mapStateToProps, mapDispatchToProps)(AuthenticatedComponent);

@@ -8,7 +8,6 @@ export default class HomeView extends React.Component {
     actions: PropTypes.object,
     products: PropTypes.array,
     user: PropTypes.object,
-    authenticated: PropTypes.bool,
   };
   render() {
     return (

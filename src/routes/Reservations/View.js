@@ -10,7 +10,6 @@ export default class ReservationsView extends React.Component {
       push: PropTypes.func.isRequired,
     }).isRequired,
     user: PropTypes.object,
-    authenticated: PropTypes.bool,
   };
   state = {
     fields: [

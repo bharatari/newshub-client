@@ -6,9 +6,6 @@ const initialState = {
     response: false,
     error: null,
   },
-  error: null,
-  authenticated: false,
-  requestingAuthenticated: false,
   logout: false,
 };
 
@@ -54,31 +51,10 @@ export default handleActions({
         login: {
           ...state.login,
           requesting: false,
-          authenticated: false,
+          response: false,
           error: action.payload,
         },
       }
-    }
-  },
-  REQUEST_AUTHENTICATED: (state, action) => ({
-    ...state,
-    requestingAuthenticated: true,
-  }),
-  RECEIVE_AUTHENTICATED: {
-    next(state, action) {
-      return {
-        ...state,
-        requestingAuthenticated: false,
-        authenticated: true,
-      };
-    },
-    throw(state, action) {
-      return {
-        ...state,
-        error: action.payload,
-        requestingAuthenticated: false,
-        authenticated: false,
-      };
     }
   },
 }, initialState);

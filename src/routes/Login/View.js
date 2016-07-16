@@ -12,7 +12,7 @@ export default class LoginView extends React.Component {
   static propTypes = {
     requestingLogin: PropTypes.bool,
     error: PropTypes.any,
-    authenticated: PropTypes.bool,
+    response: PropTypes.any,
     actions: PropTypes.object,
   };
   componentDidMount() {
