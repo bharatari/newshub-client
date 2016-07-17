@@ -3,7 +3,6 @@ import classes from './Core.scss';
 import CoreNavbar from './CoreNavbar';
 import CoreFooter from './CoreFooter';
 import classNames from 'classnames';
-import '../../styles/core.scss';
 
 const contentMargin = classNames(
   classes.contentMargin
