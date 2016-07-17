@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as authentication from 'modules/authentication/actions';
 import * as user from 'modules/user/actions';
 import { loginRedirect } from 'constants/keys';
-import { routeActions } from 'react-router-redux';
+import { routerActions } from 'react-router-redux';
 
 export default function authenticated(Component) {
   class AuthenticatedComponent extends React.Component {
@@ -43,15 +43,15 @@ export default function authenticated(Component) {
     }
   }
 
-  const mapStateToProps = (state) => ({
+  const mapStateToProps = (state, ownProps) => ({
     requestingUser: state.user.fetchUser.requesting,
     user: state.user.fetchUser.user,
-    currentRoute: state.router.location.pathname,
+    currentRoute: ownProps.location.pathname,
     logout: state.authentication.logout,
   });
 
   const actionCreators = {
-    ...routeActions,
+    ...routerActions,
     ...authentication,
     ...user,
   };

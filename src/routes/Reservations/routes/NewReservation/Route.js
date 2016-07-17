@@ -4,7 +4,7 @@ import View from './View';
 import * as reservation from 'modules/reservation/actions';
 import * as device from 'modules/device/actions';
 import * as wizard from 'modules/wizard/actions';
-import { routeActions } from 'react-router-redux';
+import { routerActions } from 'react-router-redux';
 import { groupDevices } from 'modules/wizard/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const actionCreators = {
-  ...routeActions,
+  ...routerActions,
   ...reservation,
   ...device,
   ...wizard,

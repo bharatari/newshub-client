@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute, Redirect } from 'react-router';
 import NotFound from './NotFound/View';
-import PageTransition from 'containers/PageTransition';
+import Root from 'containers/Root';
 import Core from './Core/Route';
 import Dashboard from './Dashboard/Route';
 import Login from './Login/Route';
@@ -15,7 +15,7 @@ import authenticated from 'containers/Authenticated';
 import unauthenticated from 'containers/Unauthenticated';
 
 export default (store) => (
-  <Route path="/" component={PageTransition}>
+  <Route path="/" component={Root}>
     <Route component={authenticated(Core)}>
       <IndexRoute component={Dashboard} />
       <Route path="/app/reservation" component={Reservations} />

@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import View from './View';
 import * as authentication from 'modules/authentication/actions';
-import { routeActions } from 'react-router-redux';
+import { routerActions } from 'react-router-redux';
 
 const mapStateToProps = (state, ownProps) => ({
   query: ownProps.location.query,
@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const actionCreators = {
-  ...routeActions,
+  ...routerActions,
   ...authentication,
 };
 

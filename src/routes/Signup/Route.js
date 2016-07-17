@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import View from './View';
 import * as user from 'modules/user/actions';
-import { routeActions } from 'react-router-redux';
+import { routerActions } from 'react-router-redux';
 
 const mapStateToProps = (state) => ({
   requestingCreateUser: state.user.createUser.requesting,
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 const actionCreators = {
-  ...routeActions,
+  ...routerActions,
   ...user,
 };
 

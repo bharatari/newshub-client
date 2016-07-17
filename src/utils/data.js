@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { localStorageAuthToken } from 'constants/keys';
 import feathers from 'feathers-client';
 import io from 'socket.io-client';
+import fetch from 'isomorphic-fetch';
 
 export default {
   configure() {
@@ -12,7 +13,7 @@ export default {
 
     this.app = app;
   },
-  base: __DEV__ ? 'http://localhost:3030' : '',
+  base: __DEV__ ? 'https://newshub-utdtv.herokuapp.com' : 'https://newshub-utdtv.herokuapp.com',
   getCurrentBase() {
     let url = window.location.protocol + '//' + window.location.hostname;
      

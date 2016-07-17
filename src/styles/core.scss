@@ -1,6 +1,9 @@
 :global {
   @import 'base';
+  @import '~normalize.css/normalize';
 
+  // Some best-practice CSS that's useful for most apps
+  // Just remove them if they're not what you want
   html {
     box-sizing: border-box;
   }
@@ -17,7 +20,7 @@
   *:after {
     box-sizing: inherit;
   }
-  
+
   /**
    *
    * @section - 1. Structure
@@ -103,10 +106,6 @@
     font-family: 'Open Sans';
     font-weight: 600 !important;
     font-size: 18px !important;
-  }
-
-  .win-pivot-item-content {
-    overflow-y: hidden;
   }
 
   .button-light {

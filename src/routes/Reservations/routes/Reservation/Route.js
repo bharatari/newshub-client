@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import View from './View';
 import * as reservation from 'modules/reservation/actions';
-import { routeActions } from 'react-router-redux';
+import { routerActions } from 'react-router-redux';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const actionCreators = {
-  ...routeActions,
+  ...routerActions,
   ...reservation,
 };
 
