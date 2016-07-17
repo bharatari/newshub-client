@@ -16,18 +16,34 @@ export default function authenticated(Component) {
       requestingUser: PropTypes.bool.isRequired,
       user: PropTypes.object,
     };
+    state = {
+      requestedLogin: false,
+      requestedLogout: false,
+    };
     componentWillMount() {
       this.props.actions.fetchUser();
     }
     componentWillReceiveProps(nextProps) {
       if (!nextProps.requestingUser && !nextProps.user) {
         if (nextProps.currentRoute !== loginRedirect) {
-          this.props.actions.replace(loginRedirect + '?next=' + nextProps.currentRoute);
+          if (!this.state.requestedLogin) {
+            this.props.actions.replace(loginRedirect + '?next=' + nextProps.currentRoute);
+
+            this.setState({
+              requestedLogin: true,
+            });
+          }
         }
       }
 
       if (nextProps.logout && (nextProps.currentRoute !== loginRedirect)) {
-        this.props.actions.replace(loginRedirect);
+        if (!this.state.requestedLogout) {
+          this.props.actions.replace(loginRedirect);
+
+          this.setState({
+            requestedLogout: true,
+          });
+        }
       }
     }
     render() {
