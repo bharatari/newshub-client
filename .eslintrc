@@ -3,8 +3,8 @@
   "extends" : [
     "airbnb"
   ],
-  "plugins" : [
-    "flow-vars"
+  "plugins": [
+    "babel"
   ],
   "env"     : {
     "browser" : true
@@ -13,11 +13,11 @@
     "__DEV__"      : false,
     "__PROD__"     : false,
     "__DEBUG__"    : false,
-    "__DEBUG_NEW_WINDOW__" : false,
+    "__COVERAGE__" : false,
     "__BASENAME__" : false
   },
   "rules": {
-    "flow-vars/define-flow-type": 1,
-    "flow-vars/use-flow-type": 1
+    "generator-star-spacing": 0,
+    "babel/generator-star-spacing": 1
   }
 }
