@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authentication from 'modules/authentication/actions';
 import * as user from 'modules/user/actions';
-import { routeActions } from 'react-router-redux';
+import { routerActions } from 'react-router-redux';
 
 export default function session(Component) {
   class SessionComponent extends React.Component {
@@ -22,7 +22,7 @@ export default function session(Component) {
   });
 
   const actionCreators = {
-    ...routeActions,
+    ...routerActions,
     ...authentication,
     ...user,
   }

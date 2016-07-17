@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as user from 'modules/user/actions';
 import { defaultRedirect } from 'constants/keys';
-import { routeActions } from 'react-router-redux';
+import { routerActions } from 'react-router-redux';
 
 export default function unauthenticated(Component) {
   class UnauthenticatedComponent extends React.Component {
@@ -26,7 +26,7 @@ export default function unauthenticated(Component) {
   });
 
   const actionCreators = {
-    ...routeActions,
+    ...routerActions,
     ...user,
   }
 

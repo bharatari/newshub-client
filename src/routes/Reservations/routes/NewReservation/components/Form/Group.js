@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import classes from './Styles.scss';
 import Item from './Item';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import ReactWinJS from 'react-winjs';
 
 export default class Device extends React.Component {
   static propTypes = {
