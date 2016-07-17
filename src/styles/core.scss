@@ -71,13 +71,13 @@
   }
 
   .notification-enter-active {
-    opacity: 1;
-    transform: scale(1.00);
-    -webkit-transition: opacity 0.5s ease-in;
-    -moz-transition: opacity 0.5s ease-in;
-    -ms-transition: opacity 0.5s ease-in;
-    -o-transition: opacity 0.5s ease-in;
-    transition: opacity 0.5s ease-in, transform 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    opacity: 1 !important;
+    transform: scale(1.00) !important;
+    -webkit-transition: opacity 0.5s ease-in, transform 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    -moz-transition: opacity 0.5s ease-in, transform 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    -ms-transition: opacity 0.5s ease-in, transform 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    -o-transition: opacity 0.5s ease-in, transform 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    transition: opacity 0.5s ease-in, transform 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) !important;
   }
 
   .notification-leave {
@@ -86,13 +86,13 @@
   }
 
   .notification-leave-active {
-    opacity: 0.01;
-    transform: scale(0.50);
-    -webkit-transition: opacity 0.5s ease-out;
-    -moz-transition: opacity 0.5s ease-out;
-    -ms-transition: opacity 0.5s ease-out;
-    -o-transition: opacity 0.5s ease-out;
-    transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+    opacity: 0.01 !important;
+    transform: scale(0.50) !important;
+    -webkit-transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+    -moz-transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+    -ms-transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+    -o-transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+    transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.600, -0.280, 0.735, 0.045) !important;
   }
 
 
