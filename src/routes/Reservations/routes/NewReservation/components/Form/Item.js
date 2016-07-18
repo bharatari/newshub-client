@@ -27,6 +27,18 @@ export default class Item extends React.Component {
     this.props.onClick(this.props.device);
   };
   render() {
+    const add = <div className={button} onClick={this.handleClick}>
+                  <i className="add icon"></i>
+                  Add
+                </div>
+    const showAdd = () => {
+      if (this.props.device.availableQuantity < 1) {
+        return null;
+      } else {
+        return add
+      }
+    }    
+
     return (
       <div className={card}>
         <div className="image">
@@ -43,10 +55,7 @@ export default class Item extends React.Component {
             <p>{this.props.device.availableQuantity} available</p>
           </div>
         </div>
-        <div className={button} onClick={this.handleClick}>
-          <i className="add icon"></i>
-          Add
-        </div>
+        {showAdd()}
       </div>
     )
   }
