@@ -23,6 +23,7 @@ export default (store) => (
       <Route path="/app/reservation/:id" component={Reservation} />
       <Route path="/app/user" component={User} />
       <Route path="/app/user/new" component={NewUser} />
+      <Route path="/app/user/:id" component={User} />
     </Route>
     <Route component={unauthenticated(Core)}>
       <Route path="/app/signup" component={Signup} />

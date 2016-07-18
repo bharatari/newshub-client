@@ -8,7 +8,7 @@ import { routerActions } from 'react-router-redux';
 export default function unauthenticated(Component) {
   class UnauthenticatedComponent extends React.Component {
     componentWillMount() {
-      this.props.actions.fetchUser();
+      this.props.actions.fetchCurrentUser();
     }
     componentWillReceiveProps(nextProps) {
       if (!nextProps.requestingUser && nextProps.user) {
@@ -21,8 +21,8 @@ export default function unauthenticated(Component) {
   }
   
   const mapStateToProps = (state) => ({
-    requestingUser: state.user.fetchUser.requesting,
-    user: state.user.fetchUser.user,
+    requestingUser: state.user.fetchCurrentUser.requesting,
+    user: state.user.fetchCurrentUser.user,
   });
 
   const actionCreators = {

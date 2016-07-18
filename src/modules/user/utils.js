@@ -1,3 +1,5 @@
+import jwt_decode from 'jwt-decode';
+
 module.exports = {
   validateSignup(values) {
     let errors = {};
@@ -39,4 +41,15 @@ module.exports = {
     
     return false;
   },
+  getId(jwt) {
+    return new Promise((resolve, reject) => {
+      try {
+        const decoded = jwt_decode(jwt);
+
+        resolve(decoded.id)
+      } catch (e) {
+        reject();
+      }
+    });    
+  }
 };

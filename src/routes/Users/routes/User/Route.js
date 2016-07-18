@@ -7,6 +7,7 @@ import { routerActions } from 'react-router-redux';
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
   id: ownProps.params.id,
+  currentUser: state.user.fetchCurrentUser.user,
   user: state.user.fetchUser.user,
   requestingUser: state.user.fetchUser.requesting,
   error: state.user.fetchUser.error,

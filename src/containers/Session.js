@@ -8,7 +8,7 @@ import { routerActions } from 'react-router-redux';
 export default function session(Component) {
   class SessionComponent extends React.Component {
     componentWillMount() {
-      this.props.actions.fetchUser();
+      this.props.actions.fetchCurrentUser();
     }
     render() {
       return <Component user={this.props.user}
@@ -17,8 +17,8 @@ export default function session(Component) {
   }
   
   const mapStateToProps = (state) => ({
-    requestingUser: state.user.fetchUser.requesting,
-    user: state.user.fetchUser.user,
+    requestingUser: state.user.fetchCurrentUser.requesting,
+    user: state.user.fetchCurrentUser.user,
   });
 
   const actionCreators = {

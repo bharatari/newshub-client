@@ -10,7 +10,7 @@ export default function authenticated(Component) {
   class AuthenticatedComponent extends React.Component {
     static propTypes = {
       actions: PropTypes.shape({
-        fetchUser: PropTypes.func,
+        fetchCurrentUser: PropTypes.func,
         replace: PropTypes.func,
       }).isRequired,
       requestingUser: PropTypes.bool.isRequired,
@@ -21,7 +21,7 @@ export default function authenticated(Component) {
       requestedLogout: false,
     };
     componentWillMount() {
-      this.props.actions.fetchUser();
+      this.props.actions.fetchCurrentUser();
     }
     componentWillReceiveProps(nextProps) {
       if (!nextProps.requestingUser && !nextProps.user) {
@@ -60,8 +60,8 @@ export default function authenticated(Component) {
   }
 
   const mapStateToProps = (state, ownProps) => ({
-    requestingUser: state.user.fetchUser.requesting,
-    user: state.user.fetchUser.user,
+    requestingUser: state.user.fetchCurrentUser.requesting,
+    user: state.user.fetchCurrentUser.user,
     currentRoute: ownProps.location.pathname,
     logout: state.authentication.logout,
   });

@@ -18,15 +18,19 @@ export default class UserView extends React.Component {
   componentWillReceiveProps(nextProps) {
   }
   render() {
-    const { user, requestingUser, actions, currentUrl } = this.props;
+    const { currentUser, user, requestingUser, error, actions, currentUrl } = this.props;
     const successHeader = 'You successfully updated this user.';
 
     return (
       <div>
+        <Response error={this.props.error} successHeader={successHeader} />
         <SidebarPage currentUrl={currentUrl} actions={actions}
           header="User" loading={requestingUser}>
-          <div>
-          </div>
+          {
+            reservation ? 
+            <Content user={this.props.user} actions={actions} currentUser={user} /> :
+            <TextLoading loading={requestingUser} /> 
+          }
         </SidebarPage>
       </div>
     );
