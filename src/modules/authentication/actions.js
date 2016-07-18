@@ -15,11 +15,11 @@ export function login(body) {
     data.request('login', 'post', null, null, body, {
       resolve: false,
     }).then(function (body) {
-        localStorage.setItem(localStorageAuthToken, body.token);
-        dispatch(receiveLogin(body));
-      }).catch(function (e) {
-        dispatch(receiveLogin(e));
-      });
+      localStorage.setItem(localStorageAuthToken, body.token);
+      dispatch(receiveLogin(body));
+    }).catch(function (e) {
+      dispatch(receiveLogin(e));
+    });
   }
 }
 

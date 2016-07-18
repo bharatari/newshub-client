@@ -26,7 +26,7 @@ export function fetchDevices(startDate, endDate) {
       query = { startDate, endDate };
     }
 
-    data.request('device', 'get', null, query, null)
+    data.request('device', 'get', null, query)
       .then(function (response) {
         dispatch(receiveDevices(response));
       }).catch(function (e) {

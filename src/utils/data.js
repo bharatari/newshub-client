@@ -13,7 +13,7 @@ export default {
 
     this.app = app;
   },
-  base: __DEV__ ? 'https://newshub-utdtv.herokuapp.com' : 'https://newshub-utdtv.herokuapp.com',
+  base: __DEV__ ? 'http://localhost:3030' : '',
   getCurrentBase() {
     let url = window.location.protocol + '//' + window.location.hostname;
      
