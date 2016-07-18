@@ -10,12 +10,13 @@ const table = classNames(
 
 export default class Table extends React.Component {
   static propTypes = {
-    fields: PropTypes.array,
+    fields: PropTypes.array.isRequired,
     data: PropTypes.array,
     route: PropTypes.string,
     actions: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
+    newTab: PropTypes.bool,
   };
   render() {
     const headers = () => {
@@ -33,12 +34,15 @@ export default class Table extends React.Component {
       let array = [];
       let counter = 0;
 
-      this.props.data.map((item) => {
-        array.push(<Row key={counter} fields={this.props.fields}
-                    data={item} route={this.props.route}
-                    actions={this.props.actions} />);
-        counter++;
-      });
+      if (this.props.data) {
+        this.props.data.map((item) => {
+          array.push(<Row key={counter} fields={this.props.fields}
+                      data={item} route={this.props.route}
+                      actions={this.props.actions} 
+                      newTab={this.props.newTab} />);
+          counter++;
+        });
+      }
       
       return array;
     };

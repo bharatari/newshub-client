@@ -11,9 +11,14 @@ export default class Row extends React.Component {
     actions: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
+    newTab: PropTypes.bool,
   };
   handleClick = () => {
-    this.props.actions.push(this.props.route + '/' + this.props.data.id);
+    if (this.props.newTab) {
+      window.open(this.props.route + '/' + this.props.data.id);
+    } else {
+      this.props.actions.push(this.props.route + '/' + this.props.data.id);          
+    }    
   };
   render() {
     const processField = (field, data) => {
