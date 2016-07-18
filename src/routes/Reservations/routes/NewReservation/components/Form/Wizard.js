@@ -5,13 +5,22 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import array from 'utils/array';
 import classes from './Styles.scss';
 import Group from './Group';
-import { Tabs } from 'components/';
+import { Tabs, Table } from 'components/';
+import reservation from 'modules/reservation/utils';
 
 export default class NewReservationWizard extends React.Component {
   static propTypes = {
     selectedDevices: PropTypes.any,
     actions: PropTypes.object.isRequired,
     remainingDevices: PropTypes.object,
+  };
+  state = {
+    fields: [
+      { label: 'Name', property: 'user.fullName'},
+      { label: 'Checked Out By', property: 'checkedOutBy.fullName' },
+      { label: 'Status', property: 'status', custom: reservation.getReservationStatus.bind(reservation) },
+      { label: 'Created', property: 'createdAt', type: 'date' },
+    ]
   };
   componentDidMount() {
     let selectedDevices = [];
@@ -73,7 +82,7 @@ export default class NewReservationWizard extends React.Component {
       }
       
       return list;
-    }
+    };
 
     const renderGroups = () => {
       let list = [];
@@ -95,7 +104,7 @@ export default class NewReservationWizard extends React.Component {
       }
 
       return list;
-    }
+    };
 
     return (
       <div>
@@ -111,6 +120,17 @@ export default class NewReservationWizard extends React.Component {
               {renderList()}
           </ReactCSSTransitionGroup>
         </div>
+        {
+          this.props.reservations ?
+          <div>
+            <h1 className={classes.groupHeader}>Reservations during this period</h1>
+            <p className={classes.font}>Here are some reservations created during the same period. Double-check to make sure you aren't creating an extra reservations for the same project.</p>
+            <Table fields={this.state.fields}
+              data={this.props.reservations} 
+              actions={this.props.actions}
+              route="/app/reservation" newTab={true} />
+          </div> : null
+        }
       </div>
     )
   }
