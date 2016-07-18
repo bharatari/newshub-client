@@ -17,6 +17,7 @@ export const requestDeleteReservation = createAction('REQUEST_DELETE_RESERVATION
 export const receiveDeleteReservation = createAction('RECEIVE_DELETE_RESERVATION');
 
 export const resetCreateReservation = createAction('RESET_CREATE_RESERVATION');
+export const resetFetchReservations = createAction('RESET_FETCH_RESERVATIONS');
 
 export function fetchReservation(id) {
   return function (dispatch) {
@@ -31,15 +32,20 @@ export function fetchReservation(id) {
   };
 }
 
-export function fetchReservations(filter, page) {
+export function fetchReservations(startDate, endDate) {
   return function (dispatch) {
     dispatch(requestReservations());
 
     let query = '?$sort[createdAt]=-1&$limit=10';
 
+    if (startDate && endDate) {
+      query += '&startDate=' + encodeURIComponent(startDate);
+      query += '&endDate=' + encodeURIComponent(endDate);
+    }
+
     data.request('reservation', 'get', null, query)
       .then(function (response) {
-        dispatch(receiveReservations(response))
+        dispatch(receiveReservations(response));
       }).catch(function (e) {
         dispatch(receiveReservations(e));
       });

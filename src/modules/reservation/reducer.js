@@ -24,6 +24,15 @@ const initialState = {
 };
 
 export default handleActions({
+  RESET_FETCH_RESERVATIONS: (state, action) => ({
+    ...state,
+    fetchReservations: {
+      ...state.fetchReservations,
+      requesting: false,
+      reservations: null,
+      error: null,
+    },
+  }),
   REQUEST_RESERVATIONS: (state, action) => ({
     ...state,
     fetchReservations: {

@@ -15,6 +15,8 @@ const mapStateToProps = (state, ownProps) => ({
   selectedDevices: state.wizard.newReservation.selectedDevices,
   newReservation: state.form.newReservation,
   requestingDevices: state.device.fetchDevices.requesting,
+  reservations: state.reservation.fetchReservations.reservations,
+  requestingReservations: state.reservation.fetchReservations.requesting,
 });
 
 const actionCreators = {
