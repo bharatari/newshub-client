@@ -18,13 +18,12 @@ class LoginForm extends React.Component {
     reset: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
     requestingLogin: PropTypes.bool.isRequired,
-    error: PropTypes.any,
   };
   handleClick = () => {
     this.props.actions.push('/app/signup');
   };
   render() {
-    const { handleSubmit, pristine, reset, submitting, requestingLogin, error } = this.props;
+    const { handleSubmit, pristine, reset, submitting, requestingLogin } = this.props;
     const button = classNames(
       'ui fluid large black submit button button-light',
       classes.button,
@@ -52,7 +51,6 @@ class LoginForm extends React.Component {
           disabled={this.props.requestingLogin || this.props.response}>
           Login
         </button>
-        <div className="ui error message">{error}</div>
         <div className={signup} onClick={this.handleClick}>
           Signup
         </div>

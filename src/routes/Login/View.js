@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
+import { Response } from 'components/';
 import { Form } from './components';
 
 const main = classNames(
@@ -34,26 +35,14 @@ export default class LoginView extends React.Component {
     }
   }
   render() {
-    const response = () => {
-      if (this.props.error) {
-        return <div className="ui negative message">
-                <div className="header">
-                  Whoops, something went wrong there. Check your fields and try again.
-                </div>
-              </div>
-      } else {
-        return null;
-      }
-    };
-
     return (
       <div className="ui container">
         <div className={main}>
           <div className="four wide column">
             <h2 className={classes.header}>Login</h2>
-            {response()}
+            <Response error={this.props.error} />
             <Form onSubmit={this.handleSubmit} requestingLogin={this.props.requestingLogin}
-              error={this.props.error} actions={this.props.actions} response={this.props.response} />
+              actions={this.props.actions} response={this.props.response} />
           </div>
         </div>
       </div>
