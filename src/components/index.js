@@ -4,7 +4,12 @@ import Loading from './Notifications/Loading';
 import Notification from './Notifications/Notification';
 import FormatDate from './FormatDate';
 import Modal from './Modal';
-import TextLoading from './TextLoading';
+import TextLoading from './TextLoading/Component';
+import SidebarPage from './SidebarPage/Component';
+import Table from './Table/Component';
+import Response from './Response/Component';
+import Tabs from './Tabs/Component';
+import Unauthorized from './Unauthorized/Component';
 
 export {
   Notifications,
@@ -14,4 +19,9 @@ export {
   FormatDate,
   Modal,
   TextLoading,
+  SidebarPage,
+  Table,
+  Response,
+  Tabs,
+  Unauthorized,
 };

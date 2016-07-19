@@ -1,14 +1,14 @@
 import { argv } from 'yargs'
 import config from '../config'
 import webpackConfig from './webpack.config'
+import _debug from 'debug'
 
-const debug = require('debug')('app:karma')
+const debug = _debug('app:karma')
 debug('Create configuration.')
 
 const karmaConfig = {
   basePath: '../', // project root in relation to bin/karma.js
   files: [
-    './node_modules/phantomjs-polyfill/bind-polyfill.js',
     {
       pattern: `./${config.dir_test}/test-bundler.js`,
       watched: false,
@@ -18,13 +18,13 @@ const karmaConfig = {
   ],
   singleRun: !argv.watch,
   frameworks: ['mocha'],
+  reporters: ['mocha'],
   preprocessors: {
-    [`${config.dir_test}/test-bundler.js`]: ['webpack', 'sourcemap']
+    [`${config.dir_test}/test-bundler.js`]: ['webpack']
   },
-  reporters: ['spec'],
   browsers: ['PhantomJS'],
   webpack: {
-    devtool: 'inline-source-map',
+    devtool: 'cheap-module-source-map',
     resolve: {
       ...webpackConfig.resolve,
       alias: {
@@ -39,18 +39,18 @@ const karmaConfig = {
       ],
       loaders: webpackConfig.module.loaders.concat([
         {
-          test: /sinon\/pkg\/sinon\.js/,
+          test: /sinon(\\|\/)pkg(\\|\/)sinon\.js/,
           loader: 'imports?define=>false,require=>false'
         }
       ])
     },
+    // Enzyme fix, see:
+    // https://github.com/airbnb/enzyme/issues/47
     externals: {
       ...webpackConfig.externals,
-      jsdom: 'window',
-      cheerio: 'window',
+      'react/addons': true,
       'react/lib/ExecutionEnvironment': true,
-      'react/lib/ReactContext': 'window',
-      'text-encoding': 'window'
+      'react/lib/ReactContext': 'window'
     },
     sassLoader: webpackConfig.sassLoader
   },
@@ -62,7 +62,7 @@ const karmaConfig = {
   }
 }
 
-if (config.coverage_enabled) {
+if (config.globals.__COVERAGE__) {
   karmaConfig.reporters.push('coverage')
   karmaConfig.webpack.module.preLoaders = [{
     test: /\.(js|jsx)$/,
@@ -72,4 +72,5 @@ if (config.coverage_enabled) {
   }]
 }
 
-export default (cfg) => cfg.set(karmaConfig)
+// cannot use `export default` because of Karma.
+module.exports = (cfg) => cfg.set(karmaConfig)

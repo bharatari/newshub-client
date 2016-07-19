@@ -3,31 +3,26 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authentication from 'modules/authentication/actions';
 import * as user from 'modules/user/actions';
-import { routeActions } from 'react-router-redux';
+import { routerActions } from 'react-router-redux';
 
 export default function session(Component) {
   class SessionComponent extends React.Component {
     componentWillMount() {
-      this.props.actions.fetchAuthenticated();
-      this.props.actions.fetchUser();
+      this.props.actions.fetchCurrentUser();
     }
     render() {
-      return <Component user={this.props.user} 
-               authenticated={this.props.authenticated}
-               {...this.props} 
-             />;
+      return <Component user={this.props.user}
+               {...this.props} />;
     }
   }
   
   const mapStateToProps = (state) => ({
-    requestingAuthenticated: state.authentication.requestingAuthenticated,
-    requestingUser: state.user.requestingUser,
-    user: state.user.user,
-    authenticated: state.authentication.authenticated,
+    requestingUser: state.user.fetchCurrentUser.requesting,
+    user: state.user.fetchCurrentUser.user,
   });
 
   const actionCreators = {
-    ...routeActions,
+    ...routerActions,
     ...authentication,
     ...user,
   }

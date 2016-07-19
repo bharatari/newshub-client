@@ -53,5 +53,5 @@ export default {
     }
     
     return array;
-  }
+  },
 }

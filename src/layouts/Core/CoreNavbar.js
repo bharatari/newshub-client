@@ -16,6 +16,7 @@ function CoreLayout(props) {
   return (
     <div className={navbar}>
       <div className="ui container">
+        {props.leftNavbar}
         <a className="header item" href="/">
           <h4 className={classes.logo}>NewsHub</h4>
         </a>

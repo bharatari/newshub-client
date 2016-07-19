@@ -5,14 +5,13 @@ import CoreFooter from './CoreFooter';
 import classNames from 'classnames';
 
 const contentMargin = classNames(
-  classes.contentMargin,
-  classes.background,
+  classes.contentMargin
 );
 
-function CoreLayout({ children, rightNavbar }) {
+function CoreLayout({ children, rightNavbar, leftNavbar }) {
   return (
     <div>
-      <CoreNavbar rightNavbar={rightNavbar} />
+      <CoreNavbar rightNavbar={rightNavbar} leftNavbar={leftNavbar} />
       <div className={contentMargin}>
         {children}
       </div>

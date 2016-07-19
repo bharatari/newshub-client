@@ -16,13 +16,21 @@ export const receiveUpdateDevice = createAction('RECEIVE_UPDATE_DEVICE');
 export const requestDeleteDevice = createAction('REQUEST_DELETE_DEVICE');
 export const receiveDeleteDevice = createAction('RECEIVE_DELETE_DEVICE');
 
-export function fetchDevices(filter, page) {
+export function fetchDevices(startDate, endDate) {
   return function (dispatch) {
     dispatch(requestDevices());
     
-    data.request('device')
-      .then(function (body) {
+    let query = {};
 
+    if (startDate && endDate) {
+      query = { startDate, endDate };
+    }
+
+    data.request('device', 'get', null, query)
+      .then(function (response) {
+        dispatch(receiveDevices(response));
+      }).catch(function (e) {
+        dispatch(receiveDevices(e))
       });
   };
 }

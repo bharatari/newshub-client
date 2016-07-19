@@ -1,55 +1,80 @@
-,import { handleActions } from 'redux-actions';
+import { handleActions } from 'redux-actions';
 
 const initialState = {
-  requestingDevices: false,
-  requestingDevice: false,
-  collection: [],
-  error: null,
+  fetchDevices: {
+    requesting: false,
+    devices: null,
+    error: null,
+  },
+  fetchDevice: {
+    requesting: false,
+    device: null,
+    error: null,
+  },
 };
 
 export default handleActions({
   REQUEST_DEVICES: (state, action) => ({
     ...state,
-    requestingDevices: true,
+    fetchDevices: {
+      ...state.fetchDevices,
+      requesting: true,
+    },
   }),
   RECEIVE_DEVICES: {
     next(state, action) {
       return {
         ...state,
-        requestingDevices: false,
-        collection: [
-          ...action.payload,
-        ],
+        fetchDevices: {
+          ...state.fetchDevices,
+          requesting: false,
+          devices: action.payload,
+          error: null,
+        },
       };
     },
     throw(state, action) {
       return {
         ...state,
-        requestingDevices: false,
-        error: action.payload,
+        fetchDevices: {
+          ...state.fetchDevices,
+          requesting: false,
+          devices: null,
+          error: action.payload,
+        },
       };
     }
   },
   REQUEST_DEVICE: (state, action) => ({
     ...state,
-    requestingDevice: true
+    fetchDevice: {
+      ...state.fetchDevice,
+      requesting: true,
+      device: null,
+      error: null,
+    },
   }),
   RECEIVE_DEVICE: {
     next(state, action) {
       return {
         ...state,
-        requestingDevice: false,
-        collection: [
-          ...state.collection,
-          action.payload,
-        ],
+        fetchDevice: {
+          ...state.fetchDevice,
+          requesting: false,
+          device: action.payload,
+          error: null,
+        },
       };
     },
     throw(state, action) {
       return {
         ...state,
-        requestingDevices: false,
-        error: action.payload,
+        fetchDevice: {
+          ...state.fetchDevice,
+          requesting: false,
+          device: null,
+          error: action.payload,
+        },
       };
     }
   }

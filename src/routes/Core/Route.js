@@ -2,13 +2,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import View from './View';
 import * as user from 'modules/user/actions';
-import { routeActions } from 'react-router-redux';
+import * as authentication from 'modules/authentication/actions';
+import { routerActions } from 'react-router-redux';
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state, ownProps) => ({
+  currentUrl: ownProps.location.pathname,
+});
 
 const actionCreators = {
-  ...routeActions,
+  ...routerActions,
   ...user,
+  ...authentication,
 };
 
 const mapDispatchToProps = (dispatch) => ({

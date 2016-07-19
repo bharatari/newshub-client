@@ -1,17 +1,17 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as authentication from 'modules/authentication/actions';
+import * as user from 'modules/user/actions';
 import { defaultRedirect } from 'constants/keys';
-import { routeActions } from 'react-router-redux';
+import { routerActions } from 'react-router-redux';
 
 export default function unauthenticated(Component) {
   class UnauthenticatedComponent extends React.Component {
     componentWillMount() {
-      this.props.actions.fetchAuthenticated();
+      this.props.actions.fetchCurrentUser();
     }
     componentWillReceiveProps(nextProps) {
-      if (!nextProps.requestingAuthenticated && nextProps.authenticated) {
+      if (!nextProps.requestingUser && nextProps.user) {
         this.props.actions.replace(defaultRedirect);
       }
     }
@@ -21,13 +21,13 @@ export default function unauthenticated(Component) {
   }
   
   const mapStateToProps = (state) => ({
-    requestingAuthenticated: state.authentication.requestingAuthenticated,
-    authenticated: state.authentication.authenticated,
+    requestingUser: state.user.fetchCurrentUser.requesting,
+    user: state.user.fetchCurrentUser.user,
   });
 
   const actionCreators = {
-    ...routeActions,
-    ...authentication,
+    ...routerActions,
+    ...user,
   }
 
   const mapDispatchToProps = (dispatch) => ({
