@@ -7,6 +7,7 @@ import classes from './Styles.scss';
 import Group from './Group';
 import { Tabs, Table } from 'components/';
 import reservation from 'modules/reservation/utils';
+import _ from 'lodash';
 
 export default class NewReservationWizard extends React.Component {
   static propTypes = {
@@ -121,7 +122,7 @@ export default class NewReservationWizard extends React.Component {
           </ReactCSSTransitionGroup>
         </div>
         {
-          this.props.reservations ?
+          !_.isEmpty(this.props.reservations) ?
           <div>
             <h1 className={classes.groupHeader}>Reservations during this period</h1>
             <p className={classes.font}>Here are some reservations created during the same period. Double-check to make sure you aren't creating an extra reservations for the same project.</p>
