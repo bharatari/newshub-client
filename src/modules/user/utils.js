@@ -34,7 +34,18 @@ module.exports = {
     if (user) {
       if (user.roles) {
         if (_.isString(user.roles)) {
-          return user.roles.includes('admin');
+          return user.roles.includes('admin') || user.roles.includes('master');;
+        }
+      }
+    }
+    
+    return false;
+  },
+  isMaster(user) {
+    if (user) {
+      if (user.roles) {
+        if (_.isString(user.roles)) {
+          return user.roles.includes('master');;
         }
       }
     }
