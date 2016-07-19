@@ -3,7 +3,7 @@ import { Route, IndexRoute, Redirect } from 'react-router';
 import NotFound from './NotFound/View';
 import Root from 'containers/Root';
 import Core from './Core/Route';
-import Dashboard from './Dashboard/Route';
+import Dashboard from './Dashboard';
 import Login from './Login/Route';
 import Signup from './Signup/Route';
 import Reservations from './Reservations/Route';
@@ -19,7 +19,7 @@ import admin from 'containers/Admin';
 export default (store) => (
   <Route path="/" component={Root}>
     <Route component={authenticated(Core)}>
-      <IndexRoute component={Dashboard} />
+      <IndexRoute getComponent={Dashboard(store)} />
       <Route path="/app/reservation" component={Reservations} />
       <Route path="/app/reservation/new" component={NewReservation} />
       <Route path="/app/reservation/:id" component={Reservation} />

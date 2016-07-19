@@ -1,0 +1,30 @@
+.header {
+  font-size: 16px;
+  font-family: 'Open Sans';
+  border-bottom: 1px solid gray;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 10px;
+}
+
+.empty {
+  font-family: 'Open Sans';
+  font-size: 26px;
+  color: gray;
+}
+
+.time {
+  font-family: 'Open Sans';
+  font-size: 32px;
+}
+
+.date {
+  font-family: 'Open Sans';
+  font-size: 32px;
+}
+
+.icon {
+  font-size: 32px;
+  display: inline;
+  margin-right: 10px;
+}
