@@ -77,7 +77,7 @@ export default class NewReservationView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="New Reservation" right={right} loading={loading}>
+          header="New Reservation" right={right} loading={loading} user={this.props.user}>
           { this.props.createdReservation ? message : null }
           <Form ref="form" remainingDevices={this.props.remainingDevices}
             requestingCreateReservation={this.props.requestingCreateReservation}

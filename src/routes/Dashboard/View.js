@@ -13,7 +13,7 @@ export default class HomeView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="Dashboard" />
+          header="Dashboard" user={this.props.user} />
       </div>
     );
   }

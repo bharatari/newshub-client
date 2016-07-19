@@ -36,7 +36,8 @@ export default class ReservationsView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="Reservations" right={right} loading={this.props.requestingReservations}>
+          header="Reservations" right={right} loading={this.props.requestingReservations}
+          user={this.props.user}>
           { this.props.reservations ?
             <Table fields={this.state.fields}
               data={this.props.reservations} 

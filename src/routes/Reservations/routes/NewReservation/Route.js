@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => ({
   requestingDevices: state.device.fetchDevices.requesting,
   reservations: state.reservation.fetchReservations.reservations,
   requestingReservations: state.reservation.fetchReservations.requesting,
+  user: state.user.fetchCurrentUser.user,
 });
 
 const actionCreators = {

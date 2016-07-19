@@ -35,7 +35,7 @@ export default class UsersView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="Users" right={right} loading={this.props.requestingUsers}>
+          header="Users" right={right} loading={this.props.requestingUsers} user={this.props.currentUser}>
           { this.props.users ?
             <Table fields={this.state.fields}
               data={this.props.users} 

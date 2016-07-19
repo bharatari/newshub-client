@@ -25,10 +25,10 @@ export default class UserView extends React.Component {
       <div>
         <Response error={this.props.error} successHeader={successHeader} />
         <SidebarPage currentUrl={currentUrl} actions={actions}
-          header="User" loading={requestingUser}>
+          header="User" loading={requestingUser} user={currentUser}>
           {
-            reservation ? 
-            <Content user={this.props.user} actions={actions} currentUser={user} /> :
+            user ? 
+            <Content user={this.props.user} actions={actions} currentUser={currentUser} /> :
             <TextLoading loading={requestingUser} /> 
           }
         </SidebarPage>

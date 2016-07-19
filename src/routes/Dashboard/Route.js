@@ -4,7 +4,8 @@ import View from './View';
 import { routerActions } from 'react-router-redux';
 
 const mapStateToProps = (state, ownProps) => ({
-  currentUrl: ownProps.location.pathname
+  currentUrl: ownProps.location.pathname,
+  user: state.user.fetchCurrentUser.user,
 });
 
 const actionCreators = {

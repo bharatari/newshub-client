@@ -8,6 +8,7 @@ const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
   users: state.user.fetchUsers.users,
   requestingUsers: state.user.fetchUsers.requesting,
+  currentUser: state.user.fetchCurrentUser.user,
 });
 
 const actionCreators = {
