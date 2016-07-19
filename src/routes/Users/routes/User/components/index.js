@@ -1,9 +1,7 @@
-import Admin from './Admin/Component';
+import Master from './Master/Component';
 import Content from './Content/Component';
-import Devices from './Devices/Component';
 
 export {
-  Admin,
+  Master,
   Content,
-  Devices,
 };
