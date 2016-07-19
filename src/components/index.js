@@ -9,6 +9,7 @@ import SidebarPage from './SidebarPage/Component';
 import Table from './Table/Component';
 import Response from './Response/Component';
 import Tabs from './Tabs/Component';
+import Unauthorized from './Unauthorized/Component';
 
 export {
   Notifications,
@@ -22,4 +23,5 @@ export {
   Table,
   Response,
   Tabs,
+  Unauthorized,
 };
