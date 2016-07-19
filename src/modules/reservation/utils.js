@@ -12,6 +12,10 @@ module.exports = {
       errors.endDate = 'Required';
     }
 
+    if (values.startDate >= values.endDate) {
+      errors.startDate = 'Start date cannot be after end date';
+    }
+
     if (!values.purpose) {
       errors.purpose = 'Required';
     }
