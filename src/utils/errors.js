@@ -25,7 +25,11 @@ export default {
     },
     'USER_DISABLED': {
       header: 'Your account has been disabled',
-      text: 'Please contact management if you believe this has happened in error'
+      text: 'Please contact management if you believe this has happened in error',
+    },
+    'MASTER_SPECIAL_REQUEST': {
+      header: 'This reservation has a special request',
+      text: 'It will need to be approved by a master user',
     },
   },
   getError(code) {
