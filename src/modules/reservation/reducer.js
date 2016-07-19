@@ -141,6 +141,15 @@ export default handleActions({
       };
     }
   },
+  RESET_UPDATE_RESERVATION: (state, action) => ({
+    ...state,
+    updateReservation: {
+      ...state.updateReservation,
+      requesting: false,
+      reservation: null,
+      error: null,
+    },
+  }),
   REQUEST_UPDATE_RESERVATION: (state, action) => ({
     ...state,
     updateReservation: {
