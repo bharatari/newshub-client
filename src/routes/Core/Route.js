@@ -5,7 +5,9 @@ import * as user from 'modules/user/actions';
 import * as authentication from 'modules/authentication/actions';
 import { routerActions } from 'react-router-redux';
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state, ownProps) => ({
+  currentUrl: ownProps.location.pathname,
+});
 
 const actionCreators = {
   ...routerActions,

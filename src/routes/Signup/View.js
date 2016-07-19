@@ -27,7 +27,7 @@ export default class LoginView extends React.Component {
         <div className="ui container">
           <div className={classes.main}>
             <div className="ui centered grid">
-              <div className="ten wide column">
+              <div className="sixteen wide phone ten wide computer column">
                 <Response error={this.props.error} response={this.props.user}
                   successHeader={responseHeader} successText={responseText} />
                 <Form onSubmit={this.handleSubmit} error={this.props.error}

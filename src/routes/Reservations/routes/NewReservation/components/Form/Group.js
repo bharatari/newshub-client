@@ -29,7 +29,7 @@ export default class Device extends React.Component {
         <ReactCSSTransitionGroup
           transitionName="device-group"
           component="div"
-          className="ui four cards"
+          className="ui stackable four cards"
           transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
             {renderDevices()}
         </ReactCSSTransitionGroup>

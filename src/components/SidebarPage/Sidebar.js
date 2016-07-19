@@ -5,8 +5,13 @@ import { navigationRoutes } from 'constants/routes';
 import user from 'modules/user/utils';
 
 const sidebar = classNames(
+  'desktop-only',
   classes.sidebar,
-  classes.sidebarLeft  
+  classes.sidebarLeft,
+);
+
+const mobileSidebar = classNames(
+  'ui sidebar inverted vertical menu mobile-only'
 );
 
 export default class Sidebar extends React.Component {
@@ -22,6 +27,18 @@ export default class Sidebar extends React.Component {
       return false;
     }
   };
+  componentDidMount() {
+    $('.ui.sidebar').sidebar({
+      dimPage: false,
+    });
+
+    $('.ui.sidebar').first().sidebar('attach events', '.toggle-button');
+  }
+  componentWillReceiveProps(nextProps) {
+    $('.ui.sidebar').sidebar({
+      dimPage: false,
+    });
+  }
   handleClick = (route, event) => {
     event.preventDefault();
     this.props.actions.push(route.url);
@@ -80,8 +97,13 @@ export default class Sidebar extends React.Component {
     }
     
     return (
-      <div className={sidebar}>
-        <div className="ui list">
+      <div>
+        <div className={sidebar}>
+          <div className="ui list">
+            {getRoutes()}
+          </div>
+        </div>
+        <div className={mobileSidebar}>
           {getRoutes()}
         </div>
       </div>

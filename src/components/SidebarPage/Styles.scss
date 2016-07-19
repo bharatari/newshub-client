@@ -67,3 +67,30 @@
 .link.active:hover {
   color: black !important;
 }
+
+@media only screen and (max-width: 768px) {
+  .sidebarContainer {
+    margin-left: 0px !important;
+  }
+
+  .link {
+    color: white !important;
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    -ms-transition: color 0.2s ease-out;
+    -o-transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out;
+  }
+
+  .link:focus,
+  .link:hover {
+    color: #e2e2e2 !important;
+  }
+
+  .link.active,
+  .link.active:focus,
+  .link.active:hover {
+    background-color: #e2e2e2 !important;
+    color: black;
+  }
+}

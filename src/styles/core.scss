@@ -53,6 +53,10 @@
     transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.600, -0.280, 0.735, 0.045);
   }
 
+  .mobile-only {
+    display: none !important;
+  }
+
   /**
    *
    * @section - 2. Utilities
@@ -238,6 +242,12 @@
   }
 
   @media only screen and (max-width: 768px) {
+    .desktop-only {
+      display: none;
+    }
 
+    .mobile-only {
+      display: block !important;
+    }
   }
 }

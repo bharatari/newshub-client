@@ -8,10 +8,10 @@ const contentMargin = classNames(
   classes.contentMargin
 );
 
-function CoreLayout({ children, rightNavbar }) {
+function CoreLayout({ children, rightNavbar, leftNavbar }) {
   return (
     <div>
-      <CoreNavbar rightNavbar={rightNavbar} />
+      <CoreNavbar rightNavbar={rightNavbar} leftNavbar={leftNavbar} />
       <div className={contentMargin}>
         {children}
       </div>

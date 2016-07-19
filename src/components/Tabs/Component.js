@@ -7,10 +7,10 @@ export default class Tabs extends React.Component {
     fields: PropTypes.any,
   };
   componentDidMount() {
-    $('.tabular.menu .item').tab();
+    $('.pointing.menu .item').tab();
   }
   componentDidUpdate() {
-    $('.tabular.menu .item').tab('refresh');
+    $('.pointing.menu .item').tab('refresh');
   }
   render() {
     const headers = () => {
@@ -31,7 +31,7 @@ export default class Tabs extends React.Component {
 
     return (
       <div>
-        <div className="ui tabular menu">
+        <div className="ui secondary stackable pointing menu">
           {headers()}
         </div>
         {this.props.children}
