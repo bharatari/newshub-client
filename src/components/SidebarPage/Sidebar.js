@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import classes from './Styles.scss';
 import { navigationRoutes } from 'constants/routes';
+import user from 'modules/user/utils';
 
 const sidebar = classNames(
   classes.sidebar,
@@ -12,6 +13,7 @@ export default class Sidebar extends React.Component {
   static propTypes = {
     currentUrl: PropTypes.string,
     actions: PropTypes.object,
+    user: PropTypes.object,
   };
   currentRoute = (url) => {
     if (url === this.props.currentUrl) {
@@ -29,25 +31,49 @@ export default class Sidebar extends React.Component {
       let routes = [];
       
       navigationRoutes.forEach((route) => {
-        let boundClick = this.handleClick.bind(this, route);
-        let link;
-        
-        if (this.currentRoute(route.url)) {
-          link = classNames(
-            'item',
-            classes.link,
-            classes.active
+        if (!route.admin) {
+          let boundClick = this.handleClick.bind(this, route);
+          let link;
+          
+          if (this.currentRoute(route.url)) {
+            link = classNames(
+              'item',
+              classes.link,
+              classes.active
+            );
+          } else {
+            link = classNames(
+              'item',
+              classes.link
+            );
+          }
+          
+          routes.push(
+            <a href="#" key={route.url} className={link} onClick={boundClick}>{route.label}</a>
           );
         } else {
-          link = classNames(
-            'item',
-            classes.link
-          );
+          if (user.isAdmin(this.props.user)) {
+            let boundClick = this.handleClick.bind(this, route);
+            let link;
+            
+            if (this.currentRoute(route.url)) {
+              link = classNames(
+                'item',
+                classes.link,
+                classes.active
+              );
+            } else {
+              link = classNames(
+                'item',
+                classes.link
+              );
+            }
+            
+            routes.push(
+              <a href="#" key={route.url} className={link} onClick={boundClick}>{route.label}</a>
+            );
+          }
         }
-        
-        routes.push(
-          <a href="#" key={route.url} className={link} onClick={boundClick}>{route.label}</a>
-        );
       });
       
       return routes;

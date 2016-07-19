@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import Sidebar from './Sidebar';
 import classNames from 'classnames';
@@ -10,6 +10,11 @@ const main = classNames(
 );
 
 export default class SidebarPage extends React.Component {
+  static propTypes = {
+    currentUrl: PropTypes.string,
+    actions: PropTypes.object,
+    user: PropTypes.object,
+  };
   render() {
     return (
       <div className={main}>
