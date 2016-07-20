@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
 
-export default class FormatDate extends React.Component {
+export default class Date extends React.Component {
   state = {
     date: moment().format("dddd, MMMM Do YYYY"),
   };

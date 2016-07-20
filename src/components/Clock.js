@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
 
-export default class FormatDate extends React.Component {
+export default class Clock extends React.Component {
   state = {
     time: moment().format("hh:mm A"),
   };
