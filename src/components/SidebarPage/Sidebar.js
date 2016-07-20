@@ -11,7 +11,7 @@ const sidebar = classNames(
 );
 
 const mobileSidebar = classNames(
-  'ui sidebar inverted vertical menu mobile-only'
+  'ui inverted vertical menu mobile-only newshub-sidebar'
 );
 
 export default class Sidebar extends React.Component {
@@ -27,18 +27,6 @@ export default class Sidebar extends React.Component {
       return false;
     }
   };
-  componentDidMount() {
-    $('.ui.sidebar').sidebar({
-      dimPage: false,
-    });
-
-    $('.ui.sidebar').first().sidebar('attach events', '.toggle-button');
-  }
-  componentWillReceiveProps(nextProps) {
-    $('.ui.sidebar').sidebar({
-      dimPage: false,
-    });
-  }
   handleClick = (route, event) => {
     event.preventDefault();
     this.props.actions.push(route.url);

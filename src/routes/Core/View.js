@@ -16,6 +16,13 @@ export default class CoreView extends React.Component {
     actions: PropTypes.object,
     user: PropTypes.object,
   };
+  handleClick = () => {
+    if ($('.newshub-sidebar').hasClass('active')) {
+      $('.newshub-sidebar').removeClass('active');
+    } else {
+      $('.newshub-sidebar').addClass('active');
+    }
+  }
   render() {
     let data = {};
 
@@ -30,7 +37,7 @@ export default class CoreView extends React.Component {
     if (_.includes(nonSidebarRoutes, this.props.currentUrl)) {
       leftNavbar = null;
     } else {
-      leftNavbar = <button className={button}>
+      leftNavbar = <button className={button} onClick={this.handleClick}>
                     <i className="content icon"></i>
                   </button>;
     }
