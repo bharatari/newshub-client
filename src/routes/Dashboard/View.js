@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, Table } from 'components/';
+import { SidebarPage, Table, Clock, Date } from 'components/';
 import reservation from 'modules/reservation/utils';
 import _ from 'lodash';
 import moment from 'moment';
@@ -40,10 +40,10 @@ export default class HomeView extends React.Component {
           header="Dashboard" user={this.props.user}>
           <div className="ui stackable grid">
             <div className="eight wide column">
-              <p className={classes.time}><i className={time}></i>{moment().format("hh:mm A")}</p>
+              <p className={classes.time}><i className={time}></i><Clock /></p>
             </div>
             <div className="eight wide column">
-              <p className={classes.date}><i className={date}></i>{moment().format("dddd, MMMM Do YYYY")}</p>
+              <p className={classes.date}><i className={date}></i><Date /></p>
             </div>
             <div className="eight wide column">
               <h1 className={classes.header}>Upcoming Reservations</h1>

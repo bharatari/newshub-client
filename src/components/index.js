@@ -10,6 +10,8 @@ import Table from './Table/Component';
 import Response from './Response/Component';
 import Tabs from './Tabs/Component';
 import Unauthorized from './Unauthorized/Component';
+import Clock from './Clock';
+import Date from './Date';
 
 export {
   Notifications,
@@ -24,4 +26,6 @@ export {
   Response,
   Tabs,
   Unauthorized,
+  Clock,
+  Date,
 };
