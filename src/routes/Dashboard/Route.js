@@ -8,7 +8,9 @@ const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
   user: state.user.fetchCurrentUser.user,
   upcomingReservations: state.dashboard.upcomingReservations.reservations,
+  requestingUpcoming: state.dashboard.upcomingReservations.requesting,
   currentReservations: state.dashboard.currentReservations.reservations,
+  requestingCurrent: state.dashboard.currentReservations.requesting,
 });
 
 const actionCreators = {

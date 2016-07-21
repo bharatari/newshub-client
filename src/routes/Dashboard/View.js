@@ -34,10 +34,12 @@ export default class HomeView extends React.Component {
     ]
   };
   render() {
+    const { requestingCurrent, requestingUpcoming } = this.props;
+
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="Dashboard" user={this.props.user}>
+          header="Dashboard" user={this.props.user} loading={requestingCurrent || requestingUpcoming}>
           <div className="ui stackable grid">
             <div className="eight wide column">
               <p className={classes.time}><i className={time}></i><Clock /></p>
