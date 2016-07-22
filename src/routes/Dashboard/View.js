@@ -52,28 +52,32 @@ export default class HomeView extends React.Component {
             <div className="eight wide column">
               <h1 className={classes.header}>Upcoming Reservations</h1>
               <ReactCSSTransitionGroup
-                transitionName="page"
+                transitionName="dashboard-content"
                 transitionAppear={true} transitionAppearTimeout={100} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
                 {
                   !_.isEmpty(this.props.upcomingReservations) ?
-                  <Table fields={this.state.fields}
+                  <Table key="content" fields={this.state.fields}
                     data={this.props.upcomingReservations} 
                     actions={this.props.actions} 
                     route="/app/reservation" /> :
-                  <p className={classes.empty}>Nothing here...</p>
+                  <p key="empty" className={classes.empty}>Nothing here...</p>
                 }
               </ReactCSSTransitionGroup>              
             </div>
             <div className="eight wide column">
               <h1 className={classes.header}>Current Reservations</h1>
-              {
-                !_.isEmpty(this.props.currentReservations) ?
-                <Table fields={this.state.fields}
-                  data={this.props.currentReservations} 
-                  actions={this.props.actions}
-                  route="/app/reservation" /> :
-                <p className={classes.empty}>Nothing here...</p>
-              }
+              <ReactCSSTransitionGroup
+                transitionName="dashboard-content"
+                transitionAppear={true} transitionAppearTimeout={100} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                {
+                  !_.isEmpty(this.props.currentReservations) ?
+                  <Table key="content" fields={this.state.fields}
+                    data={this.props.currentReservations} 
+                    actions={this.props.actions}
+                    route="/app/reservation" /> :
+                  <p key="empty" className={classes.empty}>Nothing here...</p>
+                }
+              </ReactCSSTransitionGroup>
             </div>
           </div>
         </SidebarPage>
