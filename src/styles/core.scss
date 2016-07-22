@@ -27,6 +27,10 @@
    *
    */
 
+  body {
+    background-color: whitesmoke;
+  }
+
   .page-enter {
     opacity: 0.01;
   }
@@ -151,6 +155,7 @@
    * @section - 5. Components
    *
    */
+
   .device-group-enter {
     opacity: 0.01;
   }

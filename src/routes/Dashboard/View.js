@@ -5,6 +5,7 @@ import { SidebarPage, Table, Clock, Date } from 'components/';
 import reservation from 'modules/reservation/utils';
 import _ from 'lodash';
 import moment from 'moment';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const time = classNames(
   'ion-ios-time-outline',
@@ -42,22 +43,26 @@ export default class HomeView extends React.Component {
           header="Dashboard" user={this.props.user} loading={requestingCurrent || requestingUpcoming}>
           <div className="ui stackable grid">
             <div className="eight wide column">
-              <p className={classes.time}><i className={time}></i><Clock /></p>
+              <p className={classes.date}><Date /></p>
+              <p className={classes.time}><Clock /></p>
             </div>
             <div className="eight wide column">
-              <p className={classes.date}><i className={date}></i><Date /></p>
+              
             </div>
             <div className="eight wide column">
               <h1 className={classes.header}>Upcoming Reservations</h1>
-              {
-                !_.isEmpty(this.props.upcomingReservations) ?
-                <Table fields={this.state.fields}
-                  data={this.props.upcomingReservations} 
-                  actions={this.props.actions} 
-                  route="/app/reservation" /> :
-                <p className={classes.empty}>Nothing here...</p>
-              }
-              
+              <ReactCSSTransitionGroup
+                transitionName="page"
+                transitionAppear={true} transitionAppearTimeout={100} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                {
+                  !_.isEmpty(this.props.upcomingReservations) ?
+                  <Table fields={this.state.fields}
+                    data={this.props.upcomingReservations} 
+                    actions={this.props.actions} 
+                    route="/app/reservation" /> :
+                  <p className={classes.empty}>Nothing here...</p>
+                }
+              </ReactCSSTransitionGroup>              
             </div>
             <div className="eight wide column">
               <h1 className={classes.header}>Current Reservations</h1>
