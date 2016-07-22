@@ -11,6 +11,16 @@ const initialState = {
     device: null,
     error: null,
   },
+  createDevice: {
+    requesting: false,
+    device: null,
+    error: null,
+  },
+  updateDevice: {
+    requesting: false,
+    device: null,
+    error: null,
+  },
 };
 
 export default handleActions({
@@ -71,6 +81,81 @@ export default handleActions({
         ...state,
         fetchDevice: {
           ...state.fetchDevice,
+          requesting: false,
+          device: null,
+          error: action.payload,
+        },
+      };
+    }
+  },
+  RESET_CREATE_DEVICE: (state, action) => ({
+    ...state,
+    createDevice: {
+      ...state.createDevice,
+      requesting: false,
+      device: null,
+      error: null,
+    },
+  }),
+  REQUEST_CREATE_DEVICE: (state, action) => ({
+    ...state,
+    createDevice: {
+      ...state.createDevice,
+      requesting: true,
+      device: null,
+      error: null,
+    },
+  }),
+  RECEIVE_CREATE_DEVICE: {
+    next(state, action) {
+      return {
+        ...state,
+        createDevice: {
+          ...state.createDevice,
+          requesting: false,
+          device: action.payload,
+          error: null,
+        },
+      };
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        createDevice: {
+          ...state.createDevice,
+          requesting: false,
+          device: null,
+          error: action.payload,
+        },
+      };
+    }
+  },
+  REQUEST_UPDATE_DEVICE: (state, action) => ({
+    ...state,
+    updateDevice: {
+      ...state.updateDevice,
+      requesting: true,
+      device: null,
+      error: null,
+    },
+  }),
+  RECEIVE_UPDATE_DEVICE: {
+    next(state, action) {
+      return {
+        ...state,
+        updateDevice: {
+          ...state.updateDevice,
+          requesting: false,
+          device: action.payload,
+          error: null,
+        },
+      };
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        updateDevice: {
+          ...state.updateDevice,
           requesting: false,
           device: null,
           error: action.payload,

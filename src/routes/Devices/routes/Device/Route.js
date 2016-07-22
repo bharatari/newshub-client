@@ -6,10 +6,14 @@ import { routerActions } from 'react-router-redux';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
+  id: ownProps.params.id,
   user: state.user.fetchCurrentUser.user,
-  device: state.device.createDevice.device,
-  requesting: state.device.createDevice.requesting,
-  error: state.device.createDevice.error,
+  device: state.device.fetchDevice.device,
+  requestingDevice: state.device.fetchDevice.requesting,
+  error: state.device.fetchDevice.error,
+  updatedDevice: state.device.updateDevice.device,
+  requestingUpdateDevice: state.device.updateDevice.requesting,
+  updateError: state.device.updateDevice.error,
 });
 
 const actionCreators = {
