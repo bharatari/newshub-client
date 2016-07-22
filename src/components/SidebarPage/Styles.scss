@@ -74,6 +74,16 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .sidebarContainerHeader {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .sidebarContainerHeaderRight {
+    float: right;
+    margin-top: -30px;
+  }
+
   .sidebarContainer {
     margin-left: 0px !important;
   }
