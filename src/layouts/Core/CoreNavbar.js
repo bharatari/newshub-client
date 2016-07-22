@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Core.scss';
 import classNames from 'classnames';
+import config from 'constants/config';
 
 const avatar = classNames(
   'ui avatar image',
@@ -18,7 +19,7 @@ function CoreLayout(props) {
       <div className="ui container">
         {props.leftNavbar}
         <a className="header item" href="/">
-          <h4 className={classes.logo}>NewsHub</h4>
+          <h4 className={classes.logo}>{config.brand}</h4>
         </a>
         <div className="item right">
           {props.rightNavbar}
