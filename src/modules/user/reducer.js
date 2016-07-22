@@ -21,6 +21,11 @@ const initialState = {
     user: null,
     error: null,
   },
+  updateUser: {
+    requesting: false,
+    user: null,
+    error: null,
+  },
 };
 
 export default handleActions({
@@ -147,6 +152,39 @@ export default handleActions({
         ...state,
         createUser: {
           ...state.createUser,
+          requesting: false,
+          user: null,
+          error: action.payload,
+        },
+      };
+    }
+  },
+  REQUEST_UPDATE_USER: (state, action) => ({
+    ...state,
+    updateUser: {
+      ...state.updateUser,
+      requesting: true,
+      user: null,
+      error: null,
+    },
+  }),
+  RECEIVE_UPDATE_USER: {
+    next(state, action) {
+      return {
+        ...state,
+        updateUser: {
+          ...state.updateUser,
+          requesting: false,
+          user: action.payload,
+          error: null,
+        },
+      };
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        updateUser: {
+          ...state.updateUser,
           requesting: false,
           user: null,
           error: action.payload,
