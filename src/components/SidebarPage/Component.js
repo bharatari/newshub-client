@@ -16,6 +16,16 @@ export default class SidebarPage extends React.Component {
     user: PropTypes.object,
   };
   render() {
+    let padding;
+
+    if (this.props.noPadding) {
+      padding = classNames();
+    } else {
+      padding = classNames(
+        classes.sidebarContainerPadding
+      );
+    }
+    
     return (
       <div className={main}>
         <Notifications loading={this.props.loading} />
@@ -32,7 +42,7 @@ export default class SidebarPage extends React.Component {
               </div>
           </div>
 
-          <div className={classes.sidebarContainerPadding}>
+          <div className={padding}>
             {this.props.children}
           </div>
         </div>

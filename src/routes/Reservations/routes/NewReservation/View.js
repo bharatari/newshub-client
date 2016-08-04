@@ -55,7 +55,7 @@ export default class NewReservationView extends React.Component {
   };
   render() {
     const button = classNames(
-      'ui animated button inverted blue button-light',
+      'ui animated button inverted button-light',
       { loading: this.props.requestingCreateReservation }
     );
     const disable = this.props.requestingCreateReservation || this.props.createdReservation;

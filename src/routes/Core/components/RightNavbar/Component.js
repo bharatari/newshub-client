@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import classes from './Styles.scss';
 
 const button = classNames(
-  'ui inverted red button button-light'
+  'ui inverted button button-light'
 );
 
 export default class BidList extends React.Component {
