@@ -37,7 +37,7 @@ export function fetchReservations(startDate, endDate) {
   return function (dispatch) {
     dispatch(requestReservations());
 
-    let query = '?$sort[createdAt]=-1&$limit=10';
+    let query = '?$sort[startDate]=1&$limit=10';
 
     if (startDate && endDate) {
       query += '&startDate=' + encodeURIComponent(startDate);
