@@ -14,6 +14,7 @@ export default class ReservationsView extends React.Component {
   state = {
     fields: [
       { label: 'Name', property: 'user.fullName'},
+      { label: 'Start Date', property: 'startDate' , type: 'date' },
       { label: 'Checked Out By', property: 'checkedOutBy.fullName' },
       { label: 'Status', property: 'status', custom: reservation.getReservationStatus.bind(reservation) },
       { label: 'Created', property: 'createdAt', type: 'date' },
