@@ -28,7 +28,11 @@ module.exports = {
   },
   computeReservationStatus(reservation) {
     if (reservation.disabled) {
-      return 'DISABLED';
+      if (reservation.approved) {
+        return 'DISABLED';
+      } else {
+        return 'REJECTED';
+      }
     } else if (!reservation.approved) {
       return 'NEEDS_APPROVAL';
     } else if (reservation.approved && !reservation.checkedOut && !reservation.checkedIn) {
@@ -45,7 +49,8 @@ module.exports = {
     return this.reservationStatus[this.computeReservationStatus(reservation)];
   },
   reservationStatus: {
-    'DISABLED': 'Disabled or Rejected',
+    'REJECTED': 'Rejected',
+    'DISABLED': 'Disabled',
     'NEEDS_APPROVAL': 'Needs Approval',
     'APPROVED': 'Approved',
     'CHECKED_OUT': 'Checked Out',
