@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, FormatDate, TextLoading, Response } from 'components/';
+import { SidebarPage, FormatDate, TextLoading, Response, Card } from 'components/';
 import { Content } from './components';
 
 export default class UserView extends React.Component {
@@ -41,13 +41,15 @@ export default class UserView extends React.Component {
       <div>
         <SidebarPage currentUrl={currentUrl} actions={actions}
           header="Device" loading={requestingDevice || requestingUpdateDevice} user={user}>
-          <Response error={this.props.error} response={updatedDevice}
-            successHeader={successHeader} />
-          {
-            device ?
-            <Content device={this.props.device} actions={actions} /> :
-            <TextLoading loading={requestingDevice} /> 
-          }
+          <Card column="sixteen">
+            <Response error={this.props.error} response={updatedDevice}
+              successHeader={successHeader} />
+            {
+              device ?
+              <Content device={this.props.device} actions={actions} /> :
+              <TextLoading loading={requestingDevice} /> 
+            }
+            </Card>
         </SidebarPage>
       </div>
     );

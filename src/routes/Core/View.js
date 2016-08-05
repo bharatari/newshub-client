@@ -16,13 +16,6 @@ export default class CoreView extends React.Component {
     actions: PropTypes.object,
     user: PropTypes.object,
   };
-  handleClick = () => {
-    if ($('.newshub-sidebar').hasClass('active')) {
-      $('.newshub-sidebar').removeClass('active');
-    } else {
-      $('.newshub-sidebar').addClass('active');
-    }
-  }
   render() {
     let data = {};
 

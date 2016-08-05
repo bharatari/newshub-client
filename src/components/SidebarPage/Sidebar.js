@@ -10,6 +10,11 @@ const sidebar = classNames(
   classes.sidebarLeft,
 );
 
+const list = classNames(
+  'ui list',
+  classes.list
+)
+
 const mobileSidebar = classNames(
   'ui inverted vertical menu mobile-only newshub-sidebar'
 );
@@ -31,7 +36,40 @@ export default class Sidebar extends React.Component {
     event.preventDefault();
     this.props.actions.push(route.url);
   };
+  handleLogout = () => {
+    this.props.actions.logout();
+  };
   render() {
+    const getButtons = () => {
+      const link = classNames(
+        'item',
+        classes.link
+      );
+      const buttons = classNames(
+        classes.buttons,
+        'ui list'
+      );
+      const person = classNames(
+        'ion-person',
+        classes.icon
+      );
+      const locked = classNames(
+        'ion-locked',
+        classes.icon
+      );
+
+      return (
+        <div className={buttons}>
+          <a href="#" key="1" className={link}>
+            <i className={person}></i><span className={classes.linkText}>{this.props.user.firstName}</span>
+          </a>
+          <a href="#" key="2" className={link}>
+            <i className={locked}></i><span className={classes.linkText}>Logout</span>
+          </a>
+        </div>
+      );
+    };
+
     const getRoutes = () => {
       let routes = [];
       
@@ -52,9 +90,16 @@ export default class Sidebar extends React.Component {
               classes.link
             );
           }
+
+          const icon = classNames(
+            route.icon,
+            classes.icon
+          );
           
           routes.push(
-            <a href="#" key={route.url} className={link} onClick={boundClick}>{route.label}</a>
+            <a href="#" key={route.url} className={link} onClick={boundClick}>
+              <i className={icon}></i><span className={classes.linkText}>{route.label}</span>
+            </a>
           );
         } else {
           if (user.isAdmin(this.props.user)) {
@@ -73,9 +118,16 @@ export default class Sidebar extends React.Component {
                 classes.link
               );
             }
+
+            const icon = classNames(
+              route.icon,
+              classes.icon
+            );
             
             routes.push(
-              <a href="#" key={route.url} className={link} onClick={boundClick}>{route.label}</a>
+              <a href="#" key={route.url} className={link} onClick={boundClick}>
+                <i className={icon}></i><span className={classes.linkText}>{route.label}</span>
+              </a>
             );
           }
         }
@@ -87,12 +139,22 @@ export default class Sidebar extends React.Component {
     return (
       <div>
         <div className={sidebar}>
-          <div className="ui list">
+          <div className={classes.logo}>
+            <p className={classes.brand}>UTD TV</p>
+          </div>
+          <div className={list}>
             {getRoutes()}
           </div>
+          {getButtons()}
         </div>
         <div className={mobileSidebar}>
-          {getRoutes()}
+          <div className={classes.logo}>
+            <p className={classes.brand}>UTD TV</p>
+          </div>
+          <div className={list}>
+            {getRoutes()}
+          </div>
+          {getButtons()}
         </div>
       </div>
     )

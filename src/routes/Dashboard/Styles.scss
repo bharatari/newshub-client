@@ -2,10 +2,10 @@
   font-size: 14px;
   font-family: 'Open Sans';
   font-weight: 600;
-  border-bottom: 1px solid #c5c5c5;
+  border-bottom: 1px solid #f4f4f4;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
+  color: #ababab;
 }
 
 .empty {
@@ -20,8 +20,8 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: white;
-  margin-top: 18px !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
   text-align: center;
 }
 
@@ -31,43 +31,19 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: white;
-  margin-top: 18px !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
   text-align: center;
 }
 
-.icon {
-  font-size: 32px;
-  display: inline;
-  margin-right: 10px;
+.statText {
+  color: white;
+  font-family: 'Open Sans';
 }
 
-.padding {
-  padding: 30px;
-}
-
-.card {
-  padding: 10px;
-  height: 100px;
-  -webkit-transition: background-color 0.5s ease-out;
-  -moz-transition: background-color 0.5s ease-out;
-  -ms-transition: background-color 0.5s ease-out;
-  -o-transition: background-color 0.5s ease-out;
-  transition: background-color 0.5s ease-out;
-}
-
-.card:hover {
-  background-color: rgba(58, 69, 115, 1);
-}
-
-.timeContainer {
-  background-color: #30385d;
-}
-
-.dateContainer {
-  background-color: #262c48;
-}
-
-.gridPadding {
-  padding: 14px !important;
+.statLabel {
+  color: white;
+  font-family: 'Open Sans';
+  font-weight: 700;
+  font-size: 14px;
 }

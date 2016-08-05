@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, Table, TextLoading } from 'components/';
+import { SidebarPage, Table, TextLoading, Card } from 'components/';
 import reservation from 'modules/reservation/utils';
 
 export default class UsersView extends React.Component {
@@ -25,7 +25,7 @@ export default class UsersView extends React.Component {
     this.props.actions.push('/app/user/new');
   };
   render() {
-    const right = <button className="ui animated button inverted button-light" onClick={this.handleClick}>
+    const right = <button className="ui animated button blue inverted button-light" onClick={this.handleClick}>
                     <div className="visible content">ADD</div>
                     <div className="hidden content">
                       <i className="add circle icon"></i>
@@ -36,13 +36,16 @@ export default class UsersView extends React.Component {
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
           header="Users" right={right} loading={this.props.requestingUsers} user={this.props.currentUser}>
-          { this.props.users ?
-            <Table fields={this.state.fields}
-              data={this.props.users} 
-              actions={this.props.actions}
-              route="/app/user" />
-            : <TextLoading loading={this.props.requestingUsers} />
-          }
+          <Card column="sixteen">
+            {
+              this.props.users ?
+              <Table fields={this.state.fields}
+                data={this.props.users} 
+                actions={this.props.actions}
+                route="/app/user" />
+              : <TextLoading loading={this.props.requestingUsers} />
+            }
+          </Card>
         </SidebarPage>
       </div>
     );

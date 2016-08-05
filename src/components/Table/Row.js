@@ -26,6 +26,10 @@ export default class Row extends React.Component {
 
       if (field.custom) {
         result = field.custom(data);
+      } else if (field.component) {
+        const Component = field.component;
+
+        result = <Component data={data} />;
       } else {
         result = _.get(data, field.property);
       }

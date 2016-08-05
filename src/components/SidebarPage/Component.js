@@ -5,8 +5,16 @@ import classNames from 'classnames';
 import { Notifications } from 'components/'
 
 const main = classNames(
-  classes.main,
-  'ui container'
+  classes.main
+);
+
+const padding = classNames(
+  classes.sidebarContainerPadding
+);
+
+const button = classNames(
+  'toggle-button',
+  classes.button
 );
 
 export default class SidebarPage extends React.Component {
@@ -15,35 +23,38 @@ export default class SidebarPage extends React.Component {
     actions: PropTypes.object,
     user: PropTypes.object,
   };
-  render() {
-    let padding;
-
-    if (this.props.noPadding) {
-      padding = classNames();
+  handleClick = () => {
+    if ($('.newshub-sidebar').hasClass('active')) {
+      $('.newshub-sidebar').removeClass('active');
     } else {
-      padding = classNames(
-        classes.sidebarContainerPadding
-      );
+      $('.newshub-sidebar').addClass('active');
     }
-    
+  }
+  render() {    
     return (
       <div className={main}>
         <Notifications loading={this.props.loading} />
         <Sidebar {...this.props} />
         <div className={classes.sidebarContainer}>
           <div className={classes.sidebarContainerHeaderBar}>
+            <div className="ui container">
               <div className="row">
-                <div>
+                <div className={classes.sidebarContainerHeaderContent}>
+                  <button className={button} onClick={this.handleClick}>
+                    <i className="content icon"></i>
+                  </button>
                   <h1 className={classes.sidebarContainerHeader}>{this.props.header}</h1>
                 </div>
                 <div className={classes.sidebarContainerHeaderRight}>
                   {this.props.right}
                 </div>
               </div>
+            </div>
           </div>
-
           <div className={padding}>
-            {this.props.children}
+            <div className="ui container">
+              {this.props.children}
+            </div>
           </div>
         </div>
       </div>

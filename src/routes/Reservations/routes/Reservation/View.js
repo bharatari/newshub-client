@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, FormatDate, TextLoading, Response } from 'components/';
+import { SidebarPage, FormatDate, TextLoading, Response, Card } from 'components/';
 import { Admin, Devices, Content } from './components';
 
 export default class ReservationView extends React.Component {
@@ -46,15 +46,17 @@ export default class ReservationView extends React.Component {
         <SidebarPage currentUrl={currentUrl} actions={actions}
           header="Reservation" loading={requestingReservation || requestingUpdateReservation}
           user={this.props.user}>
-          <div>
-            <Response error={updateError} response={updatedReservation}
-              successHeader="You successfully updated this reservation." />
-            {
-              reservation ? 
-              <Content reservation={reservation} actions={actions} user={user} /> :
-              <TextLoading loading={requestingReservation} /> 
-            }
-          </div>
+          <Card column="sixteen">
+            <div>
+              <Response error={updateError} response={updatedReservation}
+                successHeader="You successfully updated this reservation." />
+              {
+                reservation ? 
+                <Content reservation={reservation} actions={actions} user={user} /> :
+                <TextLoading loading={requestingReservation} /> 
+              }
+            </div>
+          </Card>
         </SidebarPage>
       </div>
     );
