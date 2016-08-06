@@ -9,13 +9,13 @@
   height: 100px;
   padding-left: 30px;
   color: white;
-  background-color: #e84c3d;
+  background-color: #5f97fb;
   padding-top: 34px;
 }
 
 .brand {
   margin-top: 30px;
-  font-family: 'proxima-nova-soft';
+  font-family: 'Open Sans';
   font-size: 20px;
   font-weight: 700;
 }
@@ -46,10 +46,10 @@
 }
 
 .sidebarContainerHeader {
-  color: #e84c3d;
-  font-family: 'proxima-nova-soft';
+  color: #4e4e4e;
+  font-family: 'Open Sans';
   margin-bottom: 20px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 24px;
 }
 
@@ -71,7 +71,6 @@
   right: 0;
   background-color: white;
   box-shadow: 0px 0px 2px 0px rgba(50,50,50,0.40);
-  border-top: 6px solid #e84c3d;
 }
 
 .sidebarContainerHeaderRight {
@@ -85,25 +84,25 @@
 }
 
 .icon {
-  font-size: 28px;
+  font-size: 20px;
 }
 
 .active .icon {}
 
 .linkText {
   display: block;
-  margin-top: -24px;
-  margin-left: 45px;
+  margin-top: -18px;
+  margin-left: 35px;
 }
 
 .link {
   padding-left: 30px !important;
-  padding-bottom: 25px !important;
-  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  padding-top: 15px !important;
   color: #98999e !important;
-  font-weight: 700;
-  font-family: 'proxima-nova-alt';
-  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Open Sans';
+  font-size: 14px;
   -webkit-transition: color 0.2s ease-out;
   -moz-transition: color 0.2s ease-out;
   -ms-transition: color 0.2s ease-out;
@@ -122,13 +121,14 @@
 .link.active:hover {
   color: white !important;
   background-color: #464646;
+  border-left: 5px solid #5f97fb;
 }
 
 .buttons {
   position: absolute;
   bottom: 0;
-  right:0;
-  left:0;
+  right: 0;
+  left: 0;
 }
 
 @media only screen and (max-width: 768px) {

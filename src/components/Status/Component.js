@@ -8,12 +8,12 @@ export default class Status extends React.Component {
     const color = reservation.getReservationColor(this.props.data);
     const status = reservation.getReservationStatus(this.props.data);
     const style = {
-      backgroundColor: color,
+      color,
     };
 
     return (
-      <span className={classes.status} style={style}>
-        <span className={classes.text}>{status}</span>
+      <span className={classes.text} style={style}>
+        {status}
       </span>
     );
   }

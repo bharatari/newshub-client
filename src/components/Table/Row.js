@@ -47,7 +47,12 @@ export default class Row extends React.Component {
       let counter = 0;
 
       this.props.fields.map((field) => {
-        array.push(<td key={counter}>{processField(field, this.props.data)}</td>)
+        if (counter == 0) {
+          array.push(<td key={counter} className={classes.first}>{processField(field, this.props.data)}</td>)
+        } else {
+          array.push(<td key={counter} className={classes.n}>{processField(field, this.props.data)}</td>)
+        }
+        
         counter++;
       });
 

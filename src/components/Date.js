@@ -3,11 +3,11 @@ import moment from 'moment';
 
 export default class Date extends React.Component {
   state = {
-    date: moment().format("MM/DD/YY"),
+    date: moment().format(this.props.format),
   };
   tick = () => {
     this.setState({
-      date: moment().format("MM/DD/YY"),
+      date: moment().format(this.props.format),
     });
   };
   componentDidMount() {

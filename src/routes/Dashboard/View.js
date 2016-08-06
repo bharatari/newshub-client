@@ -32,27 +32,40 @@ export default class HomeView extends React.Component {
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
           header="Dashboard" user={this.props.user} loading={requestingCurrent || requestingUpcoming}>
           <div className="ui stackable grid">
-            <Card column="four" background="#46b7b3">
+            <Card column="four" background="#10cfbd">
+              <p className={classes.statLabel} style={{ color: '#09776d' }}>USERS <i className="chevron circle right icon"></i></p> 
               <h1 className={classes.statText}>41</h1>
-              <p className={classes.statLabel}>USERS</p>  
             </Card>
             <Card column="four" background="#ff6a6c">
+              <p className={classes.statLabel} style={{ color: '#963e3f' }}>DEVICES <i className="chevron circle right icon"></i></p>
               <h1 className={classes.statText}>126</h1>
-              <p className={classes.statLabel}>DEVICES</p>  
             </Card>
             <Card column="four" background="#F2711C">
+              <p className={classes.statLabel} style={{ color: '#944511' }}>RESERVATIONS <i className="chevron circle right icon"></i></p>
               <h1 className={classes.statText}>12</h1>
-              <p className={classes.statLabel}>RESERVATIONS</p>  
             </Card>
             <Card column="four" background="#2185D0">
+              <p className={classes.statLabel} style={{ color: '#134c77' }}>PROJECTS <i className="chevron circle right icon"></i></p>
               <h1 className={classes.statText}>6</h1>
-              <p className={classes.statLabel}>PROJECTS</p>  
+            </Card>
+            <Card background="#48b0f7">
+              <p className={classes.greeting}>Hi, <span className={classes.name}>{this.props.user.firstName}!</span></p>
             </Card>
             <Card>
-              <p className={classes.date}><Date /></p>
+              <p className={classes.day}>
+                <Date format="dddd" />
+              </p>
+              <p className={classes.date}>
+                <Date format="MMMM Do YYYY" />
+              </p>
             </Card>
             <Card>
               <p className={classes.time}><Clock /></p>
+              <p className={classes.mini}>Richardson, TX</p>
+            </Card>
+            <Card>
+              <p className={classes.time}>98 °F</p>
+              <p className={classes.mini}>Cloudy</p>
             </Card>
             <Card>
               <h1 className={classes.header}>Upcoming Reservations</h1>

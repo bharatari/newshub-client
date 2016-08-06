@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, Table, TextLoading, Card } from 'components/';
+import { SidebarPage, Table, TextLoading, Card, Status } from 'components/';
 import reservation from 'modules/reservation/utils';
 
 export default class ReservationsView extends React.Component {
@@ -16,8 +16,8 @@ export default class ReservationsView extends React.Component {
       { label: 'Name', property: 'user.fullName'},
       { label: 'Start Date', property: 'startDate' , type: 'date' },
       { label: 'Checked Out By', property: 'checkedOutBy.fullName' },
-      { label: 'Status', property: 'status', custom: reservation.getReservationStatus.bind(reservation) },
-    ]
+      { label: 'Status', property: 'status', component: Status },
+    ],
   };
   componentDidMount() {
     this.props.actions.fetchReservations();
