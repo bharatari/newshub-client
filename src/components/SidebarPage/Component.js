@@ -3,6 +3,7 @@ import classes from './Styles.scss';
 import Sidebar from './Sidebar';
 import classNames from 'classnames';
 import { Notifications } from 'components/'
+import { Footer } from 'components/';
 
 const main = classNames(
   classes.main
@@ -54,6 +55,7 @@ export default class SidebarPage extends React.Component {
           <div className={padding}>
             <div className="ui container">
               {this.props.children}
+              <Footer />
             </div>
           </div>
         </div>

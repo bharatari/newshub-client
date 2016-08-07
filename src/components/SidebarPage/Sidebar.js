@@ -1,8 +1,14 @@
 import React, { PropTypes } from 'react';
+import { routerActions } from 'react-router-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import classes from './Styles.scss';
 import { navigationRoutes } from 'constants/routes';
-import user from 'modules/user/utils';
+import config from 'constants/config';
+import userUtils from 'modules/user/utils';
+import * as user from 'modules/user/actions';
+import * as authentication from 'modules/authentication/actions';
 
 const sidebar = classNames(
   'desktop-only',
@@ -13,13 +19,13 @@ const sidebar = classNames(
 const list = classNames(
   'ui list',
   classes.list
-)
+);
 
 const mobileSidebar = classNames(
   'ui inverted vertical menu mobile-only newshub-sidebar'
 );
 
-export default class Sidebar extends React.Component {
+class Sidebar extends React.Component {
   static propTypes = {
     currentUrl: PropTypes.string,
     actions: PropTypes.object,
@@ -63,7 +69,7 @@ export default class Sidebar extends React.Component {
           <a href="#" key="1" className={link}>
             <i className={person}></i><span className={classes.linkText}>{this.props.user.firstName}</span>
           </a>
-          <a href="#" key="2" className={link}>
+          <a href="#" key="2" className={link} onClick={this.handleLogout}>
             <i className={locked}></i><span className={classes.linkText}>Logout</span>
           </a>
         </div>
@@ -102,7 +108,7 @@ export default class Sidebar extends React.Component {
             </a>
           );
         } else {
-          if (user.isAdmin(this.props.user)) {
+          if (userUtils.isAdmin(this.props.user)) {
             let boundClick = this.handleClick.bind(this, route);
             let link;
             
@@ -140,7 +146,7 @@ export default class Sidebar extends React.Component {
       <div>
         <div className={sidebar}>
           <div className={classes.logo}>
-            <p className={classes.brand}>UTD TV</p>
+            <p className={classes.brand}>{config.brand}</p>
           </div>
           <div className={list}>
             {getRoutes()}
@@ -149,7 +155,7 @@ export default class Sidebar extends React.Component {
         </div>
         <div className={mobileSidebar}>
           <div className={classes.logo}>
-            <p className={classes.brand}>UTD TV</p>
+            <p className={classes.brand}>{config.brand}</p>
           </div>
           <div className={list}>
             {getRoutes()}
@@ -160,3 +166,17 @@ export default class Sidebar extends React.Component {
     )
   }
 };
+
+const mapStateToProps = (state) => ({});
+
+const actionCreators = {
+  ...routerActions,
+  ...authentication,
+  ...user,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(actionCreators, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
