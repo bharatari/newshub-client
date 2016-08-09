@@ -12,6 +12,9 @@ import Tabs from './Tabs/Component';
 import Unauthorized from './Unauthorized/Component';
 import Clock from './Clock';
 import Date from './Date';
+import Card from './Card/Component';
+import Status from './Status/Component';
+import Footer from './Footer/Component';
 
 export {
   Notifications,
@@ -28,4 +31,7 @@ export {
   Unauthorized,
   Clock,
   Date,
+  Card,
+  Status,
+  Footer,
 };

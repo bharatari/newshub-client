@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, Table, Response } from 'components/';
+import { SidebarPage, Table, Response, Card } from 'components/';
 import { Form } from './components';
 
 export default class NewReservationView extends React.Component {
@@ -22,7 +22,7 @@ export default class NewReservationView extends React.Component {
   };
   render() {
     const button = classNames(
-      'ui animated button inverted button-light',
+      'ui animated button blue inverted button-light',
       { loading: this.props.requesting }
     );
     const disable = this.props.requesting || this.props.device;
@@ -41,9 +41,11 @@ export default class NewReservationView extends React.Component {
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
           header="New Device" right={right} loading={loading} user={this.props.user}>
-          <Response error={this.props.error} response={this.props.device}
-            successHeader={message} />
-          <Form ref="form" onSubmit={this.handleSubmit} />
+          <Card column="sixteen">
+            <Response error={this.props.error} response={this.props.device}
+              successHeader={message} />
+            <Form ref="form" onSubmit={this.handleSubmit} />
+          </Card>
         </SidebarPage>
       </div>
     );

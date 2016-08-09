@@ -24,7 +24,7 @@ export default class Table extends React.Component {
       let counter = 0;
 
       this.props.fields.map((field) => {
-        array.push(<th key={counter}>{field.label}</th>);
+        array.push(<th key={counter} className={classes.header}>{field.label}</th>);
         counter++;
       });
 

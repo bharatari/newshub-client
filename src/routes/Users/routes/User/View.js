@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, FormatDate, TextLoading, Response } from 'components/';
+import { SidebarPage, FormatDate, TextLoading, Response, Card } from 'components/';
 import { Content } from './components';
 
 export default class UserView extends React.Component {
@@ -40,13 +40,15 @@ export default class UserView extends React.Component {
       <div>
         <SidebarPage currentUrl={currentUrl} actions={actions}
           header="User" loading={requestingUser || requestingUpdateUser} user={currentUser}>
-          <Response error={this.props.updateError} response={this.props.updatedUser}
-          successHeader={successHeader} />
-          {
-            user ? 
-            <Content user={this.props.user} actions={actions} currentUser={currentUser} /> :
-            <TextLoading loading={requestingUser} /> 
-          }
+          <Card column="sixteen">
+            <Response error={this.props.updateError} response={this.props.updatedUser}
+            successHeader={successHeader} />
+            {
+              user ? 
+              <Content user={this.props.user} actions={actions} currentUser={currentUser} /> :
+              <TextLoading loading={requestingUser} /> 
+            }
+          </Card>
         </SidebarPage>
       </div>
     );

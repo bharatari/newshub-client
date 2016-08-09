@@ -1,38 +1,11 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, Table, Clock, Date } from 'components/';
+import { SidebarPage, Table, Clock, Date, Card, Status } from 'components/';
 import reservation from 'modules/reservation/utils';
 import _ from 'lodash';
 import moment from 'moment';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
-const time = classNames(
-  'ion-ios-time-outline',
-  classes.icon
-);
-
-const date = classNames(
-  'ion-ios-calendar-outline',
-  classes.icon
-);
-
-const timeContainer = classNames(
-  'eight wide column',
-  classes.card,
-  classes.timeContainer
-);
-
-const dateContainer = classNames(
-  'eight wide column',
-  classes.card,
-  classes.dateContainer
-);
-
-const grid = classNames(
-  'ui stackable grid',
-  classes.gridPadding
-)
 
 export default class HomeView extends React.Component {
   static propTypes = {
@@ -48,58 +21,76 @@ export default class HomeView extends React.Component {
       { label: 'Name', property: 'user.fullName'},
       { label: 'Start Date', property: 'startDate' , type: 'date' },
       { label: 'Checked Out By', property: 'checkedOutBy.fullName' },
-      { label: 'Status', property: 'status', custom: reservation.getReservationStatus.bind(reservation) },
-      { label: 'Created', property: 'createdAt', type: 'date' },
-    ]
+      { label: 'Status', property: 'status', component: Status },
+    ],
   };
   render() {
     const { requestingCurrent, requestingUpcoming } = this.props;
+    const right = <p className={classes.topGreeting}>Hi, <span className={classes.topName}>{this.props.user.firstName}!</span></p>;
 
     return (
       <div>
-        <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions} noPadding={true}
+        <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions} right={right}
           header="Dashboard" user={this.props.user} loading={requestingCurrent || requestingUpcoming}>
-          <div className={grid}>
-            <div className={dateContainer}>
-              <p className={classes.date}><Date /></p>
-            </div>
-            <div className={timeContainer}>
+          <div className="ui stackable grid">
+            <Card column="four" background="#10cfbd">
+              <p className={classes.statLabel} style={{ color: '#09776d' }}>USERS <i className="chevron circle right icon"></i></p> 
+              <h1 className={classes.statText}>41</h1>
+            </Card>
+            <Card column="four" background="#ff6a6c">
+              <p className={classes.statLabel} style={{ color: '#963e3f' }}>DEVICES <i className="chevron circle right icon"></i></p>
+              <h1 className={classes.statText}>126</h1>
+            </Card>
+            <Card column="four" background="#F2711C">
+              <p className={classes.statLabel} style={{ color: '#944511' }}>RESERVATIONS <i className="chevron circle right icon"></i></p>
+              <h1 className={classes.statText}>12</h1>
+            </Card>
+            <Card column="four" background="#2185D0">
+              <p className={classes.statLabel} style={{ color: '#134c77' }}>PROJECTS <i className="chevron circle right icon"></i></p>
+              <h1 className={classes.statText}>6</h1>
+            </Card>
+            <Card>
+              <p className={classes.day}>
+                <Date format="dddd" />
+              </p>
+              <p className={classes.date}>
+                <Date format="MMMM Do YYYY" />
+              </p>
+            </Card>
+            <Card>
               <p className={classes.time}><Clock /></p>
-            </div>
-          </div>
-          <div className={classes.padding}>
-            <div className="ui stackable grid">
-              <div className="eight wide column">
-                <h1 className={classes.header}>Upcoming Reservations</h1>
-                <ReactCSSTransitionGroup
-                  transitionName="page"
-                  transitionAppear={true} transitionAppearTimeout={100} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-                  {
-                    !_.isEmpty(this.props.upcomingReservations) ?
-                    <Table key="content" fields={this.state.fields}
-                      data={this.props.upcomingReservations} 
-                      actions={this.props.actions} 
-                      route="/app/reservation" /> :
-                    <p key="empty" className={classes.empty}>Nothing here...</p>
-                  }
-                </ReactCSSTransitionGroup>              
-              </div>
-              <div className="eight wide column">
-                <h1 className={classes.header}>Current Reservations</h1>
-                <ReactCSSTransitionGroup
-                  transitionName="page"
-                  transitionAppear={true} transitionAppearTimeout={100} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-                  {
-                    !_.isEmpty(this.props.currentReservations) ?
-                    <Table key="content" fields={this.state.fields}
-                      data={this.props.currentReservations} 
-                      actions={this.props.actions}
-                      route="/app/reservation" /> :
-                    <p key="empty" className={classes.empty}>Nothing here...</p>
-                  }
-                </ReactCSSTransitionGroup>
-              </div>
-            </div>
+              <p className={classes.mini}>Richardson, TX</p>
+            </Card>
+            <Card>
+              <h1 className={classes.header}>Upcoming Reservations</h1>
+              <ReactCSSTransitionGroup
+                transitionName="page"
+                transitionAppear={true} transitionAppearTimeout={100} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                {
+                  !_.isEmpty(this.props.upcomingReservations) ?
+                  <Table key="content" fields={this.state.fields}
+                    data={this.props.upcomingReservations} 
+                    actions={this.props.actions} 
+                    route="/app/reservation" /> :
+                  <p key="empty" className={classes.empty}>Nothing here...</p>
+                }
+              </ReactCSSTransitionGroup>
+            </Card>
+            <Card>
+              <h1 className={classes.header}>Current Reservations</h1>
+              <ReactCSSTransitionGroup
+                transitionName="page"
+                transitionAppear={true} transitionAppearTimeout={100} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                {
+                  !_.isEmpty(this.props.currentReservations) ?
+                  <Table key="content" fields={this.state.fields}
+                    data={this.props.currentReservations} 
+                    actions={this.props.actions}
+                    route="/app/reservation" /> :
+                  <p key="empty" className={classes.empty}>Nothing here...</p>
+                }
+              </ReactCSSTransitionGroup>
+            </Card>
           </div>
         </SidebarPage>
       </div>

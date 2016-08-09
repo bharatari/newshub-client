@@ -1,11 +1,12 @@
 .header {
-  font-size: 14px;
+  padding-bottom: 20px;
+  color: #626262;
   font-family: 'Open Sans';
-  font-weight: 600;
-  border-bottom: 1px solid #c5c5c5;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  padding-bottom: 10px;
+  font-size: 12px;
+  margin-top: -30px;
+  margin-bottom: 0px !important;
+  font-size: 14px;
 }
 
 .empty {
@@ -16,58 +17,82 @@
 
 .time {
   font-family: 'Open Sans';
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 32px;
+  font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: white;
-  margin-top: 18px !important;
+  letter-spacing: 0px;
   text-align: center;
+  color: #f55753;
+}
+
+.day {
+  font-family: 'Open Sans';
+  font-size: 32px;
+  font-weight: 300;
+  color: #2185d0;
+  margin-top: -2px !important;
 }
 
 .date {
   font-family: 'Open Sans';
-  font-size: 24px;
-  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  font-size: 12px;
+  color: #626262;
+  margin-top: -30px;
+  margin-bottom: 6px !important;
+}
+
+.statText {
   color: white;
-  margin-top: 18px !important;
+  font-family: 'Open Sans';
+  font-weight: 300;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 38px;
+}
+
+.statLabel {
+  color: white;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: -15px !important;
+}
+
+.greeting {
+  font-family: 'Open Sans';
+  font-weight: 300;
+  font-size: 34px;
+  color: white;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.name {
+  font-family: 'Open Sans';
+  font-weight: 400;
+  font-size: 34px;
+  color: white;
+}
+
+.mini {
+  color: #626262;
+  font-family: 'Open Sans';
+  text-transform: uppercase;
+  font-size: 12px;
   text-align: center;
+  margin-top: -30px;
+  margin-bottom: 10px !important;
 }
 
-.icon {
-  font-size: 32px;
-  display: inline;
-  margin-right: 10px;
+.topGreeting {
+  font-family: 'Open Sans';
+  font-size: 18px;
+  margin-top: 6px !important;
+  display: block;
+  color: #4e4e4e;
 }
 
-.padding {
-  padding: 30px;
-}
-
-.card {
-  padding: 10px;
-  height: 100px;
-  -webkit-transition: background-color 0.5s ease-out;
-  -moz-transition: background-color 0.5s ease-out;
-  -ms-transition: background-color 0.5s ease-out;
-  -o-transition: background-color 0.5s ease-out;
-  transition: background-color 0.5s ease-out;
-}
-
-.card:hover {
-  background-color: rgba(58, 69, 115, 1);
-}
-
-.timeContainer {
-  background-color: #30385d;
-}
-
-.dateContainer {
-  background-color: #262c48;
-}
-
-.gridPadding {
-  padding: 14px !important;
+.topName {
+  font-weight: 600;
 }
