@@ -39,6 +39,7 @@ export default class LoginView extends React.Component {
       <div className="ui container">
         <div className={main}>
           <div className="twelve wide phone eight wide tablet four wide computer column">
+            <h2>UTD TV</h2>
             <h2 className={classes.header}>Login</h2>
             <Response error={this.props.error} />
             <Form onSubmit={this.handleSubmit} requestingLogin={this.props.requestingLogin}

@@ -26,10 +26,11 @@ export default class HomeView extends React.Component {
   };
   render() {
     const { requestingCurrent, requestingUpcoming } = this.props;
+    const right = <p className={classes.topGreeting}>Hi, <span className={classes.topName}>{this.props.user.firstName}!</span></p>;
 
     return (
       <div>
-        <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
+        <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions} right={right}
           header="Dashboard" user={this.props.user} loading={requestingCurrent || requestingUpcoming}>
           <div className="ui stackable grid">
             <Card column="four" background="#10cfbd">
@@ -48,9 +49,6 @@ export default class HomeView extends React.Component {
               <p className={classes.statLabel} style={{ color: '#134c77' }}>PROJECTS <i className="chevron circle right icon"></i></p>
               <h1 className={classes.statText}>6</h1>
             </Card>
-            <Card background="#48b0f7">
-              <p className={classes.greeting}>Hi, <span className={classes.name}>{this.props.user.firstName}!</span></p>
-            </Card>
             <Card>
               <p className={classes.day}>
                 <Date format="dddd" />
@@ -62,10 +60,6 @@ export default class HomeView extends React.Component {
             <Card>
               <p className={classes.time}><Clock /></p>
               <p className={classes.mini}>Richardson, TX</p>
-            </Card>
-            <Card>
-              <p className={classes.time}>98 °F</p>
-              <p className={classes.mini}>Cloudy</p>
             </Card>
             <Card>
               <h1 className={classes.header}>Upcoming Reservations</h1>
