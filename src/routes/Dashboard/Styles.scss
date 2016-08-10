@@ -57,6 +57,7 @@
   font-weight: 600;
   font-size: 14px;
   margin-bottom: -15px !important;
+  display: inherit;
 }
 
 .greeting {
@@ -88,7 +89,7 @@
 .topGreeting {
   font-family: 'Open Sans';
   font-size: 18px;
-  margin-top: 6px !important;
+  margin-top: 7px !important;
   display: block;
   color: #4e4e4e;
 }

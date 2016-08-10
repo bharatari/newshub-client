@@ -34,15 +34,15 @@ export default class HomeView extends React.Component {
           header="Dashboard" user={this.props.user} loading={requestingCurrent || requestingUpcoming}>
           <div className="ui stackable grid">
             <Card column="four" background="#10cfbd">
-              <p className={classes.statLabel} style={{ color: '#09776d' }}>USERS <i className="chevron circle right icon"></i></p> 
+              <a href="/app/user" className={classes.statLabel} style={{ color: '#09776d' }}>USERS <i className="chevron circle right icon"></i></a> 
               <h1 className={classes.statText}>41</h1>
             </Card>
             <Card column="four" background="#ff6a6c">
-              <p className={classes.statLabel} style={{ color: '#963e3f' }}>DEVICES <i className="chevron circle right icon"></i></p>
+              <a href="/app/device" className={classes.statLabel} style={{ color: '#963e3f' }}>DEVICES <i className="chevron circle right icon"></i></a>
               <h1 className={classes.statText}>126</h1>
             </Card>
             <Card column="four" background="#F2711C">
-              <p className={classes.statLabel} style={{ color: '#944511' }}>RESERVATIONS <i className="chevron circle right icon"></i></p>
+              <a href="/app/reservation" className={classes.statLabel} style={{ color: '#944511' }}>RESERVATIONS <i className="chevron circle right icon"></i></a>
               <h1 className={classes.statText}>12</h1>
             </Card>
             <Card column="four" background="#2185D0">
