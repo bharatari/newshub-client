@@ -27,6 +27,7 @@ export default class Item extends React.Component {
     this.props.onClick(this.props.device);
   };
   render() {
+    const { thumbnail } = this.props.device;
     const add = <div className={button} onClick={this.handleClick}>
                   <i className="add icon"></i>
                   Add
@@ -42,7 +43,7 @@ export default class Item extends React.Component {
     return (
       <div className={card}>
         <div className="image">
-          <img src={this.props.device.image} />
+          { thumbnail ? <img src={thumbnail.url} /> : null }
         </div>
         <div className="content">
           <a className={header}>{this.props.device.label}</a>

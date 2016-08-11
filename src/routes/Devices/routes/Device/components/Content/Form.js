@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 const button = classNames(
   'ui button inverted blue button-light',
-  classes.marginTop
+  classes.button
 );
 
 const renderField = props => (
@@ -36,8 +36,6 @@ class DeviceForm extends React.Component {
         <Field name="label" component="input" type="text" className={classes.font} />
         <p className={classes.header}>Description</p>
         <Field name="description" component="textarea" className={classes.font} />
-        <p className={classes.header}>Image</p>
-        <Field name="image" component="input" type="text" className={classes.font} />
         <p className={classes.header}>Notes</p>
         <Field name="notes" component="textarea" className={classes.font} />
         <p className={classes.header}>Type</p>

@@ -35,6 +35,7 @@ export default class UserView extends React.Component {
   }
   render() {
     const { user, device, requestingDevice, error, actions, currentUrl, updatedDevice, requestingUpdateDevice } = this.props;
+    const { form, updateDevice, createImage, deleteImage } = this.props;
     const successHeader = 'You successfully updated this device.';
 
     return (
@@ -46,7 +47,9 @@ export default class UserView extends React.Component {
               successHeader={successHeader} />
             {
               device ?
-              <Content device={this.props.device} actions={actions} /> :
+              <Content device={this.props.device} actions={actions} updateDevice={this.props.updateDevice}
+                createImage={this.props.createImage} deleteImage={this.props.deleteImage}
+                form={this.props.form} /> :
               <TextLoading loading={requestingDevice} /> 
             }
             </Card>
