@@ -17,6 +17,7 @@ export const requestDeleteDevice = createAction('REQUEST_DELETE_DEVICE');
 export const receiveDeleteDevice = createAction('RECEIVE_DELETE_DEVICE');
 
 export const resetCreateDevice = createAction('RESET_CREATE_DEVICE');
+export const resetUpdateDevice = createAction('RESET_UPDATE_DEVICE');
 
 export function fetchDevices(startDate, endDate) {
   return function (dispatch) {

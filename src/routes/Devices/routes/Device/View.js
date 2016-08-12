@@ -14,6 +14,7 @@ export default class UserView extends React.Component {
     updated: false,
   };
   componentDidMount() {
+    this.props.actions.resetUpdateDevice();
     this.props.actions.fetchDevice(this.props.id);
   }
   componentWillReceiveProps(nextProps) {

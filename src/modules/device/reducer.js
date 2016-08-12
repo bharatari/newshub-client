@@ -162,5 +162,14 @@ export default handleActions({
         },
       };
     }
-  }
+  },
+  RESET_UPDATE_DEVICE: (state, action) => ({
+    ...state,
+    updateDevice: {
+      ...state.updateDevice,
+      requesting: false,
+      device: null,
+      error: null,
+    },
+  }),
 }, initialState);
