@@ -6,7 +6,7 @@ import fetch from 'isomorphic-fetch';
 
 export default {
   configure() {
-    let socket = io('http://localhost:3030');
+    let socket = io(this.base);
     let app = feathers()
       .configure(feathers.hooks())
       .configure(feathers.socketio(socket));
