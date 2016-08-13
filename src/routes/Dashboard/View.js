@@ -26,7 +26,13 @@ export default class HomeView extends React.Component {
   };
   render() {
     const { requestingCurrent, requestingUpcoming } = this.props;
-    const right = <p className={classes.topGreeting}>Hi, <span className={classes.topName}>{this.props.user.firstName}!</span></p>;
+
+    let right;
+    if (this.props.user) {
+      right = <p className={classes.topGreeting}>Hi, <span className={classes.topName}>{this.props.user.firstName}!</span></p>;
+    } else {
+      right = <p className={classes.topGreeting}><span className={classes.topName}></span></p>;
+    }
 
     return (
       <div>

@@ -42,7 +42,6 @@ export default (store) => (
     <Route component={Core}>
       <Route path="/app/404" component={NotFound} />
     </Route>
-    
     <Redirect from="*" to="/app/404" />
   </Route>
 );

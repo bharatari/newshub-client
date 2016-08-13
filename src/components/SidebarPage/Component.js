@@ -2,8 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import Sidebar from './Sidebar';
 import classNames from 'classnames';
-import { Notifications } from 'components/'
-import { Footer } from 'components/';
+import { Notifications, Footer } from 'components/';
 
 const main = classNames(
   classes.main
@@ -31,7 +30,7 @@ export default class SidebarPage extends React.Component {
       $('.newshub-sidebar').addClass('active');
     }
   }
-  render() {    
+  render() {
     return (
       <div className={main}>
         <Notifications loading={this.props.loading} />
@@ -62,4 +61,4 @@ export default class SidebarPage extends React.Component {
       </div>
     );
   }
-};
+}

@@ -63,12 +63,21 @@ class Sidebar extends React.Component {
         'ion-locked',
         classes.icon
       );
+      
+      let user;
+      if (this.props.user) {
+        user = <a href="#" key="1" className={link}>
+          <i className={person}></i><span className={classes.linkText}>{this.props.user.firstName}</span>
+        </a>
+      } else {
+        user = <a href="#" key="1" className={link}>
+          <span className={classes.linkText}></span>
+        </a>
+      }
 
       return (
         <div className={buttons}>
-          <a href="#" key="1" className={link}>
-            <i className={person}></i><span className={classes.linkText}>{this.props.user.firstName}</span>
-          </a>
+          {user}
           <a href="#" key="2" className={link} onClick={this.handleLogout}>
             <i className={locked}></i><span className={classes.linkText}>Logout</span>
           </a>
