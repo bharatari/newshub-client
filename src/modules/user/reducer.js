@@ -61,6 +61,15 @@ export default handleActions({
       };
     }
   },
+  RESET_FETCH_USER: (state, action) => ({
+    ...state,
+    fetchUser: {
+      ...state.fetchUser,
+      requesting: false,
+      error: null,
+      user: null,
+    },
+  }),
   REQUEST_CURRENT_USER: (state, action) => ({
     ...state,
     fetchCurrentUser: {
@@ -191,5 +200,14 @@ export default handleActions({
         },
       };
     }
-  }
+  },
+  RESET_UPDATE_USER: (state, action) => ({
+    ...state,
+    updateUser: {
+      ...state.updateUser,
+      requesting: false,
+      error: null,
+      user: null,
+    },
+  }),
 }, initialState);

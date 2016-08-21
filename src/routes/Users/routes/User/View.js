@@ -13,6 +13,8 @@ export default class UserView extends React.Component {
     updated: false,
   };
   componentDidMount() {
+    this.props.actions.resetUpdateUser();
+    this.props.actions.resetFetchUser();
     this.props.actions.fetchUser(this.props.id);
   }
   componentWillReceiveProps(nextProps) {
