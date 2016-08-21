@@ -85,6 +85,7 @@ export default class NewReservationView extends React.Component {
               onSubmit={this.handleSubmit} selectedDevices={this.props.selectedDevices} />
             <Wizard actions={this.props.actions} selectedDevices={this.props.selectedDevices}
               remainingDevices={this.props.remainingDevices} reservations={this.props.reservations} />
+            {right}
           </Card>
         </SidebarPage>
       </div>
