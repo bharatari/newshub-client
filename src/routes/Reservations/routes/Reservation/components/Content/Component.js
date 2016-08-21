@@ -28,7 +28,7 @@ export default class Content extends React.Component {
         <p className={classes.header}>Special Requests</p>
         <p className={classes.content}>{specialRequests ? specialRequests : 'None.'}</p>
         <p className={classes.header}>Admin Notes</p>
-        <p className={classes.content}>{adminNotes ? adminNotes : 'None.'}</p>
+        <p className={classes.content} style={{ color: 'red' }}>{adminNotes ? adminNotes : 'None.'}</p>
         <p className={classes.header}>Start Date</p>
         <p className={classes.content}><FormatDate date={this.props.reservation.startDate} /></p>
         <p className={classes.header}>End Date</p>
