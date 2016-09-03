@@ -45,6 +45,9 @@ class Sidebar extends React.Component {
   handleLogout = () => {
     this.props.actions.logout();
   };
+  handleUser = () => {
+    this.props.actions.push('/app/user/' + this.props.user.id);
+  };
   render() {
     const getButtons = () => {
       const link = classNames(
@@ -66,7 +69,7 @@ class Sidebar extends React.Component {
       
       let user;
       if (this.props.user) {
-        user = <a href="#" key="1" className={link}>
+        user = <a href="#" key="1" className={link} onClick={this.handleUser}>
           <i className={person}></i><span className={classes.linkText}>{this.props.user.firstName}</span>
         </a>
       } else {
