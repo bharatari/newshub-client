@@ -15,6 +15,7 @@ const initialState = {
     requesting: false,
     users: null,
     error: null,
+    total: null,
   },
   createUser: {
     requesting: false,
@@ -109,6 +110,7 @@ export default handleActions({
       requesting: true,
       users: null,
       error: null,
+      total: null,
     },
   }),
   RECEIVE_USERS: {
@@ -118,8 +120,9 @@ export default handleActions({
         fetchUsers: {
           ...state.fetchUsers,
           requesting: false,
-          users: action.payload,
+          users: action.payload.data,
           error: null,
+          total: action.payload.total,
         },
       };
     },
@@ -131,6 +134,7 @@ export default handleActions({
           requesting: false,
           users: null,
           error: action.payload,
+          total: null,
         },
       };
     }

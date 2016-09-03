@@ -1,6 +1,19 @@
 import jwt_decode from 'jwt-decode';
 
 module.exports = {
+  processResponse(data) {
+    if (data) {
+      return {
+        data,
+        total: data.length,
+      }
+    } else {
+      return {
+        data,
+        total: null,
+      }
+    }
+  },
   validateSignup(values) {
     let errors = {};
 

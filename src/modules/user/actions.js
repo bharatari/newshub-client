@@ -61,7 +61,7 @@ export function fetchUsers() {
 
     data.request('user', 'get')
       .then(function (response) {
-        dispatch(receiveUsers(response));
+        dispatch(receiveUsers(userUtils.processResponse(response)));
       }).catch(function (e) {
         dispatch(receiveUsers(e));
       })

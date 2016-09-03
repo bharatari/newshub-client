@@ -13,8 +13,11 @@ export default class HomeView extends React.Component {
     user: PropTypes.object,
   };
   componentDidMount() {
+    this.props.actions.fetchDevices();
+    this.props.actions.fetchReservations();
+    this.props.actions.fetchUsers();
     this.props.actions.fetchCurrentReservations();
-    this.props.actions.fetchUpcomingReservations();
+    this.props.actions.fetchUpcomingReservations(); 
   }
   state = {
     fields: [
@@ -41,19 +44,19 @@ export default class HomeView extends React.Component {
           <div className="ui stackable grid">
             <Card column="four" background="#10cfbd">
               <a href="/app/user" className={classes.statLabel} style={{ color: '#09776d' }}>USERS <i className="chevron circle right icon"></i></a> 
-              <h1 className={classes.statText}>41</h1>
+              <h1 className={classes.statText}>{this.props.totalUsers}</h1>
             </Card>
             <Card column="four" background="#ff6a6c">
               <a href="/app/device" className={classes.statLabel} style={{ color: '#963e3f' }}>DEVICES <i className="chevron circle right icon"></i></a>
-              <h1 className={classes.statText}>126</h1>
+              <h1 className={classes.statText}>{this.props.totalDevices}</h1>
             </Card>
             <Card column="four" background="#F2711C">
               <a href="/app/reservation" className={classes.statLabel} style={{ color: '#944511' }}>RESERVATIONS <i className="chevron circle right icon"></i></a>
-              <h1 className={classes.statText}>12</h1>
+              <h1 className={classes.statText}>{this.props.totalReservations}</h1>
             </Card>
             <Card column="four" background="#2185D0">
               <p className={classes.statLabel} style={{ color: '#134c77' }}>PROJECTS <i className="chevron circle right icon"></i></p>
-              <h1 className={classes.statText}>6</h1>
+              <h1 className={classes.statText}>0</h1>
             </Card>
             <Card>
               <p className={classes.day}>

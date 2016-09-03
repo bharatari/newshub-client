@@ -5,6 +5,7 @@ const initialState = {
     requesting: false,
     devices: null,
     error: null,
+    total: null,
   },
   fetchDevice: {
     requesting: false,
@@ -29,6 +30,7 @@ export default handleActions({
     fetchDevices: {
       ...state.fetchDevices,
       requesting: true,
+      total: null,
     },
   }),
   RECEIVE_DEVICES: {
@@ -38,8 +40,9 @@ export default handleActions({
         fetchDevices: {
           ...state.fetchDevices,
           requesting: false,
-          devices: action.payload,
+          devices: action.payload.data,
           error: null,
+          total: action.payload.total,
         },
       };
     },
@@ -51,6 +54,7 @@ export default handleActions({
           requesting: false,
           devices: null,
           error: action.payload,
+          total: null,
         },
       };
     }

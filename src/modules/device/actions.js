@@ -1,5 +1,6 @@
 import { createAction } from 'redux-actions';
 import data from 'utils/data';
+import utils from './utils';
 
 export const requestDevices = createAction('REQUEST_DEVICES');
 export const receiveDevices = createAction('RECEIVE_DEVICES');
@@ -31,9 +32,9 @@ export function fetchDevices(startDate, endDate) {
 
     data.request('device', 'get', null, query)
       .then(function (response) {
-        dispatch(receiveDevices(response));
+        dispatch(receiveDevices(utils.processResponse(response)));
       }).catch(function (e) {
-        dispatch(receiveDevices(e))
+        dispatch(receiveDevices(e));
       });
   };
 }
@@ -44,7 +45,7 @@ export function fetchDevice(id) {
 
     data.request('device', 'get', id)
       .then(function (response) {
-        dispatch(receiveDevice(response))
+        dispatch(receiveDevice(response));
       }).catch(function (e) {
         dispatch(receiveDevice(e));
       });
@@ -57,7 +58,7 @@ export function createDevice(body) {
 
     data.request('device', 'post', null, null, body)
       .then(function (response) {
-        dispatch(receiveCreateDevice(response))
+        dispatch(receiveCreateDevice(response));
       }).catch(function (e) {
         dispatch(receiveCreateDevice(e));
       });
@@ -70,7 +71,7 @@ export function updateDevice(id, body) {
 
     data.request('device', 'PATCH', id, null, body)
       .then(function (response) {
-        dispatch(receiveUpdateDevice(response))
+        dispatch(receiveUpdateDevice(response));
       }).catch(function (e) {
         dispatch(receiveUpdateDevice(e));
       });

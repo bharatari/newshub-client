@@ -1,4 +1,19 @@
+import _ from 'lodash';
+
 module.exports = {
+  processResponse(data) {
+    if (data) {
+      return {
+        data,
+        total: data.length,
+      }
+    } else {
+      return {
+        data,
+        total: null,
+      }
+    }
+  },
   validateNewDevice(values) {
     let errors = {};
 

@@ -10,6 +10,7 @@ const initialState = {
     requesting: false,
     reservations: null,
     error: null,
+    total: null,
   },
   createReservation: {
     requesting: false,
@@ -31,6 +32,7 @@ export default handleActions({
       requesting: false,
       reservations: null,
       error: null,
+      total: null,
     },
   }),
   REQUEST_RESERVATIONS: (state, action) => ({
@@ -40,6 +42,7 @@ export default handleActions({
       requesting: true,
       reservations: null,
       error: null,
+      total: null,
     },
   }),
   RECEIVE_RESERVATIONS: {
@@ -49,8 +52,9 @@ export default handleActions({
         fetchReservations: {
           ...state.fetchReservations,
           requesting: false,
-          reservations: action.payload,
+          reservations: action.payload.data,
           error: null,
+          total: action.payload.total,
         },
       };
     },
@@ -62,6 +66,7 @@ export default handleActions({
           requesting: false,
           reservations: null,
           error: action.payload,
+          total: null,
         },
       };
     }
