@@ -50,7 +50,7 @@ export default class UserView extends React.Component {
               device ?
               <Content device={this.props.device} actions={actions} updateDevice={this.props.updateDevice}
                 createImage={this.props.createImage} deleteImage={this.props.deleteImage}
-                form={this.props.form} /> :
+                form={this.props.form} user={this.props.user}/> :
               <TextLoading loading={requestingDevice} /> 
             }
             </Card>
