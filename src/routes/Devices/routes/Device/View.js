@@ -14,6 +14,8 @@ export default class UserView extends React.Component {
     updated: false,
   };
   componentDidMount() {
+    this.props.actions.resetDeleteImage();
+    this.props.actions.resetCreateImage();
     this.props.actions.resetUpdateDevice();
     this.props.actions.fetchDevice(this.props.id);
   }
