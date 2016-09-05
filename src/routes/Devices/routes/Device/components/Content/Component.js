@@ -25,7 +25,7 @@ export default class Content extends React.Component {
     return (
       <div>
         {
-          !userUtils.isAdmin(this.props.user) && this.props.device ?
+          !userUtils.isMaster(this.props.user) && this.props.device ?
           <div>
             <p className={classes.header}>Name</p>
             <p className={classes.content}>{this.props.device.name}</p>
@@ -45,7 +45,7 @@ export default class Content extends React.Component {
         <p className={classes.header}>Created At</p>
         <p className={classes.content}><FormatDate date={this.props.device.createdAt} /></p>
         {
-          userUtils.isAdmin(this.props.user) ?
+          userUtils.isMaster(this.props.user) ?
           <div>
             <Form onSubmit={this.handleSubmit} />
             <p className={classes.header}>IMAGE</p>
