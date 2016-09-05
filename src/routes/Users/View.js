@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, Table, TextLoading, Card } from 'components/';
+import { Disabled } from './components';
 import reservation from 'modules/reservation/utils';
 
 export default class UsersView extends React.Component {
@@ -12,10 +13,11 @@ export default class UsersView extends React.Component {
   };
   state = {
     fields: [
-      { label: 'Name', property: 'fullName' },
+      { label: 'Name', property: 'fullName', component: Disabled },
       { label: 'Username', property: 'username' },
       { label: 'Email', property: 'email' },
       { label: 'Title', property: 'title' },
+      { label: 'Admin', property: 'roles' },
       { label: 'Created', property: 'createdAt', type: 'date' },
     ]
   };

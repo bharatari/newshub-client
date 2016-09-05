@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, Table, TextLoading, Card } from 'components/';
+import { Disabled } from './components';
 import reservation from 'modules/reservation/utils';
 
 export default class DevicesView extends React.Component {
@@ -12,7 +13,7 @@ export default class DevicesView extends React.Component {
   };
   state = {
     fields: [
-      { label: 'Name', property: 'name' },
+      { label: 'Name', property: 'name', component: Disabled },
       { label: 'Label', property: 'label' },
       { label: 'Type', property: 'type' },
       { label: 'Created', property: 'createdAt', type: 'date' },
