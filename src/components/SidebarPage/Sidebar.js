@@ -1,8 +1,14 @@
 import React, { PropTypes } from 'react';
+import { routerActions } from 'react-router-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import classes from './Styles.scss';
 import { navigationRoutes } from 'constants/routes';
-import user from 'modules/user/utils';
+import config from 'constants/config';
+import userUtils from 'modules/user/utils';
+import * as user from 'modules/user/actions';
+import * as authentication from 'modules/authentication/actions';
 
 const sidebar = classNames(
   'desktop-only',
@@ -10,11 +16,16 @@ const sidebar = classNames(
   classes.sidebarLeft,
 );
 
-const mobileSidebar = classNames(
-  'ui sidebar inverted vertical menu mobile-only'
+const list = classNames(
+  'ui list',
+  classes.list
 );
 
-export default class Sidebar extends React.Component {
+const mobileSidebar = classNames(
+  'ui inverted vertical menu mobile-only newshub-sidebar'
+);
+
+class Sidebar extends React.Component {
   static propTypes = {
     currentUrl: PropTypes.string,
     actions: PropTypes.object,
@@ -27,23 +38,56 @@ export default class Sidebar extends React.Component {
       return false;
     }
   };
-  componentDidMount() {
-    $('.ui.sidebar').sidebar({
-      dimPage: false,
-    });
-
-    $('.ui.sidebar').first().sidebar('attach events', '.toggle-button');
-  }
-  componentWillReceiveProps(nextProps) {
-    $('.ui.sidebar').sidebar({
-      dimPage: false,
-    });
-  }
   handleClick = (route, event) => {
     event.preventDefault();
     this.props.actions.push(route.url);
   };
+  handleLogout = () => {
+    this.props.actions.logout();
+  };
+  handleUser = () => {
+    this.props.actions.push('/app/user/' + this.props.user.id);
+  };
   render() {
+    const getButtons = () => {
+      const link = classNames(
+        'item',
+        classes.link
+      );
+      const buttons = classNames(
+        classes.buttons,
+        'ui list'
+      );
+      const person = classNames(
+        'ion-person',
+        classes.icon
+      );
+      const locked = classNames(
+        'ion-locked',
+        classes.icon
+      );
+      
+      let user;
+      if (this.props.user) {
+        user = <a href="#" key="1" className={link} onClick={this.handleUser}>
+          <i className={person}></i><span className={classes.linkText}>{this.props.user.firstName}</span>
+        </a>
+      } else {
+        user = <a href="#" key="1" className={link}>
+          <span className={classes.linkText}></span>
+        </a>
+      }
+
+      return (
+        <div className={buttons}>
+          {user}
+          <a href="#" key="2" className={link} onClick={this.handleLogout}>
+            <i className={locked}></i><span className={classes.linkText}>Logout</span>
+          </a>
+        </div>
+      );
+    };
+
     const getRoutes = () => {
       let routes = [];
       
@@ -64,12 +108,19 @@ export default class Sidebar extends React.Component {
               classes.link
             );
           }
+
+          const icon = classNames(
+            route.icon,
+            classes.icon
+          );
           
           routes.push(
-            <a href="#" key={route.url} className={link} onClick={boundClick}>{route.label}</a>
+            <a href="#" key={route.url} className={link} onClick={boundClick}>
+              <i className={icon}></i><span className={classes.linkText}>{route.label}</span>
+            </a>
           );
         } else {
-          if (user.isAdmin(this.props.user)) {
+          if (userUtils.isAdmin(this.props.user)) {
             let boundClick = this.handleClick.bind(this, route);
             let link;
             
@@ -85,9 +136,16 @@ export default class Sidebar extends React.Component {
                 classes.link
               );
             }
+
+            const icon = classNames(
+              route.icon,
+              classes.icon
+            );
             
             routes.push(
-              <a href="#" key={route.url} className={link} onClick={boundClick}>{route.label}</a>
+              <a href="#" key={route.url} className={link} onClick={boundClick}>
+                <i className={icon}></i><span className={classes.linkText}>{route.label}</span>
+              </a>
             );
           }
         }
@@ -99,14 +157,38 @@ export default class Sidebar extends React.Component {
     return (
       <div>
         <div className={sidebar}>
-          <div className="ui list">
+          <div className={classes.logo}>
+            <p className={classes.brand}>{config.brand}</p>
+          </div>
+          <div className={list}>
             {getRoutes()}
           </div>
+          {getButtons()}
         </div>
         <div className={mobileSidebar}>
-          {getRoutes()}
+          <div className={classes.logo}>
+            <p className={classes.brand}>{config.brand}</p>
+          </div>
+          <div className={list}>
+            {getRoutes()}
+          </div>
+          {getButtons()}
         </div>
       </div>
     )
   }
 };
+
+const mapStateToProps = (state) => ({});
+
+const actionCreators = {
+  ...routerActions,
+  ...authentication,
+  ...user,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(actionCreators, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

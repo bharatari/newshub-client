@@ -27,7 +27,7 @@ class NewReservationForm extends React.Component {
     const { handleSubmit, pristine, reset, submitting, remainingDevices, selectedDevices } = this.props;
     const renderWizard = props => (
       <span>
-        <h2 className={classes.font}>Devices</h2>
+        <h2 className={classes.deviceHeader}>Devices</h2>
         <Dummy onChange={props.input.onChange} value={props.input.value}
           remainingDevices={remainingDevices} selectedDevices={selectedDevices} />
         {props.touched && props.error && <span className={classes.errorText}>{props.error}</span>}

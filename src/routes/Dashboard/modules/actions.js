@@ -11,7 +11,7 @@ export function fetchUpcomingReservations() {
   return function (dispatch) {
     dispatch(requestUpcomingReservations());
 
-    let query = '?$sort[createdAt]=-1&$limit=5';
+    let query = '?$sort[createdAt]=-1&$limit=5&checkedOut=false&disabled=false';
 
     data.request('reservation', 'get', null, query)
       .then(function (response) {
@@ -26,7 +26,7 @@ export function fetchCurrentReservations() {
   return function (dispatch) {
     dispatch(requestCurrentReservations());
 
-    let query = '?$sort[createdAt]=-1&$limit=5&checkedOut=true';
+    let query = '?$sort[createdAt]=-1&$limit=5&checkedOut=true&checkedIn=false';
 
     data.request('reservation', 'get', null, query)
       .then(function (response) {

@@ -1,0 +1,32 @@
+.uploader {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.imageBox {
+  height: 400px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.imageContainer {
+  margin-right: 10px;
+}
+
+.images {
+  display: flex;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+  border-bottom-color: #cecece;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit {
+  margin-top: 20px !important;
+}

@@ -12,9 +12,13 @@ import Reservation from './Reservations/routes/Reservation/Route';
 import Users from './Users/Route';
 import NewUser from './Users/routes/NewUser/Route';
 import User from './Users/routes/User/Route';
+import Devices from './Devices/Route';
+import NewDevice from './Devices/routes/NewDevice/Route';
+import Device from './Devices/routes/Device/Route';
 import authenticated from 'containers/Authenticated';
 import unauthenticated from 'containers/Unauthenticated';
 import admin from 'containers/Admin';
+import master from 'containers/Master';
 
 export default (store) => (
   <Route path="/" component={Root}>
@@ -23,10 +27,15 @@ export default (store) => (
       <Route path="/app/reservation" component={Reservations} />
       <Route path="/app/reservation/new" component={NewReservation} />
       <Route path="/app/reservation/:id" component={Reservation} />
+      <Route path="/app/user" component={Users} />
+      <Route path="/app/user/:id" component={User} />
+      <Route path="/app/device" component={Devices} />
+      <Route path="/app/device/:id" component={Device} />
       <Route component={admin()}>
-        <Route path="/app/user" component={Users} />
         <Route path="/app/user/new" component={NewUser} />
-        <Route path="/app/user/:id" component={User} />
+      </Route>
+      <Route component={master()}>
+        <Route path="/app/device/new" component={NewDevice} />
       </Route>
     </Route>
     <Route component={unauthenticated(Core)}>
@@ -36,7 +45,6 @@ export default (store) => (
     <Route component={Core}>
       <Route path="/app/404" component={NotFound} />
     </Route>
-    
     <Redirect from="*" to="/app/404" />
   </Route>
 );

@@ -1,6 +1,19 @@
 import _ from 'lodash';
 
 module.exports = {
+  processResponse(data) {
+    if (data) {
+      return {
+        data,
+        total: data.length,
+      }
+    } else {
+      return {
+        data,
+        total: null,
+      }
+    }
+  },
   validateNewReservation(values) {
     let errors = {};
 
@@ -28,7 +41,11 @@ module.exports = {
   },
   computeReservationStatus(reservation) {
     if (reservation.disabled) {
-      return 'DISABLED';
+      if (reservation.approved) {
+        return 'DISABLED';
+      } else {
+        return 'REJECTED';
+      }
     } else if (!reservation.approved) {
       return 'NEEDS_APPROVAL';
     } else if (reservation.approved && !reservation.checkedOut && !reservation.checkedIn) {
@@ -45,12 +62,25 @@ module.exports = {
     return this.reservationStatus[this.computeReservationStatus(reservation)];
   },
   reservationStatus: {
-    'DISABLED': 'Disabled or Rejected',
+    'REJECTED': 'Rejected',
+    'DISABLED': 'Disabled',
     'NEEDS_APPROVAL': 'Needs Approval',
     'APPROVED': 'Approved',
     'CHECKED_OUT': 'Checked Out',
     'CHECKED_IN': 'Checked In',
     'UNKNOWN': 'Unknown',
+  },
+  getReservationColor(reservation) {
+    return this.reservationColors[this.computeReservationStatus(reservation)];
+  },
+  reservationColors: {
+    'REJECTED': '#ff6a6c',
+    'DISABLED': '#ff6a6c',
+    'NEEDS_APPROVAL': '#f5cc00',
+    'APPROVED': '#45b6b2',
+    'CHECKED_OUT': '#2185D0',
+    'CHECKED_IN': '#45b6b2',
+    'UNKNOWN': '#838383',
   },
   constructAdminAction(status, reject) {
     if (status === 'NEEDS_APPROVAL') {

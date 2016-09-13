@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, Table } from 'components/';
+import { SidebarPage, Table, Card } from 'components/';
 import { Form, Wizard } from './components';
 
 export default class NewReservationView extends React.Component {
@@ -55,7 +55,7 @@ export default class NewReservationView extends React.Component {
   };
   render() {
     const button = classNames(
-      'ui animated button inverted blue button-light',
+      'ui animated button blue inverted button-light',
       { loading: this.props.requestingCreateReservation }
     );
     const disable = this.props.requestingCreateReservation || this.props.createdReservation;
@@ -78,12 +78,15 @@ export default class NewReservationView extends React.Component {
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
           header="New Reservation" right={right} loading={loading} user={this.props.user}>
-          { this.props.createdReservation ? message : null }
-          <Form ref="form" remainingDevices={this.props.remainingDevices}
-            requestingCreateReservation={this.props.requestingCreateReservation}
-            onSubmit={this.handleSubmit} selectedDevices={this.props.selectedDevices} />
-          <Wizard actions={this.props.actions} selectedDevices={this.props.selectedDevices}
-            remainingDevices={this.props.remainingDevices} reservations={this.props.reservations} />
+          <Card column="sixteen">
+            { this.props.createdReservation ? message : null }
+            <Form ref="form" remainingDevices={this.props.remainingDevices}
+              requestingCreateReservation={this.props.requestingCreateReservation}
+              onSubmit={this.handleSubmit} selectedDevices={this.props.selectedDevices} />
+            <Wizard actions={this.props.actions} selectedDevices={this.props.selectedDevices}
+              remainingDevices={this.props.remainingDevices} reservations={this.props.reservations} />
+            {right}
+          </Card>
         </SidebarPage>
       </div>
     );

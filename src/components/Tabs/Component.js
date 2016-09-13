@@ -2,6 +2,11 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 
+const tabs = classNames(
+  classes.tabs,
+  'ui secondary stackable pointing menu'
+);
+
 export default class Tabs extends React.Component {
   static propTypes = {
     fields: PropTypes.any,
@@ -31,7 +36,7 @@ export default class Tabs extends React.Component {
 
     return (
       <div>
-        <div className="ui secondary stackable pointing menu">
+        <div className={tabs}>
           {headers()}
         </div>
         {this.props.children}

@@ -1,5 +1,6 @@
 import { createAction } from 'redux-actions';
 import data from 'utils/data';
+import utils from './utils';
 
 export const requestReservations = createAction('REQUEST_RESERVATIONS');
 export const receiveReservations = createAction('RECEIVE_RESERVATIONS');
@@ -37,7 +38,7 @@ export function fetchReservations(startDate, endDate) {
   return function (dispatch) {
     dispatch(requestReservations());
 
-    let query = '?$sort[createdAt]=-1&$limit=10';
+    let query = '?$sort[startDate]=1&$limit=10';
 
     if (startDate && endDate) {
       query += '&startDate=' + encodeURIComponent(startDate);
@@ -46,7 +47,7 @@ export function fetchReservations(startDate, endDate) {
 
     data.request('reservation', 'get', null, query)
       .then(function (response) {
-        dispatch(receiveReservations(response));
+        dispatch(receiveReservations(utils.processResponse(response)));
       }).catch(function (e) {
         dispatch(receiveReservations(e));
       });

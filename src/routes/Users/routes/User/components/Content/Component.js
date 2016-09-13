@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { FormatDate } from 'components/';
-import { Master } from '../';
+import { Master, Admin } from '../';
 import userUtils from 'modules/user/utils';
 
 export default class Content extends React.Component {
@@ -37,6 +37,11 @@ export default class Content extends React.Component {
             <p className={classes.header}>Disabled</p>
             <p className={classes.content}>{disabled ? 'True' : 'False'}</p>
           </div>
+        }
+        {
+          userUtils.isAdmin(this.props.currentUser) && !userUtils.isMaster(this.props.currentUser) ?
+          <Admin user={this.props.user} actions={this.props.actions} /> :
+          null
         }
       </div>
     );

@@ -5,6 +5,7 @@ import userUtils from './utils';
 
 export const requestUser = createAction('REQUEST_USER');
 export const receiveUser = createAction('RECEIVE_USER');
+export const resetFetchUser = createAction('RESET_FETCH_USER');
 
 export const requestCurrentUser = createAction('REQUEST_CURRENT_USER');
 export const receiveCurrentUser = createAction('RECEIVE_CURRENT_USER');
@@ -17,6 +18,7 @@ export const receiveCreateUser = createAction('RECEIVE_CREATE_USER');
 
 export const requestUpdateUser = createAction('REQUEST_UPDATE_USER');
 export const receiveUpdateUser = createAction('RECEIVE_UPDATE_USER');
+export const resetUpdateUser = createAction('RESET_UPDATE_USER');
 
 export function fetchUser(id) {
   return function (dispatch) {
@@ -59,7 +61,7 @@ export function fetchUsers() {
 
     data.request('user', 'get')
       .then(function (response) {
-        dispatch(receiveUsers(response));
+        dispatch(receiveUsers(userUtils.processResponse(response)));
       }).catch(function (e) {
         dispatch(receiveUsers(e));
       })

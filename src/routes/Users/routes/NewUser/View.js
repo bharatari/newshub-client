@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, Table, Response } from 'components/';
+import { SidebarPage, Table, Response, Card } from 'components/';
 
 export default class NewUserView extends React.Component {
   static propTypes = {
@@ -28,13 +28,15 @@ export default class NewUserView extends React.Component {
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
           header="New User" loading={this.props.requestingToken} user={this.props.user}>
-          <Response error={this.props.error} response={this.props.token}
-            successHeader={header} successText={text} />
-          <p className={classes.info}>
-            For members to be able to sign up for an account, they will need a one-time-use token
-            generated from this page.
-          </p>
-          <button className={button} onClick={this.handleClick}>GENERATE TOKEN</button>
+          <Card column="sixteen">
+            <Response error={this.props.error} response={this.props.token}
+              successHeader={header} successText={text} />
+            <p className={classes.info}>
+              For members to be able to sign up for an account, they will need a one-time-use token
+              generated from this page.
+            </p>
+            <button className={button} onClick={this.handleClick}>GENERATE TOKEN</button>
+          </Card>
         </SidebarPage>
       </div>
     );

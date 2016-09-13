@@ -1,7 +1,4 @@
 import Notifications from './Notifications/Component';
-import NotificationsContainer from './Notifications/Container';
-import Loading from './Notifications/Loading';
-import Notification from './Notifications/Notification';
 import FormatDate from './FormatDate';
 import Modal from './Modal';
 import TextLoading from './TextLoading/Component';
@@ -10,12 +7,13 @@ import Table from './Table/Component';
 import Response from './Response/Component';
 import Tabs from './Tabs/Component';
 import Unauthorized from './Unauthorized/Component';
+import Clock from './Clock';
+import Date from './Date';
+import Card from './Card/Component';
+import Status from './Status/Component';
 
 export {
   Notifications,
-  NotificationsContainer,
-  Loading,
-  Notification,
   FormatDate,
   Modal,
   TextLoading,
@@ -24,4 +22,8 @@ export {
   Response,
   Tabs,
   Unauthorized,
+  Clock,
+  Date,
+  Card,
+  Status,
 };

@@ -15,8 +15,14 @@ const initialState = {
     requesting: false,
     users: null,
     error: null,
+    total: null,
   },
   createUser: {
+    requesting: false,
+    user: null,
+    error: null,
+  },
+  updateUser: {
     requesting: false,
     user: null,
     error: null,
@@ -56,6 +62,15 @@ export default handleActions({
       };
     }
   },
+  RESET_FETCH_USER: (state, action) => ({
+    ...state,
+    fetchUser: {
+      ...state.fetchUser,
+      requesting: false,
+      error: null,
+      user: null,
+    },
+  }),
   REQUEST_CURRENT_USER: (state, action) => ({
     ...state,
     fetchCurrentUser: {
@@ -95,6 +110,7 @@ export default handleActions({
       requesting: true,
       users: null,
       error: null,
+      total: null,
     },
   }),
   RECEIVE_USERS: {
@@ -104,8 +120,9 @@ export default handleActions({
         fetchUsers: {
           ...state.fetchUsers,
           requesting: false,
-          users: action.payload,
+          users: action.payload.data,
           error: null,
+          total: action.payload.total,
         },
       };
     },
@@ -117,6 +134,7 @@ export default handleActions({
           requesting: false,
           users: null,
           error: action.payload,
+          total: null,
         },
       };
     }
@@ -153,5 +171,47 @@ export default handleActions({
         },
       };
     }
-  }
+  },
+  REQUEST_UPDATE_USER: (state, action) => ({
+    ...state,
+    updateUser: {
+      ...state.updateUser,
+      requesting: true,
+      user: null,
+      error: null,
+    },
+  }),
+  RECEIVE_UPDATE_USER: {
+    next(state, action) {
+      return {
+        ...state,
+        updateUser: {
+          ...state.updateUser,
+          requesting: false,
+          user: action.payload,
+          error: null,
+        },
+      };
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        updateUser: {
+          ...state.updateUser,
+          requesting: false,
+          user: null,
+          error: action.payload,
+        },
+      };
+    }
+  },
+  RESET_UPDATE_USER: (state, action) => ({
+    ...state,
+    updateUser: {
+      ...state.updateUser,
+      requesting: false,
+      error: null,
+      user: null,
+    },
+  }),
 }, initialState);
