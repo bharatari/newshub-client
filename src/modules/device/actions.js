@@ -20,14 +20,25 @@ export const receiveDeleteDevice = createAction('RECEIVE_DELETE_DEVICE');
 export const resetCreateDevice = createAction('RESET_CREATE_DEVICE');
 export const resetUpdateDevice = createAction('RESET_UPDATE_DEVICE');
 
-export function fetchDevices(startDate, endDate) {
+export function fetchDevices(startDate, endDate, disabled) {
   return function (dispatch) {
     dispatch(requestDevices());
     
     let query = {};
 
     if (startDate && endDate) {
-      query = { startDate, endDate };
+      query = {
+        ...query,
+        startDate,
+        endDate,
+      };
+    }
+
+    if (disabled != null) {
+      query = {
+        ...query,
+        disabled,
+      };
     }
 
     data.request('device', 'get', null, query)
