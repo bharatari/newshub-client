@@ -3,6 +3,7 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, Table, Card } from 'components/';
 import { Form, Wizard } from './components';
+import { animateScroll as scroll } from 'react-scroll';
 
 export default class NewReservationView extends React.Component {
   static propTypes = {
@@ -41,7 +42,7 @@ export default class NewReservationView extends React.Component {
 
             this.setState({
               requestedDevices: true,
-            })
+            });
           }
         }
       }  
@@ -49,6 +50,7 @@ export default class NewReservationView extends React.Component {
   }
   handleSubmit = (values) => {
     this.props.actions.createReservation(values);
+    scroll.scrollToTop();
   };
   handleClick = () => {
     this.refs.form.submit();
