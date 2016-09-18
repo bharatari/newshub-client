@@ -24,7 +24,9 @@ export function fetchDevices(startDate, endDate, disabled) {
   return function (dispatch) {
     dispatch(requestDevices());
     
-    let query = {};
+    let query = {
+      '$sort[createdAt]': 1,
+    };
 
     if (startDate && endDate) {
       query = {
