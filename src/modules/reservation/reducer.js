@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import utils from './utils';
 
 const initialState = {
   fetchReservation: {
@@ -11,6 +12,8 @@ const initialState = {
     reservations: null,
     error: null,
     total: null,
+    currentPage: null,
+    totalPages: null,
   },
   createReservation: {
     requesting: false,
@@ -55,6 +58,8 @@ export default handleActions({
           reservations: action.payload.data,
           error: null,
           total: action.payload.total,
+          currentPage: utils.getCurrentPage(action.payload.limit, action.payload.skip),
+          totalPages: utils.calculatePages(action.payload.total, action.payload.limit),
         },
       };
     },
@@ -67,6 +72,8 @@ export default handleActions({
           reservations: null,
           error: action.payload,
           total: null,
+          currentPage: null,
+          totalPages: null,
         },
       };
     }

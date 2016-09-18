@@ -11,6 +11,7 @@ import Clock from './Clock';
 import Date from './Date';
 import Card from './Card/Component';
 import Status from './Status/Component';
+import Paginator from './Paginator/Component';
 
 export {
   Notifications,
@@ -26,4 +27,5 @@ export {
   Date,
   Card,
   Status,
+  Paginator,
 };

@@ -9,6 +9,8 @@ const mapStateToProps = (state, ownProps) => ({
   reservations: state.reservation.fetchReservations.reservations,
   requestingReservations: state.reservation.fetchReservations.requesting,
   user: state.user.fetchCurrentUser.user,
+  totalPages: state.reservation.fetchReservations.totalPages,
+  currentPage: state.reservation.fetchReservations.currentPage,
 });
 
 const actionCreators = {

@@ -34,23 +34,24 @@ export function fetchReservation(id) {
   };
 }
 
-export function fetchReservations(startDate, endDate) {
+export function fetchReservations(startDate, endDate, skip = 0) {
   return function (dispatch) {
     dispatch(requestReservations());
 
-    let query = '?$sort[startDate]=1&$limit=10';
+    let query = '?$sort[startDate]=-1&$limit=10&$skip=' + skip;
 
     if (startDate && endDate) {
       query += '&startDate=' + encodeURIComponent(startDate);
       query += '&endDate=' + encodeURIComponent(endDate);
     }
 
-    data.request('reservation', 'get', null, query)
-      .then(function (response) {
-        dispatch(receiveReservations(utils.processResponse(response)));
-      }).catch(function (e) {
-        dispatch(receiveReservations(e));
-      });
+    data.request('reservation', 'get', null, query, null, {
+      resolve: false,
+    }).then(function (response) {
+      dispatch(receiveReservations(response));
+    }).catch(function (e) {
+      dispatch(receiveReservations(e));
+    });
   };
 }
 
