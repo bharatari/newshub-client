@@ -104,5 +104,11 @@ module.exports = {
     }
 
     return null;
-  }
+  },
+  calculatePages(total, limit) {
+    return Math.ceil(total / limit);
+  },
+  getCurrentPage(limit, skip) {
+    return Math.floor(skip / limit) + 1;
+  },
 };
