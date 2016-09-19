@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import utils from './utils';
+import utils from 'utils/general';
 
 const initialState = {
   fetchReservation: {

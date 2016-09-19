@@ -1,6 +1,12 @@
 import _ from 'lodash';
 
 export default {
+  calculatePages(total, limit) {
+    return Math.ceil(total / limit);
+  },
+  getCurrentPage(limit, skip) {
+    return Math.floor(skip / limit) + 1;
+  },
   insert(array, insert, at) {
     array.splice(at, 0, insert);
   },

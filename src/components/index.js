@@ -12,6 +12,7 @@ import Date from './Date';
 import Card from './Card/Component';
 import Status from './Status/Component';
 import Paginator from './Paginator/Component';
+import Data from './Data/Component';
 
 export {
   Notifications,
@@ -28,4 +29,5 @@ export {
   Card,
   Status,
   Paginator,
+  Data,
 };

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, Table, TextLoading, Card, Status, Paginator } from 'components/';
+import { Status, Data } from 'components/';
 import reservation from 'modules/reservation/utils';
 
 export default class ReservationsView extends React.Component {
@@ -35,35 +35,13 @@ export default class ReservationsView extends React.Component {
     this.props.actions.fetchReservations(null, null, (this.props.totalPages - 1) * 10);
   };
   render() {
-    const right = <button className="ui animated button blue inverted button-light" onClick={this.handleClick}>
-                    <div className="visible content">ADD</div>
-                    <div className="hidden content">
-                      <i className="add circle icon"></i>
-                    </div>
-                  </button>;
-
     return (
-      <div>
-        <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="Reservations" right={right} loading={this.props.requestingReservations}
-          user={this.props.user}>
-          <Card column="sixteen">
-            {
-              this.props.reservations ?
-              <div>
-                <Table fields={this.state.fields}
-                  data={this.props.reservations} 
-                  actions={this.props.actions}
-                  route="/app/reservation" />
-                <Paginator currentPage={this.props.currentPage} 
-                  totalPages={this.props.totalPages} goToPage={this.goToPage}
-                  goToFirstPage={this.goToFirstPage} goToLastPage={this.goToLastPage} />
-              </div>
-              : <TextLoading loading={this.props.requestingReservations} />
-            }
-          </Card>
-        </SidebarPage>
-      </div>
+      <Data data={this.props.reservations} loading={this.props.requestingReservations}
+        header="Reservations" user={this.props.user} currentUrl={this.props.currentUrl}
+        actions={this.props.actions} fields={this.state.fields} route="/app/reservation"
+        currentPage={this.props.currentPage} totalPages={this.props.totalPages}
+        goToPage={this.goToPage} goToFirstPage={this.goToFirstPage}
+        goToLastPage={this.goToLastPage} />
     );
   }
 }
