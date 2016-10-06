@@ -27,16 +27,16 @@ export default (store) => (
       <Route path="/app/reservation" component={Reservations} />
       <Route path="/app/reservation/new" component={NewReservation} />
       <Route path="/app/reservation/:id" component={Reservation} />
-      <Route path="/app/user" component={Users} />
-      <Route path="/app/user/:id" component={User} />
-      <Route path="/app/device" component={Devices} />
-      <Route path="/app/device/:id" component={Device} />
       <Route component={admin()}>
         <Route path="/app/user/new" component={NewUser} />
       </Route>
       <Route component={master()}>
         <Route path="/app/device/new" component={NewDevice} />
       </Route>
+      <Route path="/app/user" component={Users} />
+      <Route path="/app/user/:id" component={User} />
+      <Route path="/app/device" component={Devices} />
+      <Route path="/app/device/:id" component={Device} />
     </Route>
     <Route component={unauthenticated(Core)}>
       <Route path="/app/signup" component={Signup} />

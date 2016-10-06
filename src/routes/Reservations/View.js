@@ -22,9 +22,6 @@ export default class ReservationsView extends React.Component {
   componentDidMount() {
     this.goToFirstPage();
   }
-  handleClick = () => {
-    this.props.actions.push('/app/reservation/new');
-  };
   goToPage = (page, event) => {
     this.props.actions.fetchReservations(null, null, (page - 1) * 10);
   };
@@ -41,7 +38,7 @@ export default class ReservationsView extends React.Component {
         actions={this.props.actions} fields={this.state.fields} route="/app/reservation"
         currentPage={this.props.currentPage} totalPages={this.props.totalPages}
         goToPage={this.goToPage} goToFirstPage={this.goToFirstPage}
-        goToLastPage={this.goToLastPage} />
+        goToLastPage={this.goToLastPage} newURL="/app/reservation/new" />
     );
   }
 }
