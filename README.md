@@ -1,4 +1,4 @@
-# <a href='http://arimilli.io'><img src='https://raw.githubusercontent.com/bharatari/newshub-client/master/logo/logo.png?token=AFRBzDWGcXX7KF3JBXaUjhrGGJzeL1JBks5X4WlOwA%3D%3D' height='80'></a>
+# <a href='http://www.arimilli.io'><img src='http://www.arimilli.io/logo/newshub-client.png' height='80'></a>
 
 The client implementation of the NewsHub project built on React and Redux.
 
