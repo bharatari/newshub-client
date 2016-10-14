@@ -1,3 +1,4 @@
 export default {
-  brand: "NewsHub",
+  brand: CONFIG.BRAND,
+  loginBackground: CONFIG.LOGIN_BACKGROUND,
 }
