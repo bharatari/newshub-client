@@ -5,12 +5,21 @@ import { Field, reduxForm } from 'redux-form';
 import reservation from 'modules/reservation/utils';
 import Dummy from './Dummy';
 
-const renderField = props => (
+const renderField = ({ input, meta: { touched, error }}) => (
   <div>
     <div className="ui input">
-      <input {...props.input} className={classes.font} />
+      <input {...input} className={classes.font} />
     </div>
-    {props.touched && props.error && <span className={classes.errorText}>{props.error}</span>}
+    {touched && error && <span className={classes.errorText}>{error}</span>}
+  </div>
+);
+
+const renderDate = ({ input, meta: { touched, error }}) => (
+  <div>
+    <div className="ui input">
+      <input type="datetime-local" {...input} className={classes.font} />
+    </div>
+    {touched && error && <span className={classes.errorText}>{error}</span>}
   </div>
 );
 
@@ -38,11 +47,11 @@ class NewReservationForm extends React.Component {
       <form onSubmit={handleSubmit} className="ui form">
         <div className="field">
           <label className={classes.font}>Start Date</label>
-          <Field name="startDate" type="date" placeholder="Start Date" component={renderField} />
+          <Field name="startDate" placeholder="Start Date" component={renderDate} />
         </div>
         <div className="field">
           <label className={classes.font}>End Date</label>
-          <Field name="endDate" type="date" placeholder="End Date" component={renderField} />
+          <Field name="endDate" placeholder="End Date" component={renderDate} />
         </div>
         <div className="field">
           <label className={classes.font}>Purpose</label>

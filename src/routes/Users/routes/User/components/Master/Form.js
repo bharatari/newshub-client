@@ -9,10 +9,10 @@ const button = classNames(
   classes.marginTop
 );
 
-const renderField = props => (
+const renderField = ({ input, meta: { touched, error }}) => (
   <div className="field">
     <div className="ui checkbox">
-      <input className={classes.font} type="checkbox" tabIndex="0" className="hidden" {...props.input} />
+      <input className={classes.font} type="checkbox" tabIndex="0" className="hidden" {...input} />
       <label>Disable User</label>
     </div>
   </div>

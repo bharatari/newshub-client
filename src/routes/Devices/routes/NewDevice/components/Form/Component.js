@@ -5,21 +5,21 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import device from 'modules/device/utils';
 
-const renderField = props => (
+const renderField = ({ input, meta: { touched, error }}) => (
   <div className="field">
     <div className="ui checkbox">
-      <input className={classes.font} type="checkbox" tabIndex="0" className="hidden" {...props.input} />
+      <input className={classes.font} type="checkbox" tabIndex="0" className="hidden" {...input} />
       <label>Disable Device</label>
     </div>
   </div>
 );
 
-const renderInput = props => (
+const renderInput = ({ input, meta: { touched, error }}) => (
   <div>
     <div className="ui input">
-      <input {...props.input} className={classes.font} />
+      <input {...input} className={classes.font} />
     </div>
-    {props.touched && props.error && <span className={classes.errorText}>{props.error}</span>}
+    {touched && error && <span className={classes.errorText}>{error}</span>}
   </div>
 );
 

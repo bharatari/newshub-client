@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 import authentication from 'modules/authentication/utils';
 
-const renderField = props => (
+const renderField = ({ input, meta: { touched, error }}) => (
   <span>
-    <input {...props}/>
-    {props.touched && props.error && <span className={classes.errorText}>{props.error}</span>}
+    <input {...input} />
+    {touched && error && <span className={classes.errorText}>{error}</span>}
   </span>
 );
 
