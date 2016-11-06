@@ -38,8 +38,8 @@ export default class Data extends React.Component {
                   actions={this.props.actions}
                   route={this.props.route} />
                 <Paginator currentPage={this.props.currentPage} 
-                  totalPages={this.props.totalPages} goToPage={this.goToPage}
-                  goToFirstPage={this.goToFirstPage} goToLastPage={this.goToLastPage} />
+                  totalPages={this.props.totalPages} goToPage={this.props.goToPage}
+                  goToFirstPage={this.props.goToFirstPage} goToLastPage={this.props.goToLastPage} />
               </div>
               : <TextLoading loading={this.props.loading} />
             }
