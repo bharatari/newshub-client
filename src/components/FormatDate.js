@@ -19,7 +19,7 @@ export default class FormatDate extends React.Component {
     return moment(this.props.date).format("MM/DD/YY");
   };
   formatDateTime = () => {
-    return moment(this.props.date).format("MM/DD/YY h:mm a");
+    return moment(this.props.datetime).format("MM/DD/YY h:mm a");
   };
   render() {
     return (
