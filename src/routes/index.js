@@ -15,6 +15,9 @@ import User from './Users/routes/User/Route';
 import Devices from './Devices/Route';
 import NewDevice from './Devices/routes/NewDevice/Route';
 import Device from './Devices/routes/Device/Route';
+import Projects from './Projects/Route';
+import NewProject from './Projects/routes/NewProject/Route';
+import Project from './Projects/routes/Project/Route'
 import authenticated from 'containers/Authenticated';
 import unauthenticated from 'containers/Unauthenticated';
 import admin from 'containers/Admin';
@@ -27,11 +30,14 @@ export default (store) => (
       <Route path="/app/reservation" component={Reservations} />
       <Route path="/app/reservation/new" getComponent={NewReservation(store)} />
       <Route path="/app/reservation/:id" component={Reservation} />
+      <Route path="/app/project" component={Projects} />
+      <Route path="/app/project/:id" component={Project} />
       <Route component={admin()}>
         <Route path="/app/user/new" component={NewUser} />
       </Route>
       <Route component={master()}>
         <Route path="/app/device/new" component={NewDevice} />
+        <Route path="/app/project/new" component={NewProject} />        
       </Route>
       <Route path="/app/user" component={Users} />
       <Route path="/app/user/:id" component={User} />
