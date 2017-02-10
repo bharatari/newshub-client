@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, Table, Card } from 'components/';
-import { Form, Wizard } from './components';
+import { SidebarPage, Table, Card, Modal } from 'components/';
+import { Form, Wizard, ModalContent } from './components';
 import { animateScroll as scroll } from 'react-scroll';
 
 export default class NewReservationView extends React.Component {
@@ -61,7 +61,7 @@ export default class NewReservationView extends React.Component {
       { loading: this.props.requestingCreateReservation }
     );
     const disable = this.props.requestingCreateReservation || this.props.createdReservation;
-    const loading = this.props.requestingCreateReservation || this.props.requestingDevices || this.props.requestingReservations;
+    const loading = this.props.requestingCreateReservation || this.props.requestingDevices || this.props.requestingReservations || this.props.requestingFetchReservation;
     const right = <button className={button} disabled={disable}
                     onClick={this.handleClick}>
                     <div className="visible content">SAVE</div>
@@ -78,6 +78,11 @@ export default class NewReservationView extends React.Component {
 
     return (
       <div>
+        <Modal id="new-reservation-modal" show={this.props.showModal} hideActions={true}
+        cancelText="Close" hideModal={this.props.localActions.resetReservation}
+        scrollable={true}>
+          <ModalContent action={this.props.localActions.fetchReservation} data={this.props.reservation} />
+        </Modal>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
           header="New Reservation" right={right} loading={loading} user={this.props.user}>
           <Card column="sixteen">
@@ -86,7 +91,8 @@ export default class NewReservationView extends React.Component {
               requestingCreateReservation={this.props.requestingCreateReservation}
               onSubmit={this.handleSubmit} selectedDevices={this.props.selectedDevices} />
             <Wizard actions={this.props.actions} selectedDevices={this.props.selectedDevices}
-              remainingDevices={this.props.remainingDevices} reservations={this.props.reservations} />
+              remainingDevices={this.props.remainingDevices} reservations={this.props.reservations}
+              localActions={this.props.localActions} />
             {right}
           </Card>
         </SidebarPage>

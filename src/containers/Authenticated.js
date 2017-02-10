@@ -25,7 +25,6 @@ export default function authenticated(Component) {
       this.props.actions.fetchCurrentUser();
     }
     componentWillReceiveProps(nextProps) {
-      console.log(nextProps.user);
       if (!nextProps.requestingUser && (!nextProps.user || _.isError(nextProps.user))) {
         if (nextProps.currentRoute !== loginRedirect) {
           if (!this.state.requestedLogin) {

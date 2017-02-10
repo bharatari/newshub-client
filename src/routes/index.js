@@ -7,7 +7,7 @@ import Dashboard from './Dashboard';
 import Login from './Login/Route';
 import Signup from './Signup/Route';
 import Reservations from './Reservations/Route';
-import NewReservation from './Reservations/routes/NewReservation/Route';
+import NewReservation from './Reservations/routes/NewReservation';
 import Reservation from './Reservations/routes/Reservation/Route';
 import Users from './Users/Route';
 import NewUser from './Users/routes/NewUser/Route';
@@ -25,7 +25,7 @@ export default (store) => (
     <Route component={authenticated(Core)}>
       <IndexRoute getComponent={Dashboard(store)} />
       <Route path="/app/reservation" component={Reservations} />
-      <Route path="/app/reservation/new" component={NewReservation} />
+      <Route path="/app/reservation/new" getComponent={NewReservation(store)} />
       <Route path="/app/reservation/:id" component={Reservation} />
       <Route component={admin()}>
         <Route path="/app/user/new" component={NewUser} />

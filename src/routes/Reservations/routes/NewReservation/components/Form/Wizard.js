@@ -129,7 +129,8 @@ export default class NewReservationWizard extends React.Component {
             <Table fields={this.state.fields}
               data={this.props.reservations} 
               actions={this.props.actions}
-              route="/app/reservation" newTab={true} />
+              route="/app/reservation" modal={true}
+              showModal={this.props.localActions.fetchReservation} />
           </div> : null
         }
       </div>

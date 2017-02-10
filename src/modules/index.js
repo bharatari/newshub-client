@@ -4,7 +4,6 @@ import { reducer as form } from 'redux-form';
 import authentication from './authentication/reducer';
 import signupToken from './signupToken/reducer';
 import reservation from './reservation/reducer';
-import component from './component/reducer';
 import wizard from './wizard/reducer';
 import device from './device/reducer';
 import image from './image/reducer';
@@ -14,7 +13,6 @@ export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     authentication,
     signupToken,
-    component,
     wizard,
     device,
     reservation,

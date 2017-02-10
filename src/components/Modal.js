@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
 
 export default class Modal extends React.Component {
   static propTypes = {
@@ -13,7 +14,27 @@ export default class Modal extends React.Component {
     show: false,
   };
   componentDidMount() {
-    $('#' + this.props.id).modal({
+    this.setup(this.props);
+  }
+  componentWillReceiveProps(nextProps) {
+    if (!this.state.show && nextProps.show) {
+      $('#' + this.props.id).modal('refresh');
+      $('#' + this.props.id).modal('show');
+
+      this.setState({
+        show: true,  
+      });
+    } else if (this.state.show && !nextProps.show) {
+      $('#' + this.props.id).modal('hide');
+
+      this.setState({
+        show: false,
+      });
+    }
+  }
+  setup = (props) => {
+    $('#' + props.id).modal({
+      transition: 'scale',
       closable: false,
       onDeny: () => {
         this.setState({
@@ -21,28 +42,15 @@ export default class Modal extends React.Component {
         });
       },
       onApprove: () => {
-        this.props.handleConfirmation();
+        props.handleConfirmation();
         this.setState({
           show: true,
         })
       },
     });
-  }
-  componentWillReceiveProps(nextProps) {
-    if (!this.state.show && nextProps.show) {
-      $('#' + this.props.id).modal('show');
-      this.setState({
-        show: true,  
-      });
-    } else if (this.state.show && !nextProps.show) {
-      $('#' + this.props.id).modal('hide');
-      this.setState({
-        show: false,
-      })
-    }
-  }
+  };
   render() {
-    const actions = 
+    const actions = (
       <div className="actions">
         <div className="ui black deny button">
           {this.props.cancelText}
@@ -51,17 +59,29 @@ export default class Modal extends React.Component {
           {this.props.confirmationText}
           <i className="checkmark icon"></i>
         </div>
-      </div>;
+      </div>
+    );
+    const close = (
+      <div className="actions">
+        <div className="ui black deny button button-light" onClick={this.props.hideModal}>
+          {this.props.cancelText}
+        </div>
+      </div>
+    );
+    const modalClasses = classNames(
+      'ui modal',
+      { 'long': this.props.scrollable }
+    );
 
     return (
-      <div id={this.props.id} className="ui modal">
+      <div id={this.props.id} className={modalClasses}>
         <div className="header">
           {this.props.header}
         </div>
         <div className="content">
           {this.props.children}
         </div>
-        { this.props.hideActions ? null : actions }
+        { this.props.hideActions ? close : actions }
       </div>
     );
   }

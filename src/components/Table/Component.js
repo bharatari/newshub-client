@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import Row from './Row';
 import classes from './Styles.scss';
 import classNames from 'classnames';
+import { Modal } from 'components/';
 
 const table = classNames(
   'ui selectable very basic table',
@@ -17,6 +18,8 @@ export default class Table extends React.Component {
       push: PropTypes.func.isRequired,
     }).isRequired,
     newTab: PropTypes.bool,
+    modal: PropTypes.bool,
+    showModal: PropTypes.func,
   };
   render() {
     const headers = () => {
@@ -38,8 +41,10 @@ export default class Table extends React.Component {
         this.props.data.map((item) => {
           array.push(<Row key={counter} fields={this.props.fields}
                       data={item} route={this.props.route}
-                      actions={this.props.actions} 
-                      newTab={this.props.newTab} />);
+                      actions={this.props.actions}
+                      newTab={this.props.newTab}
+                      modal={this.props.modal}
+                      showModal={this.props.showModal} />);
           counter++;
         });
       }
