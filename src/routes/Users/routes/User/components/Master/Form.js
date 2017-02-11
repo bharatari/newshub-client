@@ -41,7 +41,7 @@ class UserForm extends React.Component {
         </div>
         <div className="field">
           <div className="ui checkbox">
-            <Field name="options.oNotDisturb" component="input" type="checkbox" className={classes.font} />
+            <Field name="options.doNotDisturb" component="input" type="checkbox" className={classes.font} />
             <label>Do Not Disturb</label>
           </div>
         </div>
