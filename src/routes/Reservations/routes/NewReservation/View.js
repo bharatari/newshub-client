@@ -28,7 +28,7 @@ export default class NewReservationView extends React.Component {
       if (startDate && endDate) {
         if ((startDate !== oldStartDate) || (endDate !== oldEndDate)) {
           this.props.actions.fetchDevices(startDate, endDate, false);
-          this.props.actions.fetchReservations(startDate, endDate);
+          this.props.actions.fetchReservations(startDate, endDate, 0, false);
           this.setState({
             requestedDevices: false,
           });

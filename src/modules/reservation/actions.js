@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 import data from 'utils/data';
 import utils from './utils';
+import _ from 'lodash';
 
 export const requestReservations = createAction('REQUEST_RESERVATIONS');
 export const receiveReservations = createAction('RECEIVE_RESERVATIONS');
@@ -34,7 +35,7 @@ export function fetchReservation(id) {
   };
 }
 
-export function fetchReservations(startDate, endDate, skip = 0) {
+export function fetchReservations(startDate, endDate, skip = 0, disabled) {
   return function (dispatch) {
     dispatch(requestReservations());
 
@@ -43,6 +44,10 @@ export function fetchReservations(startDate, endDate, skip = 0) {
     if (startDate && endDate) {
       query += '&startDate=' + encodeURIComponent(startDate);
       query += '&endDate=' + encodeURIComponent(endDate);
+    }
+
+    if (!_.isNil(disabled)) {
+      query += '&disabled=' + encodeURIComponent(disabled);
     }
 
     data.request('reservation', 'get', null, query, null, {
