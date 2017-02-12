@@ -11,7 +11,7 @@ export default class Data extends React.Component {
     user: PropTypes.object,
   };
   componentDidMount() {
-    this.props.goToFirstPage();
+    this.props.goToPage(1);
   }
   handleClick = () => {
     this.props.actions.push(this.props.newURL);
@@ -36,10 +36,14 @@ export default class Data extends React.Component {
                 <Table fields={this.props.fields}
                   data={this.props.data} 
                   actions={this.props.actions}
-                  route={this.props.route} />
+                  route={this.props.route} 
+                  sortBy={this.props.sortBy}
+                  sortField={this.props.sortField} 
+                  sortType={this.props.sortType} 
+                  sortable={true} />
                 <Paginator currentPage={this.props.currentPage} 
-                  totalPages={this.props.totalPages} goToPage={this.props.goToPage}
-                  goToFirstPage={this.props.goToFirstPage} goToLastPage={this.props.goToLastPage} />
+                  totalPages={this.props.totalPages} 
+                  goToPage={this.props.goToPage} />
               </div>
               : <TextLoading loading={this.props.loading} />
             }

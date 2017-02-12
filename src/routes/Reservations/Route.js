@@ -11,6 +11,8 @@ const mapStateToProps = (state, ownProps) => ({
   user: state.user.fetchCurrentUser.user,
   totalPages: state.reservation.fetchReservations.totalPages,
   currentPage: state.reservation.fetchReservations.currentPage,
+  sortField: state.reservation.fetchReservations.sortField,
+  sortType: state.reservation.fetchReservations.sortType,
 });
 
 const actionCreators = {

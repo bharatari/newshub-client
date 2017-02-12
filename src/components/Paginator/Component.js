@@ -5,8 +5,6 @@ export default class Paginator extends React.Component {
     currentPage: PropTypes.number,
     totalPages: PropTypes.number,
     goToPage: PropTypes.func,
-    goToFirstPage: PropTypes.func,
-    goToLastPage: PropTypes.func,
   };
   onLastPage = () => {
     if (this.props.currentPage === this.props.totalPages) {
@@ -62,7 +60,7 @@ export default class Paginator extends React.Component {
   render() {
     const firstPage = () => {
       if (!this.onFirstPage()) {
-        return <a className="item" onClick={this.props.goToFirstPage}>
+        return <a className="item" onClick={this.props.goToPage.bind(this, 1)}>
                 ...
                </a>;
       }
@@ -103,7 +101,7 @@ export default class Paginator extends React.Component {
     };
     const lastPage = () => {
       if (!this.onLastPage()) {
-        return <a className="item" onClick={this.props.goToLastPage}>
+        return <a className="item" onClick={this.props.goToPage.bind(this, this.props.totalPages)}>
                 ...
                </a>;
       }

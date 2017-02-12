@@ -35,11 +35,52 @@ export function fetchReservation(id) {
   };
 }
 
-export function fetchReservations(startDate, endDate, skip = 0, disabled) {
-  return function (dispatch) {
-    dispatch(requestReservations());
+export function fetchReservations(options) {
+  return function (dispatch, getState) {
+    const { reservation: { fetchReservations } } = getState();
+    let startDate, endDate, limit, page, disabled, sortField, sortType;
 
-    let query = '?$sort[startDate]=-1&$limit=10&$skip=' + skip;
+    if (!_.isNil(options)) {
+      ({ startDate, endDate, limit, page, disabled, sortField, sortType } = options);
+    }
+    
+    if (_.isNil(limit)) {
+      if (!_.isNil(fetchReservations.limit)) {
+        limit = fetchReservations.limit;
+      } else {
+        limit = 10;
+      }
+    }
+
+    if (_.isNil(page)) {
+      if (!_.isNil(fetchReservations.currentPage)) {
+        page = fetchReservations.currentPage;
+      } else {
+        page = 1;
+      }
+    }
+
+    const skip = data.pageToSkip(page, limit);
+
+    if (_.isNil(sortField)) {
+      if (!_.isNil(fetchReservations.sortField)) {
+        sortField = fetchReservations.sortField;
+      } else {
+        sortField = 'createdAt';
+      }
+    }
+
+    if (_.isNil(sortType)) {
+      if (!_.isNil(fetchReservations.sortType)) {
+        sortType = fetchReservations.sortType;
+      } else {
+        sortType = 'DESC';
+      }
+    }
+
+    const sort = data.constructSort(sortField, sortType);
+
+    let query = `?${sort}&$limit=${limit}&$skip=${skip}`;
 
     if (startDate && endDate) {
       query += '&startDate=' + encodeURIComponent(startDate);
@@ -49,6 +90,14 @@ export function fetchReservations(startDate, endDate, skip = 0, disabled) {
     if (!_.isNil(disabled)) {
       query += '&disabled=' + encodeURIComponent(disabled);
     }
+
+    dispatch(requestReservations({
+      sortField,
+      sortType,
+      limit,
+    }));
+
+    console.log(query);
 
     data.request('reservation', 'get', null, query, null, {
       resolve: false,

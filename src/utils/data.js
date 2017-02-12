@@ -173,5 +173,30 @@ export default {
 
       return settings;
     }
+  },
+  pageToSkip(page, limit) {
+    return (page - 1) * limit;
+  },
+  getFromStateOrDefault(property, value, state, defaultValue) {
+    if (_.isNil(value)) {
+      if (!_.isNil(state[property])) {
+        return state[property];
+      } else {
+        return defaultValue;
+      }
+    } else {
+      return value;
+    }
+  },
+  constructSort(sortField, sortType) {
+    let sort = `$sort[${sortField}]=`;
+
+    if (sortType === 'DESC') {
+      sort += '-1';
+    } else {
+      sort += '1';
+    }
+    
+    return sort;
   }
 };

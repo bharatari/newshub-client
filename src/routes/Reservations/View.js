@@ -20,16 +20,18 @@ export default class ReservationsView extends React.Component {
     ],
   };
   componentDidMount() {
-    this.goToFirstPage();
+    this.goToPage(1);
   }
   goToPage = (page, event) => {
-    this.props.actions.fetchReservations(null, null, (page - 1) * 10);
+    this.props.actions.fetchReservations({
+      page,
+    });
   };
-  goToFirstPage = () => {
-    this.props.actions.fetchReservations(null, null, 0);
-  };
-  goToLastPage = () => {
-    this.props.actions.fetchReservations(null, null, (this.props.totalPages - 1) * 10);
+  sortBy = (field, type) => {
+    this.props.actions.fetchReservations({
+      sortField: field,
+      sortType: type,
+    });
   };
   render() {
     return (
@@ -37,8 +39,8 @@ export default class ReservationsView extends React.Component {
         header="Reservations" user={this.props.user} currentUrl={this.props.currentUrl}
         actions={this.props.actions} fields={this.state.fields} route="/app/reservation"
         currentPage={this.props.currentPage} totalPages={this.props.totalPages}
-        goToPage={this.goToPage} goToFirstPage={this.goToFirstPage}
-        goToLastPage={this.goToLastPage} newURL="/app/reservation/new" />
+        goToPage={this.goToPage} sortField={this.props.sortField} sortType={this.props.sortType}
+        sortBy={this.sortBy} newURL="/app/reservation/new" />
     );
   }
 }

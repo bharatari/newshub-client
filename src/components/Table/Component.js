@@ -3,6 +3,7 @@ import Row from './Row';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { Modal } from 'components/';
+import HeaderCell from './HeaderCell';
 
 const table = classNames(
   'ui selectable very basic table',
@@ -20,15 +21,25 @@ export default class Table extends React.Component {
     newTab: PropTypes.bool,
     modal: PropTypes.bool,
     showModal: PropTypes.func,
+    sortable: PropTypes.bool,
   };
   render() {
     const headers = () => {
       let array = [];
-      let counter = 0;
 
       this.props.fields.map((field) => {
-        array.push(<th key={counter} className={classes.header}>{field.label}</th>);
-        counter++;
+        const cell = (
+          <HeaderCell
+            key={field.property}
+            field={field}
+            className={classes.header}
+            sortType={this.props.sortType} 
+            sortField={this.props.sortField}
+            sortBy={this.props.sortBy} 
+            sortable={this.props.sortable} />
+        );
+
+        array.push(cell);
       });
 
       return array;
