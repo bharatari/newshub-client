@@ -22,6 +22,9 @@ class LoginForm extends React.Component {
   handleClick = () => {
     this.props.actions.push('/app/signup');
   };
+  handleResetPassword = () => {
+    this.props.actions.push('/app/reset-password');
+  };
   render() {
     const { handleSubmit, pristine, reset, submitting, requestingLogin } = this.props;
     const button = classNames(
@@ -32,6 +35,10 @@ class LoginForm extends React.Component {
     const signup = classNames(
       'ui fluid large inverted blue submit button button-light',
     );
+    const resetButton = classNames(
+      'ui fluid large inverted red submit button button-light',
+      classes.reset
+    )
 
     return (
       <form onSubmit={handleSubmit} className="ui form">
@@ -53,6 +60,9 @@ class LoginForm extends React.Component {
         </button>
         <div className={signup} onClick={this.handleClick}>
           Signup
+        </div>
+        <div className={resetButton} onClick={this.handleResetPassword}>
+          Reset Password
         </div>
       </form>
     );

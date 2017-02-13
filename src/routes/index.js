@@ -6,6 +6,8 @@ import Core from './Core/Route';
 import Dashboard from './Dashboard';
 import Login from './Login/Route';
 import Signup from './Signup/Route';
+import ResetPassword from './ResetPassword';
+import ResetPasswordToken from './ResetPassword/routes/ResetPasswordToken';
 import Reservations from './Reservations/Route';
 import NewReservation from './Reservations/routes/NewReservation';
 import Reservation from './Reservations/routes/Reservation/Route';
@@ -50,6 +52,8 @@ export default (store) => (
     </Route>
     <Route component={Core}>
       <Route path="/app/404" component={NotFound} />
+      <Route path="/app/reset-password" getComponent={ResetPassword(store)} />
+      <Route path="/app/reset-password/:token" getComponent={ResetPasswordToken(store)} />
     </Route>
     <Redirect from="*" to="/app/404" />
   </Route>

@@ -31,6 +31,26 @@ export default {
       header: 'This reservation has a special request',
       text: 'It will need to be approved by a master user',
     },
+    'INVALID_RESET_PASSWORD_TOKEN': {
+      header: 'This link has either expired or is invalid',
+      text: 'Please try requesting another link'
+    },
+    'EMAIL_MISMATCH_RESET_PASSWORD_TOKEN': {
+      header: 'This link does not match the email provided',
+      text: 'Make sure you provided the correct email address'
+    },
+    'USED_RESET_PASSWORD_TOKEN': {
+      header: 'This link has already been used',
+      text: 'Please request another link'
+    },
+    'EXPIRED_RESET_PASSWORD_TOKEN': {
+      header: 'This link has expired',
+      text: 'Please request another link'
+    },
+    'USER_NOT_FOUND_RESET_PASSWORD_TOKEN': {
+      header: 'We are unable to find an account associated with this email address',
+      text: 'Please ensure you have provided the correct email address'
+    }
   },
   getError(code) {
     return this.errors[code] || this.errors['ERROR'];
