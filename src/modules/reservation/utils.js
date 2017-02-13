@@ -79,7 +79,7 @@ module.exports = {
     'NEEDS_APPROVAL': '#f5cc00',
     'APPROVED': '#5EE087',
     'CHECKED_OUT': '#2185D0',
-    'CHECKED_IN': '#45b6b2',
+    'CHECKED_IN': '#b84fc9',
     'UNKNOWN': '#838383',
   },
   constructAdminAction(status, reject) {
