@@ -17,30 +17,18 @@ export default class ReservationsView extends React.Component {
       { label: 'Start Date', property: 'startDate' , type: 'date' },
       { label: 'Checked Out By', property: 'checkedOutBy.fullName' },
       { label: 'Status', property: 'status', component: Status },
+      { label: 'Created At', property: 'createdAt', type: 'date' },
     ],
-  };
-  componentDidMount() {
-    this.goToPage(1);
-  }
-  goToPage = (page, event) => {
-    this.props.actions.fetchReservations({
-      page,
-    });
-  };
-  sortBy = (field, type) => {
-    this.props.actions.fetchReservations({
-      sortField: field,
-      sortType: type,
-    });
+    reload: false,
   };
   render() {
     return (
       <Data data={this.props.reservations} loading={this.props.requestingReservations}
         header="Reservations" user={this.props.user} currentUrl={this.props.currentUrl}
         actions={this.props.actions} fields={this.state.fields} route="/app/reservation"
-        currentPage={this.props.currentPage} totalPages={this.props.totalPages}
+        page={this.props.page} totalPages={this.props.totalPages}
         goToPage={this.goToPage} sortField={this.props.sortField} sortType={this.props.sortType}
-        sortBy={this.sortBy} newURL="/app/reservation/new" />
+        sortBy={this.sortBy} newURL="/app/reservation/new" location={this.props.location} />
     );
   }
 }

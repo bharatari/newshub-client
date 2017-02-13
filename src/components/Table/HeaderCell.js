@@ -26,7 +26,7 @@ export default class HeaderCell extends React.Component {
     }
   }
   render() {
-    const { field, sortField, sortType, sortBy, ...props } = this.props;
+    const { field, sortField, sortType, sortBy, sortable, ...props } = this.props;
     const sort = () => {
       if (sortField === field.property) {
         if (sortType === 'DESC') {

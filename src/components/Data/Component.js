@@ -11,8 +11,54 @@ export default class Data extends React.Component {
     user: PropTypes.object,
   };
   componentDidMount() {
-    this.props.goToPage(1);
+    this.getData(this.props);
   }
+  getData = (props) => {
+    this.props.actions.fetchReservations({
+      sortField: props.sortField,
+      sortType: props.sortType,
+      page: props.page,
+    });
+  };
+  goToPage = (page, event) => {
+    const query = {
+      ...this.props.location.query,
+      page,
+    };
+
+    this.props.actions.push({
+      ...this.props.location,
+      query,
+    });
+    
+    const { sortField, sortType } = query;
+
+    this.getData({
+      sortField,
+      sortType,
+      page,
+    });
+  };
+  sortBy = (sortField, sortType) => {
+    const query = {
+      ...this.props.location.query,
+      sortType,
+      sortField,
+    };
+
+    this.props.actions.push({
+      ...this.props.location,
+      query,
+    });
+
+    const { page } = query;
+
+    this.getData({
+      sortField,
+      sortType,
+      page,
+    });
+  };
   handleClick = () => {
     this.props.actions.push(this.props.newURL);
   };
@@ -30,6 +76,9 @@ export default class Data extends React.Component {
           header={this.props.header} right={right} loading={this.props.loading}
           user={this.props.user}>
           <Card column="sixteen">
+            
+          </Card>
+          <Card column="sixteen">
             {
               this.props.data ?
               <div>
@@ -37,13 +86,13 @@ export default class Data extends React.Component {
                   data={this.props.data} 
                   actions={this.props.actions}
                   route={this.props.route} 
-                  sortBy={this.props.sortBy}
+                  sortBy={this.sortBy}
                   sortField={this.props.sortField} 
                   sortType={this.props.sortType} 
                   sortable={true} />
-                <Paginator currentPage={this.props.currentPage} 
+                <Paginator currentPage={this.props.page} 
                   totalPages={this.props.totalPages} 
-                  goToPage={this.props.goToPage} />
+                  goToPage={this.goToPage} />
               </div>
               : <TextLoading loading={this.props.loading} />
             }

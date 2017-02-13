@@ -37,7 +37,8 @@ export function fetchReservation(id) {
 
 export function fetchReservations(options) {
   return function (dispatch, getState) {
-    const { reservation: { fetchReservations } } = getState();
+    dispatch(requestReservations());
+
     let startDate, endDate, limit, page, disabled, sortField, sortType;
 
     if (!_.isNil(options)) {
@@ -45,37 +46,21 @@ export function fetchReservations(options) {
     }
     
     if (_.isNil(limit)) {
-      if (!_.isNil(fetchReservations.limit)) {
-        limit = fetchReservations.limit;
-      } else {
-        limit = 10;
-      }
+      limit = 10;
     }
 
     if (_.isNil(page)) {
-      if (!_.isNil(fetchReservations.currentPage)) {
-        page = fetchReservations.currentPage;
-      } else {
-        page = 1;
-      }
+      page = 1;
     }
 
     const skip = data.pageToSkip(page, limit);
 
     if (_.isNil(sortField)) {
-      if (!_.isNil(fetchReservations.sortField)) {
-        sortField = fetchReservations.sortField;
-      } else {
-        sortField = 'createdAt';
-      }
+      sortField = 'createdAt';
     }
 
     if (_.isNil(sortType)) {
-      if (!_.isNil(fetchReservations.sortType)) {
-        sortType = fetchReservations.sortType;
-      } else {
-        sortType = 'DESC';
-      }
+      sortType = 'DESC';
     }
 
     const sort = data.constructSort(sortField, sortType);
@@ -90,14 +75,6 @@ export function fetchReservations(options) {
     if (!_.isNil(disabled)) {
       query += '&disabled=' + encodeURIComponent(disabled);
     }
-
-    dispatch(requestReservations({
-      sortField,
-      sortType,
-      limit,
-    }));
-
-    console.log(query);
 
     data.request('reservation', 'get', null, query, null, {
       resolve: false,

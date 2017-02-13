@@ -12,11 +12,7 @@ const initialState = {
     reservations: null,
     error: null,
     total: null,
-    currentPage: null,
     totalPages: null,
-    sortField: 'createdAt',
-    sortType: 'DESC',
-    limit: 10,
   },
   createReservation: {
     requesting: false,
@@ -49,9 +45,6 @@ export default handleActions({
       reservations: null,
       error: null,
       total: null,
-      sortField: action.payload.sortField,
-      sortType: action.payload.sortType,
-      limit: action.payload.limit,
     },
   }),
   RECEIVE_RESERVATIONS: {
@@ -64,7 +57,6 @@ export default handleActions({
           reservations: action.payload.data,
           error: null,
           total: action.payload.total,
-          currentPage: utils.getCurrentPage(action.payload.limit, action.payload.skip),
           totalPages: utils.calculatePages(action.payload.total, action.payload.limit),
         },
       };
