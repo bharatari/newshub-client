@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import jwt_decode from 'jwt-decode';
 
-module.exports = {
+export default {
   processResponse(data) {
     if (data) {
       return {

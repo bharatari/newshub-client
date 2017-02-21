@@ -33,7 +33,7 @@ export default {
       errors.purpose = 'Required';
     }
 
-    if (!values.devices || _.isEmpty(values.devices)) {
+    if (!values.room || _.isEmpty(values.room)) {
       errors.devices = 'Need to add at least one device to reservation';
     }
 
@@ -50,10 +50,6 @@ export default {
       return 'NEEDS_APPROVAL';
     } else if (reservation.approved && !reservation.checkedOut && !reservation.checkedIn) {
       return 'APPROVED';
-    } else if (reservation.approved && reservation.checkedOut && !reservation.checkedIn) {
-      return 'CHECKED_OUT';
-    } else if (reservation.approved && reservation.checkedOut && reservation.checkedIn) {
-      return 'CHECKED_IN';
     } else {
       return 'UNKNOWN';
     }
@@ -66,8 +62,6 @@ export default {
     'DISABLED': 'Disabled',
     'NEEDS_APPROVAL': 'Needs Approval',
     'APPROVED': 'Approved',
-    'CHECKED_OUT': 'Checked Out',
-    'CHECKED_IN': 'Checked In',
     'UNKNOWN': 'Unknown',
   },
   getReservationColor(reservation) {
@@ -78,8 +72,6 @@ export default {
     'DISABLED': '#ff6a6c',
     'NEEDS_APPROVAL': '#f5cc00',
     'APPROVED': '#5EE087',
-    'CHECKED_OUT': '#2185D0',
-    'CHECKED_IN': '#b84fc9',
     'UNKNOWN': '#838383',
   },
   constructAdminAction(status, reject) {
@@ -93,14 +85,6 @@ export default {
           approved: true,
         };
       }
-    } else if (status === 'APPROVED') {
-      return {
-        checkedOut: true,
-      };
-    } else if (status === 'CHECKED_OUT') {
-      return {
-        checkedIn: true,
-      };
     }
 
     return null;

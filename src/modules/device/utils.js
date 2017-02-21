@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-module.exports = {
+export default {
   processResponse(data) {
     if (data) {
       return {

@@ -76,9 +76,6 @@ export default class Data extends React.Component {
           header={this.props.header} right={right} loading={this.props.loading}
           user={this.props.user}>
           <Card column="sixteen">
-            
-          </Card>
-          <Card column="sixteen">
             {
               this.props.data ?
               <div>
