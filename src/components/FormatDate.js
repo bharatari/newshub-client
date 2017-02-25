@@ -7,13 +7,18 @@ export default class FormatDate extends React.Component {
     datetime: PropTypes.string,
   };
   format = () => {
-    if (this.props.date) {
+    if (this.props.format) {
+      return this.formatDynamic();
+    } else if (this.props.date) {
       return this.formatDate();
     } else if (this.props.datetime) {
       return this.formatDateTime();
     }
 
     return '';
+  };
+  formatDynamic = () => {
+    return moment(this.props.datetime).format(this.props.format);
   };
   formatDate = () => {
     return moment(this.props.date).format("MM/DD/YY");
