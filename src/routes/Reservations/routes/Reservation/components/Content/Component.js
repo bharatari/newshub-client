@@ -18,9 +18,39 @@ export default class Content extends React.Component {
   };
   render() {
     const { reservation: { notes, specialRequests, adminNotes } } = this.props;
-    const reviewedBy = _.get(this.props.reservation, 'approvedBy.fullName') || _.get(this.props.reservation, 'rejectedBy.fullName');
-    const checkedOutBy = _.get(this.props.reservation, 'checkedOutBy.fullName');
-    const checkedInBy = _.get(this.props.reservation, 'checkedInBy.fullName');
+    const reviewedBy = () => {
+      const reviewedByName = _.get(this.props.reservation, 'approvedBy.fullName') || _.get(this.props.reservation, 'rejectedBy.fullName');
+
+      if (reviewedByName) {
+        return (
+          <li>
+            <strong>{reviewedByName}</strong> reviewed this reservation
+          </li>
+        );
+      }
+    };
+    const checkedOutBy = () => {
+      const checkedOutByName = _.get(this.props.reservation, 'checkedOutBy.fullName');
+
+      if (checkedOutByName) {
+        return (
+          <li>
+            <strong>{checkedOutByName}</strong> checked out this reservation
+          </li>
+        );
+      }
+    };
+    const checkedInBy = () => {
+      const checkedInByName = _.get(this.props.reservation, 'checkedInBy.fullName');
+
+      if (checkedInByName) {
+        return (
+          <li>
+            <strong>{checkedInByName}</strong> checked in this reservation
+          </li>
+        );
+      }
+    };
 
     const color = reservation.getReservationColor(this.props.reservation);
     const status = reservation.getReservationStatus(this.props.reservation);
@@ -62,17 +92,11 @@ export default class Content extends React.Component {
             <div className={classes.activityBox}>
               <ul>
                 <li>
-                  {this.props.reservation.user.fullName} created this on <FormatDate datetime={this.props.reservation.startDate} />
+                  <strong>{this.props.reservation.user.fullName}</strong> created this on <FormatDate datetime={this.props.reservation.startDate} />
                 </li>
-                <li>
-                  {reviewedBy} reviewed this reservation
-                </li>
-                <li>
-                  {checkedOutBy} checked out this reservation
-                </li>
-                <li>
-                  {checkedInBy} checked in this reservation
-                </li>
+                { reviewedBy() }
+                { checkedOutBy() }
+                { checkedInBy() }
               </ul>
             </div>
           </div>

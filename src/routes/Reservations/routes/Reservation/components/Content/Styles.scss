@@ -84,11 +84,22 @@
 }
 
 .activityBox {
-  background-color: #f2f2f2;
-  padding: 20px;
-  padding-left: 0px;
+
 }
 
 .activityBox ul {
   list-style-type: none;
+  padding-left: 0px;
+}
+
+.activityBox ul li:first-child {
+  border-top: none;
+}
+
+.activityBox ul li {
+  padding: 20px;
+  font-family: 'Open Sans';
+  color: gray;
+  border-top: 1px solid lightgrey;
+  background-color: whitesmoke;
 }
