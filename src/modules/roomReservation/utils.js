@@ -33,8 +33,8 @@ export default {
       errors.purpose = 'Required';
     }
 
-    if (!values.room || _.isEmpty(values.room)) {
-      errors.devices = 'Need to add at least one device to reservation';
+    if (_.isNil(values.roomId)) {
+      errors.roomId = 'Must select a room for this reservation';
     }
 
     return errors;

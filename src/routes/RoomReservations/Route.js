@@ -7,8 +7,8 @@ import { pageSelector } from 'modules/reservation/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
-  reservations: state.reservation.fetchReservations.reservations,
-  requestingReservations: state.reservation.fetchReservations.requesting,
+  roomReservations: state.roomReservation.fetchRoomReservations.roomReservations,
+  requestingReservations: state.roomReservation.fetchRoomReservations.requesting,
   user: state.user.fetchCurrentUser.user,
   totalPages: state.reservation.fetchReservations.totalPages,
   sortField: ownProps.location.query.sortField,

@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
-import reservation from 'modules/reservation/utils';
-import Dummy from './Dummy';
+import roomReservation from 'modules/roomReservation/utils';
+import Selct from './Select';
 
 const renderField = ({ input, meta: { touched, error }}) => (
   <div>
@@ -23,28 +23,31 @@ const renderDate = ({ input, meta: { touched, error }}) => (
   </div>
 );
 
-class NewReservationForm extends React.Component {
+class NewRoomReservationForm extends React.Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
     reset: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
-    remainingDevices: PropTypes.object,
-    selectedDevices: PropTypes.array,
+    rooms: PropTypes.array,
   };
   render() {
     const { handleSubmit, pristine, reset, submitting, remainingDevices, selectedDevices } = this.props;
-    const renderWizard = props => (
-      <span>
-        <h2 className={classes.deviceHeader}>Devices</h2>
-        <Dummy onChange={props.input.onChange} value={props.input.value}
-          remainingDevices={remainingDevices} selectedDevices={selectedDevices} />
-        {props.touched && props.error && <span className={classes.errorText}>{props.error}</span>}
-      </span>
+    const renderRoom = ({ input, meta: { touched, error }}) => (
+      <div>
+        <div className="ui input">
+          <Select {...input} options={this.props.rooms} />
+        </div>
+        {touched && error && <span className={classes.errorText}>{error}</span>}
+      </div>
     );
 
     return (
       <form onSubmit={handleSubmit} className="ui form">
+        <div className="field">
+          <label className={classes.font}>Room</label>
+          <Field name="roomId" placeholder="Room" component={renderRoom} />
+        </div>
         <div className="field">
           <label className={classes.font}>Start Date</label>
           <Field name="startDate" placeholder="Start Date" component={renderDate} />
@@ -65,13 +68,12 @@ class NewReservationForm extends React.Component {
           <label className={classes.font}>Additional Notes</label>
           <Field name="notes" type="text" component={renderField} />
         </div>
-        <Field name="devices" component={renderWizard} />
       </form>
     );
   }
 }
 
 export default reduxForm({
-  form: 'newReservation',
-  validate: reservation.validateNewReservation,
-})(NewReservationForm);
+  form: 'newRoomReservation',
+  validate: roomReservation.validateNewReservation,
+})(NewRoomReservationForm);

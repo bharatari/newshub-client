@@ -15,7 +15,7 @@ export default class ReservationsView extends React.Component {
     fields: [
       { label: 'Name', property: 'user.fullName'},
       { label: 'Start Date', property: 'startDate' , type: 'date' },
-      { label: 'Checked Out By', property: 'checkedOutBy.fullName' },
+      { label: 'Approved By', property: 'approvedBy.fullName' },
       { label: 'Status', property: 'status', component: Status },
       { label: 'Created At', property: 'createdAt', type: 'date' },
     ],
@@ -23,7 +23,7 @@ export default class ReservationsView extends React.Component {
   };
   render() {
     return (
-      <Data data={this.props.reservations} loading={this.props.requestingReservations}
+      <Data data={this.props.roomReservations} loading={this.props.requestingRoomReservations}
         header="Room Reservations" user={this.props.user} currentUrl={this.props.currentUrl}
         actions={this.props.actions} fields={this.state.fields} route="/app/room-reservation"
         page={this.props.page} totalPages={this.props.totalPages}

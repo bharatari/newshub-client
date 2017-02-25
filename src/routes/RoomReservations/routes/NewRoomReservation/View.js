@@ -5,7 +5,7 @@ import { SidebarPage, Table, Card, Modal } from 'components/';
 import { Form, Wizard, ModalContent } from './components';
 import { animateScroll as scroll } from 'react-scroll';
 
-export default class NewReservationView extends React.Component {
+export default class NewRoomReservationView extends React.Component {
   static propTypes = {
     actions: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -13,12 +13,12 @@ export default class NewReservationView extends React.Component {
     user: PropTypes.object,
   };
   state = {
-    requestedDevices: false,
+    requestedRooms: false,
   }
   componentDidMount() {
-    this.props.actions.resetCreateReservation();
-    this.props.actions.resetFetchReservations();
-    this.props.actions.fetchDevices(null, null, false);
+    this.props.actions.resetCreateRoomReservation();
+    this.props.actions.resetFetchRoomReservations();
+    this.props.actions.fetchRooms(null, null, false);
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.newReservation) {
@@ -27,34 +27,22 @@ export default class NewReservationView extends React.Component {
 
       if (startDate && endDate) {
         if ((startDate !== oldStartDate) || (endDate !== oldEndDate)) {
-          this.props.actions.fetchDevices(startDate, endDate, false);
-          this.props.actions.fetchReservations({
+          this.props.actions.fetchRooms(startDate, endDate, false);
+          this.props.actions.fetchRoomReservations({
             startDate,
             endDate,
             page: 1,
             disabled: false,
           });
           this.setState({
-            requestedDevices: false,
+            requestedRooms: false,
           });
-        } else if (this.props.requestingDevices) {
-          if (!this.state.requestedDevices) {
-            this.props.actions.setWizardValue({
-              name: 'newReservation',
-              key: 'selectedDevices',
-              value: [],
-            });
-
-            this.setState({
-              requestedDevices: true,
-            });
-          }
         }
       }  
     }
   }
   handleSubmit = (values) => {
-    this.props.actions.createReservation(values);
+    this.props.actions.createRoomReservation(values);
     scroll.scrollToTop();
   };
   handleClick = () => {
@@ -65,8 +53,8 @@ export default class NewReservationView extends React.Component {
       'ui animated button blue inverted button-light',
       { loading: this.props.requestingCreateReservation }
     );
-    const disable = this.props.requestingCreateReservation || this.props.createdReservation;
-    const loading = this.props.requestingCreateReservation || this.props.requestingDevices || this.props.requestingReservations || this.props.requestingFetchReservation;
+    const disable = this.props.requestingCreateRoomReservation || this.props.createdRoomReservation;
+    const loading = this.props.requestingCreateRoomReservation || this.props.requestingRooms;
     const right = <button className={button} disabled={disable}
                     onClick={this.handleClick}>
                     <div className="visible content">SAVE</div>
@@ -83,21 +71,12 @@ export default class NewReservationView extends React.Component {
 
     return (
       <div>
-        <Modal id="new-reservation-modal" show={this.props.showModal} hideActions={true}
-        cancelText="Close" hideModal={this.props.localActions.resetReservation}
-        scrollable={true}>
-          <ModalContent action={this.props.localActions.fetchReservation} data={this.props.reservation} />
-        </Modal>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="New Reservation" right={right} loading={loading} user={this.props.user}>
+          header="New Room Reservation" right={right} loading={loading} user={this.props.user}>
           <Card column="sixteen">
-            { this.props.createdReservation ? message : null }
-            <Form ref="form" remainingDevices={this.props.remainingDevices}
-              requestingCreateReservation={this.props.requestingCreateReservation}
-              onSubmit={this.handleSubmit} selectedDevices={this.props.selectedDevices} />
-            <Wizard actions={this.props.actions} selectedDevices={this.props.selectedDevices}
-              remainingDevices={this.props.remainingDevices} reservations={this.props.reservations}
-              localActions={this.props.localActions} />
+            { this.props.createdRoomReservation ? message : null }
+            <Form ref="form" requestingCreateReservation={this.props.requestingCreateReservation}
+              onSubmit={this.handleSubmit} rooms={this.props.rooms} />
             {right}
           </Card>
         </SidebarPage>

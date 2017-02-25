@@ -2,38 +2,26 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import View from './View';
 import * as reservation from 'modules/reservation/actions';
-import * as device from 'modules/device/actions';
-import * as wizard from 'modules/wizard/actions';
-import * as actions from './modules/actions';
+import * as room from 'modules/room/actions';
 import { routerActions } from 'react-router-redux';
-import { groupDevices } from 'modules/wizard/selectors';
+import { processRooms } from 'modules/room/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
-  remainingDevices: groupDevices(state),
-  requestingCreateReservation: state.reservation.createReservation.requesting,
-  createdReservation: state.reservation.createReservation.reservation,
-  selectedDevices: state.wizard.newReservation.selectedDevices,
-  newReservation: state.form.newReservation,
-  requestingDevices: state.device.fetchDevices.requesting,
-  reservations: state.reservation.fetchReservations.reservations,
-  requestingReservations: state.reservation.fetchReservations.requesting,
+  requestingCreateReservation: state.roomReservation.creatRoomReservation.reservation,
+  rooms: processRooms(state),
+  requestingRooms: state.room.fetchRooms.requesting,
+  newRoomReservation: state.form.newRoomReservation,
   user: state.user.fetchCurrentUser.user,
-  showModal: state.newReservation.modal.show,
-  reservation: state.newReservation.fetchReservation.reservation,
-  requestingFetchReservation: state.newReservation.fetchReservation.requesting,
 });
 
 const actionCreators = {
   ...routerActions,
   ...reservation,
-  ...device,
-  ...wizard,
+  ...room,
 };
 
-const localActionCreators = {
-  ...actions,
-};
+const localActionCreators = {};
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actionCreators, dispatch),
