@@ -14,6 +14,9 @@ import Reservation from './Reservations/routes/Reservation/Route';
 import RoomReservations from './RoomReservations/Route';
 import NewRoomReservation from './RoomReservations/routes/NewRoomReservation';
 import RoomReservation from './RoomReservations/routes/RoomReservation/Route';
+import Rooms from './Rooms/Route';
+import Room from './Rooms/routes/Room/Route';
+import NewRoom from './Rooms/routes/NewRoom/Route';
 import Users from './Users/Route';
 import NewUser from './Users/routes/NewUser/Route';
 import User from './Users/routes/User/Route';
@@ -38,6 +41,9 @@ export default (store) => (
       <Route path="/app/room-reservation" component={RoomReservations} />
       <Route path="/app/room-reservation/new" getComponent={NewRoomReservation(store)} />
       <Route path="/app/room-reservation/:id" component={RoomReservation} />
+      <Route path="/app/room" component={Rooms} />
+      <Route path="/app/room/new" component={NewRoomReservation} />
+      <Route path="/app/room/:id" component={Room} />
       <Route path="/app/project" component={Projects} />
       <Route path="/app/project/:id" component={Project} />
       <Route component={admin()}>
