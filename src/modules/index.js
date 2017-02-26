@@ -3,10 +3,12 @@ import { routerReducer as router } from 'react-router-redux'
 import { reducer as form } from 'redux-form';
 import authentication from './authentication/reducer';
 import signupToken from './signupToken/reducer';
+import roomReservation from './roomReservation/reducer';
 import reservation from './reservation/reducer';
 import wizard from './wizard/reducer';
 import device from './device/reducer';
 import image from './image/reducer';
+import room from './room/reducer';
 import user from './user/reducer';
 
 export const makeRootReducer = (asyncReducers) => {
@@ -15,11 +17,13 @@ export const makeRootReducer = (asyncReducers) => {
     signupToken,
     wizard,
     device,
+    roomReservation,
     reservation,
     user,
     router,
     form,
     image,
+    room,
     ...asyncReducers,
   });
 }

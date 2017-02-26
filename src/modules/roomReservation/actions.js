@@ -26,7 +26,7 @@ export function fetchRoomReservation(id) {
   return function (dispatch) {
     dispatch(requestRoomReservation());
 
-    data.request('reservation', 'get', id)
+    data.request('room-reservation', 'get', id)
       .then(function (response) {
         dispatch(receiveRoomReservation(response))
       }).catch(function (e) {
@@ -39,10 +39,10 @@ export function fetchRoomReservations(options) {
   return function (dispatch, getState) {
     dispatch(requestRoomReservations());
 
-    let startDate, endDate, limit, page, disabled, sortField, sortType;
+    let startDate, endDate, limit, page, disabled, sortField, sortType, roomId;
 
     if (!_.isNil(options)) {
-      ({ startDate, endDate, limit, page, disabled, sortField, sortType } = options);
+      ({ startDate, endDate, limit, page, disabled, sortField, sortType, roomId } = options);
     }
     
     if (_.isNil(limit)) {
@@ -63,9 +63,10 @@ export function fetchRoomReservations(options) {
       sortType = 'DESC';
     }
 
+    const roomIdParam = _.isNil(roomId) ? '' : `&roomId=${roomId}`;
     const sort = data.constructSort(sortField, sortType);
 
-    let query = `?${sort}&$limit=${limit}&$skip=${skip}`;
+    let query = `?${sort}&$limit=${limit}&$skip=${skip}${roomIdParam}`;
 
     if (startDate && endDate) {
       query += '&startDate=' + encodeURIComponent(startDate);
@@ -76,7 +77,7 @@ export function fetchRoomReservations(options) {
       query += '&disabled=' + encodeURIComponent(disabled);
     }
 
-    data.request('reservation', 'get', null, query, null, {
+    data.request('room-reservation', 'get', null, query, null, {
       resolve: false,
     }).then(function (response) {
       dispatch(receiveRoomReservations(response));
@@ -90,7 +91,7 @@ export function updateRoomReservation(id, body) {
   return function (dispatch) {
     dispatch(requestUpdateRoomReservation());
 
-    data.request('reservation', 'PATCH', id, null, body)
+    data.request('room-reservation', 'PATCH', id, null, body)
       .then(function (response) {
         dispatch(receiveUpdateRoomReservation(response))
       }).catch(function (e) {
@@ -103,7 +104,7 @@ export function createRoomReservation(body) {
   return function (dispatch) {
     dispatch(requestCreateRoomReservation());
 
-    data.request('reservation', 'post', null, null, body)
+    data.request('room-reservation', 'post', null, null, body)
       .then(function (response) {
         dispatch(receiveCreateRoomReservation(response))
       }).catch(function (e) {

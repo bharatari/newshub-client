@@ -14,7 +14,7 @@ export default class Data extends React.Component {
     this.getData(this.props);
   }
   getData = (props) => {
-    this.props.actions.fetchReservations({
+    this.props.fetch({
       sortField: props.sortField,
       sortType: props.sortType,
       page: props.page,

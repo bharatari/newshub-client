@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { FormatDate } from 'components/';
-import { Devices } from '../';
 import reservation from 'modules/reservation/utils';
 import user from 'modules/user/utils';
 import _ from 'lodash';

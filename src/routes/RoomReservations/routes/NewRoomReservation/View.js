@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, Table, Card, Modal } from 'components/';
-import { Form, Wizard, ModalContent } from './components';
+import { Form, Wizard, ModalContent, Schedule } from './components';
 import { animateScroll as scroll } from 'react-scroll';
+import _ from 'lodash';
 
 export default class NewRoomReservationView extends React.Component {
   static propTypes = {
@@ -14,6 +15,7 @@ export default class NewRoomReservationView extends React.Component {
   };
   state = {
     requestedRooms: false,
+    requestedRoomReservations: false,
   }
   componentDidMount() {
     this.props.actions.resetCreateRoomReservation();
@@ -21,24 +23,50 @@ export default class NewRoomReservationView extends React.Component {
     this.props.actions.fetchRooms(null, null, false);
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.newReservation) {
-      const { startDate, endDate } = nextProps.newReservation.values;
-      const { startDate: oldStartDate, endDate: oldEndDate } = this.props.newReservation.values;
+    if (nextProps.newRoomReservation) {
+      if (nextProps.newRoomReservation.values) {
+        if (!this.props.newRoomReservation.values) {
+          const { roomId } = nextProps.newRoomReservation.values;
 
-      if (startDate && endDate) {
-        if ((startDate !== oldStartDate) || (endDate !== oldEndDate)) {
-          this.props.actions.fetchRooms(startDate, endDate, false);
-          this.props.actions.fetchRoomReservations({
-            startDate,
-            endDate,
-            page: 1,
-            disabled: false,
-          });
-          this.setState({
-            requestedRooms: false,
-          });
-        }
-      }  
+          if (roomId && !this.state.requestedRoomReservations) {
+            this.props.actions.fetchRoomReservations({
+              roomId,
+              sortType: 'DESC',
+              sortField: 'startDate',
+            });
+
+            this.setState({
+              requestedRoomReservations: true,
+            });
+          }          
+        } else {
+          const { startDate, endDate, roomId } = nextProps.newRoomReservation.values;
+          const { startDate: oldStartDate, endDate: oldEndDate, roomId: oldRoomId } = this.props.newRoomReservation.values;
+
+          if (startDate && endDate && roomId) {
+            if ((startDate !== oldStartDate) || (endDate !== oldEndDate)) {
+              // check availability
+              
+            }
+          }
+
+          if (!_.isNil(roomId)) {
+            if (roomId !== oldRoomId) {
+              if (!this.state.requestedRoomReservations) {
+                this.props.actions.fetchRoomReservations({
+                  roomId,
+                  sortType: 'DESC',
+                  sortField: 'startDate',
+                });
+
+                this.setState({
+                  requestedRoomReservations: true,
+                });
+              }
+            }
+          }
+        }       
+      }
     }
   }
   handleSubmit = (values) => {
@@ -51,10 +79,10 @@ export default class NewRoomReservationView extends React.Component {
   render() {
     const button = classNames(
       'ui animated button blue inverted button-light',
-      { loading: this.props.requestingCreateReservation }
+      { loading: this.props.requestingCreateRoomReservation }
     );
     const disable = this.props.requestingCreateRoomReservation || this.props.createdRoomReservation;
-    const loading = this.props.requestingCreateRoomReservation || this.props.requestingRooms;
+    const loading = this.props.requestingCreateRoomReservation || this.props.requestingRooms || this.props.requestingRoomReservations;
     const right = <button className={button} disabled={disable}
                     onClick={this.handleClick}>
                     <div className="visible content">SAVE</div>
@@ -75,8 +103,9 @@ export default class NewRoomReservationView extends React.Component {
           header="New Room Reservation" right={right} loading={loading} user={this.props.user}>
           <Card column="sixteen">
             { this.props.createdRoomReservation ? message : null }
-            <Form ref="form" requestingCreateReservation={this.props.requestingCreateReservation}
+            <Form ref="form" requestingCreateRoomReservation={this.props.requestingCreateRoomReservation}
               onSubmit={this.handleSubmit} rooms={this.props.rooms} />
+            { this.props.roomReservations ? <Schedule roomReservations={this.props.roomReservations} /> : null }
             {right}
           </Card>
         </SidebarPage>

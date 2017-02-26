@@ -1,16 +1,16 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import View from './View';
-import * as reservation from 'modules/reservation/actions';
+import * as roomReservation from 'modules/roomReservation/actions';
 import { routerActions } from 'react-router-redux';
 import { pageSelector } from 'modules/reservation/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
-  roomReservations: state.roomReservation.fetchRoomReservations.roomReservations,
-  requestingReservations: state.roomReservation.fetchRoomReservations.requesting,
+  roomReservations: state.roomReservation.fetchRoomReservations.reservations,
+  requestingRoomReservations: state.roomReservation.fetchRoomReservations.requesting,
   user: state.user.fetchCurrentUser.user,
-  totalPages: state.reservation.fetchReservations.totalPages,
+  totalPages: state.roomReservation.fetchRoomReservations.totalPages,
   sortField: ownProps.location.query.sortField,
   sortType: ownProps.location.query.sortType,
   page: pageSelector(ownProps),
@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const actionCreators = {
   ...routerActions,
-  ...reservation,
+  ...roomReservation,
 };
 
 const mapDispatchToProps = (dispatch) => ({

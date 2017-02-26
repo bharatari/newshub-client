@@ -4,25 +4,25 @@ import classNames from 'classnames';
 import { SidebarPage, FormatDate, TextLoading, Response, Card } from 'components/';
 import { Admin, Devices, Content } from './components';
 
-export default class ReservationView extends React.Component {
+export default class RoomReservationView extends React.Component {
   static propTypes = {
-    reservation: PropTypes.object,
-    requestingReservation: PropTypes.bool,
+    roomReservation: PropTypes.object,
+    requestingRoomReservation: PropTypes.bool,
   };
   state = {
     updated: false,
   };
   componentDidMount() {
-    this.props.actions.resetUpdateReservation();
-    this.props.actions.fetchReservation(this.props.id);
+    this.props.actions.resetUpdateRoomReservation();
+    this.props.actions.fetchRoomReservation(this.props.id);
   }
   handleClick = () => {
-    this.props.actions.push('/app/reservation/new');
+    this.props.actions.push('/app/room-reservation/new');
   };
   componentWillReceiveProps(nextProps) {
-    if (nextProps.updatedReservation && !nextProps.requestingUpdateReservation) {
+    if (nextProps.updatedRoomReservation && !nextProps.requestingUpdateRoomReservation) {
       if (!this.state.updated) {
-        this.props.actions.fetchReservation(this.props.id);
+        this.props.actions.fetchRoomReservation(this.props.id);
 
         this.setState({
           updated: true,
@@ -30,30 +30,30 @@ export default class ReservationView extends React.Component {
       }
     }
 
-    if (nextProps.requestingUpdateReservation) {
+    if (nextProps.requestingUpdateRoomReservation) {
       this.setState({
         updated: false,
       });
     }
   }
   render() {
-    const { reservation, requestingReservation, 
-            actions, updateError, updatedReservation,
-            requestingUpdateReservation, currentUrl, user } = this.props;
+    const { roomReservation, requestingRoomReservation, 
+            actions, updateError, updatedRoomReservation,
+            requestingUpdateRoomReservation, currentUrl, user } = this.props;
 
     return (
       <div>
         <SidebarPage currentUrl={currentUrl} actions={actions}
-          header="Reservation" loading={requestingReservation || requestingUpdateReservation}
+          header="Room Reservation" loading={requestingRoomReservation || requestingUpdateRoomReservation}
           user={this.props.user}>
           <Card column="sixteen">
             <div>
-              <Response error={updateError} response={updatedReservation}
+              <Response error={updateError} response={updatedRoomReservation}
                 successHeader="You successfully updated this reservation." />
               {
-                reservation ? 
-                <Content reservation={reservation} actions={actions} user={user} /> :
-                <TextLoading loading={requestingReservation} /> 
+                roomReservation ? 
+                <Content reservation={roomReservation} actions={actions} user={user} /> :
+                <TextLoading loading={requestingRoomReservation} /> 
               }
             </div>
           </Card>

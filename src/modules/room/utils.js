@@ -30,11 +30,13 @@ export default {
   processRooms(rooms) {
     const array = [];
 
-    for (let i = 0; i < rooms.length; i++) {
-      array[i] = {
-        value: 1,
-        label: rooms[i].label,
-      };
+    if (rooms) {
+      for (let i = 0; i < rooms.length; i++) {
+        array[i] = {
+          value: 1,
+          label: rooms[i].label,
+        };
+      }
     }
 
     return array;

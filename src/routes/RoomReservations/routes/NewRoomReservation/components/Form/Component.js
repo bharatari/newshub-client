@@ -3,7 +3,12 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 import roomReservation from 'modules/roomReservation/utils';
-import Selct from './Select';
+import Select from 'react-select';
+
+const formStyles = classNames(
+  'ui form',
+  classes.bottom
+);
 
 const renderField = ({ input, meta: { touched, error }}) => (
   <div>
@@ -35,15 +40,14 @@ class NewRoomReservationForm extends React.Component {
     const { handleSubmit, pristine, reset, submitting, remainingDevices, selectedDevices } = this.props;
     const renderRoom = ({ input, meta: { touched, error }}) => (
       <div>
-        <div className="ui input">
-          <Select {...input} options={this.props.rooms} />
-        </div>
+        <Select {...input} options={this.props.rooms} className={classes.select}
+          onChange={(data) => { input.onChange(data.value) }} />
         {touched && error && <span className={classes.errorText}>{error}</span>}
       </div>
     );
 
     return (
-      <form onSubmit={handleSubmit} className="ui form">
+      <form onSubmit={handleSubmit} className={formStyles}>
         <div className="field">
           <label className={classes.font}>Room</label>
           <Field name="roomId" placeholder="Room" component={renderRoom} />
