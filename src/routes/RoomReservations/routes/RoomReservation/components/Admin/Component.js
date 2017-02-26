@@ -47,10 +47,6 @@ export default class Admin extends React.Component {
           return needsApproval;
         } else if (status === 'APPROVED') {
           return <button className={buttonStyle} onClick={this.handleClick}>CHECK OUT</button>;
-        } else if (status === 'CHECKED_OUT') {
-          return <button className={buttonStyle} onClick={this.handleClick}>CHECK IN</button>;
-        } else if (status === 'CHECKED_IN') {
-          return <p className={classes.empty}>Nothing to see here...</p>;
         } else {
           return <p className={classes.empty}>Nothing to see here...</p>;;
         }
