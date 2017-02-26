@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { SidebarPage, Table, Card, Modal } from 'components/';
+import { SidebarPage, Table, Card, Modal, Response } from 'components/';
 import { Form, Wizard, ModalContent, Schedule } from './components';
 import { animateScroll as scroll } from 'react-scroll';
 import _ from 'lodash';
@@ -83,26 +83,24 @@ export default class NewRoomReservationView extends React.Component {
     );
     const disable = this.props.requestingCreateRoomReservation || this.props.createdRoomReservation;
     const loading = this.props.requestingCreateRoomReservation || this.props.requestingRooms || this.props.requestingRoomReservations;
-    const right = <button className={button} disabled={disable}
-                    onClick={this.handleClick}>
-                    <div className="visible content">SAVE</div>
-                    <div className="hidden content">
-                      <i className="checkmark icon"></i>
-                    </div>
-                  </button>;
-    const message = <div className="ui success message">
-                      <div className="header">
-                        Your reservation has been created.
-                      </div>
-                      <p>It will need to be approved by a member of management.</p>
-                    </div>
+    const right = (
+      <button className={button} disabled={disable}
+        onClick={this.handleClick}>
+        <div className="visible content">SAVE</div>
+        <div className="hidden content">
+          <i className="checkmark icon"></i>
+        </div>
+      </button>
+    );
 
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
           header="New Room Reservation" right={right} loading={loading} user={this.props.user}>
           <Card column="sixteen">
-            { this.props.createdRoomReservation ? message : null }
+            <Response error={this.props.error} response={this.props.createdRoomReservation}
+              successHeader="Your reservation has been created" 
+              successText="It will need to be approved by a member of management" />
             <Form ref="form" requestingCreateRoomReservation={this.props.requestingCreateRoomReservation}
               onSubmit={this.handleSubmit} rooms={this.props.rooms} />
             { this.props.roomReservations ? <Schedule roomReservations={this.props.roomReservations} /> : null }

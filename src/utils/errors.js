@@ -50,7 +50,11 @@ export default {
     'USER_NOT_FOUND_RESET_PASSWORD_TOKEN': {
       header: 'We are unable to find an account associated with this email address',
       text: 'Please ensure you have provided the correct email address'
-    }
+    },
+    'ROOM_UNAVAILABLE': {
+      header: 'The room you selected is not available for the given times',
+      text: 'Try a different range of dates. If you need this time slot, speak to management about deleting the previous reservation.'
+    },
   },
   getError(code) {
     return this.errors[code] || this.errors['ERROR'];

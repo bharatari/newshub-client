@@ -8,7 +8,9 @@ import { processRooms } from 'modules/room/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
-  requestingCreateReservation: state.roomReservation.createRoomReservation.reservation,
+  requestingCreateReservation: state.roomReservation.createRoomReservation.requesting,
+  createdRoomReservation: state.roomReservation.createRoomReservation.reservation,
+  error: state.roomReservation.createRoomReservation.error,
   rooms: processRooms(state),
   requestingRooms: state.room.fetchRooms.requesting,
   newRoomReservation: state.form.newRoomReservation,

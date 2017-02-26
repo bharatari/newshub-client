@@ -6,7 +6,10 @@ import BigCalendar from 'react-big-calendar';
 
 BigCalendar.momentLocalizer(moment);
 
-export default class Content extends React.Component {
+export default class Schedule extends React.Component {
+  state = {
+    views: ['week', 'day']
+  }
   events = () => {
     const array = [];
 
@@ -26,10 +29,9 @@ export default class Content extends React.Component {
         <h2 className={classes.header}>Availability</h2>
         <BigCalendar
           events={this.events()}
-          startAccessor='startDate'
-          endAccessor='endDate'
-          titleAccessor='purpose'
-        />
+          startAccessor="startDate"
+          endAccessor="endDate"
+          titleAccessor="purpose" />
       </div>
     );
   }
