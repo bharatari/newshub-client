@@ -2,6 +2,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { Response } from 'components/';
 import { shallow } from 'enzyme';
+import chai from 'chai';
+
+const expect = chai.expect;
 
 describe('(Component) Response', () => {
   let _props, _spies, _wrapper;

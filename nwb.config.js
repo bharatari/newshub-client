@@ -11,6 +11,9 @@ module.exports = {
     stage: 1
   },
   webpack: {
+    compat: {
+      enzyme: true,
+    },
     extra: {
       plugins: [
         new DotenvPlugin({
@@ -26,6 +29,7 @@ module.exports = {
       modules: path.resolve('src/modules'),
       routes: path.resolve('src/routes'),
       constants: path.resolve('src/constants'),
+      store: path.resolve('src/store')
     },
     define: {
       CONFIG: JSON.stringify(process.env),

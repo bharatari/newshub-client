@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import utils from 'utils/general';
 
-const initialState = {
+export const initialState = {
   fetchReservation: {
     requesting: false,
     reservation: null,

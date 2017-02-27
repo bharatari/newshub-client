@@ -2,6 +2,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { Card } from 'components/';
 import { shallow } from 'enzyme';
+import chai from 'chai';
+
+const expect = chai.expect;
 
 describe('(Component) Card', () => {
   let _props, _spies, _wrapper;

@@ -6,14 +6,22 @@ import fetch from 'isomorphic-fetch';
 
 export default {
   configure() {
-    let socket = io(this.base);
+    let socket = io(this.base());
     let app = feathers()
       .configure(feathers.hooks())
       .configure(feathers.socketio(socket));
 
     this.app = app;
   },
-  base: __DEV__ ? 'http://localhost:3030' : '',
+  base() {
+    if (__DEV__) {
+      return 'http://localhost:3030';
+    } else if (__TEST__) {
+      return 'http://localhost:3030';
+    } else {
+      return '';
+    }
+  },
   getCurrentBase() {
     let url = window.location.protocol + '//' + window.location.hostname;
      
@@ -73,7 +81,7 @@ export default {
     service.on(action, cb);    
   },
   processUrl(dataType, id, query = '') {
-    let url = this.base + this.apiRoot + '/' + dataType;
+    let url = this.base() + this.apiRoot + '/' + dataType;
 
     if (id != null) {
       url += '/' + id;
