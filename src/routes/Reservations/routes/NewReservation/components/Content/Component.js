@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { FormatDate } from 'components/';
-import { Admin, Devices } from '../';
+import { Devices } from '../';
 import reservation from 'modules/reservation/utils';
 import user from 'modules/user/utils';
 import _ from 'lodash';
@@ -101,8 +101,6 @@ export default class Content extends React.Component {
             </div>
           </div>
         </div>
-        
-        { user.isAdmin(this.props.user) ? <Admin reservation={this.props.reservation} actions={this.props.actions} /> : null }
       </div>
     );
   }
