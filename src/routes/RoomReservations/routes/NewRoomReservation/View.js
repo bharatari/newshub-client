@@ -25,14 +25,15 @@ export default class NewRoomReservationView extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.newRoomReservation) {
       if (nextProps.newRoomReservation.values) {
-        if (!this.props.newRoomReservation.values) {
-          const { roomId } = nextProps.newRoomReservation.values;
+        const { roomId } = nextProps.newRoomReservation.values;
 
+        if (!this.props.newRoomReservation.values) {
           if (roomId && !this.state.requestedRoomReservations) {
             this.props.actions.fetchRoomReservations({
               roomId,
               sortType: 'DESC',
               sortField: 'startDate',
+              disabled: false,
             });
 
             this.setState({
@@ -40,15 +41,7 @@ export default class NewRoomReservationView extends React.Component {
             });
           }          
         } else {
-          const { startDate, endDate, roomId } = nextProps.newRoomReservation.values;
-          const { startDate: oldStartDate, endDate: oldEndDate, roomId: oldRoomId } = this.props.newRoomReservation.values;
-
-          if (startDate && endDate && roomId) {
-            if ((startDate !== oldStartDate) || (endDate !== oldEndDate)) {
-              // check availability
-              
-            }
-          }
+          const { roomId: oldRoomId } = this.props.newRoomReservation.values;
 
           if (!_.isNil(roomId)) {
             if (roomId !== oldRoomId) {
@@ -57,6 +50,7 @@ export default class NewRoomReservationView extends React.Component {
                   roomId,
                   sortType: 'DESC',
                   sortField: 'startDate',
+                  disabled: false,
                 });
 
                 this.setState({

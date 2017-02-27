@@ -12,7 +12,7 @@ import Reservations from './Reservations/Route';
 import NewReservation from './Reservations/routes/NewReservation';
 import Reservation from './Reservations/routes/Reservation/Route';
 import RoomReservations from './RoomReservations/Route';
-import NewRoomReservation from './RoomReservations/routes/NewRoomReservation';
+import NewRoomReservation from './RoomReservations/routes/NewRoomReservation/Route';
 import RoomReservation from './RoomReservations/routes/RoomReservation/Route';
 import Rooms from './Rooms/Route';
 import Room from './Rooms/routes/Room/Route';
@@ -39,7 +39,7 @@ export default (store) => (
       <Route path="/app/reservation/new" getComponent={NewReservation(store)} />
       <Route path="/app/reservation/:id" component={Reservation} />
       <Route path="/app/room-reservation" component={RoomReservations} />
-      <Route path="/app/room-reservation/new" getComponent={NewRoomReservation(store)} />
+      <Route path="/app/room-reservation/new" component={NewRoomReservation} />
       <Route path="/app/room-reservation/:id" component={RoomReservation} />
       <Route path="/app/room" component={Rooms} />
       <Route path="/app/room/new" component={NewRoomReservation} />
