@@ -4,7 +4,8 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { useRouterHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import createStore from './store/createStore';
-import AppContainer from './containers/AppContainer';
+import App from './containers/App';
+import routes from './routes/index';
 
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: __BASENAME__
@@ -25,13 +26,11 @@ if (__DEV__) {
 const MOUNT_NODE = document.getElementById('root');
 
 let render = (routerKey = null) => {
-  const routes = require('./routes/index').default(store);
-
   ReactDOM.render(
-    <AppContainer
+    <App
       store={store}
       history={history}
-      routes={routes}
+      routes={routes(store)}
       routerKey={routerKey}
     />,
     MOUNT_NODE

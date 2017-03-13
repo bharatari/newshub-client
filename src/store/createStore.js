@@ -1,7 +1,8 @@
-import { applyMiddleware, compose, createStore } from 'redux'
-import { routerMiddleware } from 'react-router-redux'
-import thunk from 'redux-thunk'
-import makeRootReducer from 'modules/'
+import { applyMiddleware, compose, createStore } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
+import saga from 'redux-saga';
+import thunk from 'redux-thunk';
+import makeRootReducer from 'modules/';
 
 export default (initialState = {}, history) => {
   // ======================================================
