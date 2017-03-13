@@ -9,7 +9,7 @@ export function fetchRoles() {
     dispatch(requestRoles());
 
     const query = {
-      roles: true,
+      roles: 'all',
     };
 
     data.request('role', 'get', null, query, null, {

@@ -6,11 +6,13 @@ import { routerActions } from 'react-router-redux';
 import authenticated from './Authenticated';
 import { Unauthorized } from 'components/';
 import * as role from 'modules/role/actions';
-import access from 'utils/access';
+import utils from 'utils/access';
 
-export default authenticated(access(Component));
+export default function access(Component) {
+  return _access(authenticated(Component));
+}
 
-function access(Component) {
+function _access(Component) {
   class AccessComponent extends React.Component {
     state = {
       authorized: false,
@@ -18,25 +20,39 @@ function access(Component) {
     componentWillMount() {
       if (!this.props.roles) {
         this.props.actions.fetchRoles();
+      } else {
+        const role = utils.getRole(this.props.url);
+
+        this.setState({ authorized: utils.has(this.props.roles, role) });
       }
     }
     componentWillReceiveProps(nextProps) {
-      if (!nextProps.requesting && this.props.roles) {
-        const role = access.getRole(this.props.url);
-        
-        this.setState({ authorized: access.has(this.props.roles, role) });
+      if (!nextProps.requesting && nextProps.roles) {
+        const role = utils.getRole(nextProps.url);
+
+        this.setState({ authorized: utils.has(nextProps.roles, role) });
       }
     }
     render() {
-      return (
-        ( (!this.props.requesting || this.props.roles) && this.state.authorized ) ?
-        <Component user={this.props.user} />:
-        <Unauthorized />
-      );
+      const displayUnauthorized = !this.props.requesting && this.props.roles && !this.state.authorized;
+      const display = !this.props.requesting && this.props.roles && this.state.authorized;
+
+      const show = () => {
+        if (displayUnauthorized) {
+          return <Unauthorized />;
+        } else if (display) {
+          return this.props.children;
+        } else {
+          return null;
+        }
+      };
+
+      return show();
     }
   }
   
   const mapStateToProps = (state, ownProps) => ({
+    location: ownProps.location,
     url: ownProps.location.pathname,
     requestingRole: state.role.fetchRoles.requesting,
     roles: state.role.fetchRoles.roles,
@@ -51,5 +67,5 @@ function access(Component) {
     actions: bindActionCreators(actionCreators, dispatch)
   });
 
-  return connect(mapStateToProps, mapDispatchToProps)(MasterComponent);
+  return connect(mapStateToProps, mapDispatchToProps)(AccessComponent);
 }

@@ -10,6 +10,7 @@ import device from './device/reducer';
 import image from './image/reducer';
 import room from './room/reducer';
 import user from './user/reducer';
+import role from './role/reducer';
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
@@ -24,6 +25,7 @@ export const makeRootReducer = (asyncReducers) => {
     form,
     image,
     room,
+    role,
     ...asyncReducers,
   });
 }

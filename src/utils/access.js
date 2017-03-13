@@ -21,13 +21,23 @@ export default {
     }
   },
   has(roles, role) {
-    _.includes(roles, role);
+    if (_.includes(roles, 'master')) {
+      return true;
+    } else if (role) {
+      return _.includes(roles, role);
+    } else {
+      return true;
+    }
   },
   getRole(url) {
     const route = _.find(configuration.routes, (n) => {
-      n.url === url;
+      return n.url === url;
     });
 
-    return route.role;
+    if (route) {
+      return route.role;
+    }
+    
+    return '';
   },
 }
