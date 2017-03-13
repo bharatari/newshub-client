@@ -28,8 +28,7 @@ import NewProject from './Projects/routes/NewProject/Route';
 import Project from './Projects/routes/Project/Route'
 import authenticated from 'containers/Authenticated';
 import unauthenticated from 'containers/Unauthenticated';
-import admin from 'containers/Admin';
-import master from 'containers/Master';
+import access from 'containers/Access';
 
 export default (store) => (
   <Route path="/" component={Root}>
