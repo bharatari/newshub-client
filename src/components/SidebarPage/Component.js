@@ -22,6 +22,7 @@ export default class SidebarPage extends React.Component {
     currentUrl: PropTypes.string,
     actions: PropTypes.object,
     user: PropTypes.object,
+    roles: PropTypes.array.isRequired,
   };
   handleClick = () => {
     if ($('.newshub-sidebar').hasClass('active')) {

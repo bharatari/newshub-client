@@ -38,7 +38,8 @@ export default class UsersView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="Users" right={right} loading={this.props.requestingUsers} user={this.props.currentUser}>
+          header="Users" right={right} loading={this.props.requestingUsers} user={this.props.currentUser}
+          roles={this.props.roles}>
           <Card column="sixteen">
             {
               this.props.users ?

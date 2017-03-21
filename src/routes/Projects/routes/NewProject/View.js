@@ -78,7 +78,8 @@ export default class NewProjectView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="New Project" right={right} loading={loading} user={this.props.user}>
+          header="New Project" right={right} loading={loading} user={this.props.user}
+          roles={this.props.roles}>
           <Card column="sixteen">
             { this.props.createdProject ? message : null }
             <Form ref="form" remainingDevices={this.props.remainingDevices}

@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
   devices: state.device.fetchDevices.devices,
   requestingDevices: state.device.fetchDevices.requesting,
   user: state.user.fetchCurrentUser.user,
+  roles: state.role.fetchRoles.roles,
 });
 
 const actionCreators = {

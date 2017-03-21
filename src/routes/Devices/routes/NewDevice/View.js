@@ -40,7 +40,8 @@ export default class NewReservationView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="New Device" right={right} loading={loading} user={this.props.user}>
+          header="New Device" right={right} loading={loading} user={this.props.user}
+          roles={this.props.roles}>
           <Card column="sixteen">
             <Response error={this.props.error} response={this.props.device}
               successHeader={message} />

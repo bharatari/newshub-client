@@ -40,7 +40,8 @@ export default class HomeView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions} right={right}
-          header="Dashboard" user={this.props.user} loading={requestingCurrent || requestingUpcoming}>
+          header="Dashboard" user={this.props.user} loading={requestingCurrent || requestingUpcoming}
+          roles={this.props.roles}>
           <div className="ui stackable grid">
             <Card column="four" background="#10cfbd">
               <a href="/app/user" className={classes.statLabel} style={{ color: '#09776d' }}>USERS <i className="chevron circle right icon"></i></a> 

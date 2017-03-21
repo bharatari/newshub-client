@@ -44,7 +44,7 @@ export default class ProjectView extends React.Component {
       <div>
         <SidebarPage currentUrl={currentUrl} actions={actions}
           header="Project" loading={requestingProject || requestingUpdateProject}
-          user={this.props.user}>
+          user={this.props.user} roles={this.props.roles}>
           <Card column="sixteen">
             <div>
               <Response error={updateError} response={updatedProject}

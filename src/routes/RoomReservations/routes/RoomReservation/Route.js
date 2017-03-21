@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => ({
   requestingUpdateReservation: state.roomReservation.updateRoomReservation.requesting,
   updateError: state.roomReservation.updateRoomReservation.error,
   user: state.user.fetchCurrentUser.user,
+  roles: state.role.fetchRoles.roles,
 });
 
 const actionCreators = {

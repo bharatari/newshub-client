@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
   projects: state.reservation.fetchProjects.projects,
   requestingProjects: state.reservation.fetchProjects.requesting,
   user: state.user.fetchCurrentUser.user,
+  roles: state.role.fetchRoles.roles,
 });
 
 const actionCreators = {

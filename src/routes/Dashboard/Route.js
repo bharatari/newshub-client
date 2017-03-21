@@ -10,6 +10,7 @@ import * as user from 'modules/user/actions';
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
   user: state.user.fetchCurrentUser.user,
+  roles: state.role.fetchRoles.roles,
   upcomingReservations: state.dashboard.upcomingReservations.reservations,
   requestingUpcoming: state.dashboard.upcomingReservations.requesting,
   currentReservations: state.dashboard.currentReservations.reservations,

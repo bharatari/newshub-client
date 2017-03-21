@@ -42,7 +42,8 @@ export default class UserView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={currentUrl} actions={actions}
-          header="Room" loading={requestingRoom || requestingUpdateRoom} user={user}>
+          header="Room" loading={requestingRoom || requestingUpdateRoom} user={user}
+          roles={this.props.roles}>
           <Card column="sixteen">
             <Response error={this.props.error} response={updatedRoom}
               successHeader={successHeader} />

@@ -31,6 +31,7 @@ class Sidebar extends React.Component {
     currentUrl: PropTypes.string,
     actions: PropTypes.object,
     user: PropTypes.object,
+    roles: PropTypes.object.isRequired,
   };
   currentRoute = (url) => {
     if (url === this.props.currentUrl) {
@@ -91,37 +92,39 @@ class Sidebar extends React.Component {
 
     const getRoutes = () => {
       let routes = [];
-      
+
       configuration.routes.forEach((route) => {
         const role = access.getRole(route.url);
 
-        if (access.has(this.props.roles, role)) {
-          let boundClick = this.handleClick.bind(this, route);
-          let link;
-          
-          if (this.currentRoute(route.url)) {
-            link = classNames(
-              'item',
-              classes.link,
-              classes.active
+        if (route.sidebar) {
+          if (access.has(this.props.roles, role)) {
+            let boundClick = this.handleClick.bind(this, route);
+            let link;
+            
+            if (this.currentRoute(route.url)) {
+              link = classNames(
+                'item',
+                classes.link,
+                classes.active
+              );
+            } else {
+              link = classNames(
+                'item',
+                classes.link
+              );
+            }
+
+            const icon = classNames(
+              route.icon,
+              classes.icon
             );
-          } else {
-            link = classNames(
-              'item',
-              classes.link
+            
+            routes.push(
+              <a href="#" key={route.url} className={link} onClick={boundClick}>
+                <i className={icon}></i><span className={classes.linkText}>{route.label}</span>
+              </a>
             );
           }
-
-          const icon = classNames(
-            route.icon,
-            classes.icon
-          );
-          
-          routes.push(
-            <a href="#" key={route.url} className={link} onClick={boundClick}>
-              <i className={icon}></i><span className={classes.linkText}>{route.label}</span>
-            </a>
-          );
         }
       });
       

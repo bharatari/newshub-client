@@ -89,7 +89,8 @@ export default class NewReservationView extends React.Component {
           <ModalContent action={this.props.localActions.fetchReservation} data={this.props.reservation} />
         </Modal>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="New Reservation" right={right} loading={loading} user={this.props.user}>
+          header="New Reservation" right={right('header')} loading={loading} user={this.props.user}
+          roles={this.props.roles}>
           <Card column="sixteen">
             { this.props.createdReservation ? message : null }
             <Form ref="form" remainingDevices={this.props.remainingDevices}

@@ -37,7 +37,7 @@ export default class ProjectsView extends React.Component {
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
           header="Projects" right={right} loading={this.props.requestingProjects}
-          user={this.props.user}>
+          user={this.props.user} roles={this.props.roles}>
           <Card column="sixteen">
             {
               this.props.projects ?

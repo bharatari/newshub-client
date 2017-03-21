@@ -15,6 +15,7 @@ const mapStateToProps = (state, ownProps) => ({
   sortType: ownProps.location.query.sortType,
   page: pageSelector(ownProps),
   location: ownProps.location,
+  roles: state.role.fetchRoles.roles,
 });
 
 const actionCreators = {

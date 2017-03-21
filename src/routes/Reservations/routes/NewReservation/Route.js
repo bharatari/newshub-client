@@ -10,6 +10,7 @@ import { groupDevices } from 'modules/wizard/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
+  roles: state.role.fetchRoles.roles,
   remainingDevices: groupDevices(state),
   requestingCreateReservation: state.reservation.createReservation.requesting,
   createdReservation: state.reservation.createReservation.reservation,

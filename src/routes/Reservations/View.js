@@ -29,7 +29,7 @@ export default class ReservationsView extends React.Component {
         page={this.props.page} totalPages={this.props.totalPages}
         goToPage={this.goToPage} sortField={this.props.sortField} sortType={this.props.sortType}
         sortBy={this.sortBy} newURL="/app/reservation/new" location={this.props.location}
-        fetch={this.props.actions.fetchReservations} />
+        fetch={this.props.actions.fetchReservations} roles={this.props.roles} />
     );
   }
 }
