@@ -1,4 +1,5 @@
 import reducer, { initialState } from '../reducer';
+import { expect } from 'chai';
 
 describe('(Reducer) Reservation', () => {
   it('should return the initial state', () => {
@@ -16,6 +17,6 @@ describe('(Reducer) Reservation', () => {
       }
     };
 
-    expect(reducer([], { type: 'REQUEST_RESERVATION' })).to.deep.equal(expectedState);
+    expect(reducer(undefined, { type: 'REQUEST_RESERVATION' })).to.deep.equal(expectedState);
   });
 });
