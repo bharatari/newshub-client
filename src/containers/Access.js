@@ -9,10 +9,6 @@ import * as role from 'modules/role/actions';
 import utils from 'utils/access';
 
 export default function access(Component) {
-  return _access(authenticated(Component));
-}
-
-function _access(Component) {
   class AccessComponent extends React.Component {
     state = {
       authorized: false,

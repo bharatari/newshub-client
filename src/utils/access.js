@@ -24,10 +24,21 @@ export default {
     if (_.includes(roles, 'master')) {
       return true;
     } else if (role) {
-      return _.includes(roles, role);
+      if (_.includes(roles, role)) {
+        if (_.includes(roles, this.createDenyPermission(role))) {
+          return false;
+        }
+
+        return true;
+      }
+
+      return false;
     } else {
       return true;
     }
+  },
+  createDenyPermission(permission) {
+    return `deny!${permission}`;
   },
   getRole(url) {
     const route = _.find(configuration.routes, (n) => {

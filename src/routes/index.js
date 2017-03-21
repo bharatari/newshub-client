@@ -32,26 +32,28 @@ import access from 'containers/Access';
 
 export default (store) => (
   <Route path="/" component={Root}>
-    <Route component={access(Core)}>
-      <IndexRoute getComponent={Dashboard(store)} />
-      <Route path="/app/reservation" component={Reservations} />
-      <Route path="/app/reservation/new" getComponent={NewReservation(store)} />
-      <Route path="/app/reservation/:id" component={Reservation} />
-      <Route path="/app/room-reservation" component={RoomReservations} />
-      <Route path="/app/room-reservation/new" component={NewRoomReservation} />
-      <Route path="/app/room-reservation/:id" component={RoomReservation} />
-      <Route path="/app/room" component={Rooms} />
-      <Route path="/app/room/new" component={NewRoomReservation} />
-      <Route path="/app/room/:id" component={Room} />
-      <Route path="/app/project" component={Projects} />
-      <Route path="/app/project/new" component={NewProject} />
-      <Route path="/app/project/:id" component={Project} />
-      <Route path="/app/user" component={Users} />
-      <Route path="/app/user/new" component={NewUser} />
-      <Route path="/app/user/:id" component={User} />
-      <Route path="/app/device" component={Devices} />
-      <Route path="/app/device/new" component={NewDevice} />
-      <Route path="/app/device/:id" component={Device} />
+    <Route component={authenticated(Core)}>
+      <Route component={access()}>
+        <IndexRoute getComponent={Dashboard(store)} />
+        <Route path="/app/reservation" component={Reservations} />
+        <Route path="/app/reservation/new" getComponent={NewReservation(store)} />
+        <Route path="/app/reservation/:id" component={Reservation} />
+        <Route path="/app/room-reservation" component={RoomReservations} />
+        <Route path="/app/room-reservation/new" component={NewRoomReservation} />
+        <Route path="/app/room-reservation/:id" component={RoomReservation} />
+        <Route path="/app/room" component={Rooms} />
+        <Route path="/app/room/new" component={NewRoomReservation} />
+        <Route path="/app/room/:id" component={Room} />
+        <Route path="/app/project" component={Projects} />
+        <Route path="/app/project/new" component={NewProject} />
+        <Route path="/app/project/:id" component={Project} />
+        <Route path="/app/user" component={Users} />
+        <Route path="/app/user/new" component={NewUser} />
+        <Route path="/app/user/:id" component={User} />
+        <Route path="/app/device" component={Devices} />
+        <Route path="/app/device/new" component={NewDevice} />
+        <Route path="/app/device/:id" component={Device} />
+      </Route>
     </Route>
     <Route component={unauthenticated(Core)}>
       <Route path="/app/signup" component={Signup} />

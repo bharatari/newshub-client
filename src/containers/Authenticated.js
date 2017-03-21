@@ -65,6 +65,7 @@ export default function authenticated(Component) {
     user: state.user.fetchCurrentUser.user,
     currentRoute: ownProps.location.pathname,
     logout: state.authentication.logout,
+    roles: state.role.fetchRoles.roles,
   });
 
   const actionCreators = {

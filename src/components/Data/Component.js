@@ -74,7 +74,7 @@ export default class Data extends React.Component {
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
           header={this.props.header} right={right} loading={this.props.loading}
-          user={this.props.user}>
+          user={this.props.user} roles={this.props.roles}>
           <Card column="sixteen">
             {
               this.props.data ?

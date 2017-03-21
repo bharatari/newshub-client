@@ -1,16 +1,16 @@
 export const configuration = {
   routes: [
-    { label: 'Dashboard', url: '/', icon: 'ion-planet' },
-    { label: 'Reservations', url: '/app/reservation', icon: 'ion-folder' },
-    { label: 'Devices', url: '/app/device', icon: 'ion-videocamera' },
-    { label: 'Projects', url: '/app/project', icon: 'ion-document-text' },
-    { label: 'Room Reservations', url: '/app/room-reservation', icon: 'ion-ios-calendar-outline', role: 'room-reservation:create' },
-    { label: 'Rooms', url: '/app/room', icon: 'ion-android-lock', role: 'room:view' },
-    { label: 'Users', url: '/app/user', icon: 'ion-ios-people' },
-    { url: '/app/user/new', sidebar: false, role: 'user:create' },
-    { url: '/app/device/new', sidebar: false, role: 'device:create' },
-    { url: '/app/project/new', sidebar: false, role: 'project:create' },
-    { url: '/app/login', sidebar: false },
-    { url: '/app/signup', sidebar: false }
+    { label: 'Dashboard', url: '/', icon: 'ion-planet', sidebar: true },
+    { label: 'Reservations', url: '/app/reservation', icon: 'ion-folder', sidebar: true },
+    { label: 'Devices', url: '/app/device', icon: 'ion-videocamera', sidebar: true },
+    { label: 'Projects', url: '/app/project', icon: 'ion-document-text', sidebar: true },
+    { label: 'Room Reservations', url: '/app/room-reservation', icon: 'ion-ios-calendar-outline', role: 'room-reservation:create', sidebar: true },
+    { label: 'Rooms', url: '/app/room', icon: 'ion-android-lock', role: 'room:view', sidebar: true },
+    { label: 'Users', url: '/app/user', icon: 'ion-ios-people', sidebar: true },
+    { url: '/app/user/new', role: 'user:create' },
+    { url: '/app/device/new', role: 'device:create' },
+    { url: '/app/project/new', role: 'project:create' },
+    { url: '/app/login' },
+    { url: '/app/signup' }
   ]
 };
