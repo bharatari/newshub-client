@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { FormatDate } from 'components/';
+import { Schedule } from '../';
 import Form from './Form';
 import userUtils from 'modules/user/utils';
 
@@ -42,6 +43,7 @@ export default class Content extends React.Component {
             <Form onSubmit={this.handleSubmit} />
           </div> : null
         }
+        { this.props.roomReservations ? <Schedule roomReservations={this.props.roomReservations} /> : null }
       </div>
     );
   }

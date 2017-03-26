@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => ({
   device: state.device.createDevice.device,
   requesting: state.device.createDevice.requesting,
   error: state.device.createDevice.error,
+  roles: state.role.fetchRoles.roles,
 });
 
 const actionCreators = {

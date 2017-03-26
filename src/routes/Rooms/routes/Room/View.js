@@ -16,11 +16,24 @@ export default class UserView extends React.Component {
   componentDidMount() {
     this.props.actions.resetUpdateRoom();
     this.props.actions.fetchRoom(this.props.id);
+    this.props.actions.fetchRoomReservations({
+        id: this.props.id,
+        sortType: 'DESC',
+        sortField: 'startDate',
+        disabled: false,
+      });
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.updatedRoom && !nextProps.requestingUpdateRoom) {
       if (!this.state.updated) {
         this.props.actions.fetchRoom(this.props.id);
+
+        this.props.actions.fetchRoomReservations({
+          id: this.props.id,
+          sortType: 'DESC',
+          sortField: 'startDate',
+          disabled: false,
+        });
 
         this.setState({
           updated: true,
@@ -50,7 +63,7 @@ export default class UserView extends React.Component {
             {
               room ?
               <Content room={this.props.room} actions={actions} updateRoom={this.props.updateRoom}
-                form={this.props.form} user={this.props.user}/> :
+                form={this.props.form} user={this.props.user} roomReservations={this.props.roomReservations} /> :
               <TextLoading loading={requestingRoom} /> 
             }
             </Card>
