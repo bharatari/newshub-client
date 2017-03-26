@@ -57,14 +57,14 @@ export default class Content extends React.Component {
 
     return (
       <div className={classes.contentContainer}>
-        <h2 className={classes.dateHeader}><FormatDate datetime={this.props.reservation.startDate} format="MMMM Do YYYY" /></h2>
-        <span className={classes.subheader}><p className={classes.timeHeader}><FormatDate datetime={this.props.reservation.startDate} format="HH:MM A" /></p> <p className={classes.userHeader}>by {this.props.reservation.user.fullName}</p></span>
+        <h2 className={classes.dateHeader}>{this.props.reservation.purpose}</h2>
+        <span className={classes.subheader}><p className={classes.userHeader}>by {this.props.reservation.user.fullName}</p></span>
         <p className={classes.statusText} style={{ backgroundColor: color }}>{reservation.getReservationStatus(this.props.reservation)}</p>
 
         <div className={info}>
           <div className="five wide column">
-            <p className={classes.header}>Purpose</p>
-            <p className={classes.content}>{this.props.reservation.purpose}</p>   
+            <p className={classes.header}>Start Date</p>
+            <p className={classes.content}><FormatDate datetime={this.props.reservation.startDate} /></p>   
 
             <p className={classes.header}>End Date</p>
             <p className={classes.content}><FormatDate datetime={this.props.reservation.endDate} /></p>         

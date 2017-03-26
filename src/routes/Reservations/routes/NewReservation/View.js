@@ -62,24 +62,28 @@ export default class NewReservationView extends React.Component {
   };
   render() {
     const button = classNames(
-      'ui animated button blue inverted button-light',
+      'ui animated button blue inverted button-light save-button',
       { loading: this.props.requestingCreateReservation }
     );
     const disable = this.props.requestingCreateReservation || this.props.createdReservation;
     const loading = this.props.requestingCreateReservation || this.props.requestingDevices || this.props.requestingReservations || this.props.requestingFetchReservation;
-    const right = <button className={button} disabled={disable}
-                    onClick={this.handleClick}>
-                    <div className="visible content">SAVE</div>
-                    <div className="hidden content">
-                      <i className="checkmark icon"></i>
-                    </div>
-                  </button>;
-    const message = <div className="ui success message">
-                      <div className="header">
-                        Your reservation has been created.
-                      </div>
-                      <p>It will need to be approved by a member of management.</p>
-                    </div>
+    const right = (location) => (
+      <button id={`new-reservation-${location}`} className={button} disabled={disable}
+        onClick={this.handleClick}>
+        <div className="visible content">SAVE</div>
+        <div className="hidden content">
+          <i className="checkmark icon"></i>
+        </div>
+      </button>
+    );
+    const message = (
+      <div className="ui success message">
+        <div className="header">
+          Your reservation has been created.
+        </div>
+        <p>It will need to be approved by a member of management.</p>
+      </div>
+    );
 
     return (
       <div>
@@ -99,7 +103,7 @@ export default class NewReservationView extends React.Component {
             <Wizard actions={this.props.actions} selectedDevices={this.props.selectedDevices}
               remainingDevices={this.props.remainingDevices} reservations={this.props.reservations}
               localActions={this.props.localActions} />
-            {right}
+            {right('form')}
           </Card>
         </SidebarPage>
       </div>

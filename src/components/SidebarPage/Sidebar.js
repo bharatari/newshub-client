@@ -31,7 +31,7 @@ class Sidebar extends React.Component {
     currentUrl: PropTypes.string,
     actions: PropTypes.object,
     user: PropTypes.object,
-    roles: PropTypes.object.isRequired,
+    roles: PropTypes.array.isRequired,
   };
   currentRoute = (url) => {
     if (url === this.props.currentUrl) {

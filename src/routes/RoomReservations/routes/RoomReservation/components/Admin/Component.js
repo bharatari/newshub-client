@@ -30,6 +30,9 @@ export default class Admin extends React.Component {
 
     this.props.actions.updateReservation(this.props.reservation.id, body);
   };
+  handleDisable = () => {
+    // update reservation with disable flag
+  };
   handleAdminNotes = (values) => {
     this.props.actions.updateReservation(this.props.reservation.id, values);
   };
@@ -38,15 +41,17 @@ export default class Admin extends React.Component {
     const button = () => {
       if (reservation) {
         const status = reservationUtils.computeReservationStatus(reservation);
-        const needsApproval = <div>
-                                <button className={buttonStyle} onClick={this.handleClick}>APPROVE</button>
-                                <button className={negativeStyle} onClick={this.handleReject}>REJECT</button>
-                              </div>;
+        const needsApproval = (
+          <div>
+            <button className={buttonStyle} onClick={this.handleClick}>APPROVE</button>
+            <button className={negativeStyle} onClick={this.handleReject}>REJECT</button>
+          </div>
+        );
 
         if (status === 'NEEDS_APPROVAL') {
           return needsApproval;
         } else if (status === 'APPROVED') {
-          return <button className={buttonStyle} onClick={this.handleClick}>CHECK OUT</button>;
+          return <button className={negativeStyle} onClick={this.handleDisable}>DISABLE</button>;
         } else {
           return <p className={classes.empty}>Nothing to see here...</p>;;
         }
