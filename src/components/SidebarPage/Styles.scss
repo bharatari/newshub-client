@@ -13,6 +13,17 @@
   padding-top: 34px;
 }
 
+.brandLink {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease-in;
+}
+
+.brandLink:hover {
+  color: #d6d6d6;
+  text-decoration: none;
+}
+
 .brand {
   margin-top: 30px;
   font-family: 'Open Sans';

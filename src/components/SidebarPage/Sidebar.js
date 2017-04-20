@@ -135,7 +135,7 @@ class Sidebar extends React.Component {
       <div>
         <div className={sidebar}>
           <div className={classes.logo}>
-            <p className={classes.brand}>{config.brand}</p>
+            <a className={classes.brandLink} href={config.brandLink}><p className={classes.brand}>{config.brand}</p></a>
           </div>
           <div className={list}>
             {getRoutes()}

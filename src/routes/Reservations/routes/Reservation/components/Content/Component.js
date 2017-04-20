@@ -92,7 +92,7 @@ export default class Content extends React.Component {
             <div className={classes.activityBox}>
               <ul>
                 <li>
-                  <strong>{this.props.reservation.user.fullName}</strong> created this on <FormatDate datetime={this.props.reservation.startDate} />
+                  <strong>{this.props.reservation.user.fullName}</strong> created this on <FormatDate datetime={this.props.reservation.createdAt} />
                 </li>
                 { reviewedBy() }
                 { checkedOutBy() }
