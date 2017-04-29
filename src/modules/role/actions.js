@@ -4,6 +4,8 @@ import data from 'utils/data';
 export const requestRoles = createAction('REQUEST_ROLES');
 export const receiveRoles = createAction('RECEIVE_ROLES');
 
+export const resetRoles = createAction('RESET_ROLES');
+
 export function fetchRoles() {
   return function (dispatch) {
     dispatch(requestRoles());

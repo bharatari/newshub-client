@@ -42,4 +42,13 @@ export default handleActions({
       };
     }
   },
+  RESET_ROLES: (state, action) => ({
+    ...state,
+    fetchRoles: {
+      ...state.fetchRoles,
+      requesting: false,
+      roles: null,
+      error: null,
+    },
+  }),
 }, initialState);
