@@ -6,12 +6,12 @@ import * as device from 'modules/device/actions';
 import * as wizard from 'modules/wizard/actions';
 import * as actions from './modules/actions';
 import { routerActions } from 'react-router-redux';
-import { groupDevices } from 'modules/wizard/selectors';
+import { getRemainingDevices } from 'modules/wizard/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
   roles: state.role.fetchRoles.roles,
-  remainingDevices: groupDevices(state),
+  remainingDevices: getRemainingDevices(state),
   requestingCreateReservation: state.reservation.createReservation.requesting,
   createdReservation: state.reservation.createReservation.reservation,
   selectedDevices: state.wizard.newReservation.selectedDevices,
