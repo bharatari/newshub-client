@@ -1,5 +1,5 @@
 const path = require('path');
-const DotenvPlugin = require('webpack-dotenv-plugin');
+const Dotenv = require('dotenv-webpack');
 
 var isDev = process.env.NODE_ENV === 'development';
 var isTest = process.env.NODE_ENV === 'test';
@@ -16,8 +16,7 @@ module.exports = {
     },
     extra: {
       plugins: [
-        new DotenvPlugin({
-          sample: './.env.sample',
+        new Dotenv({
           path: './.env'
         })
       ]
