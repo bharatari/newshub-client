@@ -70,6 +70,6 @@ describe('(Actions) Reservation', () => {
         .then(() => {
           expect(store.getActions()).to.deep.equal(expectedActions);
         });
-    });
-  });*/
+    });*/
+  });
 });

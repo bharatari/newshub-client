@@ -27,7 +27,6 @@ export default class ResetPasswordView extends React.Component {
     actions: PropTypes.object,
   };
   handleSubmit = (values) => {
-    console.log(values);
     this.props.actions.updateUser({
       email: values.email,
       password: values.password,

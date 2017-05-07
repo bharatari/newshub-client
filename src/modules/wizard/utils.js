@@ -9,17 +9,12 @@ export default {
       for (let property in remaining) {
         if (remaining.hasOwnProperty(property)) {
           const type = _.filter(selectedDevices, function (o) {
-            console.log(o.type);
-            console.log(property);
             return o.type === property;
           });
 
           remaining[property] = _.differenceWith(remaining[property], type, function (a, b) {
             return a.id === b.id;
           });
-
-          console.log(type);
-          console.log(remaining[property]);
         }
       }
     }
