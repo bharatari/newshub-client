@@ -1,5 +1,5 @@
 export default {
-  brand: CONFIG.BRAND,
-  loginBackground: CONFIG.LOGIN_BACKGROUND,
-  brandLink: CONFIG.BRAND_LINK,
+  brand: process.env.BRAND,
+  loginBackground: process.env.LOGIN_BACKGROUND,
+  brandLink: process.env.BRAND_LINK,
 }

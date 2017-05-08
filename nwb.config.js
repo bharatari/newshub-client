@@ -17,7 +17,8 @@ module.exports = {
     extra: {
       plugins: [
         new Dotenv({
-          path: './.env'
+          path: './.env',
+          safe: false
         })
       ]
     },
@@ -31,8 +32,6 @@ module.exports = {
       store: path.resolve('src/store')
     },
     define: {
-      CONFIG: JSON.stringify(process.env),
-      NODE_ENV: process.env.NODE_ENV,
       '__DEV__': isDev,
       '__PROD__': isProd,
       '__TEST__': isTest,
