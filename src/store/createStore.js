@@ -1,7 +1,8 @@
-import { applyMiddleware, compose, createStore } from 'redux'
-import { routerMiddleware } from 'react-router-redux'
-import thunk from 'redux-thunk'
-import makeRootReducer from 'modules/'
+import { applyMiddleware, compose, createStore } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
+import saga from 'redux-saga';
+import thunk from 'redux-thunk';
+import makeRootReducer from 'modules/';
 
 export default (initialState = {}, history) => {
   // ======================================================
@@ -13,7 +14,7 @@ export default (initialState = {}, history) => {
   // Store Enhancers
   // ======================================================
   const enhancers = []
-  if (__DEBUG__) {
+  if (__DEV__) {
     const devToolsExtension = window.devToolsExtension
     if (typeof devToolsExtension === 'function') {
       enhancers.push(devToolsExtension())

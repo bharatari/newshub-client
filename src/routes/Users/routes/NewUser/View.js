@@ -27,7 +27,8 @@ export default class NewUserView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="New User" loading={this.props.requestingToken} user={this.props.user}>
+          header="New User" loading={this.props.requestingToken} user={this.props.user}
+          roles={this.props.roles}>
           <Card column="sixteen">
             <Response error={this.props.error} response={this.props.token}
               successHeader={header} successText={text} />

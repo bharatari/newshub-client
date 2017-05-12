@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 import data from 'utils/data';
 import utils from './utils';
+import _ from 'lodash';
 
 export const requestReservations = createAction('REQUEST_RESERVATIONS');
 export const receiveReservations = createAction('RECEIVE_RESERVATIONS');
@@ -34,23 +35,54 @@ export function fetchReservation(id) {
   };
 }
 
-export function fetchReservations(startDate, endDate) {
-  return function (dispatch) {
+export function fetchReservations(options) {
+  return function (dispatch, getState) {
     dispatch(requestReservations());
 
-    let query = '?$sort[startDate]=1&$limit=10';
+    let startDate, endDate, limit, page, disabled, sortField, sortType;
+
+    if (!_.isNil(options)) {
+      ({ startDate, endDate, limit, page, disabled, sortField, sortType } = options);
+    }
+    
+    if (_.isNil(limit)) {
+      limit = 10;
+    }
+
+    if (_.isNil(page)) {
+      page = 1;
+    }
+
+    const skip = data.pageToSkip(page, limit);
+
+    if (_.isNil(sortField)) {
+      sortField = 'createdAt';
+    }
+
+    if (_.isNil(sortType)) {
+      sortType = 'DESC';
+    }
+
+    const sort = data.constructSort(sortField, sortType);
+
+    let query = `?${sort}&$limit=${limit}&$skip=${skip}`;
 
     if (startDate && endDate) {
       query += '&startDate=' + encodeURIComponent(startDate);
       query += '&endDate=' + encodeURIComponent(endDate);
     }
 
-    data.request('reservation', 'get', null, query)
-      .then(function (response) {
-        dispatch(receiveReservations(utils.processResponse(response)));
-      }).catch(function (e) {
-        dispatch(receiveReservations(e));
-      });
+    if (!_.isNil(disabled)) {
+      query += '&disabled=' + encodeURIComponent(disabled);
+    }
+
+    data.request('reservation', 'get', null, query, null, {
+      resolve: false,
+    }).then(function (response) {
+      dispatch(receiveReservations(response));
+    }).catch(function (e) {
+      dispatch(receiveReservations(e));
+    });
   };
 }
 

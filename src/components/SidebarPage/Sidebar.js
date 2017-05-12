@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import classes from './Styles.scss';
-import { navigationRoutes } from 'constants/routes';
+import { configuration } from 'constants/routes';
 import config from 'constants/config';
 import userUtils from 'modules/user/utils';
+import access from 'utils/access';
 import * as user from 'modules/user/actions';
 import * as authentication from 'modules/authentication/actions';
 
@@ -30,6 +31,7 @@ class Sidebar extends React.Component {
     currentUrl: PropTypes.string,
     actions: PropTypes.object,
     user: PropTypes.object,
+    roles: PropTypes.array.isRequired,
   };
   currentRoute = (url) => {
     if (url === this.props.currentUrl) {
@@ -90,37 +92,12 @@ class Sidebar extends React.Component {
 
     const getRoutes = () => {
       let routes = [];
-      
-      navigationRoutes.forEach((route) => {
-        if (!route.admin) {
-          let boundClick = this.handleClick.bind(this, route);
-          let link;
-          
-          if (this.currentRoute(route.url)) {
-            link = classNames(
-              'item',
-              classes.link,
-              classes.active
-            );
-          } else {
-            link = classNames(
-              'item',
-              classes.link
-            );
-          }
 
-          const icon = classNames(
-            route.icon,
-            classes.icon
-          );
-          
-          routes.push(
-            <a href="#" key={route.url} className={link} onClick={boundClick}>
-              <i className={icon}></i><span className={classes.linkText}>{route.label}</span>
-            </a>
-          );
-        } else {
-          if (userUtils.isAdmin(this.props.user)) {
+      configuration.routes.forEach((route) => {
+        const role = access.getRole(route.url);
+
+        if (route.sidebar) {
+          if (access.has(this.props.roles, role)) {
             let boundClick = this.handleClick.bind(this, route);
             let link;
             
@@ -158,7 +135,7 @@ class Sidebar extends React.Component {
       <div>
         <div className={sidebar}>
           <div className={classes.logo}>
-            <p className={classes.brand}>{config.brand}</p>
+            <a className={classes.brandLink} href={config.brandLink}><p className={classes.brand}>{config.brand}</p></a>
           </div>
           <div className={list}>
             {getRoutes()}

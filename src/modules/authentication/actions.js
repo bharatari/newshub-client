@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 import { localStorageAuthToken } from 'constants/keys';
 import data from 'utils/data';
+import { resetRoles } from '../role/actions';
 
 export const resetLogin = createAction('RESET_LOGIN');
 export const requestLogin = createAction('REQUEST_LOGIN');
@@ -26,6 +27,8 @@ export function login(body) {
 export function logout() {
   return function (dispatch) {
     localStorage.removeItem(localStorageAuthToken);
+
+    dispatch(resetRoles());
     dispatch(requestLogout());
   }
 }

@@ -1,21 +1,21 @@
 sudo: false
+
 language: node_js
 node_js:
-  - "6"
+  - 7
 
 cache:
   directories:
     - node_modules
 
-install:
-  - npm install
-
-script:
-  - npm run lint
-  - npm run test
-  - NODE_ENV=development npm run deploy
-  - NODE_ENV=staging npm run deploy
-  - NODE_ENV=production npm run deploy
+before_install:
+  - npm install codecov.io coveralls
 
 after_success:
-  - npm run codecov
+  - cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+
+branches:
+  only:
+    - dev
+    - master

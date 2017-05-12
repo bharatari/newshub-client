@@ -107,10 +107,27 @@ export default class NewReservationWizard extends React.Component {
       return list;
     };
 
+    const remainingDevicesFields = () => {
+      const fields = [];
+
+      if (this.props.remainingDevices) {
+        for (let property in this.props.remainingDevices) {
+          if (this.props.remainingDevices.hasOwnProperty(property)) {
+            fields.push({
+              label: property,
+              disabled: this.props.remainingDevices[property].length < 1
+            });
+          }
+        }
+      }
+
+      return fields;
+    }
+
     return (
       <div>
         <div className={classes.tabsContainer}>
-          <Tabs fields={this.props.remainingDevices}>
+          <Tabs fields={remainingDevicesFields()}>
             {renderGroups()}
           </Tabs>
         </div>
@@ -127,9 +144,10 @@ export default class NewReservationWizard extends React.Component {
             <h1 className={classes.groupHeader}>Reservations during this period</h1>
             <p className={classes.font}>Here are some reservations created during the same period. Double-check to make sure you aren't creating an extra reservations for the same project.</p>
             <Table fields={this.state.fields}
-              data={this.props.reservations} 
+              data={this.props.reservations}
               actions={this.props.actions}
-              route="/app/reservation" newTab={true} />
+              route="/app/reservation" modal={true}
+              showModal={this.props.localActions.fetchReservation} />
           </div> : null
         }
       </div>

@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => ({
   requestingToken: state.signupToken.requesting,
   error: state.signupToken.error,
   user: state.user.fetchCurrentUser.user,
+  roles: state.role.fetchRoles.roles,
 });
 
 const actionCreators = {

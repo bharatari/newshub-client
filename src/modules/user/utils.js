@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import jwt_decode from 'jwt-decode';
 
-module.exports = {
+export default {
   processResponse(data) {
     if (data) {
       return {
@@ -63,6 +64,19 @@ module.exports = {
       }
     }
     
+    return false;
+  },
+  isRole(user, role) {
+    if (role) {
+      if (user) {
+        if (user.roles) {
+          if (_.isString(user.roles)) {
+            return user.roles.includes(role);
+          }
+        }
+      }
+    }
+
     return false;
   },
   getId(jwt) {

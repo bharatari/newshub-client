@@ -36,7 +36,8 @@ export default class DevicesView extends React.Component {
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="Devices" right={right} loading={this.props.requestingDevices} user={this.props.user}>
+          header="Devices" right={right} loading={this.props.requestingDevices} user={this.props.user}
+          roles={this.props.roles}>
           <Card column="sixteen">
             {
               this.props.devices ?

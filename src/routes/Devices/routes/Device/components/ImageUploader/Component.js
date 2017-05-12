@@ -74,12 +74,17 @@ export default class ImageUploader extends React.Component {
 
     if (!nextProps.deleteImage.requesting && nextProps.deleteImage.image) {
       if (!this.state.processedDeleteImage) {
+        // HACK - Fixes issue where image uploads would fail after deleting an image
+        // Refreshing the page after deleting an image fixes this
+        location.reload();
+        /*
         this.props.actions.fetchDevice(nextProps.device.id);
 
         this.props.actions.resetDeleteImage();
         this.setState({
           processedDeleteImage: true,
         });
+        */
       }
     }
   };

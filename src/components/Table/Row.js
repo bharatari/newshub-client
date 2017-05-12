@@ -16,9 +16,11 @@ export default class Row extends React.Component {
   handleClick = () => {
     if (this.props.newTab) {
       window.open(this.props.route + '/' + this.props.data.id);
+    } else if (this.props.modal) {
+      this.props.showModal(this.props.data.id);
     } else {
       this.props.actions.push(this.props.route + '/' + this.props.data.id);          
-    }    
+    }
   };
   render() {
     const processField = (field, data) => {

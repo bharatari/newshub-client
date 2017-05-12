@@ -1,6 +1,8 @@
 :global {
   @import 'base';
   @import '~normalize.css/normalize';
+  @import '~react-big-calendar/lib/css/react-big-calendar';
+  @import '~react-select/dist/react-select';
 
   // Some best-practice CSS that's useful for most apps
   // Just remove them if they're not what you want

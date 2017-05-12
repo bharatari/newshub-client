@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
+
+let cx = classNames.bind(classes);
 
 const tabs = classNames(
   classes.tabs,
@@ -22,12 +24,20 @@ export default class Tabs extends React.Component {
       let array = [];
 
       if (this.props.fields) {
-        for (let property in this.props.fields) {
-          if (this.props.fields.hasOwnProperty(property)) {
-            array.push(
-              <div className="item" key={property} data-tab={property}>{property}</div>
-            );
-          }
+        for (let i = 0; i < this.props.fields.length; i++) {
+          const property = this.props.fields[i].label;
+          const disabled = this.props.fields[i].disabled;
+
+          const tab = cx(
+            'item',
+            {
+              tabDisabled: disabled
+            }
+          );
+
+          array.push(
+            <div className={tab} key={property} data-tab={property}>{property}</div>
+          );
         }        
       }
 

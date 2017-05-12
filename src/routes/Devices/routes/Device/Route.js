@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
   id: ownProps.params.id,
   user: state.user.fetchCurrentUser.user,
+  roles: state.role.fetchRoles.roles,
   device: state.device.fetchDevice.device,
   requestingDevice: state.device.fetchDevice.requesting,
   error: state.device.fetchDevice.error,

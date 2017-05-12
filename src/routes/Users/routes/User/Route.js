@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => ({
   updatedUser: state.user.updateUser.user,
   requestingUpdateUser: state.user.updateUser.requesting,
   updateError: state.user.updateUser.error,
+  roles: state.role.fetchRoles.roles,
 });
 
 const actionCreators = {

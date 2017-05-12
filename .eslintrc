@@ -1,23 +1,16 @@
 {
-  "parser"  : "babel-eslint",
-  "extends" : [
-    "airbnb"
-  ],
-  "plugins": [
-    "babel"
-  ],
-  "env"     : {
-    "browser" : true
-  },
-  "globals" : {
-    "__DEV__"      : false,
-    "__PROD__"     : false,
-    "__DEBUG__"    : false,
-    "__COVERAGE__" : false,
-    "__BASENAME__" : false
-  },
-  "rules": {
-    "generator-star-spacing": 0,
-    "babel/generator-star-spacing": 1
-  }
+    "extends": "airbnb",
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import"
+    ],
+    "env": {
+        "mocha": true
+    },
+    "rules": {
+      "linebreak-style": 0,
+      "react/jsx-filename-extension": 0,
+      "import/no-extraneous-dependencies": ["error", {"optionalDependencies": false, "peerDependencies": false}]
+    }
 }

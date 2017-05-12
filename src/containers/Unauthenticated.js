@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as user from 'modules/user/actions';
 import { defaultRedirect } from 'constants/keys';
 import { routerActions } from 'react-router-redux';
+import _ from 'lodash';
 
 export default function unauthenticated(Component) {
   class UnauthenticatedComponent extends React.Component {
@@ -11,7 +12,7 @@ export default function unauthenticated(Component) {
       this.props.actions.fetchCurrentUser();
     }
     componentWillReceiveProps(nextProps) {
-      if (!nextProps.requestingUser && nextProps.user) {
+      if (!nextProps.requestingUser && (nextProps.user && !_.isError(nextProps.user))) {
         this.props.actions.replace(defaultRedirect);
       }
     }
