@@ -35,12 +35,13 @@ Dependency-based access control can simply look like this:
 
 How to perform testing in React and Redux applications isn't widely agreed-upon. Therefore, this following guide aims to describe this project's testing philosophy, driven by the needs of this project.
 
-We aim to test three general things:
+We aim to test four general things:
 * The rendering of components based on a particular state
 * The behavior of components and how it affects the state
 * The state of the application and how it changes when actions are dispatched
+* Critical parts of the application with acceptance (end-to-end testing)
 
-The first two points involve testing React components while the last involves testing Redux modules such as actions and reducers. By testing these three components of a React and Redux application, we will have a good amount of coverage of our application's behavior.
+The first two points involve testing React components while the third involves testing Redux modules such as actions and reducers. By testing these first three components of a React and Redux application, we will have a good amount of coverage of our application's behavior. We also aim to test critical parts of the application with acceptance (end-to-end) testing, although this should be done sparingly as unit and integration tests will better isolate problems with the application.
 
 ### Containers
 
@@ -50,7 +51,7 @@ Containers have two purposes:
 * To pass down state from the store
 * To affect the state by dispatching actions
 
-Therefore, our goal in testing containers is to make sure that the props we expect are passed down and the actions that are passed down affect the state in the way we expect (thereby confirming the correct actions have been passed down). However, testing for this can end up creating tests that resemble existing code. Containers are quite straightforward and predictable and therefore, it makes more sense to test behavior based off of the props and actions that they pass down (some of which lives in components and views). Testing how the application renders based on a particular state is the responsibility of the components/views and so is testing any internal logic. However, any interaction with the store must be tested with the container (because views and components should be oblivious to the storee) and for those tests, the focus should be on actual behavior.
+Therefore, our goal in testing containers is to make sure that the props we expect are passed down and the actions that are passed down affect the state in the way we expect (thereby confirming the correct actions have been passed down). However, testing for this can end up creating tests that resemble existing code. Containers are quite straightforward and predictable and therefore, it makes more sense to test behavior based off of the props and actions that they pass down (some of which lives in components and views). Testing how the application renders based on a particular state is the responsibility of the components/views and so is testing any internal logic. However, any interaction with the store must be tested with the container (because views and components should be oblivious to the store) and for those tests, the focus should be on actual behavior.
 
 ### Components
 
