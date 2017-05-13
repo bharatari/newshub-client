@@ -49,6 +49,14 @@ describe('(Utils) Access', () => {
 
       expect(access.has(roles, role)).to.equal(expected);
     });
+
+    it('should return false if deny permission exists', () => {
+      const expected = false;
+      const roles = ['admin', 'deny!device:view', 'device:create'];
+      const role = 'device:view';
+
+      expect(access.has(roles, role)).to.equal(expected);
+    });
   });
   describe('#getRole', () => {
     it('should return corresponding role for url', () => {

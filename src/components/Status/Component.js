@@ -4,12 +4,21 @@ import classNames from 'classnames';
 import reservation from 'modules/reservation/utils';
 
 export default class Status extends React.Component {
+  static propTypes = {
+    data: PropTypes.object,
+  };
   render() {
-    const color = reservation.getReservationColor(this.props.data);
-    const status = reservation.getReservationStatus(this.props.data);
-    const style = {
-      color,
-    };
+    let color;
+    let status;
+    let style;
+
+    if (this.props.data) {
+      color = reservation.getReservationColor(this.props.data);
+      status = reservation.getReservationStatus(this.props.data);
+      style = {
+        color,
+      };
+    }
 
     return (
       <span className={classes.text} style={style}>

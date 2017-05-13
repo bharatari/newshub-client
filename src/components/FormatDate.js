@@ -3,8 +3,9 @@ import moment from 'moment';
 
 export default class FormatDate extends React.Component {
   static propTypes = {
-    date: PropTypes.string,
-    datetime: PropTypes.string,
+    date: PropTypes.any,
+    datetime: PropTypes.any,
+    format: PropTypes.string,
   };
   format = () => {
     if (this.props.format) {
