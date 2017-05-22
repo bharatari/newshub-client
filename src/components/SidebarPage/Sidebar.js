@@ -22,10 +22,6 @@ const list = classNames(
   classes.list
 );
 
-const mobileSidebar = classNames(
-  'ui inverted vertical menu mobile-only newshub-sidebar'
-);
-
 class Sidebar extends React.Component {
   static propTypes = {
     currentUrl: PropTypes.string,
@@ -51,6 +47,10 @@ class Sidebar extends React.Component {
     this.props.actions.push('/app/user/' + this.props.user.id);
   };
   render() {
+    const mobileSidebar = classNames(
+      'ui inverted vertical menu mobile-only newshub-sidebar',
+      { active: this.props.active }
+    );
     const getButtons = () => {
       const link = classNames(
         'item',
