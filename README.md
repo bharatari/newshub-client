@@ -41,7 +41,7 @@ We aim to test four general things:
 * The rendering of components based on a particular state
 * The behavior of components and how it affects the state
 * The state of the application and how it changes when actions are dispatched
-* Critical parts of the application with acceptance (end-to-end testing)
+* Critical parts of the application with acceptance (end-to-end) testing
 
 The first two points involve testing React components while the third involves testing Redux modules such as actions and reducers. By testing these first three components of a React and Redux application, we will have a good amount of coverage of our application's behavior. We also aim to test critical parts of the application with acceptance (end-to-end) testing, although this should be done sparingly as unit and integration tests will better isolate problems with the application.
 
