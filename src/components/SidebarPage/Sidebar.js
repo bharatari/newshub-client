@@ -46,11 +46,15 @@ class Sidebar extends React.Component {
   handleUser = () => {
     this.props.actions.push('/app/user/' + this.props.user.id);
   };
+  handleSwitcher = () => {
+    this.props.actions.push('/app/switcher');
+  };
   render() {
     const mobileSidebar = classNames(
       'ui inverted vertical menu mobile-only newshub-sidebar',
       { active: this.props.active }
     );
+
     const getButtons = () => {
       const link = classNames(
         'item',
@@ -68,22 +72,29 @@ class Sidebar extends React.Component {
         'ion-locked',
         classes.icon
       );
+      const loop = classNames(
+        'ion-loop',
+        classes.icon
+      );
       
       let user;
       if (this.props.user) {
-        user = <a href="#" key="1" className={link} onClick={this.handleUser}>
+        user = <a href="#" key="user" className={link} onClick={this.handleUser}>
           <i className={person}></i><span className={classes.linkText}>{this.props.user.firstName}</span>
         </a>
       } else {
-        user = <a href="#" key="1" className={link}>
+        user = <a href="#" key="user" className={link}>
           <span className={classes.linkText}></span>
         </a>
       }
 
       return (
         <div className={buttons}>
+          <a href="#" key="loop" className={link} onClick={this.handleSwitcher}>
+            <i className={loop}></i><span className={classes.linkText}>{organization.label}</span>
+          </a>
           {user}
-          <a href="#" key="2" className={link} onClick={this.handleLogout}>
+          <a href="#" key="locked" className={link} onClick={this.handleLogout}>
             <i className={locked}></i><span className={classes.linkText}>Logout</span>
           </a>
         </div>
@@ -131,11 +142,13 @@ class Sidebar extends React.Component {
       return routes;
     }
     
+    const organization = this.props.user.currentOrganization;
+
     return (
       <div>
         <div className={sidebar}>
           <div className={classes.logo}>
-            <a className={classes.brandLink} href={config.brandLink}><p className={classes.brand}>{config.brand}</p></a>
+            <a className={classes.brandLink} href={organization.link}><p className={classes.brand}>{organization.label}</p></a>
           </div>
           <div className={list}>
             {getRoutes()}
@@ -144,7 +157,7 @@ class Sidebar extends React.Component {
         </div>
         <div className={mobileSidebar}>
           <div className={classes.logo}>
-            <p className={classes.brand}>{config.brand}</p>
+            <p className={classes.brand}>{organization.label}</p>
           </div>
           <div className={list}>
             {getRoutes()}

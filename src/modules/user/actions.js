@@ -2,6 +2,7 @@ import { createAction } from 'redux-actions';
 import { localStorageAuthToken } from 'constants/keys';
 import data from 'utils/data';
 import userUtils from './utils';
+import { fetchRoles } from '../role/actions';
 
 export const requestUser = createAction('REQUEST_USER');
 export const receiveUser = createAction('RECEIVE_USER');
@@ -91,5 +92,23 @@ export function updateUser(body, userId) {
       }).catch(function (e) {
         dispatch(receiveUpdateUser(e));
       });
+  }
+}
+
+export function switchOrganization(userId, organizationId) {
+  return function (dispatch) {
+    dispatch(requestUpdateUser());
+
+    data.request('user', 'PATCH', userId, null, {
+      currentOrganizationId: organizationId,
+    }).then(function (user) {
+      dispatch(receiveUpdateUser(user));
+
+      dispatch(fetchCurrentUser());
+      dispatch(fetchRoles());
+    }).catch(function (e) {
+      console.log(e);
+      dispatch(receiveUpdateUser(e));
+    });
   }
 }

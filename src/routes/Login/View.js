@@ -6,17 +6,12 @@ import { Response } from 'components/';
 import { Form } from './components';
 
 const main = classNames(
-  'ui middle aligned center aligned grid',
+  'twelve wide phone eight wide tablet four wide computer column',
   classes.main
 );
 
 const styles = {
   backgroundImage: 'url(' + config.loginBackground + ')',
-  backgroundRepeat: 'none',
-  backgroundPosition: 'center',
-  backgroundSize: 'cover',
-  height: '101.3vh',
-  width: '100vw',
 };
 
 export default class LoginView extends React.Component {
@@ -46,10 +41,10 @@ export default class LoginView extends React.Component {
   }
   render() {
     return (
-      <div style={styles}>
+      <div className={classes.background} style={styles}>
         <div className="ui container">
-          <div className={main}>
-            <div className="twelve wide phone eight wide tablet four wide computer column">
+          <div className="ui middle aligned center aligned grid">
+            <div className={main}>
               <h2 className={classes.brand}>{config.brand}</h2>
               <Response error={this.props.error} />
               <Form onSubmit={this.handleSubmit} requestingLogin={this.props.requestingLogin}

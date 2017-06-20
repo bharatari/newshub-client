@@ -1,24 +1,9 @@
-.header {
-  color: #4C4C4C;
-  font-family: 'Open Sans' !important;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.text {
-  font-family: 'Open Sans';
-  color: #B1B1B1;
-  margin-bottom: 20px;
-}
-
 .main {
   padding-bottom: 50px !important;
   padding-top: 50px !important;
   background-color: white;
   box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.75);
   position: relative;
-  padding-left: 40px !important;
-  padding-right: 40px !important;
 }
 
 .background {
@@ -32,4 +17,18 @@
   position: absolute;
   z-index: 0;
   padding-top: 30vh;
+}
+
+.brand {
+  color: #4C4C4C;
+  font-family: 'Open Sans' !important;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.description {
+  color: #B1B1B1;
+  font-family: 'Open Sans' !important;
+  font-weight: 400;
+  margin-bottom: 30px;
 }
