@@ -12,11 +12,19 @@ export const groupDevices = createSelector(
   }
 );
 
+export const getSpecialApproval = createSelector(
+  getSelectedDevices,
+  (selectedDevices) => {
+    return wizard.getSpecialApproval(selectedDevices);
+  }
+)
+
 export const getRemainingDevices = createSelector(
   groupDevices,
   getSelectedDevices,
-  (devices, selectedDevices) => {
-    return wizard.getRemainingDevices(devices, selectedDevices);
+  getSpecialApproval,
+  (devices, selectedDevices, specialApproval) => {
+    return wizard.getRemainingDevices(devices, selectedDevices, specialApproval);
   }
 );
 
