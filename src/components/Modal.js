@@ -17,6 +17,7 @@ export default class Modal extends React.Component {
     this.setup(this.props);
   }
   componentWillReceiveProps(nextProps) {
+    // TODO Migrate to semantic UI react
     if (!this.state.show && nextProps.show) {
       $('#' + this.props.id).modal('refresh');
       $('#' + this.props.id).modal('show');
