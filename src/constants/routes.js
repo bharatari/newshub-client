@@ -7,6 +7,7 @@ export const configuration = {
     { label: 'Room Reservations', url: '/app/room-reservation', icon: 'ion-ios-calendar-outline', role: 'room-reservation:create', sidebar: true },
     { label: 'Rooms', url: '/app/room', icon: 'ion-android-lock', role: 'room:view', sidebar: true },
     { label: 'Users', url: '/app/user', icon: 'ion-ios-people', sidebar: true },
+    { label: 'Events', url: '/app/event', icon: 'ion-ios-time-outline', sidebar: true, role: 'event:view' },
     { url: '/app/user/new', role: 'user:create' },
     { url: '/app/device/new', role: 'device:create' },
     { url: '/app/project/new', role: 'project:create' },
