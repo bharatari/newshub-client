@@ -37,7 +37,7 @@ export function fetchEvent(id) {
 
 export function fetchEvents(options) {
   return function (dispatch, getState) {
-    dispatch(requestEvent());
+    dispatch(requestEvents());
 
     let startDate, endDate, limit, page, closed, sortField, sortType;
 
@@ -79,9 +79,9 @@ export function fetchEvents(options) {
     data.request('event', 'get', null, query, null, {
       resolve: false,
     }).then(function (response) {
-      dispatch(receiveEvent(response));
+      dispatch(receiveEvents(response));
     }).catch(function (e) {
-      dispatch(receiveEvent(e));
+      dispatch(receiveEvents(e));
     });
   };
 }

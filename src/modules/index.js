@@ -12,6 +12,7 @@ import room from './room/reducer';
 import user from './user/reducer';
 import role from './role/reducer';
 import event from './event/reducer';
+import log from './log/reducer';
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
@@ -28,6 +29,7 @@ export const makeRootReducer = (asyncReducers) => {
     room,
     role,
     event,
+    log,
     ...asyncReducers,
   });
 }
