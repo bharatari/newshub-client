@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, FormatDate, TextLoading, Response, Card } from 'components/';
-import { Admin, Devices, Content } from './components';
+import { Admin, Content } from './components';
 
 export default class RoomReservationView extends React.Component {
   static propTypes = {
