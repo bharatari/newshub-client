@@ -17,6 +17,9 @@ export default class SwitcherView extends React.Component {
     response: PropTypes.any,
     actions: PropTypes.object,
   };
+  componentDidMount() {
+    this.props.actions.resetUpdateUser();
+  }
   handleClick = (organization) => {
     this.props.actions.switchOrganization(this.props.user.id, organization.id);
   };

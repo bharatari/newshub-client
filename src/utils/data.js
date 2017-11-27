@@ -19,7 +19,7 @@ export default {
     } else if (__TEST__) {
       return 'http://localhost:8080';
     } else {
-      return '';
+      return 'http://api.utdmercury.com';
     }
   },
   getCurrentBase() {
