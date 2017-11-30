@@ -142,6 +142,16 @@
   left: 0;
 }
 
+.organizationSelectText {
+  color: white;
+  width: 100%;
+}
+
+.organizationDropdown {
+  width: 100%;
+  position: relative;
+}
+
 @media only screen and (max-width: 768px) {
   .button {
     display: inline-block;

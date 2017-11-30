@@ -21,6 +21,9 @@ export const requestUpdateUser = createAction('REQUEST_UPDATE_USER');
 export const receiveUpdateUser = createAction('RECEIVE_UPDATE_USER');
 export const resetUpdateUser = createAction('RESET_UPDATE_USER');
 
+export const requestSwitchOrganization = createAction('REQUEST_SWITCH_ORGANIZATION');
+export const receiveSwitchOrganization = createAction('RECEIVE_SWITCH_ORGANIZATION');
+
 export function fetchUser(id) {
   return function (dispatch) {
     dispatch(requestUser());
@@ -97,18 +100,17 @@ export function updateUser(body, userId) {
 
 export function switchOrganization(userId, organizationId) {
   return function (dispatch) {
-    dispatch(requestUpdateUser());
+    dispatch(requestSwitchOrganization());
 
     data.request('user', 'PATCH', userId, null, {
       currentOrganizationId: organizationId,
     }).then(function (user) {
-      dispatch(receiveUpdateUser(user));
+      dispatch(receiveSwitchOrganization(user));
 
       dispatch(fetchCurrentUser());
       dispatch(fetchRoles());
     }).catch(function (e) {
-      console.log(e);
-      dispatch(receiveUpdateUser(e));
+      dispatch(receiveSwitchOrganization(e));
     });
   }
 }
