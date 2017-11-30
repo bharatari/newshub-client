@@ -29,7 +29,6 @@ import Project from './Projects/routes/Project/Route';
 import Events from './Events/Route';
 import Event from './Events/routes/Event/Route';
 import NewEvent from './Events/routes/NewEvent/Route';
-import Switcher from './Switcher/Route';
 import authenticated from 'containers/Authenticated';
 import unauthenticated from 'containers/Unauthenticated';
 import access from 'containers/Access';
@@ -60,7 +59,6 @@ export default (store) => (
         <Route path="/app/event" component={Events} />
         <Route path="/app/event/new" component={NewEvent} />
         <Route path="/app/event/:id" component={Event} />
-        <Route path="/app/switcher" component={Switcher} />
       </Route>
     </Route>
     <Route component={unauthenticated(Core)}>

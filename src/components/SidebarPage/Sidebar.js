@@ -55,9 +55,6 @@ class Sidebar extends React.Component {
   handleUser = () => {
     this.props.actions.push('/app/user/' + this.props.user.id);
   };
-  handleSwitcher = () => {
-    this.props.actions.push('/app/switcher');
-  };
   handleOrganizationClick = (id) => {
     this.props.actions.switchOrganization(this.props.user.id, id);
   };
