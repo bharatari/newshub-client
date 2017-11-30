@@ -44,41 +44,6 @@ export default {
 
     return errors;
   },
-  isAdmin(user) {
-    if (user) {
-      if (user.roles) {
-        if (_.isString(user.roles)) {
-          return user.roles.includes('admin') || user.roles.includes('master');;
-        }
-      }
-    }
-    
-    return false;
-  },
-  isMaster(user) {
-    if (user) {
-      if (user.roles) {
-        if (_.isString(user.roles)) {
-          return user.roles.includes('master');;
-        }
-      }
-    }
-    
-    return false;
-  },
-  isRole(user, role) {
-    if (role) {
-      if (user) {
-        if (user.roles) {
-          if (_.isString(user.roles)) {
-            return user.roles.includes(role);
-          }
-        }
-      }
-    }
-
-    return false;
-  },
   getId(jwt) {
     return new Promise((resolve, reject) => {
       try {
