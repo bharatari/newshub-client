@@ -52,7 +52,7 @@ export default class RoomReservationView extends React.Component {
                 successHeader="You successfully updated this reservation." />
               {
                 roomReservation ? 
-                <Content reservation={roomReservation} actions={actions} user={user} /> :
+                <Content reservation={roomReservation} actions={actions} user={user} roles={this.props.roles} /> :
                 <TextLoading loading={requestingRoomReservation} /> 
               }
             </div>

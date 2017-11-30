@@ -55,6 +55,7 @@ export default class Content extends React.Component {
 
     const color = reservation.getReservationColor(this.props.reservation);
     const status = reservation.getReservationStatus(this.props.reservation);
+    const canApprove = access.has(roles, 'reservation:approve');
 
     return (
       <div className={classes.contentContainer}>
@@ -103,7 +104,7 @@ export default class Content extends React.Component {
           </div>
         </div>
         
-        { access.has(roles, 'reservation:approve') ? <Admin reservation={this.props.reservation} actions={this.props.actions} /> : null }
+        { canApprove ? <Admin reservation={this.props.reservation} actions={this.props.actions} /> : null }
       </div>
     );
   }

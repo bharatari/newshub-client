@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { FormatDate } from 'components/';
 import { Master, Admin } from '../';
 import userUtils from 'modules/user/utils';
+import access from 'utils/access';
 
 export default class Content extends React.Component {
   static propTypes = {
@@ -13,6 +14,8 @@ export default class Content extends React.Component {
   };
   render() {
     const { user: { title, notes, roles, disabled } } = this.props;
+    const edit = access.has(this.props.roles, 'user:update');
+    const editNotes = access.has(this.props.roles, 'user:notes:update');
 
     return (
       <div>
@@ -25,7 +28,7 @@ export default class Content extends React.Component {
         <p className={classes.header}>Created At</p>
         <p className={classes.content}><FormatDate date={this.props.user.createdAt} /></p>
         {
-          userUtils.isMaster(this.props.currentUser) ?
+          edit ?
           <Master user={this.props.user} actions={this.props.actions} /> :
           <div>
             <p className={classes.header}>Title</p>
@@ -39,7 +42,7 @@ export default class Content extends React.Component {
           </div>
         }
         {
-          userUtils.isAdmin(this.props.currentUser) && !userUtils.isMaster(this.props.currentUser) ?
+          !edit && editNotes ?
           <Admin user={this.props.user} actions={this.props.actions} /> :
           null
         }

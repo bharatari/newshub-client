@@ -5,6 +5,7 @@ import { FormatDate } from 'components/';
 import { ImageUploader } from '../';
 import Form from './Form';
 import userUtils from 'modules/user/utils';
+import access from 'utils/access';
 
 export default class Content extends React.Component {
   static propTypes = {
@@ -16,16 +17,19 @@ export default class Content extends React.Component {
   };
   render() {
     let imageBackground;
+
     if (this.props.thumbnail) {
       imageBackground = {
         backgroundImage: 'url(' + this.props.thumbnail.url + ')',
       };
     }
 
+    const edit = access.has(this.props.roles, 'device:update');
+
     return (
       <div>
         {
-          !userUtils.isMaster(this.props.user) && this.props.device ?
+          !edit && this.props.device ?
           <div>
             <p className={classes.header}>Name</p>
             <p className={classes.content}>{this.props.device.name}</p>
@@ -45,7 +49,7 @@ export default class Content extends React.Component {
         <p className={classes.header}>Created At</p>
         <p className={classes.content}><FormatDate date={this.props.device.createdAt} /></p>
         {
-          userUtils.isMaster(this.props.user) ?
+          edit ?
           <div>
             <Form onSubmit={this.handleSubmit} />
             <p className={classes.header}>IMAGE</p>

@@ -48,7 +48,7 @@ export default class UserView extends React.Component {
             successHeader={successHeader} />
             {
               user ? 
-              <Content user={this.props.user} actions={actions} currentUser={currentUser} /> :
+              <Content user={this.props.user} actions={actions} currentUser={currentUser} roles={this.props.roles} /> :
               <TextLoading loading={requestingUser} /> 
             }
           </Card>
