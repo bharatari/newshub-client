@@ -13,14 +13,14 @@ describe('(Utils) Access', () => {
     });
 
     it('should convert item url to permission', () => {
-      const expected = 'reservation:view'
+      const expected = 'reservation:read'
       const url = '/app/reservation/84';
 
       expect(access.convertToPermission(url)).to.equal(expected);
     });
 
     it('should convert items url to permission', () => {
-      const expected = 'reservation:view'
+      const expected = 'reservation:read'
       const url = '/app/reservation';
 
       expect(access.convertToPermission(url)).to.equal(expected);
@@ -36,7 +36,7 @@ describe('(Utils) Access', () => {
 
     it('should return false if role is passed but role does not exist', () => {
       const expected = false;
-      const roles = ['admin', 'device:view', 'device:create'];
+      const roles = ['admin', 'device:read', 'device:create'];
       const role = 'device:update';
 
       expect(access.has(roles, role)).to.equal(expected);
@@ -44,16 +44,16 @@ describe('(Utils) Access', () => {
 
     it('should return true if role exists', () => {
       const expected = true;
-      const roles = ['admin', 'device:view', 'device:create'];
-      const role = 'device:view';
+      const roles = ['admin', 'device:read', 'device:create'];
+      const role = 'device:read';
 
       expect(access.has(roles, role)).to.equal(expected);
     });
 
     it('should return false if deny permission exists', () => {
       const expected = false;
-      const roles = ['admin', 'deny!device:view', 'device:create'];
-      const role = 'device:view';
+      const roles = ['admin', 'deny!device:read', 'device:create'];
+      const role = 'device:read';
 
       expect(access.has(roles, role)).to.equal(expected);
     });

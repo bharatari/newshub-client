@@ -30,7 +30,7 @@ Permissions and roles also regulate access control on the client. Oxygen Core co
 Pages have access control in two ways. The first way is dependency-based access control where the permissions that are needed for the page to properly function are defined for each page. If the user does not have the required permissions, the page will not be accessible to them. The second way is custom access control where you can restrict certain pages to certain roles. Because roles are dynamically defined, these pages are dynamically restricted. In the code, a call to the server is made. The server knows what role is required to access the page (stored in the database) and whether the user has the role. Therefore it simply returns whether the user can access the role.
 
 Dependency-based access control can simply look like this:
-`/app/reservation` requires `reservation:view`
+`/app/reservation` requires `reservation:read`
 `/app/reservation/new` requires `reservation:create`
 
 ## Testing
