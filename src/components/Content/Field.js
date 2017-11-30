@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import userUtils from 'modules/user/utils';
+import access from 'utils/access';
 import _ from 'lodash';
 
 export default class Field extends React.Component {
@@ -9,11 +10,13 @@ export default class Field extends React.Component {
     object: PropTypes.any,
     field: PropTypes.object,
     user: PropTypes.object,
+    roles: PropTypes.array,
   };
   render() {
-    const { object, field, user } = this.props;
+    const { object, field, user, roles } = this.props;
 
-    const display = userUtils.isRole(user, field.role);
+    const display = access.has(this.props.roles, field.role);
+
     const data = () => {
       if (field.component) {
         return <field.component {...field.props} />;
