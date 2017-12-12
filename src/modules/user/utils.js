@@ -49,7 +49,7 @@ export default {
       try {
         const decoded = jwt_decode(jwt);
 
-        resolve(decoded.id)
+        resolve(decoded.userId);
       } catch (e) {
         reject();
       }

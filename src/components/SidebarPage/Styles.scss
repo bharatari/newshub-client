@@ -48,6 +48,24 @@
   background-color: #393939;
 }
 
+.sidebarMobile {
+  position: fixed;
+  top: 86px;
+  left: -284px;
+  bottom: 0;
+  display: block;
+  float: left;
+  width: 100%;
+  max-width: 284px;
+  height: 100%;
+  z-index: 999;
+  border-radius: 0px !important;
+  background-color: #393939 !important;
+  -moz-transition: all 300ms;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+}
+
 .sidebarLeft {
   float: left;
 }
@@ -153,6 +171,10 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .buttons {
+    bottom: 100px;
+  }
+
   .button {
     display: inline-block;
   }
@@ -178,12 +200,16 @@
   }
 
   .link {
-    color: white !important;
+    color: #98999e !important;
     -webkit-transition: color 0.2s ease-out;
     -moz-transition: color 0.2s ease-out;
     -ms-transition: color 0.2s ease-out;
     -o-transition: color 0.2s ease-out;
     transition: color 0.2s ease-out;
+  }
+
+  .link span {
+    font-weight: 600;
   }
 
   .link:focus,
@@ -194,7 +220,6 @@
   .link.active,
   .link.active:focus,
   .link.active:hover {
-    background-color: #e2e2e2 !important;
-    color: black;
+    background-color: #464646 !important;  
   }
 }
