@@ -63,7 +63,8 @@ export default class UserView extends React.Component {
             {
               room ?
               <Content room={this.props.room} actions={actions} updateRoom={this.props.updateRoom}
-                form={this.props.form} user={this.props.user} roomReservations={this.props.roomReservations} /> :
+                form={this.props.form} user={this.props.user} roomReservations={this.props.roomReservations}
+                roles={this.props.roles} /> :
               <TextLoading loading={requestingRoom} /> 
             }
             </Card>

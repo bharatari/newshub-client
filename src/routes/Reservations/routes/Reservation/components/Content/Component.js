@@ -5,6 +5,7 @@ import { FormatDate } from 'components/';
 import { Admin, Devices } from '../';
 import reservation from 'modules/reservation/utils';
 import user from 'modules/user/utils';
+import access from 'utils/access';
 import _ from 'lodash';
 
 const info = classNames(
@@ -17,7 +18,7 @@ export default class Content extends React.Component {
     reservation: PropTypes.object,
   };
   render() {
-    const { reservation: { notes, specialRequests, adminNotes } } = this.props;
+    const { reservation: { notes, specialRequests, adminNotes }, roles } = this.props;
     const reviewedBy = () => {
       const reviewedByName = _.get(this.props.reservation, 'approvedBy.fullName') || _.get(this.props.reservation, 'rejectedBy.fullName');
 
@@ -54,6 +55,7 @@ export default class Content extends React.Component {
 
     const color = reservation.getReservationColor(this.props.reservation);
     const status = reservation.getReservationStatus(this.props.reservation);
+    const canApprove = access.has(roles, 'reservation:approve');
 
     return (
       <div className={classes.contentContainer}>
@@ -102,7 +104,7 @@ export default class Content extends React.Component {
           </div>
         </div>
         
-        { user.isAdmin(this.props.user) ? <Admin reservation={this.props.reservation} actions={this.props.actions} /> : null }
+        { canApprove ? <Admin reservation={this.props.reservation} actions={this.props.actions} /> : null }
       </div>
     );
   }

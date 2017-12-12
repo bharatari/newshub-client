@@ -8,7 +8,7 @@ export default {
     const slash = url.indexOf('/');
 
     if (slash === -1) {
-      return `${url}:view`;
+      return `${url}:read`;
     } else {
       const trailing = url.substring(slash + 1);
       const model = url.substring(0, slash);
@@ -16,7 +16,7 @@ export default {
       if (trailing === 'new') {
         return `${model}:create`;
       } else {
-        return `${model}:view`;
+        return `${model}:read`;
       }
     }
   },

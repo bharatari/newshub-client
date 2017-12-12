@@ -30,7 +30,7 @@ Permissions and roles also regulate access control on the client. Oxygen Core co
 Pages have access control in two ways. The first way is dependency-based access control where the permissions that are needed for the page to properly function are defined for each page. If the user does not have the required permissions, the page will not be accessible to them. The second way is custom access control where you can restrict certain pages to certain roles. Because roles are dynamically defined, these pages are dynamically restricted. In the code, a call to the server is made. The server knows what role is required to access the page (stored in the database) and whether the user has the role. Therefore it simply returns whether the user can access the role.
 
 Dependency-based access control can simply look like this:
-`/app/reservation` requires `reservation:view`
+`/app/reservation` requires `reservation:read`
 `/app/reservation/new` requires `reservation:create`
 
 ## Testing
@@ -41,7 +41,7 @@ We aim to test four general things:
 * The rendering of components based on a particular state
 * The behavior of components and how it affects the state
 * The state of the application and how it changes when actions are dispatched
-* Critical parts of the application with acceptance (end-to-end testing)
+* Critical parts of the application with acceptance (end-to-end) testing
 
 The first two points involve testing React components while the third involves testing Redux modules such as actions and reducers. By testing these first three components of a React and Redux application, we will have a good amount of coverage of our application's behavior. We also aim to test critical parts of the application with acceptance (end-to-end) testing, although this should be done sparingly as unit and integration tests will better isolate problems with the application.
 

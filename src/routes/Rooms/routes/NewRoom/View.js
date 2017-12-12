@@ -12,10 +12,10 @@ export default class NewReservationView extends React.Component {
     user: PropTypes.object,
   };
   componentDidMount() {
-    this.props.actions.resetCreateDevice();
+    this.props.actions.resetCreateRoom();
   }
   handleSubmit = (values) => {
-    this.props.actions.createDevice(values);
+    this.props.actions.createRoom(values);
   };
   handleClick = () => {
     this.refs.form.submit();
@@ -25,7 +25,7 @@ export default class NewReservationView extends React.Component {
       'ui animated button blue inverted button-light',
       { loading: this.props.requesting }
     );
-    const disable = this.props.requesting || this.props.device;
+    const disable = this.props.requesting || this.props.room;
     const loading = this.props.requesting;
 
     const right = <button className={button} disabled={disable}
@@ -35,15 +35,15 @@ export default class NewReservationView extends React.Component {
                       <i className="checkmark icon"></i>
                     </div>
                   </button>;
-    const message = "Your device has been created.";
+    const message = "Your room has been created.";
 
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="New Device" right={right} loading={loading} user={this.props.user}
+          header="New Room" right={right} loading={loading} user={this.props.user}
           roles={this.props.roles}>
           <Card column="sixteen">
-            <Response error={this.props.error} response={this.props.device}
+            <Response error={this.props.error} response={this.props.room}
               successHeader={message} />
             <Form ref="form" onSubmit={this.handleSubmit} />
           </Card>

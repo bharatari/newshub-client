@@ -15,11 +15,11 @@ export default {
   },
   base() {
     if (__DEV__) {
-      return 'http://localhost:3030';
+      return 'http://localhost:8080';
     } else if (__TEST__) {
-      return 'http://localhost:3030';
+      return 'http://localhost:8080';
     } else {
-      return '';
+      return 'http://api.utdmercury.com';
     }
   },
   getCurrentBase() {

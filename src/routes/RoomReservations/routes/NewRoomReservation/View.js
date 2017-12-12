@@ -73,10 +73,10 @@ export default class NewRoomReservationView extends React.Component {
   render() {
     const button = classNames(
       'ui animated button blue inverted button-light',
-      { loading: this.props.requestingCreateRoomReservation }
+      { loading: this.props.requestingCreateReservation }
     );
-    const disable = this.props.requestingCreateRoomReservation || this.props.createdRoomReservation;
-    const loading = this.props.requestingCreateRoomReservation || this.props.requestingRooms || this.props.requestingRoomReservations;
+    const disable = this.props.requestingCreateReservation || this.props.createdRoomReservation;
+    const loading = this.props.requestingCreateReservation || this.props.requestingRooms || this.props.requestingRoomReservations;
     const right = (
       <button className={button} disabled={disable}
         onClick={this.handleClick}>
@@ -96,7 +96,7 @@ export default class NewRoomReservationView extends React.Component {
             <Response error={this.props.error} response={this.props.createdRoomReservation}
               successHeader="Your reservation has been created" 
               successText="It will need to be approved by a member of management" />
-            <Form ref="form" requestingCreateRoomReservation={this.props.requestingCreateRoomReservation}
+            <Form ref="form" requestingCreateReservation={this.props.requestingCreateReservation}
               onSubmit={this.handleSubmit} rooms={this.props.rooms} />
             { this.props.roomReservations ? <Schedule roomReservations={this.props.roomReservations} /> : null }
             {right}

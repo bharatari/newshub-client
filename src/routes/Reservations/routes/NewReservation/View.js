@@ -102,7 +102,7 @@ export default class NewReservationView extends React.Component {
               onSubmit={this.handleSubmit} selectedDevices={this.props.selectedDevices} />
             <Wizard actions={this.props.actions} selectedDevices={this.props.selectedDevices}
               remainingDevices={this.props.remainingDevices} reservations={this.props.reservations}
-              localActions={this.props.localActions} />
+              localActions={this.props.localActions} specialApproval={this.props.specialApproval} />
             {right('form')}
           </Card>
         </SidebarPage>

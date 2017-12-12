@@ -39,20 +39,20 @@ export default class ReservationView extends React.Component {
   render() {
     const { reservation, requestingReservation, 
             actions, updateError, updatedReservation,
-            requestingUpdateReservation, currentUrl, user } = this.props;
+            requestingUpdateReservation, currentUrl, user, roles } = this.props;
 
     return (
       <div>
         <SidebarPage currentUrl={currentUrl} actions={actions}
           header="Reservation" loading={requestingReservation || requestingUpdateReservation}
-          user={this.props.user} roles={this.props.roles}>
+          user={user} roles={roles}>
           <Card column="sixteen">
             <div>
               <Response error={updateError} response={updatedReservation}
                 successHeader="You successfully updated this reservation." />
               {
                 reservation ? 
-                <Content reservation={reservation} actions={actions} user={user} /> :
+                <Content reservation={reservation} actions={actions} user={user} roles={roles} /> :
                 <TextLoading loading={requestingReservation} /> 
               }
             </div>

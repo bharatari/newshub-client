@@ -8,6 +8,12 @@ import Group from './Group';
 import { Tabs, Table } from 'components/';
 import reservation from 'modules/reservation/utils';
 import _ from 'lodash';
+import classNames from 'classnames';
+
+const specialApprovalMessage = classNames(
+  'ui warning message',
+  classes.specialApprovalMessage
+);
 
 export default class NewReservationWizard extends React.Component {
   static propTypes = {
@@ -124,8 +130,22 @@ export default class NewReservationWizard extends React.Component {
       return fields;
     }
 
+    const specialApproval = () => {
+      if (this.props.specialApproval) {
+        return (
+          <div className={specialApprovalMessage}>
+            <div className="header">
+              You have added a device that requires special approval.
+            </div>
+            Your options for other devices have been limited.
+          </div>
+        );
+      }
+    };
+
     return (
       <div>
+        {specialApproval()}
         <div className={classes.tabsContainer}>
           <Tabs fields={remainingDevicesFields()}>
             {renderGroups()}

@@ -11,12 +11,17 @@ export const requestLogout = createAction('REQUEST_LOGOUT');
  
 export function login(body) {
   return function (dispatch) {
+    const request = {
+      strategy: 'local',
+      ...body,
+    };
+
     dispatch(requestLogin());
 
-    data.request('login', 'post', null, null, body, {
+    data.request('login', 'post', null, null, request, {
       resolve: false,
     }).then(function (body) {
-      localStorage.setItem(localStorageAuthToken, body.token);
+      localStorage.setItem(localStorageAuthToken, body.accessToken);
       dispatch(receiveLogin(body));
     }).catch(function (e) {
       dispatch(receiveLogin(e));

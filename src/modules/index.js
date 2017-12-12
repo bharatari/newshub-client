@@ -11,6 +11,9 @@ import image from './image/reducer';
 import room from './room/reducer';
 import user from './user/reducer';
 import role from './role/reducer';
+import event from './event/reducer';
+import log from './log/reducer';
+import notifications from './notifications/reducer';
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
@@ -26,6 +29,9 @@ export const makeRootReducer = (asyncReducers) => {
     image,
     room,
     role,
+    event,
+    log,
+    notifications,
     ...asyncReducers,
   });
 }

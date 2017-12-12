@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 import user from 'modules/user/utils';
 
-const renderField = ({ input, meta: { touched, error }}) => (
+const renderField = ({ input, type, placeholder, meta: { touched, error }}) => (
   <span>
-    <input {...input} />
+    <input {...input} type={type} placeholder={placeholder} />
     {touched && error && <span className={classes.errorText}>{error}</span>}
   </span>
 );

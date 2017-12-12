@@ -5,6 +5,7 @@ import { FormatDate } from 'components/';
 import { Schedule } from '../';
 import Form from './Form';
 import userUtils from 'modules/user/utils';
+import access from 'utils/access';
 
 export default class Content extends React.Component {
   static propTypes = {
@@ -15,10 +16,12 @@ export default class Content extends React.Component {
     this.props.actions.updateRoom(this.props.room.id, values);
   };
   render() {
+    const edit = access.has(this.props.roles, 'room:update');
+
     return (
       <div>
         {
-          !userUtils.isMaster(this.props.user) && this.props.room ?
+          !edit && this.props.room ?
           <div>
             <p className={classes.header}>Name</p>
             <p className={classes.content}>{this.props.room.name}</p>
@@ -38,7 +41,7 @@ export default class Content extends React.Component {
         <p className={classes.header}>Created At</p>
         <p className={classes.content}><FormatDate date={this.props.room.createdAt} /></p>
         {
-          userUtils.isMaster(this.props.user) ?
+          edit ?
           <div>
             <Form onSubmit={this.handleSubmit} />
           </div> : null

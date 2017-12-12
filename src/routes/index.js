@@ -25,7 +25,10 @@ import NewDevice from './Devices/routes/NewDevice/Route';
 import Device from './Devices/routes/Device/Route';
 import Projects from './Projects/Route';
 import NewProject from './Projects/routes/NewProject/Route';
-import Project from './Projects/routes/Project/Route'
+import Project from './Projects/routes/Project/Route';
+import Events from './Events/Route';
+import Event from './Events/routes/Event/Route';
+import NewEvent from './Events/routes/NewEvent/Route';
 import authenticated from 'containers/Authenticated';
 import unauthenticated from 'containers/Unauthenticated';
 import access from 'containers/Access';
@@ -42,7 +45,7 @@ export default (store) => (
         <Route path="/app/room-reservation/new" component={NewRoomReservation} />
         <Route path="/app/room-reservation/:id" component={RoomReservation} />
         <Route path="/app/room" component={Rooms} />
-        <Route path="/app/room/new" component={NewRoomReservation} />
+        <Route path="/app/room/new" component={NewRoom} />
         <Route path="/app/room/:id" component={Room} />
         <Route path="/app/project" component={Projects} />
         <Route path="/app/project/new" component={NewProject} />
@@ -53,6 +56,9 @@ export default (store) => (
         <Route path="/app/device" component={Devices} />
         <Route path="/app/device/new" component={NewDevice} />
         <Route path="/app/device/:id" component={Device} />
+        <Route path="/app/event" component={Events} />
+        <Route path="/app/event/new" component={NewEvent} />
+        <Route path="/app/event/:id" component={Event} />
       </Route>
     </Route>
     <Route component={unauthenticated(Core)}>

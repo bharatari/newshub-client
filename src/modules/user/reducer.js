@@ -27,6 +27,11 @@ const initialState = {
     user: null,
     error: null,
   },
+  switchOrganization: {
+    requesting: false,
+    user: null,
+    error: null,
+  },
 };
 
 export default handleActions({
@@ -214,4 +219,37 @@ export default handleActions({
       user: null,
     },
   }),
+  REQUEST_SWITCH_ORGANIZATION: (state, action) => ({
+    ...state,
+    switchOrganization: {
+      ...state.switchOrganization,
+      requesting: true,
+      user: null,
+      error: null,
+    },
+  }),
+  RECEIVE_SWITCH_ORGANIZATION: {
+    next(state, action) {
+      return {
+        ...state,
+        switchOrganization: {
+          ...state.switchOrganization,
+          requesting: false,
+          user: action.payload,
+          error: null,
+        },
+      };
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        switchOrganization: {
+          ...state.switchOrganization,
+          requesting: false,
+          user: null,
+          error: action.payload,
+        },
+      };
+    }
+  },
 }, initialState);

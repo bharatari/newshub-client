@@ -2,6 +2,7 @@ import { createAction } from 'redux-actions';
 import { localStorageAuthToken } from 'constants/keys';
 import data from 'utils/data';
 import userUtils from './utils';
+import { fetchRoles } from '../role/actions';
 
 export const requestUser = createAction('REQUEST_USER');
 export const receiveUser = createAction('RECEIVE_USER');
@@ -19,6 +20,9 @@ export const receiveCreateUser = createAction('RECEIVE_CREATE_USER');
 export const requestUpdateUser = createAction('REQUEST_UPDATE_USER');
 export const receiveUpdateUser = createAction('RECEIVE_UPDATE_USER');
 export const resetUpdateUser = createAction('RESET_UPDATE_USER');
+
+export const requestSwitchOrganization = createAction('REQUEST_SWITCH_ORGANIZATION');
+export const receiveSwitchOrganization = createAction('RECEIVE_SWITCH_ORGANIZATION');
 
 export function fetchUser(id) {
   return function (dispatch) {
@@ -91,5 +95,22 @@ export function updateUser(body, userId) {
       }).catch(function (e) {
         dispatch(receiveUpdateUser(e));
       });
+  }
+}
+
+export function switchOrganization(userId, organizationId) {
+  return function (dispatch) {
+    dispatch(requestSwitchOrganization());
+
+    data.request('user', 'PATCH', userId, null, {
+      currentOrganizationId: organizationId,
+    }).then(function (user) {
+      dispatch(receiveSwitchOrganization(user));
+
+      dispatch(fetchCurrentUser());
+      dispatch(fetchRoles());
+    }).catch(function (e) {
+      dispatch(receiveSwitchOrganization(e));
+    });
   }
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import View from './View';
 import * as roomReservation from 'modules/roomReservation/actions';
 import { routerActions } from 'react-router-redux';
-import { pageSelector } from 'modules/reservation/selectors';
+import { pageSelector } from 'modules/roomReservation/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
