@@ -1,5 +1,11 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
+import classNames from 'classnames';
+
+const prompt = classNames(
+  classes.barcodeField,
+  'prompt'
+);
 
 export default class Barcode extends React.Component {
   static propTypes = {
@@ -18,10 +24,16 @@ export default class Barcode extends React.Component {
     this.props.actions.fetchDeviceByBarcode(e.target.value);
   };
   render() {
+    const container = classNames(
+      'ui search',
+      classes.barcodeContainer,
+      { 'loading': this.props.device.requesting },
+    );
+
     return (
-      <div className="ui search">
+      <div className={container}>
         <div className="ui icon input">
-          <input name="barcode" className="prompt" type="text" onChange={this.handleChange} className={classes.font} placeholder="Click to scan barcode" />
+          <input name="barcode" className={prompt} type="text" onChange={this.handleChange} placeholder="Click to scan barcode" />
           <i className="barcode icon"></i>
         </div>
       </div>
