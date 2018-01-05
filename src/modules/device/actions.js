@@ -10,15 +10,15 @@ export const receiveDevice = createAction('RECEIVE_DEVICE');
 
 export const requestCreateDevice = createAction('REQUEST_CREATE_DEVICE');
 export const receiveCreateDevice = createAction('RECEIVE_CREATE_DEVICE');
+export const resetCreateDevice = createAction('RESET_CREATE_DEVICE');
 
 export const requestUpdateDevice = createAction('REQUEST_UPDATE_DEVICE');
 export const receiveUpdateDevice = createAction('RECEIVE_UPDATE_DEVICE');
+export const resetUpdateDevice = createAction('RESET_UPDATE_DEVICE');
 
 export const requestDeleteDevice = createAction('REQUEST_DELETE_DEVICE');
 export const receiveDeleteDevice = createAction('RECEIVE_DELETE_DEVICE');
 
-export const resetCreateDevice = createAction('RESET_CREATE_DEVICE');
-export const resetUpdateDevice = createAction('RESET_UPDATE_DEVICE');
 
 export function fetchDevices(startDate, endDate, disabled) {
   return function (dispatch) {

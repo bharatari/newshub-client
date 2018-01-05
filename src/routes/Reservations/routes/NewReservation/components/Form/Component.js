@@ -36,7 +36,6 @@ class NewReservationForm extends React.Component {
     const { handleSubmit, pristine, reset, submitting, remainingDevices, selectedDevices } = this.props;
     const renderWizard = props => (
       <span>
-        <h2 className={classes.deviceHeader}>Devices</h2>
         <Dummy onChange={props.input.onChange} value={props.input.value}
           remainingDevices={remainingDevices} selectedDevices={selectedDevices} />
         {props.touched && props.error && <span className={classes.errorText}>{props.error}</span>}
@@ -45,18 +44,22 @@ class NewReservationForm extends React.Component {
 
     return (
       <form onSubmit={handleSubmit} className="ui form">
-        <div className="field">
-          <label className={classes.font}>Start Date</label>
-          <Field name="startDate" placeholder="Start Date" component={renderDate} />
-        </div>
-        <div className="field">
-          <label className={classes.font}>End Date</label>
-          <Field name="endDate" placeholder="End Date" component={renderDate} />
+        <h4 className="ui dividing header">Details</h4>
+        <div className="fields">
+          <div className="eight wide field">
+            <label className={classes.font}>Start Date</label>
+            <Field name="startDate" placeholder="Start Date" component={renderDate} />
+          </div>
+          <div className="eight wide field">
+            <label className={classes.font}>End Date</label>
+            <Field name="endDate" placeholder="End Date" component={renderDate} />
+          </div>
         </div>
         <div className="field">
           <label className={classes.font}>Purpose</label>
           <Field name="purpose" type="text" component={renderField} />
         </div>
+        <h4 className="ui dividing header">Optional Details</h4>
         <div className="field">
           <label className={classes.font}>Special Requests</label>
           <Field name="specialRequests" type="text" placeholder="Requests that require special approval" component={renderField} />
@@ -65,6 +68,7 @@ class NewReservationForm extends React.Component {
           <label className={classes.font}>Additional Notes</label>
           <Field name="notes" type="text" component={renderField} />
         </div>
+        <h4 className="ui dividing header">Devices</h4>
         <Field name="devices" component={renderWizard} />
       </form>
     );

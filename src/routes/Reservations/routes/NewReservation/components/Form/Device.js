@@ -23,7 +23,7 @@ export default class Device extends React.Component {
     }
 
     this.props.onChange(device);
-  }
+  };
   remove = () => {
     this.props.remove(this.props.device.id);
   };

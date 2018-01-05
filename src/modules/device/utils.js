@@ -35,4 +35,19 @@ export default {
 
     return errors;
   },
+  available(device) {
+    if (device) {
+      if (device.availableQuantity < 1) {
+        return false;
+      } else {
+        if (device.disabled) {
+          return false;
+        }
+        
+        return true;
+      }
+    }
+    
+    return false;
+  },
 };

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import classes from './Styles.scss';
 import classNames from 'classnames';
+import deviceUtils from 'modules/device/utils';
 
 const header = classNames(
   'header',
@@ -32,15 +33,13 @@ export default class Item extends React.Component {
     );
   
     const showAdd = () => {
-      if (this.props.device.availableQuantity < 1) {
-        return null;
-      } else {
-        if (this.props.device.disabled) {
-          return null;
-        }
-        
+      const show = deviceUtils.available(this.props.device);
+
+      if (show) {
         return add;
       }
+
+      return null;
     };
 
     const specialApproval = () => {

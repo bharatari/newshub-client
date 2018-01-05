@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Device from './Device';
 import Item from './Item';
+import Barcode from './Barcode';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import array from 'utils/array';
 import classes from './Styles.scss';
@@ -9,6 +10,7 @@ import { Tabs, Table } from 'components/';
 import reservation from 'modules/reservation/utils';
 import _ from 'lodash';
 import classNames from 'classnames';
+import deviceUtils from 'modules/device/utils';
 
 const specialApprovalMessage = classNames(
   'ui warning message',
@@ -64,6 +66,7 @@ export default class NewReservationWizard extends React.Component {
     let selectedDevices = [
       ...this.props.selectedDevices,
     ];
+
     selectedDevices = array.deleteFromArrayById(selectedDevices, id);
 
     this.props.actions.setWizardValue({
@@ -71,6 +74,33 @@ export default class NewReservationWizard extends React.Component {
       key: 'selectedDevices',
       value: selectedDevices
     });
+  };
+  handleBarcode = (device) => {
+    if (device) {
+      const id = device.id;
+
+      const existing = _.find(this.props.selectedDevices, (n) => {
+        return n.id === id;
+      });
+
+      if (existing) {
+        return;
+      }
+
+      const devices = _.flatten(_.values(this.props.remainingDevices));
+
+      const remainingDevice = _.find(devices, (n) => {
+        return n.id === id;
+      });
+
+      const available = deviceUtils.available(remainingDevice);
+
+      if (!available) {
+        return;
+      }
+  
+      this.handleClick(device);
+    }
   };
   render() {
     const renderList = () => {
@@ -107,7 +137,7 @@ export default class NewReservationWizard extends React.Component {
               </div>
             );
           }
-        }        
+        }
       }
 
       return list;
@@ -158,6 +188,7 @@ export default class NewReservationWizard extends React.Component {
               {renderList()}
           </ReactCSSTransitionGroup>
         </div>
+        <Barcode onChange={this.handleBarcode} actions={this.props.localActions} device={this.props.fetchDeviceByBarcode} />
         {
           !_.isEmpty(this.props.reservations) ?
           <div>

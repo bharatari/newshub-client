@@ -24,6 +24,7 @@ const mapStateToProps = (state, ownProps) => ({
   showModal: state.newReservation.modal.show,
   reservation: state.newReservation.fetchReservation.reservation,
   requestingFetchReservation: state.newReservation.fetchReservation.requesting,
+  fetchDeviceByBarcode: state.newReservation.fetchDeviceByBarcode,
 });
 
 const actionCreators = {

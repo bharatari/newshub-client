@@ -8,7 +8,12 @@ const initialState = {
     requesting: false,
     reservation: null,
     error: null,
-  }
+  },
+  fetchDeviceByBarcode: {
+    requesting: false,
+    device: null,
+    error: null,
+  },
 };
 
 export default handleActions({
@@ -65,6 +70,48 @@ export default handleActions({
       ...state.fetchReservation,
       requesting: true,
       reservation: null,
+      error: null,
+    },
+  }),
+  'routes/NewReservation/REQUEST_DEVICE': (state) => ({
+    ...state,
+    fetchDeviceByBarcode: {
+      ...state.fetchDeviceByBarcode,
+      requesting: true,
+      device: null,
+      error: null,
+    },
+  }),
+  'routes/NewReservation/RECEIVE_DEVICE': {
+    next(state, action) {
+      return {
+        ...state,
+        fetchDeviceByBarcode: {
+          ...state.fetchDeviceByBarcode,
+          requesting: false,
+          device: action.payload,
+          error: null,
+        },
+      };
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        fetchDeviceByBarcode: {
+          ...state.fetchDeviceByBarcode,
+          requesting: false,
+          device: null,
+          error: action.payload,
+        },
+      };
+    }
+  },
+  'routes/NewReservation/RESET_FETCH_DEVICE': (state, action) => ({
+    ...state,
+    fetchDeviceByBarcode: {
+      ...state.fetchDeviceByBarcode,
+      requesting: true,
+      device: null,
       error: null,
     },
   }),
