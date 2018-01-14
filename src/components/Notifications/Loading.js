@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 
 const spinner = classNames(
-  'ui active inline loader',
+  'ui active inverted inline loader',
   classes.loadingSpinner
 );
 
