@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
+import config from 'constants/config';
 import { Response } from 'components/';
 import { Form } from './components';
 
@@ -36,7 +37,7 @@ export default class LoginView extends React.Component {
   }
   render() {
     return (
-      <div className={classes.background} style={styles}>
+      <div className={classes.background}>
         <div className="ui container">
           <div className="ui middle aligned center aligned grid">
             <div className={main}>

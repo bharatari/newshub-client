@@ -23,7 +23,7 @@ export default class ResetPasswordView extends React.Component {
   };
   render() {
     return (
-      <div className={classes.background} style={styles}>
+      <div className={classes.background}>
         <div className="ui container">
           <div className="ui middle aligned center aligned grid">
             <div className={main}>
