@@ -36,7 +36,7 @@ export default class LoginView extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className={classes.background} style={styles}>
         <div className="ui container">
           <div className="ui middle aligned center aligned grid">
             <div className={main}>
