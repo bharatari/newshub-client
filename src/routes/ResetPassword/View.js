@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import config from 'constants/config';
 import { Response } from 'components/';
 import { Form } from './components';
 
@@ -9,10 +8,6 @@ const main = classNames(
   'twelve wide phone eight wide tablet four wide computer column',
   classes.main
 );
-
-const styles = {
-  backgroundImage: 'url(' + config.loginBackground + ')',
-};
 
 export default class ResetPasswordView extends React.Component {
   static propTypes = {
@@ -28,7 +23,7 @@ export default class ResetPasswordView extends React.Component {
   };
   render() {
     return (
-      <div className={classes.background} style={styles}>
+      <div>
         <div className="ui container">
           <div className="ui middle aligned center aligned grid">
             <div className={main}>
