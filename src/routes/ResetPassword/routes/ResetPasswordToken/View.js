@@ -5,7 +5,7 @@ import { Response } from 'components/';
 import { Form } from './components';
 
 const main = classNames(
-  'ui middle aligned center aligned grid',
+  'twelve wide phone eight wide tablet four wide computer column',
   classes.main
 );
 
@@ -25,10 +25,10 @@ export default class ResetPasswordView extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div className={classes.background}>
         <div className="ui container">
-          <div className={main}>
-            <div className="twelve wide phone eight wide tablet four wide computer column">
+          <div className="ui middle aligned center aligned grid">
+            <div className={main}>
               <h2 className={classes.header}>Reset Password</h2>
               <p className={classes.text}>Enter the email address associated with your account and your new password</p>
               <Response error={this.props.error} response={this.props.response}
