@@ -1,19 +1,6 @@
 import _ from 'lodash';
 
 export default {
-  processResponse(data) {
-    if (data) {
-      return {
-        data,
-        total: data.length,
-      }
-    } else {
-      return {
-        data,
-        total: null,
-      }
-    }
-  },
   validateNewDevice(values) {
     let errors = {};
 

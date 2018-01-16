@@ -43,12 +43,13 @@ export function fetchDevices(startDate, endDate, disabled) {
       };
     }
 
-    data.request('device', 'get', null, query)
-      .then(function (response) {
-        dispatch(receiveDevices(utils.processResponse(response)));
-      }).catch(function (e) {
-        dispatch(receiveDevices(e));
-      });
+    data.request('device', 'get', null, query, null, {
+      resolve: false,
+    }).then(function (response) {
+      dispatch(receiveDevices(response));
+    }).catch(function (e) {
+      dispatch(receiveDevices(e));
+    });
   };
 }
 

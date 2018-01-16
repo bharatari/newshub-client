@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import utils from 'utils/general';
 
 const initialState = {
   fetchDevices: {
@@ -6,6 +7,7 @@ const initialState = {
     devices: null,
     error: null,
     total: null,
+    totalPages: null,
   },
   fetchDevice: {
     requesting: false,
@@ -31,6 +33,7 @@ export default handleActions({
       ...state.fetchDevices,
       requesting: true,
       total: null,
+      totalPages: null,
     },
   }),
   RECEIVE_DEVICES: {
@@ -43,6 +46,7 @@ export default handleActions({
           devices: action.payload.data,
           error: null,
           total: action.payload.total,
+          totalPages: utils.calculatePages(action.payload.total, action.payload.limit),
         },
       };
     },
@@ -55,6 +59,7 @@ export default handleActions({
           devices: null,
           error: action.payload,
           total: null,
+          totalPages: null,
         },
       };
     }
