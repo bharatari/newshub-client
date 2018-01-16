@@ -17,7 +17,7 @@ export default class Content extends React.Component {
     reservation: PropTypes.object,
   };
   render() {
-    const { reservation: { notes, specialRequests, adminNotes } } = this.props;
+    const { reservation: { notes, adminNotes } } = this.props;
     const reviewedBy = () => {
       const reviewedByName = _.get(this.props.reservation, 'approvedBy.fullName') || _.get(this.props.reservation, 'rejectedBy.fullName');
 
@@ -70,8 +70,6 @@ export default class Content extends React.Component {
             <p className={classes.content}><FormatDate datetime={this.props.reservation.endDate} /></p>         
           </div>
           <div className="five wide column">
-            <p className={classes.header}>Special Requests</p>
-            <p className={classes.content}>{specialRequests ? specialRequests : 'None.'}</p>
             <p className={classes.header}>Admin Notes</p>
             <p className={classes.content}>{adminNotes ? adminNotes : 'None.'}</p>
           </div>
