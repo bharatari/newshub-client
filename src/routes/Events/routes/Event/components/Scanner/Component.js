@@ -72,17 +72,22 @@ export default class Content extends React.Component {
   render() {
     const scannerContainerStyles = classNames(
       classes.scannerContainer,
-      { [classes.displayUserDetails]: this.state.displayUser }
+      { [classes.displayUserDetails]: this.state.displayUser },
     );
 
     const contentContainer = classNames(
       classes.contentContainer,
-      { [classes.displayUserDetails]: this.state.displayUser }
+      { [classes.displayUserDetails]: this.state.displayUser },
     );
 
     const userDetailsContainer = classNames(
       classes.userDetailsContainer,
-      { [classes.displayUserDetails ]: this.state.displayUser }
+      { [classes.displayUserDetails]: this.state.displayUser }
+    );
+
+    const loader = classNames(
+      "ui active centered inline inverted massive loader",
+      classes.loader,
     );
 
     const userDetails = () => {
@@ -99,11 +104,23 @@ export default class Content extends React.Component {
       }
     };
 
+    const loading = () => {
+      if (this.props.requestingCreateLog) {
+        return (
+          <div className={loader}></div>
+        );
+      } else {
+        return (
+          <i className={barcodeIcon}></i>
+        );
+      }
+    };
+
     return (
       <div className={contentContainer}>
         <div className={scannerContainerStyles}>
-          <i className={barcodeIcon}></i>
-
+          {loading()}
+  
           <Status focused={this.state.focused} onClick={this.focus} />
 
           <form onSubmit={this.handleSubmit}>
@@ -114,7 +131,7 @@ export default class Content extends React.Component {
             </div>
           </form>
         </div>
-        
+
         {userDetails()}
       </div>
     );
