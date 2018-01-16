@@ -13,6 +13,7 @@ import Card from './Card/Component';
 import Status from './Status/Component';
 import Paginator from './Paginator/Component';
 import Data from './Data/Component';
+import PaginatedTable from './PaginatedTable/Component';
 
 export {
   Notifications,
@@ -30,4 +31,5 @@ export {
   Status,
   Paginator,
   Data,
+  PaginatedTable,
 };

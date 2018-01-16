@@ -15,6 +15,7 @@ export default class EventView extends React.Component {
   componentDidMount() {
     this.props.actions.resetUpdateEvent();
     this.props.actions.fetchEvent(this.props.id);
+    this.props.actions.fetchLogs();
   }
   handleClick = () => {
     this.props.actions.push('/app/room-event/new');
@@ -40,7 +41,9 @@ export default class EventView extends React.Component {
     const { event, requestingEvent, 
             actions, updateError, updatedEvent,
             requestingUpdateEvent, currentUrl, user,
-            log, requestingCreateLog, createLogError } = this.props;
+            log, logs, requestingCreateLog, createLogError,
+            sortField, sortType, sortBy, totalPages, page,
+            requestingLogs } = this.props;
 
     return (
       <div>
@@ -53,7 +56,9 @@ export default class EventView extends React.Component {
                 successHeader="You successfully updated this event." />
               {
                 event ? 
-                <Content event={event} actions={actions} user={user} log={log}
+                <Content event={event} actions={actions} user={user} log={log} logs={logs}
+                  requestingLogs={requestingLogs} sortField={sortField} sortType={sortType}
+                  sortBy={sortBy} totalPages={totalPages} page={page}
                   requestingCreateLog={requestingCreateLog} createLogError={createLogError}/> :
                 <TextLoading loading={requestingEvent} /> 
               }

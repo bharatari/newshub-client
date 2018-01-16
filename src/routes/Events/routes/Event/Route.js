@@ -4,6 +4,7 @@ import View from './View';
 import * as event from 'modules/event/actions';
 import * as log from 'modules/log/actions';
 import { routerActions } from 'react-router-redux';
+import { pageSelector } from 'modules/log/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
@@ -18,6 +19,12 @@ const mapStateToProps = (state, ownProps) => ({
   createLogError: state.log.createLog.error,
   user: state.user.fetchCurrentUser.user,
   roles: state.role.fetchRoles.roles,
+  logs: state.log.fetchLogs.logs,
+  requestingLogs: state.log.fetchLogs.requesting,
+  totalPages: state.log.fetchLogs.totalPages,
+  sortField: ownProps.location.query.sortField,
+  sortType: ownProps.location.query.sortType,
+  page: pageSelector(ownProps),
 });
 
 const actionCreators = {

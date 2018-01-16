@@ -1,15 +1,23 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { FormatDate } from 'components/';
+import { FormatDate, PaginatedTable } from 'components/';
 import event from 'modules/event/utils';
 import user from 'modules/user/utils';
 import _ from 'lodash';
 import { Scanner } from '../';
+import { Type } from './components';
 
 export default class Content extends React.Component {
   static propTypes = {
     event: PropTypes.object,
+  };
+  state = {
+    fields: [
+      { label: 'Name', property: 'targetUser.fullName'},
+      { label: 'Type', property: 'type', component: Type },
+      { label: 'Created At', property: 'createdAt', type: 'date' },
+    ],
   };
   render() {
     const { event, log, requestingCreateLog, createLogError, actions, event: { notes } } = this.props;
@@ -44,6 +52,14 @@ export default class Content extends React.Component {
                 </li>
               </ul>
             </div>
+          </div>
+          <div className="sixteen wide column">
+            <h2 className={classes.activityHeader}>Logs</h2>
+            <PaginatedTable data={this.props.logs} loading={this.props.requestingLogs}
+              fields={this.state.fields} route="#" page={this.props.page}
+              totalPages={this.props.totalPages} sortField={this.props.sortField}
+              sortType={this.props.sortType} sortBy={this.sortBy}
+              fetch={this.props.actions.fetchLogs} />
           </div>
         </div>
       </div>
