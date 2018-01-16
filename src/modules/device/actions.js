@@ -20,7 +20,7 @@ export const requestDeleteDevice = createAction('REQUEST_DELETE_DEVICE');
 export const receiveDeleteDevice = createAction('RECEIVE_DELETE_DEVICE');
 
 
-export function fetchDevices(startDate, endDate, disabled) {
+export function fetchDevices(startDate, endDate, disabled, all) {
   return function (dispatch) {
     dispatch(requestDevices());
     
@@ -41,6 +41,13 @@ export function fetchDevices(startDate, endDate, disabled) {
         ...query,
         disabled,
       };
+    }
+
+    if (all) {
+      query = {
+        ...query,
+        '$limit': -1,
+      }
     }
 
     data.request('device', 'get', null, query, null, {

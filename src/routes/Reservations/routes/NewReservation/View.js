@@ -18,7 +18,7 @@ export default class NewReservationView extends React.Component {
   componentDidMount() {
     this.props.actions.resetCreateReservation();
     this.props.actions.resetFetchReservations();
-    this.props.actions.fetchDevices(null, null, false);
+    this.props.actions.fetchDevices(null, null, false, true);
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.newReservation) {
@@ -27,7 +27,7 @@ export default class NewReservationView extends React.Component {
 
       if (startDate && endDate) {
         if ((startDate !== oldStartDate) || (endDate !== oldEndDate)) {
-          this.props.actions.fetchDevices(startDate, endDate, false);
+          this.props.actions.fetchDevices(startDate, endDate, false, true);
           this.props.actions.fetchReservations({
             startDate,
             endDate,
