@@ -7,7 +7,9 @@ export default class Type extends React.Component {
     data: PropTypes.object,
   };
   render() {
-    if (this.props.data === 'clock-in') {
+    const { type } = this.props.data;
+
+    if (type === 'clock-in') {
       return (
         <span className={classes.text}>
           Clock In

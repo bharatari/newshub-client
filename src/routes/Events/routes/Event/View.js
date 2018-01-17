@@ -15,7 +15,9 @@ export default class EventView extends React.Component {
   componentDidMount() {
     this.props.actions.resetUpdateEvent();
     this.props.actions.fetchEvent(this.props.id);
-    this.props.actions.fetchLogs();
+    this.props.actions.fetchLogs({
+      eventId: this.props.id,
+    });
   }
   handleClick = () => {
     this.props.actions.push('/app/room-event/new');

@@ -39,10 +39,10 @@ export function fetchLogs(options) {
   return function (dispatch, getState) {
     dispatch(requestLogs());
 
-    let startDate, endDate, limit, page, closed, sortField, sortType;
+    let startDate, endDate, limit, page, closed, sortField, sortType, eventId;
 
     if (!_.isNil(options)) {
-      ({ startDate, endDate, limit, page, closed, sortField, sortType } = options);
+      ({ startDate, endDate, limit, page, closed, sortField, sortType, eventId } = options);
     }
     
     if (_.isNil(limit)) {

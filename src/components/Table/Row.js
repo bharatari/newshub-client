@@ -39,6 +39,8 @@ export default class Row extends React.Component {
       if (field.type) {
         if (field.type === 'date') {
           return <FormatDate date={result} />;
+        } else if (field.type === 'datetime') {
+          return <FormatDate datetime={result} />;
         }
       }
 

@@ -16,7 +16,7 @@ export default class Content extends React.Component {
     fields: [
       { label: 'Name', property: 'targetUser.fullName'},
       { label: 'Type', property: 'type', component: Type },
-      { label: 'Created At', property: 'createdAt', type: 'date' },
+      { label: 'Created At', property: 'createdAt', type: 'datetime' },
     ],
   };
   render() {
@@ -59,7 +59,7 @@ export default class Content extends React.Component {
               fields={this.state.fields} route="#" page={this.props.page}
               totalPages={this.props.totalPages} sortField={this.props.sortField}
               sortType={this.props.sortType} sortBy={this.sortBy}
-              fetch={this.props.actions.fetchLogs} />
+              fetch={this.props.actions.fetchLogs} actions={this.props.actions} />
           </div>
         </div>
       </div>
