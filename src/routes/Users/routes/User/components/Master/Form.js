@@ -27,11 +27,11 @@ class UserForm extends React.Component {
     return (
       <form onSubmit={handleSubmit} className="ui form">
         <p className={classes.header}>Title</p>
-        <Field name="title" component="input" type="text" className={classes.font} />
+        <Field name="organization_users.title" component="input" type="text" className={classes.font} />
         <p className={classes.header}>Notes</p>
         <Field name="notes" component="textarea" className={classes.font} />
         <p className={classes.header}>Roles</p>
-        <Field name="roles" component="input" type="text" className={classes.font} />
+        <Field name="organization_users.roles" component="input" type="text" className={classes.font} />
         <p className={classes.header}>Disabled</p>
         <div className="field">
           <div className="ui checkbox">

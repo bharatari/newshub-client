@@ -13,7 +13,7 @@ export default class Content extends React.Component {
     actions: PropTypes.object,
   };
   render() {
-    const { user: { title, notes, roles, disabled } } = this.props;
+    const { user: { organization_users: { title, roles }, notes, disabled } } = this.props;
     const edit = access.has(this.props.roles, 'user:update');
     const editNotes = access.has(this.props.roles, 'user:notes:update');
 

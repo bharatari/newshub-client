@@ -16,8 +16,7 @@ export default class UsersView extends React.Component {
       { label: 'Name', property: 'fullName', component: Disabled },
       { label: 'Username', property: 'username' },
       { label: 'Email', property: 'email' },
-      { label: 'Title', property: 'title' },
-      { label: 'Admin', property: 'roles' },
+      { label: 'Title', property: 'organization_users.title' },
       { label: 'Created', property: 'createdAt', type: 'date' },
     ]
   };
