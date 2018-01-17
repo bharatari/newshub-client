@@ -25,6 +25,7 @@ const mapStateToProps = (state, ownProps) => ({
   sortField: ownProps.location.query.sortField,
   sortType: ownProps.location.query.sortType,
   page: pageSelector(ownProps),
+  location: ownProps.location,
 });
 
 const actionCreators = {

@@ -20,7 +20,7 @@ export default class EventsView extends React.Component {
   };
   render() {
     return (
-      <Data data={this.props.events} loading={this.props.requestingEvent}
+      <Data data={this.props.events} loading={this.props.requestingEvents}
         header="Events" user={this.props.user} currentUrl={this.props.currentUrl}
         actions={this.props.actions} fields={this.state.fields} route="/app/event"
         page={this.props.page} totalPages={this.props.totalPages}

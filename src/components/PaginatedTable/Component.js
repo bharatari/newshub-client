@@ -76,7 +76,7 @@ export default class PaginatedTable extends React.Component {
                 sortType={this.props.sortType} 
                 sortable={true} />
               <Paginator currentPage={this.props.page} 
-                totalPages={this.props.totalPages} 
+                totalPages={this.props.totalPages}
                 goToPage={this.goToPage} />
             </div>
             : <TextLoading loading={this.props.loading} />

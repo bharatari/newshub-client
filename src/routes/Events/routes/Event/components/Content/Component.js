@@ -60,7 +60,7 @@ export default class Content extends React.Component {
               totalPages={this.props.totalPages} sortField={this.props.sortField}
               sortType={this.props.sortType} sortBy={this.sortBy}
               fetch={this.props.actions.fetchLogs} actions={this.props.actions}
-              filter={{ eventId: this.props.event.id }} />
+              filter={{ eventId: this.props.event.id }} location={location} />
           </div>
         </div>
       </div>
