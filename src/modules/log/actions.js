@@ -76,6 +76,10 @@ export function fetchLogs(options) {
       query += '&closed=' + encodeURIComponent(disabled);
     }
 
+    if (!_.isNil(eventId)) {
+      query += '&eventId=' + encodeURIComponent(eventId);
+    }
+
     data.request('log', 'get', null, query, null, {
       resolve: false,
     }).then(function (response) {

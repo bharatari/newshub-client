@@ -59,7 +59,8 @@ export default class Content extends React.Component {
               fields={this.state.fields} route="#" page={this.props.page}
               totalPages={this.props.totalPages} sortField={this.props.sortField}
               sortType={this.props.sortType} sortBy={this.sortBy}
-              fetch={this.props.actions.fetchLogs} actions={this.props.actions} />
+              fetch={this.props.actions.fetchLogs} actions={this.props.actions}
+              filter={{ eventId: this.props.event.id }} />
           </div>
         </div>
       </div>

@@ -18,6 +18,7 @@ export default class PaginatedTable extends React.Component {
       sortField: props.sortField,
       sortType: props.sortType,
       page: props.page,
+      ...this.props.filter,
     });
   };
   goToPage = (page, event) => {
