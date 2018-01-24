@@ -14,6 +14,8 @@ export default class EventsView extends React.Component {
   state = {
     fields: [
       { label: 'Name', property: 'name'},
+      { label: 'Start Date', property: 'startDate', type: 'date' },
+      { label: 'End Date', property: 'endDate', type: 'date' },
       { label: 'Created At', property: 'createdAt', type: 'date' },
     ],
     reload: false,
