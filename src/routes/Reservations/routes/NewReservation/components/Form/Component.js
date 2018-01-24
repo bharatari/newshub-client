@@ -17,7 +17,7 @@ const renderField = ({ input, meta: { touched, error }}) => (
 const renderDate = ({ input, meta: { touched, error }}) => (
   <div>
     <div className="ui input">
-      <input type="datetime-local" {...input} className={classes.font} />
+      <input type="datetime" {...input} className={classes.font} />
     </div>
     {touched && error && <span className={classes.errorText}>{error}</span>}
   </div>
