@@ -104,9 +104,6 @@ export function createReservation(body) {
   return function (dispatch) {
     dispatch(requestCreateReservation());
 
-    body.startDate = moment(body.startDate).local().toDate();
-    body.endDate = moment(body.endDate).local().toDate();
-
     data.request('reservation', 'post', null, null, body)
       .then(function (response) {
         dispatch(receiveCreateReservation(response))

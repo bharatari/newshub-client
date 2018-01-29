@@ -14,6 +14,7 @@ import Status from './Status/Component';
 import Paginator from './Paginator/Component';
 import Data from './Data/Component';
 import PaginatedTable from './PaginatedTable/Component';
+import DateTime from './DateTime/Component';
 
 export {
   Notifications,
@@ -32,4 +33,5 @@ export {
   Paginator,
   Data,
   PaginatedTable,
+  DateTime,
 };

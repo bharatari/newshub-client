@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 import reservation from 'modules/reservation/utils';
 import Dummy from './Dummy';
+import { DateTime } from 'components/';
 
 const renderField = ({ input, meta: { touched, error }}) => (
   <div>
@@ -16,9 +17,7 @@ const renderField = ({ input, meta: { touched, error }}) => (
 
 const renderDate = ({ input, meta: { touched, error }}) => (
   <div>
-    <div className="ui input">
-      <input type="datetime-local" {...input} className={classes.font} />
-    </div>
+    <DateTime {...input} />
     {touched && error && <span className={classes.errorText}>{error}</span>}
   </div>
 );
