@@ -2,6 +2,7 @@ import { createAction } from 'redux-actions';
 import data from 'utils/data';
 import utils from './utils';
 import _ from 'lodash';
+import moment from 'moment';
 
 export const requestReservations = createAction('REQUEST_RESERVATIONS');
 export const receiveReservations = createAction('RECEIVE_RESERVATIONS');
@@ -102,6 +103,9 @@ export function updateReservation(id, body) {
 export function createReservation(body) {
   return function (dispatch) {
     dispatch(requestCreateReservation());
+
+    body.startDate = moment(body.startDate).local().toDate();
+    body.endDate = moment(body.endDate).local().toDate();
 
     data.request('reservation', 'post', null, null, body)
       .then(function (response) {
