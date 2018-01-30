@@ -14,6 +14,9 @@ const mapStateToProps = (state, ownProps) => ({
   requestingUpdateReservation: state.reservation.updateReservation.requesting,
   updateError: state.reservation.updateReservation.error,
   user: state.user.fetchCurrentUser.user,
+  requestingDeleteReservation: state.reservation.deleteReservation.requesting,
+  deletedReservation: state.reservation.deleteReservation.reservation,
+  deleteError: state.reservation.deleteReservation.error,
 });
 
 const actionCreators = {

@@ -112,3 +112,16 @@ export function createReservation(body) {
       });
   };
 }
+
+export function deleteReservation(id) {
+  return function (dispatch) {
+    dispatch(requestDeleteReservation());
+
+    data.request('reservation', 'delete', id)
+      .then(function (response) {
+        dispatch(receiveDeleteReservation(response))
+      }).catch(function (e) {
+        dispatch(receiveDeleteReservation(e));
+      });
+  };
+}

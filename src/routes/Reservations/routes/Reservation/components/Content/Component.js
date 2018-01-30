@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { FormatDate } from 'components/';
+import { FormatDate, Deleter } from 'components/';
 import { Admin, Devices } from '../';
 import reservation from 'modules/reservation/utils';
 import user from 'modules/user/utils';
@@ -17,6 +17,7 @@ export default class Content extends React.Component {
   static propTypes = {
     reservation: PropTypes.object,
   };
+
   render() {
     const { reservation: { notes, adminNotes }, roles } = this.props;
     const reviewedBy = () => {
@@ -56,6 +57,7 @@ export default class Content extends React.Component {
     const color = reservation.getReservationColor(this.props.reservation);
     const status = reservation.getReservationStatus(this.props.reservation);
     const canApprove = access.has(roles, 'reservation:approve');
+    const canDelete = access.has(roles, 'reservation:delete');
 
     return (
       <div className={classes.contentContainer}>
@@ -103,6 +105,12 @@ export default class Content extends React.Component {
         </div>
         
         { canApprove ? <Admin reservation={this.props.reservation} actions={this.props.actions} /> : null }
+
+        <div className={classes.dangerZone}>
+          <p className={classes.boldHeader}>Danger Zone</p>
+          <Deleter id={this.props.id} delete={this.props.actions.deleteReservation} success={this.props.deletedReservation}
+            error={this.props.deleteError} requesting={this.props.requestingDeleteResevation} roles={roles} model="reservation" />
+        </div>
       </div>
     );
   }

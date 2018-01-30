@@ -24,6 +24,11 @@ export const initialState = {
     reservation: null,
     error: null,
   },
+  deleteReservation: {
+    requesting: false,
+    reservation: null,
+    error: null,
+  },
 };
 
 export default handleActions({
@@ -186,6 +191,39 @@ export default handleActions({
         ...state,
         updateReservation: {
           ...state.updateReservation,
+          requesting: false,
+          reservation: null,
+          error: action.payload,
+        },
+      };
+    }
+  },
+  REQUEST_DELETE_RESERVATION: (state, action) => ({
+    ...state,
+    deleteReservation: {
+      ...state.deleteReservation,
+      requesting: true,
+      reservation: null,
+      error: null,
+    },
+  }),
+  RECEIVE_DELETE_RESERVATION: {
+    next(state, action) {
+      return {
+        ...state,
+        deleteReservation: {
+          ...state.deleteReservation,
+          requesting: false,
+          reservation: action.payload,
+          error: null,
+        },
+      };
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        deleteReservation: {
+          ...state.deleteReservation,
           requesting: false,
           reservation: null,
           error: action.payload,

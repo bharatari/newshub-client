@@ -15,6 +15,7 @@ import Paginator from './Paginator/Component';
 import Data from './Data/Component';
 import PaginatedTable from './PaginatedTable/Component';
 import DateTime from './DateTime/Component';
+import Deleter from './Deleter/Component';
 
 export {
   Notifications,
@@ -34,4 +35,5 @@ export {
   Data,
   PaginatedTable,
   DateTime,
+  Deleter,
 };

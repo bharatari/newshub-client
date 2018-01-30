@@ -39,7 +39,8 @@ export default class ReservationView extends React.Component {
   render() {
     const { reservation, requestingReservation, 
             actions, updateError, updatedReservation,
-            requestingUpdateReservation, currentUrl, user, roles } = this.props;
+            requestingUpdateReservation, currentUrl, user, roles,
+            requestingDeleteReservation, deletedReservation, deleteError } = this.props;
 
     return (
       <div>
@@ -52,7 +53,9 @@ export default class ReservationView extends React.Component {
                 successHeader="You successfully updated this reservation." />
               {
                 reservation ? 
-                <Content reservation={reservation} actions={actions} user={user} roles={roles} /> :
+                <Content reservation={reservation} actions={actions} user={user} roles={roles}
+                  requestingDeleteReservation={requestingDeleteReservation} deletedReservation={deletedReservation}
+                  deleteError={deleteError} /> :
                 <TextLoading loading={requestingReservation} /> 
               }
             </div>

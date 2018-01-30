@@ -5,6 +5,18 @@
   color: rgba(163, 163, 163, 1);
 }
 
+.boldHeader {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  text-transform: uppercase;
+  color: gray;
+  font-size: 14px;
+}
+
+.dangerZone {
+  margin-top: 20px;
+}
+
 .contentContainer {
   padding: 20px;
 }
