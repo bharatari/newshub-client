@@ -28,7 +28,7 @@ export default class Deleter extends React.Component {
     return (   
       <div>
         { canDelete ? (
-            <button className="ui animated button red inverted button-light" onClick={this.handleClick}>
+            <button className="ui animated button red button-light" onClick={this.handleClick}>
               <div className="visible content">DELETE</div>
               <div className="hidden content">
                 <i className="trash icon"></i>

@@ -56,7 +56,7 @@ export default class HomeView extends React.Component {
               <h1 className={classes.statText}>{this.props.totalReservations}</h1>
             </Card>
             <Card column="four" background="#2185D0">
-              <p className={classes.statLabel} style={{ color: '#134c77' }}>PROJECTS <i className="chevron circle right icon"></i></p>
+              <a href="/app/event" className={classes.statLabel} style={{ color: '#134c77' }}>RESERVATIONS <i className="chevron circle right icon"></i></a>
               <h1 className={classes.statText}>0</h1>
             </Card>
             <Card>

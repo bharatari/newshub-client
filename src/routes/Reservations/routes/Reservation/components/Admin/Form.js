@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 
 const button = classNames(
-  'ui button inverted blue button-light',
+  'ui button blue button-light',
   classes.marginTop
 );
 

@@ -23,7 +23,7 @@ class SignupForm extends React.Component {
   render() {
     const { handleSubmit, pristine, reset, submitting, requestingCreateUser, error } = this.props;
     const button = classNames(
-      'ui fluid large inverted blue submit button button-light',
+      'ui fluid large blue submit button button-light',
       classes.button,
       { loading: requestingCreateUser }
     );

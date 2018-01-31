@@ -6,11 +6,11 @@ import reservationUtils from 'modules/reservation/utils';
 import Form from './Form';
 
 const buttonStyle = classNames(
-  'ui button inverted blue button-light'
+  'ui button blue button-light'
 );
 
 const negativeStyle = classNames(
-  'ui button inverted red button-light'
+  'ui button red button-light'
 );
 
 export default class Admin extends React.Component {

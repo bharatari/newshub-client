@@ -33,10 +33,10 @@ class LoginForm extends React.Component {
       { loading: requestingLogin }
     );
     const signup = classNames(
-      'ui fluid large inverted blue submit button button-light',
+      'ui fluid large blue submit button button-light',
     );
     const resetButton = classNames(
-      'ui fluid large inverted red submit button button-light',
+      'ui fluid large red submit button button-light',
       classes.reset
     )
 

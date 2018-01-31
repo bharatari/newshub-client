@@ -56,7 +56,7 @@ export default class NewProjectView extends React.Component {
   };
   render() {
     const button = classNames(
-      'ui animated button blue inverted button-light',
+      'ui animated button blue button-light',
       { loading: this.props.requestingCreateProject }
     );
     const disable = this.props.requestingCreateProject || this.props.createdProject;

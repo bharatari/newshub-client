@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
 const button = classNames(
-  'ui button inverted blue button-light',
+  'ui button blue button-light',
   classes.button
 );
 

@@ -31,14 +31,14 @@ export default class Device extends React.Component {
     return (
       <div className={classes.reservationDevice}>
         <p className={classes.reservationDeviceLabel}>{this.props.device.label}</p>
-        <div className="ui inverted icon blue button button-light" onClick={this.add}>
+        <div className="ui icon blue button button-light" onClick={this.add}>
           <i className="plus icon"></i>
         </div>
         <span className={classes.reservationDeviceQuantity}>{this.props.device.reservedQuantity}</span>
-        <div className="ui inverted icon red button button-light" onClick={this.subtract}>
+        <div className="ui icon red button button-light" onClick={this.subtract}>
           <i className="minus icon"></i>
         </div>
-        <div className="ui animated button inverted blue button-light right floated" onClick={this.remove}>
+        <div className="ui animated button blue button-light right floated" onClick={this.remove}>
           <div className="visible content">DELETE</div>
           <div className="hidden content">
             <i className="trash icon"></i>

@@ -63,7 +63,7 @@ export default class Data extends React.Component {
     this.props.actions.push(this.props.newURL);
   };
   render() {
-    const right = <button className="ui animated button blue inverted button-light" onClick={this.handleClick}>
+    const right = <button className="ui animated button blue button-light" onClick={this.handleClick}>
                     <div className="visible content">ADD</div>
                     <div className="hidden content">
                       <i className="add circle icon"></i>
