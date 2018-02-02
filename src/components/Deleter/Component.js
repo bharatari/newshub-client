@@ -37,7 +37,8 @@ export default class Deleter extends React.Component {
           ) : null
         }
 
-        <Modal id="deleter-modal" show={this.state.showModal} handleConfirmation={this.deleteObject} header="Are you sure?">
+        <Modal id="deleter-modal" show={this.state.showModal} handleConfirmation={this.deleteObject} header="Are you sure?"
+          cancelText="Cancel" confirmationText="Delete">
           Are you sure you want to delete this? This action is not reversible.
         </Modal>
       </div>

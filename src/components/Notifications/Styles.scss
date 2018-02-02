@@ -1,8 +1,8 @@
 .notifications {
   position: fixed;
   overflow: hidden;
-  top: 100px;
-  left: 300px;
+  top: 150px;
+  left: 400px;
   margin-left: -40px;
   z-index: 990;
 }
@@ -20,7 +20,7 @@
   padding-right: 15px;
   margin-top: 7px;
   list-style: none;
-  background-color: #137cbd;
+  background-color: #222222;
   box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2);
 }
 

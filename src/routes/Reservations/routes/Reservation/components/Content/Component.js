@@ -59,38 +59,58 @@ export default class Content extends React.Component {
     const canApprove = access.has(roles, 'reservation:approve');
     const canDelete = access.has(roles, 'reservation:delete');
 
+    const startTimeIcon = classNames(
+      'ion-ios-pulse-strong',
+      classes.icon
+    );
+
+    const endTimeIcon = classNames(
+      'ion-ios-redo',
+      classes.icon
+    )
+
+    const notesIcon = classNames(
+      'ion-ios-chatboxes',
+      classes.icon
+    );
+    
+    const miscIcon = classNames(
+      'ion-ios-analytics',
+      classes.icon
+    );
+
     return (
       <div className={classes.contentContainer}>
-        <h2 className={classes.dateHeader}>{this.props.reservation.purpose}</h2>
-        <span className={classes.subheader}><p className={classes.userHeader}>by {this.props.reservation.user.fullName}</p></span>
+        <h2 className={classes.header}>{this.props.reservation.purpose}</h2>
+        <span className={classes.subheader}><span className={classes.createdBy}>By </span><p className={classes.userHeader}>{this.props.reservation.user.fullName}</p></span>
         <p className={classes.statusText} style={{ backgroundColor: color }}>{reservation.getReservationStatus(this.props.reservation)}</p>
+
+        <p className={classes.notes}>{notes ? notes : null}</p>
 
         <div className={info}>
           <div className="five wide column">
-            <p className={classes.header}>Start Date</p>
-            <p className={classes.content}><FormatDate datetime={this.props.reservation.startDate} /></p>   
-
-            <p className={classes.header}>End Date</p>
-            <p className={classes.content}><FormatDate datetime={this.props.reservation.endDate} /></p>         
-          </div>
-          <div className="five wide column">
-            <p className={classes.header}>Admin Notes</p>
-            <p className={classes.content}>{adminNotes ? adminNotes : 'None.'}</p>
+            <p className={classes.infoHeader}>Start Date</p>
+            <i className={startTimeIcon} style={{ color: 'rgb(45, 96, 163)' }}></i><p className={classes.infoContent}><FormatDate datetime={this.props.reservation.startDate} /></p>
           </div>
 
           <div className="five wide column">
-            <p className={classes.header}>Notes</p>
-            <p className={classes.content}>{notes ? notes : 'None.'}</p>
+            <p className={classes.infoHeader}>End Date</p>
+            <i className={endTimeIcon} style={{ color: 'rgb(234, 192, 94)' }}></i><p className={classes.infoContent}><FormatDate datetime={this.props.reservation.endDate} /></p>
+          </div>
+
+          <div className="six wide column">
+            <p className={classes.infoHeader}>Admin Notes</p>
+            <i className={miscIcon} style={{ color: 'rgb(45, 96, 163)' }}></i><p className={classes.infoContent}>{adminNotes ? adminNotes : 'None.'}</p>
           </div>
         </div>
         
         <div className="ui grid">
           <div className="eight wide column">
-            <p className={classes.activityHeader}>Devices</p>
+            <p className={classes.boldHeader}>Devices</p>
             <Devices devices={this.props.reservation.devices} />
           </div>
           <div className="eight wide column">
-            <h2 className={classes.activityHeader}>Activity</h2>
+            <h2 className={classes.boldHeader}>Activity</h2>
             <div className={classes.activityBox}>
               <ul>
                 <li>

@@ -58,9 +58,8 @@ class NewReservationForm extends React.Component {
           <label className={classes.font}>Purpose</label>
           <Field name="purpose" type="text" component={renderField} />
         </div>
-        <h4 className="ui dividing header">Optional Details</h4>
         <div className="field">
-          <label className={classes.font}>Additional Notes</label>
+          <label className={classes.font}>Additional Details</label>
           <Field name="notes" type="text" component={renderField} />
         </div>
         <h4 className="ui dividing header">Devices</h4>

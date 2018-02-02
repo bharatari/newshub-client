@@ -85,7 +85,7 @@ class Sidebar extends React.Component {
   }
   render() {
     const mobileSidebar = classNames(
-      'ui inverted vertical menu mobile-only newshub-sidebar',
+      'ui inverted vertical mobile-only newshub-sidebar',
       classes.sidebarMobile,
       { active: this.props.active }
     );
@@ -221,17 +221,19 @@ class Sidebar extends React.Component {
       <div>
         <div className={sidebar}>
           <div className={classes.logo}>
-            <a className={classes.brandLink} href={organization.link}><p className={classes.brand}>{organization.label}</p></a>
+            <a className={classes.brandLink} href="#"><p className={classes.brand}>{organization.label}</p></a>
           </div>
           <div className={list}>
             {getRoutes()}
           </div>
+          <hr className={classes.divider} />
           {getButtons()}
         </div>
         <div className={mobileSidebar}>
           <div className={list}>
             {getRoutes()}
           </div>
+          <hr className={classes.divider} />
           {getButtons()}
         </div>
       </div>

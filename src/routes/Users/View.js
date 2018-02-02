@@ -27,7 +27,7 @@ export default class UsersView extends React.Component {
     this.props.actions.push('/app/user/new');
   };
   render() {
-    const right = <button className="ui animated button blue inverted button-light" onClick={this.handleClick}>
+    const right = <button className="ui animated button blue button-light" onClick={this.handleClick}>
                     <div className="visible content">ADD</div>
                     <div className="hidden content">
                       <i className="add circle icon"></i>
