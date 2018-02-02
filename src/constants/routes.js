@@ -10,7 +10,6 @@ export const configuration = {
     { label: 'Events', url: '/app/event', icon: 'ion-ios-time-outline', sidebar: true, role: 'event:read' },
     { url: '/app/user/new', role: 'user:create' },
     { url: '/app/device/new', role: 'device:create' },
-    { url: '/app/project/new', role: 'project:create' },
     { url: '/app/login' },
     { url: '/app/signup' }
   ]
