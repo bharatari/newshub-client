@@ -2,7 +2,8 @@ import Datetime from 'react-datetime';
 import React, { PropTypes } from 'react'
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import 'react-datetime/css/react-datetime.css';
+import { DatePicker } from 'antd';
+import 'antd/lib/date-picker/style/index.css';
 
 export default class Card extends React.Component {
   handleBlur = (moment) => {
@@ -18,7 +19,7 @@ export default class Card extends React.Component {
   };
   render() {
     return (
-      <Datetime onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} input={false} />
+      <DatePicker onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} showTime={true} />
     );
   }
 }

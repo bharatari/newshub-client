@@ -44,7 +44,7 @@
 .divider {
   background-color: transparent;
   width: 200px;
-  border-top: 2px solid #616161;
+  border-top: 1px solid #616161;
   border-bottom: none;
   border-right: none;
   border-left: none;
@@ -59,7 +59,6 @@
   top: 0;
   bottom: 0;
   background-color: #4c4c4c;
-  box-shadow: -9px -3px 44px -13px rgba(0, 0, 0, 0.71) inset;
 }
 
 .sidebarMobile {
@@ -114,7 +113,7 @@
   left: 350px;
   right: 0;
   background-color: white;
-  box-shadow: 0px 2px 10px 0px rgba(50,50,50,0.2)
+  box-shadow: 6px 2px 10px 0px rgba(50, 50, 50, 0.2);
 }
 
 .sidebarContainerHeaderRight {

@@ -22,6 +22,7 @@
   "repository": {},
   "author": "Bharat Arimilli",
   "dependencies": {
+    "antd": "^3.2.1",
     "async": "^2.0.0",
     "babel-register": "^6.3.13",
     "babel-runtime": "^6.3.19",
