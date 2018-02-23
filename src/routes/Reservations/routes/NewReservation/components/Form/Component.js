@@ -1,75 +1,65 @@
-import React, { PropTypes } from 'react';
-import classes from './Styles.scss';
-import classNames from 'classnames';
-import { Field, reduxForm } from 'redux-form';
-import reservation from 'modules/reservation/utils';
-import Dummy from './Dummy';
-import { DateTime } from 'components/';
+import React from 'react';
+import { Steps, Button, message } from 'antd';
+import DateSelection from './DateSelection';
+import Details from './Details';
+import DeviceSelection from './DeviceSelection';
+import 'antd/lib/steps/style/index.css'
 
-const renderField = ({ input, meta: { touched, error }}) => (
-  <div>
-    <div className="ui input">
-      <input {...input} className={classes.font} />
-    </div>
-    {touched && error && <span className={classes.errorText}>{error}</span>}
-  </div>
-);
+const Step = Steps.Step;
 
-const renderDate = ({ input, meta: { touched, error }}) => (
-  <div>
-    <DateTime {...input} />
-    {touched && error && <span className={classes.errorText}>{error}</span>}
-  </div>
-);
-
-class NewReservationForm extends React.Component {
-  static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    pristine: PropTypes.bool.isRequired,
-    reset: PropTypes.func.isRequired,
-    submitting: PropTypes.bool.isRequired,
-    remainingDevices: PropTypes.object,
-    selectedDevices: PropTypes.array,
+export default class Form extends React.Component {
+  state = {
+    current: 0,
+  };
+  next = () => {
+    const current = this.state.current + 1;
+    this.setState({ current });
+  };
+  previous = () => {
+    const current = this.state.current - 1;
+    this.setState({ current });
   };
   render() {
-    const { handleSubmit, pristine, reset, submitting, remainingDevices, selectedDevices } = this.props;
-    const renderWizard = props => (
-      <span>
-        <Dummy onChange={props.input.onChange} value={props.input.value}
-          remainingDevices={remainingDevices} selectedDevices={selectedDevices} />
-        {props.touched && props.error && <span className={classes.errorText}>{props.error}</span>}
-      </span>
-    );
+    const { current } = this.state;
+    const { onSubmit, ...commonProps } = this.props;
+
+    const steps = [{
+      title: 'Dates',
+      component: DateSelection,
+      props: {
+        ...commonProps,
+        onSubmit: this.next,
+      },
+    }, {
+      title: 'Details',
+      component: Details,
+      props: {
+        ...commonProps,
+        previous: this.previous,
+        onSubmit: this.next,
+      },
+    }, {
+      title: 'Equipment',
+      component: DeviceSelection,
+      props: {
+        ...commonProps,
+        onSubmit,
+        previous: this.previous,
+      },
+    }];
+
+    const Component = steps[this.state.current].component;
+    const props = steps[this.state.current].props;
 
     return (
-      <form onSubmit={handleSubmit} className="ui form">
-        <h4 className="ui dividing header">Details</h4>
-        <div className="fields">
-          <div className="eight wide field">
-            <label className={classes.font}>Start Date</label>
-            <Field name="startDate" placeholder="Start Date" component={renderDate} />
-          </div>
-          <div className="eight wide field">
-            <label className={classes.font}>End Date</label>
-            <Field name="endDate" placeholder="End Date" component={renderDate} />
-          </div>
+      <div>
+        <Steps current={current}>
+          {steps.map(item => <Step key={item.title} title={item.title} />)}
+        </Steps>
+        <div className="steps-content">
+          <Component {...props} />
         </div>
-        <div className="field">
-          <label className={classes.font}>Purpose</label>
-          <Field name="purpose" type="text" component={renderField} />
-        </div>
-        <div className="field">
-          <label className={classes.font}>Additional Details</label>
-          <Field name="notes" type="text" component={renderField} />
-        </div>
-        <h4 className="ui dividing header">Devices</h4>
-        <Field name="devices" component={renderWizard} />
-      </form>
+      </div>
     );
   }
 }
-
-export default reduxForm({
-  form: 'newReservation',
-  validate: reservation.validateNewReservation,
-})(NewReservationForm);

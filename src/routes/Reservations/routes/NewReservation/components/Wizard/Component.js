@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Device from './Device';
 import Item from './Item';
-import Barcode from './Barcode';
+import { Barcode } from '../';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import array from 'utils/array';
 import classes from './Styles.scss';
@@ -34,7 +34,7 @@ export default class NewReservationWizard extends React.Component {
   componentDidMount() {
     let selectedDevices = [];
 
-    this.props.actions.setWizardValue({
+    this.props.localActions.setWizardValue({
       name: 'newReservation',
       key: 'selectedDevices',
       value: selectedDevices
@@ -46,7 +46,7 @@ export default class NewReservationWizard extends React.Component {
       device,
     ];
 
-    this.props.actions.setWizardValue({
+    this.props.localActions.setWizardValue({
       name: 'newReservation',
       key: 'selectedDevices',
       value: selectedDevices
@@ -56,7 +56,7 @@ export default class NewReservationWizard extends React.Component {
     let selectedDevices = this.props.selectedDevices;
     selectedDevices = array.updateById(selectedDevices, device.id, device);
 
-    this.props.actions.setWizardValue({
+    this.props.localActions.setWizardValue({
       name: 'newReservation',
       key: 'selectedDevices',
       value: selectedDevices
@@ -69,7 +69,7 @@ export default class NewReservationWizard extends React.Component {
 
     selectedDevices = array.deleteFromArrayById(selectedDevices, id);
 
-    this.props.actions.setWizardValue({
+    this.props.localActions.setWizardValue({
       name: 'newReservation',
       key: 'selectedDevices',
       value: selectedDevices

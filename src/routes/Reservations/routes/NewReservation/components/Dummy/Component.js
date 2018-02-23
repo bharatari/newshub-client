@@ -1,10 +1,4 @@
 import React, { PropTypes } from 'react';
-import Device from './Device';
-import Item from './Item';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import array from 'utils/array';
-import classes from './Styles.scss';
-import Group from './Group';
 
 export default class Dummy extends React.Component {
   static propTypes = {

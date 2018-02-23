@@ -1,8 +1,10 @@
 import Form from './Form/Component';
-import Wizard from './Form/Wizard';
+import Wizard from './Wizard/Component';
 import ModalContent from './ModalContent/Component';
 import Devices from './Devices/Component';
 import Content from './Content/Component';
+import Barcode from './Barcode/Component';
+import Dummy from './Dummy/Component';
 
 export {
   Form,
@@ -10,4 +12,6 @@ export {
   ModalContent,
   Devices,
   Content,
+  Barcode,
+  Dummy,
 };

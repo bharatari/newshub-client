@@ -69,6 +69,7 @@ export default class Item extends React.Component {
             {this.props.device.description}
             <p>{this.props.device.availableQuantity} available</p>
             {specialApproval()}
+            <p><i className="barcode icon"></i>{this.props.device.barcode}</p>
           </div>
         </div>
         {showAdd()}

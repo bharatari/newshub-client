@@ -14,7 +14,7 @@ const initialState = {
     device: null,
     error: null,
   },
-  newReservation: {
+  form: {
     selectedDevices: [],
   },
 };
@@ -120,8 +120,8 @@ export default handleActions({
   }),
   'routes/NewReservation/SET_WIZARD_VALUE': (state, action) => ({
     ...state,
-    [action.payload.name]: {
-      ...state[action.payload.name],
+    form: {
+      ...state.form,
       [action.payload.key]: action.payload.value
     },
   })
