@@ -3,9 +3,6 @@ import { Steps, Button, message } from 'antd';
 import DateSelection from './DateSelection';
 import Details from './Details';
 import DeviceSelection from './DeviceSelection';
-import 'antd/lib/steps/style/index.css'
-
-const Step = Steps.Step;
 
 export default class Form extends React.Component {
   state = {
@@ -54,7 +51,7 @@ export default class Form extends React.Component {
     return (
       <div>
         <Steps current={current}>
-          {steps.map(item => <Step key={item.title} title={item.title} />)}
+          {steps.map(item => <Steps.Step key={item.title} title={item.title} icon={item.icon} />)}
         </Steps>
         <div className="steps-content">
           <Component {...props} />

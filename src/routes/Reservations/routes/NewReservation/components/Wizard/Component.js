@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Device from './Device';
 import Item from './Item';
-import { Barcode } from '../';
+import { Barcode, ModalContent } from '../';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import array from 'utils/array';
 import classes from './Styles.scss';
@@ -11,6 +11,7 @@ import reservation from 'modules/reservation/utils';
 import _ from 'lodash';
 import classNames from 'classnames';
 import deviceUtils from 'modules/device/utils';
+import { Modal } from 'antd';
 
 const specialApprovalMessage = classNames(
   'ui warning message',
@@ -39,6 +40,14 @@ export default class NewReservationWizard extends React.Component {
       key: 'selectedDevices',
       value: selectedDevices
     });
+  }
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.reservation && nextProps.reservation) {
+      Modal.warning({
+        content: <ModalContent data={nextProps.reservation} />,
+        width: 800,
+      });
+    }
   }
   handleClick = (device) => {
     let selectedDevices = [
@@ -101,6 +110,9 @@ export default class NewReservationWizard extends React.Component {
   
       this.handleClick(device);
     }
+  };
+  showModal = (id) => {
+    this.props.localActions.fetchReservation(id);
   };
   render() {
     const renderList = () => {
@@ -198,7 +210,7 @@ export default class NewReservationWizard extends React.Component {
               data={this.props.reservations}
               actions={this.props.actions}
               route="/app/reservation" modal={true}
-              showModal={this.props.localActions.fetchReservation} />
+              showModal={this.showModal} />
           </div> : null
         }
       </div>

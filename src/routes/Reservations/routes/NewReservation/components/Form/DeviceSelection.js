@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 import reservation from 'modules/reservation/utils';
 import { Dummy, Wizard } from '../';
+import { Button } from 'antd';
 
 class DeviceSelection extends React.Component {
   static propTypes = {
@@ -15,6 +16,8 @@ class DeviceSelection extends React.Component {
     selectedDevices: PropTypes.array,
   };
   componentDidMount() {
+    const { startDate, endDate } = this.props.newReservation.values;
+
     this.props.localActions.setWizardValue({
       name: 'newReservation',
       key: 'selectedDevices',
@@ -22,6 +25,7 @@ class DeviceSelection extends React.Component {
     });
 
     this.props.actions.fetchDevices(startDate, endDate, false, true);
+    
     this.props.actions.fetchReservations({
       startDate,
       endDate,
@@ -30,7 +34,7 @@ class DeviceSelection extends React.Component {
     });
   }
   render() {
-    const { handleSubmit, pristine, reset, submitting, remainingDevices, selectedDevices } = this.props;
+    const { handleSubmit, pristine, reset, submitting, remainingDevices, selectedDevices, requestingCreateReservation, createdReservation } = this.props;
     const renderWizard = props => (
       <span>
         <Dummy onChange={props.input.onChange} value={props.input.value}
@@ -41,11 +45,12 @@ class DeviceSelection extends React.Component {
 
     return (
       <form onSubmit={handleSubmit} className="ui form">
-        <h4 className="ui dividing header">Devices</h4>
         <Field name="devices" component={renderWizard} />
         <Wizard {...this.props.wizard} />
-        <button className="ui button" onClick={this.props.previous}>Previous</button>
-        <button className="ui button" type="submit">Save</button>
+        <Button.Group>
+          <Button onClick={this.props.previous} disabled={createdReservation}>Previous</Button>
+          <Button type="primary" htmlType="submit" loading={requestingCreateReservation} disabled={createdReservation}>Save</Button>
+        </Button.Group>
       </form>
     );
   }

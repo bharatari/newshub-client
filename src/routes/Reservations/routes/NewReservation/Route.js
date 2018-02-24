@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => ({
   specialApproval: getSpecialApproval(state),
   requestingCreateReservation: state.reservation.createReservation.requesting,
   createdReservation: state.reservation.createReservation.reservation,
+  error: state.reservation.createReservation.error,
   selectedDevices: state.newReservation.form.selectedDevices,
   newReservation: state.form.newReservation,
   requestingDevices: state.device.fetchDevices.requesting,

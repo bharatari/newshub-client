@@ -33,7 +33,7 @@ export default class Barcode extends React.Component {
     return (
       <div className={container}>
         <div className="ui icon input">
-          <input name="barcode" className={prompt} type="text" onChange={this.handleChange} placeholder="Click to scan barcode" />
+          <input name="barcode" className={prompt} type="text" onChange={this.handleChange} placeholder="Click to add by barcode" />
           <i className="barcode icon"></i>
         </div>
       </div>

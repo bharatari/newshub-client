@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import errors from 'utils/errors';
+import { Alert } from 'antd';
 
-export default class Table extends React.Component {
+export default class Response extends React.Component {
   static propTypes = {
     error: PropTypes.any,
     response: PropTypes.any,
@@ -25,24 +26,11 @@ export default class Table extends React.Component {
   render() {
     if (this.props.error) {
       return (
-        <div className="ui error icon message">
-          <i className="warning sign icon"></i>
-          <div className="content">
-            <div className="header">
-              {this.errorHeader()}
-            </div>
-            <p>{this.errorText()}</p>
-          </div>
-        </div>
+        <Alert message={this.errorHeader()} description={this.errorText()} type="error" showIcon />
       );
     } else if (this.props.response) {
       return (
-        <div className="ui success message">
-          <div className="header">
-            {this.props.successHeader}
-          </div>
-          <p>{this.props.successText}</p>
-        </div>
+        <Alert message={this.props.successHeader} description={this.props.successText} type="success" showIcon />
       );
     }
 
