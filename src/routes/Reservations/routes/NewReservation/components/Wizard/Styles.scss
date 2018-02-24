@@ -57,6 +57,7 @@
   font-family: 'Open Sans';
   color: gray;
   font-weight: 400;
+  margin-top: 20px;
 }
 
 .cardDisabled {
@@ -70,4 +71,8 @@
 
 .specialApprovalMessage {
   margin-top: 10px !important;
+}
+
+.delete {
+  float: right;
 }

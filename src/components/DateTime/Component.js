@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import _ from 'lodash';
-import 'antd/lib/date-picker/style/index.css';
 
 export default class Card extends React.Component {
   handleBlur = (date) => {

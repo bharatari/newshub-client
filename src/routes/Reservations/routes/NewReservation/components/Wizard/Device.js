@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import classes from './Styles.scss';
+import { Button } from 'antd';
 
 export default class Device extends React.Component {
   static propTypes = {
@@ -31,19 +32,10 @@ export default class Device extends React.Component {
     return (
       <div className={classes.reservationDevice}>
         <p className={classes.reservationDeviceLabel}>{this.props.device.label}</p>
-        <div className="ui icon blue button button-light" onClick={this.add}>
-          <i className="plus icon"></i>
-        </div>
+        <Button type="primary" shape="circle" icon="plus" onClick={this.add} />
         <span className={classes.reservationDeviceQuantity}>{this.props.device.reservedQuantity}</span>
-        <div className="ui icon red button button-light" onClick={this.subtract}>
-          <i className="minus icon"></i>
-        </div>
-        <div className="ui animated button blue button-light right floated" onClick={this.remove}>
-          <div className="visible content">DELETE</div>
-          <div className="hidden content">
-            <i className="trash icon"></i>
-          </div>
-        </div>
+        <Button shape="circle" icon="minus" onClick={this.subtract} />
+        <Button className={classes.delete} type="danger" shape="circle" icon="delete" onClick={this.remove} ghost />
       </div>
     )
   }
