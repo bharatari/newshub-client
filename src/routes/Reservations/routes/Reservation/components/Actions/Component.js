@@ -3,7 +3,7 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, Table, TextLoading } from 'components/';
 import reservationUtils from 'modules/reservation/utils';
-import Form from './Form';
+import { Menu, Dropdown, Icon } from 'antd';
 
 const buttonStyle = classNames(
   'ui button blue button-light'
@@ -13,7 +13,7 @@ const negativeStyle = classNames(
   'ui button red button-light'
 );
 
-export default class Admin extends React.Component {
+export default class Actions extends React.Component {
   static propTypes = {
     reservation: PropTypes.object,
     requestingReservation: PropTypes.bool,
@@ -63,7 +63,6 @@ export default class Admin extends React.Component {
       <div>
         <p className={classes.header}>Actions</p>
         {button()}
-        <Form onSubmit={this.handleAdminNotes} />
       </div>
     );
   }

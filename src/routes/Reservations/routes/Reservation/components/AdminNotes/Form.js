@@ -8,7 +8,7 @@ const button = classNames(
   classes.marginTop
 );
 
-class ReservationForm extends React.Component {
+class Form extends React.Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
@@ -31,4 +31,4 @@ class ReservationForm extends React.Component {
 
 export default reduxForm({
   form: 'reservation',
-})(ReservationForm);
+})(Form);

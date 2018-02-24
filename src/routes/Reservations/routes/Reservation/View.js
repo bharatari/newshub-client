@@ -50,7 +50,7 @@ export default class ReservationView extends React.Component {
           <Card column="sixteen">
             <div>
               <Response error={updateError} response={updatedReservation}
-                successHeader="You successfully updated this reservation." />
+                successHeader="Updated." successText="You have successfully updated this reservation." />
               {
                 reservation ? 
                 <Content reservation={reservation} actions={actions} user={user} roles={roles}

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { FormatDate, Deleter } from 'components/';
-import { Admin, Devices } from '../';
+import { Actions, Devices, AdminNotes } from '../';
 import reservation from 'modules/reservation/utils';
 import user from 'modules/user/utils';
 import access from 'utils/access';
@@ -124,7 +124,9 @@ export default class Content extends React.Component {
           </div>
         </div>
         
-        { canApprove ? <Admin reservation={this.props.reservation} actions={this.props.actions} /> : null }
+        { canApprove ? <Actions reservation={this.props.reservation} actions={this.props.actions} /> : null }
+
+        <AdminNotes actions={this.props.actions} reservation={this.props.reservation} />
 
         <div className={classes.dangerZone}>
           <p className={classes.boldHeader}>Danger Zone</p>
