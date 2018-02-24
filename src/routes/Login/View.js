@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import config from 'constants/config';
 import { Response } from 'components/';
 import { Form } from './components';
 
@@ -41,7 +40,7 @@ export default class LoginView extends React.Component {
         <div className="ui container">
           <div className="ui middle aligned center aligned grid">
             <div className={main}>
-              <h2 className={classes.brand}>{config.brand}</h2>
+              <h2 className={classes.brand}>NewsHub.</h2>
               <Response error={this.props.error} />
               <Form onSubmit={this.handleSubmit} requestingLogin={this.props.requestingLogin}
                 actions={this.props.actions} response={this.props.response} />

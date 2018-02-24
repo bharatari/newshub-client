@@ -5,6 +5,3 @@ node_modules
 
 dist
 coverage
-
-src/constants/config.js
-.env

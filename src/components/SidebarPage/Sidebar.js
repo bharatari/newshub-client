@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import classes from './Styles.scss';
 import { configuration } from 'constants/routes';
-import config from 'constants/config';
 import userUtils from 'modules/user/utils';
 import access from 'utils/access';
 import * as notifications from 'modules/notifications/actions';
