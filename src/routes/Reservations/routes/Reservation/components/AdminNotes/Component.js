@@ -17,7 +17,7 @@ export default class AdminNotes extends React.Component {
     // Content should appear as static by default, triggers modal on edit
     return (
       <div>
-        <AdminNotes onSubmit={this.handleAdminNotes} />
+        <Form onSubmit={this.handleAdminNotes} />
       </div>
     );
   }

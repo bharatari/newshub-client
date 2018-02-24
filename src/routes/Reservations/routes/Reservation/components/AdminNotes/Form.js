@@ -2,13 +2,14 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
+import { AdminNotes } from '../index';
 
 const button = classNames(
   'ui button blue button-light',
   classes.marginTop
 );
 
-class Form extends React.Component {
+class AdminNotesForm extends React.Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
@@ -31,4 +32,4 @@ class Form extends React.Component {
 
 export default reduxForm({
   form: 'reservation',
-})(Form);
+})(AdminNotesForm);
