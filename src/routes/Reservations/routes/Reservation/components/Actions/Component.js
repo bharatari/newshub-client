@@ -3,15 +3,7 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, Table, TextLoading } from 'components/';
 import reservationUtils from 'modules/reservation/utils';
-import { Menu, Dropdown, Icon } from 'antd';
-
-const buttonStyle = classNames(
-  'ui button blue button-light'
-);
-
-const negativeStyle = classNames(
-  'ui button red button-light'
-);
+import { Menu, Dropdown, Button, Icon } from 'antd';
 
 export default class Actions extends React.Component {
   static propTypes = {
@@ -35,35 +27,44 @@ export default class Actions extends React.Component {
   };
   render() {
     const { reservation } = this.props;
+
     const button = () => {
       if (reservation) {
         const status = reservationUtils.computeReservationStatus(reservation);
-        const needsApproval = <div>
-                                <button className={buttonStyle} onClick={this.handleClick}>APPROVE</button>
-                                <button className={negativeStyle} onClick={this.handleReject}>REJECT</button>
-                              </div>;
+        const needsApproval = (
+          <Button.Group>
+            <Button type="primary" onClick={this.handleClick} ghost>Approve</Button>
+            <Button type="danger" onClick={this.handleReject} ghost>Reject</Button>
+          </Button.Group>
+        );
 
         if (status === 'NEEDS_APPROVAL') {
           return needsApproval;
         } else if (status === 'APPROVED') {
-          return <button className={buttonStyle} onClick={this.handleClick}>CHECK OUT</button>;
+          return <Button type="primary" onClick={this.handleClick} ghost>CHECK OUT</Button>;
         } else if (status === 'CHECKED_OUT') {
-          return <button className={buttonStyle} onClick={this.handleClick}>CHECK IN</button>;
+          return <Button onClick={this.handleClick} ghost>CHECK IN</Button>;
         } else if (status === 'CHECKED_IN') {
-          return <p className={classes.empty}>Nothing to see here...</p>;
+          return null;
         } else {
-          return <p className={classes.empty}>Nothing to see here...</p>;;
+          return null;
         }
       } else {
         return null;
       }
     };
 
-    return (
-      <div>
-        <p className={classes.header}>Actions</p>
-        {button()}
-      </div>
-    );
+    const actions = button();
+
+    if (actions) {
+      return (
+        <div>
+          <p className={classes.header}>Actions</p>
+          {actions}
+        </div>
+      )
+    }
+
+    return null;
   }
 }
