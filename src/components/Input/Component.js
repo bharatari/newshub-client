@@ -13,6 +13,12 @@ export default ({ input, meta: { touched, error }, label, ...props }) => {
         <DateTime {...input} {...props} />
       </Form.Item>
     );
+  } else if (props.type === 'textarea') {
+    return (
+      <Form.Item validateStatus={status} help={help} label={label}>
+        <Input.TextArea {...input} {...props} />
+      </Form.Item>
+    );
   } else {
     return (
       <Form.Item validateStatus={status} help={help} label={label}>
