@@ -12,6 +12,8 @@ export const requestDevice = createAction('routes/NewReservation/REQUEST_DEVICE'
 export const receiveDevice = createAction('routes/NewReservation/RECEIVE_DEVICE');
 export const resetFetchDevice = createAction('routes/NewReservation/RESET_FETCH_DEVICE');
 
+export const setWizardValue = createAction('routes/NewReservation/SET_WIZARD_VALUE');
+
 export function fetchDeviceByBarcode(barcode) {
   return function (dispatch) {
     dispatch(requestDevice());

@@ -5,7 +5,6 @@ import authentication from './authentication/reducer';
 import signupToken from './signupToken/reducer';
 import roomReservation from './roomReservation/reducer';
 import reservation from './reservation/reducer';
-import wizard from './wizard/reducer';
 import device from './device/reducer';
 import image from './image/reducer';
 import room from './room/reducer';
@@ -19,7 +18,6 @@ export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     authentication,
     signupToken,
-    wizard,
     device,
     roomReservation,
     reservation,

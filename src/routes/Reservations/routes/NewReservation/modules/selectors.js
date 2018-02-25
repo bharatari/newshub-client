@@ -3,7 +3,7 @@ import wizard from './utils';
 import _ from 'lodash';
 
 const getDevices = (state) => _.get(state, 'device.fetchDevices.devices', null);
-const getSelectedDevices = (state) => _.get(state, 'wizard.newReservation.selectedDevices', null);
+const getSelectedDevices = (state) => _.get(state, 'newReservation.form.selectedDevices', null);
 
 export const groupDevices = createSelector(
   getDevices,

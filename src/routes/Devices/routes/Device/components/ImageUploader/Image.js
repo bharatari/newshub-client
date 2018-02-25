@@ -13,7 +13,7 @@ function Image(props) {
   return (
     <div className={classes.imageContainer}>
       <div className={classes.imageBox} style={imageBackground}></div>
-      <button className="ui inverted red button button-light" onClick={handleClick}>Remove</button>
+      <button className="ui red button button-light" onClick={handleClick}>Remove</button>
       { props.data.requestingDeleteImage ? 'Deleting...' : null }
     </div>
   );

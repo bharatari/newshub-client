@@ -55,6 +55,10 @@ class NewDeviceForm extends React.Component {
         <div className="field">
           <Field name="type" component={renderInput} type="text" className={classes.font} />
         </div>
+        <p className={classes.header}>Barcode</p>
+        <div className="field">
+          <Field name="barcode" component={renderInput} type="text" className={classes.font} />
+        </div>
         <p className={classes.header}>Quantity</p>
         <div className="field">
           <Field name="quantity" component={renderInput} type="number" className={classes.font} />

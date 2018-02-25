@@ -39,6 +39,8 @@ export default class Content extends React.Component {
             <p className={classes.content}>{this.props.device.description}</p>
             <p className={classes.header}>Type</p>
             <p className={classes.content}>{this.props.device.type}</p>
+            <p className={classes.header}>Barcode</p>
+            <p className={classes.content}>{this.props.device.barcode}</p>
             <p className={classes.header}>Quantity</p>
             <p className={classes.content}>{this.props.device.quantity}</p>
             { this.props.thumbnail ? <div className={classes.imageBox} style={imageBackground}></div> : null }

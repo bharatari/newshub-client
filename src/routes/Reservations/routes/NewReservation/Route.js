@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import View from './View';
 import * as reservation from 'modules/reservation/actions';
 import * as device from 'modules/device/actions';
-import * as wizard from 'modules/wizard/actions';
 import * as actions from './modules/actions';
 import { routerActions } from 'react-router-redux';
-import { getRemainingDevices, getSpecialApproval } from 'modules/wizard/selectors';
+import { getRemainingDevices, getSpecialApproval } from './modules/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUrl: ownProps.location.pathname,
@@ -15,7 +14,8 @@ const mapStateToProps = (state, ownProps) => ({
   specialApproval: getSpecialApproval(state),
   requestingCreateReservation: state.reservation.createReservation.requesting,
   createdReservation: state.reservation.createReservation.reservation,
-  selectedDevices: state.wizard.newReservation.selectedDevices,
+  error: state.reservation.createReservation.error,
+  selectedDevices: state.newReservation.form.selectedDevices,
   newReservation: state.form.newReservation,
   requestingDevices: state.device.fetchDevices.requesting,
   reservations: state.reservation.fetchReservations.reservations,
@@ -31,7 +31,6 @@ const actionCreators = {
   ...routerActions,
   ...reservation,
   ...device,
-  ...wizard,
 };
 
 const localActionCreators = {

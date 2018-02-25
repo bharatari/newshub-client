@@ -6,6 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import createStore from './store/createStore';
 import App from './containers/App';
 import routes from './routes/index';
+import 'antd/dist/antd.css';
 
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: __BASENAME__

@@ -1,5 +1,4 @@
 const path = require('path');
-const Dotenv = require('webpack-dotenv-plugin');
 
 var isDev = process.env.NODE_ENV === 'development';
 var isTest = process.env.NODE_ENV === 'test';
@@ -13,14 +12,6 @@ module.exports = {
   webpack: {
     compat: {
       enzyme: true,
-    },
-    extra: {
-      plugins: [
-        new Dotenv({
-          path: './.env',
-          sample: './.env.sample'
-        })
-      ]
     },
     aliases: {
       containers: path.resolve('src/containers'),

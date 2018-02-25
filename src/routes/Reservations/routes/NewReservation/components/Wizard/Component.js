@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Device from './Device';
 import Item from './Item';
-import Barcode from './Barcode';
+import { Barcode, ModalContent } from '../';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import array from 'utils/array';
 import classes from './Styles.scss';
@@ -11,6 +11,7 @@ import reservation from 'modules/reservation/utils';
 import _ from 'lodash';
 import classNames from 'classnames';
 import deviceUtils from 'modules/device/utils';
+import { Modal } from 'antd';
 
 const specialApprovalMessage = classNames(
   'ui warning message',
@@ -34,11 +35,19 @@ export default class NewReservationWizard extends React.Component {
   componentDidMount() {
     let selectedDevices = [];
 
-    this.props.actions.setWizardValue({
+    this.props.localActions.setWizardValue({
       name: 'newReservation',
       key: 'selectedDevices',
       value: selectedDevices
     });
+  }
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.reservation && nextProps.reservation) {
+      Modal.warning({
+        content: <ModalContent data={nextProps.reservation} />,
+        width: 800,
+      });
+    }
   }
   handleClick = (device) => {
     let selectedDevices = [
@@ -46,7 +55,7 @@ export default class NewReservationWizard extends React.Component {
       device,
     ];
 
-    this.props.actions.setWizardValue({
+    this.props.localActions.setWizardValue({
       name: 'newReservation',
       key: 'selectedDevices',
       value: selectedDevices
@@ -56,7 +65,7 @@ export default class NewReservationWizard extends React.Component {
     let selectedDevices = this.props.selectedDevices;
     selectedDevices = array.updateById(selectedDevices, device.id, device);
 
-    this.props.actions.setWizardValue({
+    this.props.localActions.setWizardValue({
       name: 'newReservation',
       key: 'selectedDevices',
       value: selectedDevices
@@ -69,7 +78,7 @@ export default class NewReservationWizard extends React.Component {
 
     selectedDevices = array.deleteFromArrayById(selectedDevices, id);
 
-    this.props.actions.setWizardValue({
+    this.props.localActions.setWizardValue({
       name: 'newReservation',
       key: 'selectedDevices',
       value: selectedDevices
@@ -101,6 +110,9 @@ export default class NewReservationWizard extends React.Component {
   
       this.handleClick(device);
     }
+  };
+  showModal = (id) => {
+    this.props.localActions.fetchReservation(id);
   };
   render() {
     const renderList = () => {
@@ -193,12 +205,12 @@ export default class NewReservationWizard extends React.Component {
           !_.isEmpty(this.props.reservations) ?
           <div>
             <h1 className={classes.groupHeader}>Reservations during this period</h1>
-            <p className={classes.font}>Here are some reservations created during the same period. Double-check to make sure you aren't creating an extra reservations for the same project.</p>
+            <p className={classes.font}>Here are some reservations created during the same period. Double-check to make sure you aren't creating an extra reservation for the same project.</p>
             <Table fields={this.state.fields}
               data={this.props.reservations}
               actions={this.props.actions}
               route="/app/reservation" modal={true}
-              showModal={this.props.localActions.fetchReservation} />
+              showModal={this.showModal} />
           </div> : null
         }
       </div>

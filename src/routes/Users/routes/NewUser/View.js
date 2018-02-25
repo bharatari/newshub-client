@@ -12,7 +12,7 @@ export default class NewUserView extends React.Component {
   };
   render() {
     const button = classNames(
-      'ui button inverted blue button-light',
+      'ui button blue button-light',
       { loading: this.props.requestingToken }
     );
 

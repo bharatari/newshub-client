@@ -13,7 +13,7 @@ class FileUploaderForm extends React.Component {
   render() {
     const { handleSubmit, requestingCreateImage } = this.props;
     const submit = classNames(
-      'ui inverted red button button-light',
+      'ui red button button-light',
       classes.submit,
       { loading: requestingCreateImage }
     );

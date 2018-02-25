@@ -3,13 +3,8 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 import authentication from 'modules/authentication/utils';
-
-const renderField = ({ input, meta: { touched, error }}) => (
-  <span>
-    <input {...input} />
-    {touched && error && <span className={classes.errorText}>{error}</span>}
-  </span>
-);
+import { Form, Icon, Button } from 'antd';
+import { Input } from 'components/';
 
 class LoginForm extends React.Component {
   static propTypes = {
@@ -27,44 +22,26 @@ class LoginForm extends React.Component {
   };
   render() {
     const { handleSubmit, pristine, reset, submitting, requestingLogin } = this.props;
-    const button = classNames(
-      'ui fluid large black submit button button-light',
-      classes.button,
-      { loading: requestingLogin }
-    );
-    const signup = classNames(
-      'ui fluid large inverted blue submit button button-light',
-    );
-    const resetButton = classNames(
-      'ui fluid large inverted red submit button button-light',
-      classes.reset
-    )
 
     return (
-      <form onSubmit={handleSubmit} className="ui form">
-        <div className="field">
-          <div className="ui left icon input">
-            <i className="user icon"></i>
-            <Field name="username" type="text" placeholder="Username" component="input" />
-          </div>
-        </div>
-        <div className="field">
-          <div className="ui left icon input">
-            <i className="lock icon"></i>
-            <Field name="password" type="password" placeholder="Password" component="input" />
-          </div>
-        </div>
-        <button type="submit" className={button}
-          disabled={this.props.requestingLogin || this.props.response}>
-          Login
-        </button>
-        <div className={signup} onClick={this.handleClick}>
-          Signup
-        </div>
-        <div className={resetButton} onClick={this.handleResetPassword}>
+      <Form onSubmit={handleSubmit} className={classes.form}>
+        <Field name="username" type="text" placeholder="Username" component={Input} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>} />
+      
+        <Field name="password" type="password" placeholder="Password" component={Input}  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }}/>} />
+
+        
+        <Button type="primary" htmlType="submit" className={classes.login} loading={requestingLogin} disabled={this.props.requestingLogin || this.props.response}>
+          Log In
+        </Button>
+
+        <Button type="default" onClick={this.handleClick} className={classes.register}>
+          Register
+        </Button>
+
+        <Button type="default" onClick={this.handleResetPassword} className={classes.reset}>
           Reset Password
-        </div>
-      </form>
+        </Button>
+      </Form>
     );
   }
 }

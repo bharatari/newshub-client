@@ -13,8 +13,6 @@ The client implementation of the NewsHub project built on React and Redux.
     cd path/to/newshub-client; npm install
     ```
 
-3. Add a `.env` file with `BRAND`, `LOGIN_BACKGROUND` and `BRAND_LINK` values set
-
 3. Start your app
     
     ```

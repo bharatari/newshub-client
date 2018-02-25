@@ -25,7 +25,7 @@ export default class NewEventView extends React.Component {
   };
   render() {
     const button = classNames(
-      'ui animated button blue inverted button-light',
+      'ui animated button blue button-light',
       { loading: this.props.requestingCreateEvent }
     );
     const disable = this.props.requestingCreateEvent || this.props.createdEvent;
