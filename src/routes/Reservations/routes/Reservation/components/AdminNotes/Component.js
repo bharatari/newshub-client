@@ -17,9 +17,11 @@ export default class AdminNotes extends React.Component {
     this.props.actions.updateReservation(this.props.reservation.id, values);
   };
   handleClick = () => {
-    this.setState({
-      visible: true,
-    });
+    if (this.props.allowEditing) {
+      this.setState({
+        visible: true,
+      });
+    }
   };
   handleOk = () => {
     this.setState({
@@ -37,13 +39,17 @@ export default class AdminNotes extends React.Component {
     const { reservation } = this.props;
     const { adminNotes } = reservation;
 
+    const notes = classNames(
+      classes.notes,
+      { [classes.notesHover]: this.props.allowEditing }
+    );
+
     return (
-      <div>
+      <div className={classes.container}>
         <Modal title="Edit Admin Notes" visible={this.state.visible} okText="Update" cancelText="Cancel" onOk={this.handleOk} onCancel={this.handleCancel}>
-          <Form onSubmit={this.handleAdminNotes} />
+          <Form ref="form" onSubmit={this.handleAdminNotes} initialValues={this.props.reservation} />
         </Modal>
-        <p className={classes.header}>Admin Notes</p>
-        <p className={classes.notes} onClick={this.handleClick}>{ adminNotes ? adminNotes : 'None.' }</p>
+        <p className={notes} onClick={this.handleClick}>{ adminNotes ? adminNotes : 'None.' }</p>
       </div>
     );
   }

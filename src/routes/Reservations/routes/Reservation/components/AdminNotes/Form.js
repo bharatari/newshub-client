@@ -26,3 +26,5 @@ class AdminNotesForm extends React.Component {
 export default reduxForm({
   form: 'reservation',
 })(AdminNotesForm);
+
+

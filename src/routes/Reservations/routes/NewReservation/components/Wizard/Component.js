@@ -205,7 +205,7 @@ export default class NewReservationWizard extends React.Component {
           !_.isEmpty(this.props.reservations) ?
           <div>
             <h1 className={classes.groupHeader}>Reservations during this period</h1>
-            <p className={classes.font}>Here are some reservations created during the same period. Double-check to make sure you aren't creating an extra reservations for the same project.</p>
+            <p className={classes.font}>Here are some reservations created during the same period. Double-check to make sure you aren't creating an extra reservation for the same project.</p>
             <Table fields={this.state.fields}
               data={this.props.reservations}
               actions={this.props.actions}

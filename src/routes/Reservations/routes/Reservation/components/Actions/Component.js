@@ -41,9 +41,9 @@ export default class Actions extends React.Component {
         if (status === 'NEEDS_APPROVAL') {
           return needsApproval;
         } else if (status === 'APPROVED') {
-          return <Button type="primary" onClick={this.handleClick} ghost>CHECK OUT</Button>;
+          return <Button type="primary" onClick={this.handleClick} ghost>Check Out</Button>;
         } else if (status === 'CHECKED_OUT') {
-          return <Button onClick={this.handleClick} ghost>CHECK IN</Button>;
+          return <Button onClick={this.handleClick} ghost>Check In</Button>;
         } else if (status === 'CHECKED_IN') {
           return null;
         } else {

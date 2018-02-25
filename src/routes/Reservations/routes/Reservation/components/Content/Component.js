@@ -100,7 +100,7 @@ export default class Content extends React.Component {
 
           <div className="six wide column">
             <p className={classes.infoHeader}>Admin Notes</p>
-            <i className={miscIcon} style={{ color: 'rgb(45, 96, 163)' }}></i><p className={classes.infoContent}>{adminNotes ? adminNotes : 'None.'}</p>
+            <i className={miscIcon} style={{ color: 'rgb(45, 96, 163)' }}></i><AdminNotes allowEditing={canApprove} actions={this.props.actions} reservation={this.props.reservation} />
           </div>
         </div>
         
@@ -124,12 +124,10 @@ export default class Content extends React.Component {
           </div>
         </div>
         
-        { canApprove ? <Actions reservation={this.props.reservation} actions={this.props.actions} /> : null }
-
-        <AdminNotes actions={this.props.actions} reservation={this.props.reservation} />
+        { canApprove ? <Actions reservation={this.props.reservation} actions={this.props.actions} /> : null }        
 
         <div className={classes.dangerZone}>
-          <p className={classes.boldHeader}>Danger Zone</p>
+          { canDelete ? <p className={classes.boldHeader}>Danger Zone</p> : null }
           <Deleter id={this.props.id} delete={this.props.actions.deleteReservation} success={this.props.deletedReservation}
             error={this.props.deleteError} requesting={this.props.requestingDeleteResevation} roles={roles} model="reservation" />
         </div>
