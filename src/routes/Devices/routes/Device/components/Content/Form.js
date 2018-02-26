@@ -41,7 +41,7 @@ class DeviceForm extends React.Component {
         <p className={classes.header}>Type</p>
         <Field name="type" component="input" type="text" className={classes.font} />
         <p className={classes.header}>Barcode</p>
-        <Field name="barcode" component="input" type="number" className={classes.font} />
+        <Field name="barcode" component="input" type="text" className={classes.font} />
         <p className={classes.header}>Quantity</p>
         <Field name="quantity" component="input" type="number" className={classes.font} />
         <p className={classes.header}>Disabled</p>

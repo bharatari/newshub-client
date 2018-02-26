@@ -24,8 +24,7 @@ export default class Content extends React.Component {
     
     return (
       <div className={classes.contentContainer}>
-        <Response error={createLogError} errorHeader="We can't seem to find that user."
-          errorText="Please try again later or contact a member of management for assistance." />
+        <Response error={createLogError} />
         <h2 className={classes.dateHeader}>{this.props.event.name}</h2>
         <span className={classes.subheader}><p className={classes.userHeader}>by {this.props.event.user.fullName}</p></span>
         <p className={classes.statusText} style={{ backgroundColor: 'black' }}>{event.closed ? 'Closed' : 'Open'}</p>
