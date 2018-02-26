@@ -27,10 +27,7 @@ const inputContainer = classNames(
   classes.inputContainer
 );
 
-export default class Content extends React.Component {
-  static propTypes = {
-
-  };
+export default class Scanner extends React.Component {
   state = {
     focused: false,
     displayUser: false,
@@ -64,8 +61,12 @@ export default class Content extends React.Component {
 
           setTimeout(() => {
             this.setState({ displayUser: false, barcode: '' });
+
+            this.props.actions.fetchEvent(this.props.event.id);
           }, 3000);
         }
+      } else if (nextProps.createLogError) {
+        this.setState({ displayUser: false, barcode: '' });
       }
     }
   }
