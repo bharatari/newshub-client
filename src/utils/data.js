@@ -144,9 +144,13 @@ export default {
       if (response.status >= 200 && response.status < 300) {
         resolve(response);
       } else {
-        return response.json().then((error) => {
-          reject(new Error(error.message || error.name));
-        });        
+        return response.json()
+          .then((error) => {
+            reject(new Error(error.message || error.name));
+          })
+          .catch((error) => {
+            reject(new Error());
+          });
       }
     });
   },

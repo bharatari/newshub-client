@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { SidebarPage, Table, TextLoading } from 'components/';
 import reservationUtils from 'modules/reservation/utils';
 import { Menu, Dropdown, Button, Icon } from 'antd';
+import buttonGroup from 'antd/lib/button/button-group';
 
 export default class Actions extends React.Component {
   static propTypes = {
@@ -28,6 +29,26 @@ export default class Actions extends React.Component {
   render() {
     const { reservation } = this.props;
 
+    const display = () => {
+      if (reservation) {
+        const status = reservationUtils.computeReservationStatus(reservation);
+
+        if (status === 'NEEDS_APPROVAL') {
+          return true;
+        } else if (status === 'APPROVED') {
+          return true;
+        } else if (status === 'CHECKED_OUT') {
+          return true;
+        } else if (status === 'CHECKED_IN') {
+          return false;
+        } else {
+          return false;
+        }
+      }
+
+      return false;
+    };
+
     const button = () => {
       if (reservation) {
         const status = reservationUtils.computeReservationStatus(reservation);
@@ -43,7 +64,7 @@ export default class Actions extends React.Component {
         } else if (status === 'APPROVED') {
           return <Button type="primary" onClick={this.handleClick} ghost>Check Out</Button>;
         } else if (status === 'CHECKED_OUT') {
-          return <Button onClick={this.handleClick} ghost>Check In</Button>;
+          return <Button type="primary" onClick={this.handleClick} ghost>Check In</Button>;
         } else if (status === 'CHECKED_IN') {
           return null;
         } else {
@@ -54,13 +75,11 @@ export default class Actions extends React.Component {
       }
     };
 
-    const actions = button();
-
-    if (actions) {
+    if (display()) {
       return (
         <div>
           <p className={classes.header}>Actions</p>
-          {actions}
+          {button()}
         </div>
       )
     }
