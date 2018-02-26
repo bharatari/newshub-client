@@ -55,6 +55,18 @@ export default {
       header: 'The room you selected is not available for the given times',
       text: 'Try a different range of dates. If you need this time slot, speak to management about deleting the previous reservation.'
     },
+    'EVENT_CLOSED': {
+      header: 'This event is closed.',
+      text: 'You cannot check in for an event that is marked as closed. If you think this is an error, speak to management.'
+    },
+    'EVENT_NOT_STARTED': {
+      header: 'This event has not started yet.',
+      text: 'You cannot check in for an event before its start date. If you think this is an error, speak to management.'
+    },
+    'BARCODE_NOT_FOUND': {
+      header: 'We cannot seem to find that user',
+      text: 'Please try again later or contact a member of management for assistance.'
+    },
   },
   getError(code) {
     return this.errors[code] || this.errors['ERROR'];
