@@ -81,7 +81,6 @@ export default handleActions({
     fetchEvent: {
       ...state.fetchEvent,
       requesting: true,
-      event: null,
       error: null,
     },
   }),

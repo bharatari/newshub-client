@@ -52,7 +52,7 @@ export default class EventView extends React.Component {
               <Response error={updateError} response={updatedEvent}
                 successHeader="You successfully updated this event." />
               {
-                event ? 
+                event ?
                 <Content event={event} actions={actions} user={user} log={log} logs={logs}
                   requestingLogs={requestingLogs} sortField={sortField} sortType={sortType}
                   sortBy={sortBy} totalPages={totalPages} page={page} location={location}
