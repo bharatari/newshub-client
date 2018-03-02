@@ -19,34 +19,69 @@ export const resetUpdateDevice = createAction('RESET_UPDATE_DEVICE');
 export const requestDeleteDevice = createAction('REQUEST_DELETE_DEVICE');
 export const receiveDeleteDevice = createAction('RECEIVE_DELETE_DEVICE');
 
-
-export function fetchDevices(startDate, endDate, disabled, all) {
+export function fetchDevices(options) {
   return function (dispatch) {
     dispatch(requestDevices());
-    
-    let query = {
-      '$sort[createdAt]': 1,
-    };
 
-    if (startDate && endDate) {
-      query = {
-        ...query,
-        startDate,
-        endDate,
-      };
+    let startDate, endDate, all, limit, page, disabled, sortField, sortType;
+
+    if (!_.isNil(options)) {
+      ({ startDate, endDate, all, limit, page, disabled, sortField, sortType } = options);
     }
 
-    if (disabled != null) {
-      query = {
-        ...query,
-        disabled,
-      };
-    }
+    let query;
 
     if (all) {
-      query = {
-        ...query,
-        '$limit': -1,
+      if (_.isNil(sortField)) {
+        sortField = 'createdAt';
+      }
+  
+      if (_.isNil(sortType)) {
+        sortType = 'DESC';
+      }
+
+      const sort = data.constructSort(sortField, sortType);
+  
+      query = `?${sort}&$limit=-1`;
+  
+      if (startDate && endDate) {
+        query += '&startDate=' + encodeURIComponent(startDate);
+        query += '&endDate=' + encodeURIComponent(endDate);
+      }
+  
+      if (!_.isNil(disabled)) {
+        query += '&disabled=' + encodeURIComponent(disabled);
+      }
+    } else {
+      if (_.isNil(limit)) {
+        limit = 10;
+      }
+  
+      if (_.isNil(page)) {
+        page = 1;
+      }
+  
+      const skip = data.pageToSkip(page, limit);
+  
+      if (_.isNil(sortField)) {
+        sortField = 'createdAt';
+      }
+  
+      if (_.isNil(sortType)) {
+        sortType = 'DESC';
+      }
+  
+      const sort = data.constructSort(sortField, sortType);
+  
+      query = `?${sort}&$limit=${limit}&$skip=${skip}`;
+  
+      if (startDate && endDate) {
+        query += '&startDate=' + encodeURIComponent(startDate);
+        query += '&endDate=' + encodeURIComponent(endDate);
+      }
+  
+      if (!_.isNil(disabled)) {
+        query += '&disabled=' + encodeURIComponent(disabled);
       }
     }
 

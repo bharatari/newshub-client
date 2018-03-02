@@ -24,7 +24,12 @@ class DeviceSelection extends React.Component {
       value: [],
     });
 
-    this.props.actions.fetchDevices(startDate, endDate, false, true);
+    this.props.actions.fetchDevices({
+      startDate,
+      endDate, 
+      disabled: false,
+      all: true,
+    });
     
     this.props.actions.fetchReservations({
       startDate,
