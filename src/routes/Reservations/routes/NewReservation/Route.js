@@ -5,6 +5,7 @@ import * as reservation from 'modules/reservation/actions';
 import * as device from 'modules/device/actions';
 import * as actions from './modules/actions';
 import { routerActions } from 'react-router-redux';
+import { destroy } from 'redux-form';
 import { getRemainingDevices, getSpecialApproval } from './modules/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -31,6 +32,7 @@ const actionCreators = {
   ...routerActions,
   ...reservation,
   ...device,
+  destroy,
 };
 
 const localActionCreators = {

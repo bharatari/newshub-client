@@ -8,6 +8,9 @@ export default class Form extends React.Component {
   state = {
     current: 0,
   };
+  componentWillUnmount() {
+    this.props.actions.destroy('newReservation');
+  }
   next = () => {
     const current = this.state.current + 1;
     this.setState({ current });
