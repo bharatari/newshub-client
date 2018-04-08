@@ -59,9 +59,9 @@ export default class Content extends React.Component {
             <PaginatedTable data={this.props.logs} loading={this.props.requestingLogs}
               fields={this.state.fields} route="#" page={this.props.page}
               totalPages={this.props.totalPages} sortField={this.props.sortField}
-              sortType={this.props.sortType} sortBy={this.sortBy}
-              fetch={this.props.actions.fetchLogs} actions={this.props.actions}
-              filter={{ eventId: this.props.event.id }} location={location} />
+              sortType={this.props.sortType} fetch={this.props.actions.fetchLogs}
+              actions={this.props.actions} filter={{ eventId: this.props.event.id }}
+              location={location} />
           </div>
         </div>
       </div>

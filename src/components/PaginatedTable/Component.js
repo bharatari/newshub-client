@@ -4,14 +4,13 @@ import classNames from 'classnames';
 import { SidebarPage, Table, TextLoading, Card, Status, Paginator } from 'components/';
 
 export default class PaginatedTable extends React.Component {
-  static propTypes = {
-    actions: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-    }).isRequired,
-    user: PropTypes.object,
+  state = {
+    sortField: null,
+    sortType: null,
+    page: 1,
   };
   componentDidMount() {
-    this.getData(this.props);
+    this.getData(this.state);
   }
   getData = (props) => {
     this.props.fetch({
@@ -22,17 +21,11 @@ export default class PaginatedTable extends React.Component {
     });
   };
   goToPage = (page, event) => {
-    const query = {
-      ...this.props.location.query,
+    this.setState({
       page,
-    };
-
-    this.props.actions.push({
-      ...this.props.location,
-      query,
     });
-    
-    const { sortField, sortType } = query;
+
+    const { sortField, sortType } = this.state;
 
     this.getData({
       sortField,
@@ -41,18 +34,12 @@ export default class PaginatedTable extends React.Component {
     });
   };
   sortBy = (sortField, sortType) => {
-    const query = {
-      ...this.props.location.query,
-      sortType,
+    this.setState({
       sortField,
-    };
-
-    this.props.actions.push({
-      ...this.props.location,
-      query,
+      sortType,
     });
 
-    const { page } = query;
+    const { page } = this.state;
 
     this.getData({
       sortField,
@@ -72,10 +59,10 @@ export default class PaginatedTable extends React.Component {
                 actions={this.props.actions}
                 route={this.props.route} 
                 sortBy={this.sortBy}
-                sortField={this.props.sortField} 
-                sortType={this.props.sortType} 
+                sortField={this.state.sortField} 
+                sortType={this.state.sortType} 
                 sortable={true} />
-              <Paginator currentPage={this.props.page} 
+              <Paginator currentPage={this.state.page} 
                 totalPages={this.props.totalPages}
                 goToPage={this.goToPage} />
             </div>

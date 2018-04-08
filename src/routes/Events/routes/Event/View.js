@@ -15,6 +15,7 @@ export default class EventView extends React.Component {
   componentDidMount() {
     this.props.actions.resetUpdateEvent();
     this.props.actions.resetCreateLog();
+    this.props.actions.resetFetchLogs();
     this.props.actions.fetchEvent(this.props.id);
   }
   componentWillReceiveProps(nextProps) {
@@ -39,7 +40,7 @@ export default class EventView extends React.Component {
             actions, updateError, updatedEvent,
             requestingUpdateEvent, currentUrl, user,
             log, logs, requestingCreateLog, createLogError,
-            sortField, sortType, sortBy, totalPages, page,
+            sortField, sortType, totalPages, page,
             requestingLogs, location } = this.props;
 
     return (
@@ -54,8 +55,7 @@ export default class EventView extends React.Component {
               {
                 event ?
                 <Content event={event} actions={actions} user={user} log={log} logs={logs}
-                  requestingLogs={requestingLogs} sortField={sortField} sortType={sortType}
-                  sortBy={sortBy} totalPages={totalPages} page={page} location={location}
+                  requestingLogs={requestingLogs} totalPages={totalPages}
                   requestingCreateLog={requestingCreateLog} createLogError={createLogError}/> :
                 <TextLoading loading={requestingEvent} /> 
               }

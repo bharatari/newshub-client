@@ -19,7 +19,7 @@ export const requestDeleteLog = createAction('REQUEST_DELETE_LOG');
 export const receiveDeleteLog = createAction('RECEIVE_DELETE_LOG');
 
 export const resetCreateLog = createAction('RESET_CREATE_LOG');
-export const resetFetchLog = createAction('RESET_FETCH_LOGS');
+export const resetFetchLogs = createAction('RESET_FETCH_LOGS');
 export const resetUpdateLog = createAction('RESET_UPDATE_LOG');
 
 export function fetchLog(id) {
