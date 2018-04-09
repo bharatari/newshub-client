@@ -24,7 +24,7 @@ import Devices from './Devices/Route';
 import NewDevice from './Devices/routes/NewDevice/Route';
 import Device from './Devices/routes/Device/Route';
 import Events from './Events/Route';
-import Event from './Events/routes/Event/Route';
+import Event from './Events/routes/Event';
 import NewEvent from './Events/routes/NewEvent/Route';
 import authenticated from 'containers/Authenticated';
 import unauthenticated from 'containers/Unauthenticated';

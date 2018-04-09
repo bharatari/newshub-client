@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import View from './View';
 import * as event from 'modules/event/actions';
 import * as log from 'modules/log/actions';
+import * as actions from './modules/actions';
+
 import { routerActions } from 'react-router-redux';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -22,6 +24,7 @@ const mapStateToProps = (state, ownProps) => ({
   requestingLogs: state.log.fetchLogs.requesting,
   totalPages: state.log.fetchLogs.totalPages,
   location: ownProps.location,
+  searchUsers: state.eventRoute.searchUsers.users,
 });
 
 const actionCreators = {
@@ -30,8 +33,13 @@ const actionCreators = {
   ...log,
 };
 
+const localActionCreators = {
+  ...actions,
+};
+
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actionCreators, dispatch),
+  localActions: bindActionCreators(localActionCreators, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(View);

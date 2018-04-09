@@ -17,6 +17,7 @@ import PaginatedTable from './PaginatedTable/Component';
 import DateTime from './DateTime/Component';
 import Deleter from './Deleter/Component';
 import Input from './Input/Component';
+import AutoComplete from './AutoComplete/Component';
 
 export {
   Notifications,
@@ -38,4 +39,5 @@ export {
   DateTime,
   Deleter,
   Input,
+  AutoComplete,
 };

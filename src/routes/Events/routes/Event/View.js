@@ -41,7 +41,8 @@ export default class EventView extends React.Component {
             requestingUpdateEvent, currentUrl, user,
             log, logs, requestingCreateLog, createLogError,
             sortField, sortType, totalPages, page,
-            requestingLogs, location } = this.props;
+            requestingLogs, location, localActions,
+            searchUsers } = this.props;
 
     return (
       <div>
@@ -55,8 +56,9 @@ export default class EventView extends React.Component {
               {
                 event ?
                 <Content event={event} actions={actions} user={user} log={log} logs={logs}
-                  requestingLogs={requestingLogs} totalPages={totalPages}
-                  requestingCreateLog={requestingCreateLog} createLogError={createLogError}/> :
+                  requestingLogs={requestingLogs} totalPages={totalPages} localActions={localActions}
+                  requestingCreateLog={requestingCreateLog} createLogError={createLogError} 
+                  searchUsers={searchUsers} /> :
                 <TextLoading loading={requestingEvent} /> 
               }
             </div>

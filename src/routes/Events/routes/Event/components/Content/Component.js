@@ -2,11 +2,12 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { FormatDate, PaginatedTable, Response } from 'components/';
+import { Button, Modal } from 'antd';
 import event from 'modules/event/utils';
 import user from 'modules/user/utils';
 import _ from 'lodash';
 import { Scanner } from '../';
-import { Type } from './components';
+import { Type, Form } from './components';
 
 export default class Content extends React.Component {
   static propTypes = {
@@ -18,12 +19,45 @@ export default class Content extends React.Component {
       { label: 'Type', property: 'type', component: Type },
       { label: 'Created At', property: 'createdAt', type: 'datetime' },
     ],
+    visible: false,
+  };
+  handleClick = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+  handleDelete = () => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete this?',
+      content: 'This action is irreversible.',
+      onOk() {
+        self.props.delete(self.props.id);
+      },
+    });
+  };
+  handleOk = () => {
+    
+  };
+  handleCancel = () => {
+
+  };
+  handleManualLog = () => {
+
+  };
+  handleUserSearchSubmit = (value) => {
+    this.props.localActions.fetchUsers({
+      search: value,
+    });
   };
   render() {
     const { event, log, requestingCreateLog, createLogError, actions, event: { notes } } = this.props;
     
     return (
       <div className={classes.contentContainer}>
+        <Modal title="Manual Log" visible={this.state.visible} okText="Create" cancelText="Cancel" onOk={this.handleOk} onCancel={this.handleCancel}>
+          <Form ref="form" onSubmit={this.handleManualLog} users={this.props.searchUsers} onSubmit={this.handleUserSearchSubmit} />
+        </Modal>
+
         <Response error={createLogError} />
         <h2 className={classes.dateHeader}>{this.props.event.name}</h2>
         <span className={classes.subheader}><p className={classes.userHeader}>by {this.props.event.user.fullName}</p></span>
@@ -45,6 +79,13 @@ export default class Content extends React.Component {
             <p className={classes.content}>{notes ? notes : 'None.'}</p> 
           </div>
           <div className="eight wide column">
+            <p className={classes.activityHeader}>Actions</p>
+
+            <Button.Group className={classes.actionsBox}>
+              <Button type="primary" onClick={this.handleClick} ghost>Manual Log</Button>
+              <Button type="danger" onClick={this.handleDelete} ghost>Delete</Button>
+            </Button.Group>
+
             <h2 className={classes.activityHeader}>Activity</h2>
             <div className={classes.activityBox}>
               <ul>
