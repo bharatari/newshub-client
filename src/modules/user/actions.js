@@ -59,16 +59,33 @@ export function fetchCurrentUser() {
   }
 }
 
-export function fetchUsers() {
+export function fetchUsers(options) {
   return function (dispatch) {
     dispatch(requestUsers());
 
-    data.request('user', 'get')
-      .then(function (response) {
-        dispatch(receiveUsers(userUtils.processResponse(response)));
-      }).catch(function (e) {
-        dispatch(receiveUsers(e));
-      })
+    if (options) {
+      let query = "";
+
+      const { search } = options;
+
+      if (search) {
+        query += '&search=' + encodeURIComponent(search);
+      }
+
+      data.request('user', 'get', null, query, null)
+        .then(function (response) {
+          dispatch(receiveUsers(userUtils.processResponse(response)));
+        }).catch(function (e) {
+          dispatch(receiveUsers(e));
+        })
+    } else {
+      data.request('user', 'get')
+        .then(function (response) {
+          dispatch(receiveUsers(userUtils.processResponse(response)));
+        }).catch(function (e) {
+          dispatch(receiveUsers(e));
+        })
+    }
   }
 }
 
