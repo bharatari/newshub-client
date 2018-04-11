@@ -4,7 +4,7 @@ import View from './View';
 import * as event from 'modules/event/actions';
 import * as log from 'modules/log/actions';
 import * as actions from './modules/actions';
-
+import { destroy } from 'redux-form';
 import { routerActions } from 'react-router-redux';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -25,12 +25,14 @@ const mapStateToProps = (state, ownProps) => ({
   totalPages: state.log.fetchLogs.totalPages,
   location: ownProps.location,
   searchUsers: state.eventRoute.searchUsers.users,
+  manualLog: state.eventRoute.createLog,
 });
 
 const actionCreators = {
   ...routerActions,
   ...event,
   ...log,
+  destroy,
 };
 
 const localActionCreators = {

@@ -42,13 +42,14 @@ export default class EventView extends React.Component {
             log, logs, requestingCreateLog, createLogError,
             sortField, sortType, totalPages, page,
             requestingLogs, location, localActions,
-            searchUsers } = this.props;
+            searchUsers, manualLog } = this.props;
 
     return (
       <div>
         <SidebarPage currentUrl={currentUrl} actions={actions}
           header="Event" loading={requestingEvent || requestingUpdateEvent}
           user={this.props.user} roles={this.props.roles}>
+          
           <Card column="sixteen">
             <div>
               <Response error={updateError} response={updatedEvent}
@@ -58,7 +59,7 @@ export default class EventView extends React.Component {
                 <Content event={event} actions={actions} user={user} log={log} logs={logs}
                   requestingLogs={requestingLogs} totalPages={totalPages} localActions={localActions}
                   requestingCreateLog={requestingCreateLog} createLogError={createLogError} 
-                  searchUsers={searchUsers} /> :
+                  searchUsers={searchUsers} manualLog={manualLog} /> :
                 <TextLoading loading={requestingEvent} /> 
               }
             </div>

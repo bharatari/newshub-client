@@ -52,7 +52,7 @@ export default (store) => (
         <Route path="/app/device/:id" component={Device} />
         <Route path="/app/event" component={Events} />
         <Route path="/app/event/new" component={NewEvent} />
-        <Route path="/app/event/:id" component={Event} />
+        <Route path="/app/event/:id" getComponent={Event(store)} />
       </Route>
     </Route>
     <Route component={unauthenticated(Core)}>

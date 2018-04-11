@@ -3,7 +3,8 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 import { Form } from 'antd';
-import { Input, DateTime, AutoComplete } from 'components/';
+import { Input, DateTime } from 'components/';
+import utils from '../../../../modules/utils';
 
 class LogForm extends React.Component {
   static propTypes = {
@@ -13,13 +14,18 @@ class LogForm extends React.Component {
     submitting: PropTypes.bool.isRequired,
   };
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props;
+    const { handleSubmit, pristine, reset, submitting, labelKey, users, onSearch, uniqueKey } = this.props;
 
+    const options = [
+      { key: 'clock-in', label: 'Clock In' },
+      { key: 'clock-out', label: 'Clock Out' }
+    ];
+  
     return (
       <Form onSubmit={handleSubmit}>
-        <Field name="user" data={this.props.users} onSearch={this.props.onSearch} component={AutoComplete} />
-        <Field name="type" type="text" component={Input} />
-        <Field name="createdAt" component={DateTime} />
+        <Field name="barcode" type="autocomplete" data={users} onSearch={onSearch} labelKey={labelKey} uniqueKey={uniqueKey} component={Input} placeholder="Type user's name" />
+        <Field name="type" type="radiogroup" data={options} component={Input} />
+        <Field name="createdAt" type="datetime" component={Input} />
       </Form>
     );
   }
@@ -27,4 +33,5 @@ class LogForm extends React.Component {
 
 export default reduxForm({
   form: 'log',
+  validate: utils.validateManualLog,
 })(LogForm);

@@ -15,11 +15,14 @@ export default class Content extends React.Component {
   };
   state = {
     fields: [
-      { label: 'Name', property: 'targetUser.fullName'},
+      { label: 'Name', property: 'targetUser.fullName' },
       { label: 'Type', property: 'type', component: Type },
-      { label: 'Created At', property: 'createdAt', type: 'datetime' },
+      { label: 'Date', property: 'date', type: 'datetime' },
     ],
     visible: false,
+    page: 1,
+    sortField: 'date',
+    sortType: 'DESC',
   };
   handleClick = () => {
     this.setState({
@@ -36,26 +39,37 @@ export default class Content extends React.Component {
     });
   };
   handleOk = () => {
-    
+    this.refs.form.submit();
   };
   handleCancel = () => {
+    this.setState({
+      visible: false,
+    });
 
+    this.props.localActions.resetCreateLog();
+    this.props.actions.destroy('log');
   };
-  handleManualLog = () => {
-
+  handleManualLog = (values) => {
+    this.props.localActions.createLog({
+      barcode: values.barcode,
+      eventId: this.props.event.id,
+      createdAt: values.createdAt,
+    });
   };
   handleUserSearchSubmit = (value) => {
-    this.props.localActions.fetchUsers({
+    this.props.localActions.searchUsers({
       search: value,
     });
   };
   render() {
-    const { event, log, requestingCreateLog, createLogError, actions, event: { notes } } = this.props;
+    const { event, log, requestingCreateLog, manualLog, createLogError, actions, event: { notes } } = this.props;
     
     return (
       <div className={classes.contentContainer}>
         <Modal title="Manual Log" visible={this.state.visible} okText="Create" cancelText="Cancel" onOk={this.handleOk} onCancel={this.handleCancel}>
-          <Form ref="form" onSubmit={this.handleManualLog} users={this.props.searchUsers} onSubmit={this.handleUserSearchSubmit} />
+          <Response response={manualLog.log} error={manualLog.error} />
+          <Form ref="form" onSearch={this.handleUserSearchSubmit} onSubmit={this.handleManualLog} users={this.props.searchUsers}
+            uniqueKey="barcode" labelKey="fullName" />
         </Modal>
 
         <Response error={createLogError} />
@@ -98,9 +112,9 @@ export default class Content extends React.Component {
           <div className="sixteen wide column">
             <h2 className={classes.activityHeader}>Logs</h2>
             <PaginatedTable data={this.props.logs} loading={this.props.requestingLogs}
-              fields={this.state.fields} route="#" page={this.props.page}
-              totalPages={this.props.totalPages} sortField={this.props.sortField}
-              sortType={this.props.sortType} fetch={this.props.actions.fetchLogs}
+              fields={this.state.fields} route="#" page={this.state.page}
+              totalPages={this.props.totalPages} sortField={this.state.sortField}
+              sortType={this.state.sortType} fetch={this.props.actions.fetchLogs}
               actions={this.props.actions} filter={{ eventId: this.props.event.id }}
               location={location} />
           </div>

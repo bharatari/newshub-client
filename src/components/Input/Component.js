@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input } from 'antd';
-import { DateTime } from 'components/';
+import { DateTime, AutoComplete, Radio } from 'components/';
 
 export default ({ input, meta: { touched, error }, label, ...props }) => {
   const showError = touched && error;
@@ -17,6 +17,18 @@ export default ({ input, meta: { touched, error }, label, ...props }) => {
     return (
       <Form.Item validateStatus={status} help={help} label={label}>
         <Input.TextArea {...input} {...props} />
+      </Form.Item>
+    );
+  } else if (props.type === "autocomplete") {
+    return (
+      <Form.Item validateStatus={status} help={help} label={label}>
+        <AutoComplete {...input} {...props} />
+      </Form.Item>
+    );
+  } else if (props.type ==="radiogroup") {
+    return (
+      <Form.Item validateStatus={status} help={help} label={label}>
+        <Radio {...input} {...props} />
       </Form.Item>
     );
   } else {

@@ -9,6 +9,25 @@ export default class PaginatedTable extends React.Component {
     sortType: null,
     page: 1,
   };
+  componentWillMount() {
+    if (this.props.sortField) {
+      this.setState({
+        sortField: this.props.sortField,
+      });
+    }
+
+    if (this.props.sortType) {
+      this.setState({
+        sortType: this.props.sortType,
+      });
+    }
+
+    if (this.props.page) {
+      this.setState({
+        page: this.props.page,
+      })
+    }
+  }
   componentDidMount() {
     this.getData(this.state);
   }

@@ -6,6 +6,11 @@ const initialState = {
     users: null,
     error: null,
   },
+  createLog: {
+    requesting: false,
+    log: null,
+    error: null,
+  },
 };
 
 export default handleActions({
@@ -38,6 +43,48 @@ export default handleActions({
           ...state.searchUsers,
           requesting: false,
           users: null,
+          error: action.payload,
+        },
+      };
+    }
+  },
+  'routes/Event/RESET_CREATE_LOG': (state, action) => ({
+    ...state,
+    createLog: {
+      ...state.createLog,
+      requesting: false,
+      log: null,
+      error: null,
+    },
+  }),
+  'routes/Event/REQUEST_CREATE_LOG': (state, action) => ({
+    ...state,
+    createLog: {
+      ...state.createLog,
+      requesting: true,
+      log: null,
+      error: null,
+    },
+  }),
+  'routes/Event/RECEIVE_CREATE_LOG': {
+    next(state, action) {
+      return {
+        ...state,
+        createLog: {
+          ...state.createLog,
+          requesting: false,
+          log: action.payload,
+          error: null,
+        },
+      };
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        createLog: {
+          ...state.createLog,
+          requesting: false,
+          log: null,
           error: action.payload,
         },
       };

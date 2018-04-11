@@ -18,6 +18,7 @@ import DateTime from './DateTime/Component';
 import Deleter from './Deleter/Component';
 import Input from './Input/Component';
 import AutoComplete from './AutoComplete/Component';
+import Radio from './Radio/Component';
 
 export {
   Notifications,
@@ -40,4 +41,5 @@ export {
   Deleter,
   Input,
   AutoComplete,
+  Radio,
 };
