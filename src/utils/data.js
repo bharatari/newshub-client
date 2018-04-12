@@ -146,7 +146,11 @@ export default {
       } else {
         return response.json()
           .then((error) => {
-            reject(new Error(error.message || error.name));
+            if (response.status === 401) {
+              reject(new Error('NOT_AUTHENTICATED'));
+            } else {
+              reject(new Error(error.message || error.name));
+            }
           })
           .catch((error) => {
             reject(new Error());

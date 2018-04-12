@@ -1,6 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import View from './View';
+import * as authentication from 'modules/authentication/actions';
 import * as event from 'modules/event/actions';
 import * as log from 'modules/log/actions';
 import * as actions from './modules/actions';
@@ -32,6 +33,7 @@ const actionCreators = {
   ...routerActions,
   ...event,
   ...log,
+  ...authentication,
   destroy,
 };
 
