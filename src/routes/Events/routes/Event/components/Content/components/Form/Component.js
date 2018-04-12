@@ -25,7 +25,7 @@ class LogForm extends React.Component {
       <Form onSubmit={handleSubmit}>
         <Field name="barcode" type="autocomplete" data={users} onSearch={onSearch} labelKey={labelKey} uniqueKey={uniqueKey} component={Input} placeholder="Type user's name" />
         <Field name="type" type="radiogroup" data={options} component={Input} />
-        <Field name="createdAt" type="datetime" component={Input} />
+        <Field name="date" type="datetime" component={Input} />
       </Form>
     );
   }

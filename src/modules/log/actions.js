@@ -56,7 +56,7 @@ export function fetchLogs(options) {
     const skip = data.pageToSkip(page, limit);
 
     if (_.isNil(sortField)) {
-      sortField = 'createdAt';
+      sortField = 'date';
     }
 
     if (_.isNil(sortType)) {

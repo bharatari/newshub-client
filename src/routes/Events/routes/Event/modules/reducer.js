@@ -19,9 +19,7 @@ export default handleActions({
     searchUsers: {
       ...state.searchUsers,
       requesting: true,
-      users: null,
       error: null,
-
     },
   }),
   'routes/Event/RECEIVE_USERS': {

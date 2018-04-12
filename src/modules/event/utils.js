@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment';
 
 export default {
   processResponse(data) {
@@ -27,4 +28,19 @@ export default {
 
     return errors;
   },
+  isOpen(event) {
+    if (event) {
+      if (event.closed) {
+        return false;
+      }
+
+      const now = moment.now();
+
+      if (moment(event.startDate).isBefore(now) && moment(event.endDate).isAfter(now)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 };

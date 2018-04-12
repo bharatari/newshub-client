@@ -3,7 +3,7 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { FormatDate, PaginatedTable, Response } from 'components/';
 import { Button, Modal } from 'antd';
-import event from 'modules/event/utils';
+import eventUtils from 'modules/event/utils';
 import user from 'modules/user/utils';
 import _ from 'lodash';
 import { Scanner } from '../';
@@ -20,10 +20,14 @@ export default class Content extends React.Component {
       { label: 'Date', property: 'date', type: 'datetime' },
     ],
     visible: false,
-    page: 1,
-    sortField: 'date',
-    sortType: 'DESC',
   };
+  componentWillReceiveProps(nextProps) {
+    if (this.props.manualLog.requesting && !nextProps.manualLog.requesting && nextProps.manualLog.log) {
+      this.props.actions.fetchLogs({
+        eventId: nextProps.event.id,
+      });
+    }
+  }
   handleClick = () => {
     this.setState({
       visible: true,
@@ -53,7 +57,8 @@ export default class Content extends React.Component {
     this.props.localActions.createLog({
       barcode: values.barcode,
       eventId: this.props.event.id,
-      createdAt: values.createdAt,
+      date: values.date,
+      type: values.type,
     });
   };
   handleUserSearchSubmit = (value) => {
@@ -63,11 +68,12 @@ export default class Content extends React.Component {
   };
   render() {
     const { event, log, requestingCreateLog, manualLog, createLogError, actions, event: { notes } } = this.props;
-    
+    const isOpen = eventUtils.isOpen(event);
+
     return (
       <div className={classes.contentContainer}>
         <Modal title="Manual Log" visible={this.state.visible} okText="Create" cancelText="Cancel" onOk={this.handleOk} onCancel={this.handleCancel}>
-          <Response response={manualLog.log} error={manualLog.error} />
+          <Response response={manualLog.log} error={manualLog.error} successText="Successfully logged" />
           <Form ref="form" onSearch={this.handleUserSearchSubmit} onSubmit={this.handleManualLog} users={this.props.searchUsers}
             uniqueKey="barcode" labelKey="fullName" />
         </Modal>
@@ -75,9 +81,9 @@ export default class Content extends React.Component {
         <Response error={createLogError} />
         <h2 className={classes.dateHeader}>{this.props.event.name}</h2>
         <span className={classes.subheader}><p className={classes.userHeader}>by {this.props.event.user.fullName}</p></span>
-        <p className={classes.statusText} style={{ backgroundColor: 'black' }}>{event.closed ? 'Closed' : 'Open'}</p>
+        <p className={classes.statusText} style={{ backgroundColor: 'black' }}>{isOpen ? 'Open' : 'Closed'}</p>
 
-        <Scanner actions={actions} log={log} requestingCreateLog={requestingCreateLog}
+        <Scanner disabled={!isOpen} actions={actions} log={log} requestingCreateLog={requestingCreateLog}
           createLogError={createLogError} event={event} />
         
         <div className="ui grid">
@@ -112,11 +118,9 @@ export default class Content extends React.Component {
           <div className="sixteen wide column">
             <h2 className={classes.activityHeader}>Logs</h2>
             <PaginatedTable data={this.props.logs} loading={this.props.requestingLogs}
-              fields={this.state.fields} route="#" page={this.state.page}
-              totalPages={this.props.totalPages} sortField={this.state.sortField}
-              sortType={this.state.sortType} fetch={this.props.actions.fetchLogs}
-              actions={this.props.actions} filter={{ eventId: this.props.event.id }}
-              location={location} />
+              fields={this.state.fields} route="#" totalPages={this.props.totalPages}
+              fetch={this.props.actions.fetchLogs} actions={this.props.actions}
+              filter={{ eventId: this.props.event.id }} location={location} />
           </div>
         </div>
       </div>

@@ -62,7 +62,9 @@ export default class Scanner extends React.Component {
           setTimeout(() => {
             this.setState({ displayUser: false, barcode: '' });
 
-            this.props.actions.fetchEvent(this.props.event.id);
+            this.props.actions.fetchLogs({
+              eventId: this.props.event.id,
+            });
           }, 3000);
         }
       } else if (nextProps.createLogError) {
@@ -122,12 +124,13 @@ export default class Scanner extends React.Component {
         <div className={scannerContainerStyles}>
           {loading()}
   
-          <Status focused={this.state.focused} onClick={this.focus} />
+          <Status disabled={this.props.disabled} focused={this.state.focused} onClick={this.focus} />
 
           <form onSubmit={this.handleSubmit}>
             <div className={inputContainer}>     
-              <input type="text" ref={(input) => { this.barcodeInput = input; }} value={this.state.barcode} className={input}
-                onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
+              <input disabled={this.props.disabled} type="text" ref={(input) => { this.barcodeInput = input; }}
+                value={this.state.barcode} className={input} onChange={this.handleChange} onFocus={this.handleFocus}
+                onBlur={this.handleBlur} />
               <input type="submit" style={{ display: 'none' }} />
             </div>
           </form>
