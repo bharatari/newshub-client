@@ -99,6 +99,19 @@ export function updateEvent(id, body) {
   };
 }
 
+export function deleteEvent(id) {
+  return function (dispatch) {
+    dispatch(requestDeleteEvent());
+
+    data.request('event', 'delete', id)
+      .then(function (response) {
+        dispatch(receiveDeleteEvent(response))
+      }).catch(function (e) {
+        dispatch(receiveDeleteEvent(e));
+      });
+  };
+}
+
 export function createEvent(body) {
   return function (dispatch) {
     dispatch(requestCreateEvent());

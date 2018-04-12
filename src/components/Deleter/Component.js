@@ -4,11 +4,20 @@ import classNames from 'classnames';
 import access from 'utils/access';
 import _ from 'lodash';
 import { Button, Modal } from 'antd';
+import { defaultRedirect } from 'constants/keys';
 
 export default class Deleter extends React.Component {
   componentWillReceiveProps(nextProps) {
-    // if requesting then deleted
-    // navigate away
+    if (this.props.requesting && !nextProps.requesting) {
+      if (nextProps.success) {
+        this.props.push(defaultRedirect);
+      } else {
+        Modal.error({
+          title: 'Something went wrong.',
+          content: 'Please try again later.',
+        });
+      }
+    }
   }
   handleClick = () => {
     let self = this;

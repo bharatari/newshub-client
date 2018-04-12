@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
-import { FormatDate, PaginatedTable, Response } from 'components/';
+import { FormatDate, PaginatedTable, Response, Deleter } from 'components/';
 import { Button, Modal } from 'antd';
 import eventUtils from 'modules/event/utils';
 import user from 'modules/user/utils';
 import _ from 'lodash';
 import { Scanner } from '../';
 import { Type, Form } from './components';
+import access from 'utils/access';
 
 export default class Content extends React.Component {
   static propTypes = {
@@ -34,11 +35,23 @@ export default class Content extends React.Component {
     });
   };
   handleDelete = () => {
+    const self = this;
+
     Modal.confirm({
       title: 'Are you sure you want to delete this?',
       content: 'This action is irreversible.',
       onOk() {
-        self.props.delete(self.props.id);
+        self.props.actions.deleteEvent(self.props.id);
+      },
+    });
+  };
+  handleClose = () => {
+    const self = this;
+
+    Modal.confirm({
+      title: 'Are you sure you want to close this event?',
+      onOk() {
+        self.props.actions.close(self.props.id);
       },
     });
   };
@@ -67,8 +80,11 @@ export default class Content extends React.Component {
     });
   };
   render() {
-    const { event, log, requestingCreateLog, manualLog, createLogError, actions, event: { notes } } = this.props;
+    const { event, log, requestingCreateLog, manualLog, createLogError, actions, roles, event: { notes } } = this.props;
     const isOpen = eventUtils.isOpen(event);
+    const hasManualLog = access.has(roles, 'log:manual');
+    const canDelete = access.can(roles, 'event', 'delete');
+    const canUpdate = access.can(roles, 'event', 'update');
 
     return (
       <div className={classes.contentContainer}>
@@ -102,9 +118,13 @@ export default class Content extends React.Component {
             <p className={classes.activityHeader}>Actions</p>
 
             <Button.Group className={classes.actionsBox}>
-              <Button type="primary" onClick={this.handleClick} ghost>Manual Log</Button>
-              <Button type="danger" onClick={this.handleDelete} ghost>Delete</Button>
+              <Button type="primary" onClick={this.handleClick} ghost disabled={!hasManualLog}>Manual Log</Button>
+              <Button type="danger" onClick={this.handleClose} ghost disabled={!canUpdate}>Close</Button>
             </Button.Group>
+
+            <Deleter id={this.props.event.id} delete={this.props.actions.deleteEvent} success={this.props.deleteEvent.event}
+              error={this.props.deleteEvent.error} requesting={this.props.deleteEvent.requesting} roles={roles} model="event"
+              push={this.props.actions.push} />
 
             <h2 className={classes.activityHeader}>Activity</h2>
             <div className={classes.activityBox}>

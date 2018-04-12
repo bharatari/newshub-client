@@ -40,7 +40,7 @@ export default class ReservationView extends React.Component {
     const { reservation, requestingReservation, 
             actions, updateError, updatedReservation,
             requestingUpdateReservation, currentUrl, user, roles,
-            requestingDeleteReservation, deletedReservation, deleteError } = this.props;
+            deleteReservation } = this.props;
 
     return (
       <div>
@@ -54,8 +54,7 @@ export default class ReservationView extends React.Component {
               {
                 reservation ? 
                 <Content reservation={reservation} actions={actions} user={user} roles={roles}
-                  requestingDeleteReservation={requestingDeleteReservation} deletedReservation={deletedReservation}
-                  deleteError={deleteError} /> :
+                  deleteReservation={deleteReservation} /> :
                 <TextLoading loading={requestingReservation} /> 
               }
             </div>

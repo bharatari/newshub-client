@@ -27,6 +27,7 @@ const mapStateToProps = (state, ownProps) => ({
   location: ownProps.location,
   searchUsers: state.eventRoute.searchUsers.users,
   manualLog: state.eventRoute.createLog,
+  deleteEvent: state.event.deleteEvent,
 });
 
 const actionCreators = {

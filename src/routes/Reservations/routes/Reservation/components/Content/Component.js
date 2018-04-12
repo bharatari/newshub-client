@@ -19,7 +19,7 @@ export default class Content extends React.Component {
   };
 
   render() {
-    const { reservation: { notes, adminNotes }, roles } = this.props;
+    const { reservation: { notes, adminNotes }, roles, deleteReservation } = this.props;
     const reviewedBy = () => {
       const reviewedByName = _.get(this.props.reservation, 'approvedBy.fullName') || _.get(this.props.reservation, 'rejectedBy.fullName');
 
@@ -128,8 +128,9 @@ export default class Content extends React.Component {
 
         <div className={classes.dangerZone}>
           { canDelete ? <p className={classes.boldHeader}>Danger Zone</p> : null }
-          <Deleter id={this.props.id} delete={this.props.actions.deleteReservation} success={this.props.deletedReservation}
-            error={this.props.deleteError} requesting={this.props.requestingDeleteResevation} roles={roles} model="reservation" />
+          <Deleter id={this.props.reservation.id} delete={this.props.actions.deleteReservation} success={deleteReservation.reservation}
+            error={deleteReservation.error} requesting={deleteReservation.requesting} roles={roles} model="reservation"
+            push={this.props.actions.push} />
         </div>
       </div>
     );

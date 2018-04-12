@@ -24,6 +24,11 @@ const initialState = {
     event: null,
     error: null,
   },
+  deleteEvent: {
+    requesting: false,
+    event: null,
+    error: null,
+  },
 };
 
 export default handleActions({
@@ -185,6 +190,39 @@ export default handleActions({
         ...state,
         updateEvent: {
           ...state.updateEvent,
+          requesting: false,
+          event: null,
+          error: action.payload,
+        },
+      };
+    }
+  },
+  REQUEST_DELETE_EVENT: (state, action) => ({
+    ...state,
+    deleteEvent: {
+      ...state.deleteEvent,
+      requesting: true,
+      event: null,
+      error: null,
+    },
+  }),
+  RECEIVE_DELETE_EVENT: {
+    next(state, action) {
+      return {
+        ...state,
+        deleteEvent: {
+          ...state.deleteEvent,
+          requesting: false,
+          event: action.payload,
+          error: null,
+        },
+      };
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        deleteEvent: {
+          ...state.deleteEvent,
           requesting: false,
           event: null,
           error: action.payload,
