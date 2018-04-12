@@ -3,12 +3,13 @@ import { routerMiddleware } from 'react-router-redux';
 import saga from 'redux-saga';
 import thunk from 'redux-thunk';
 import makeRootReducer from 'modules/';
+import authentication from './authentication';
 
 export default (initialState = {}, history) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [thunk, routerMiddleware(history)]
+  const middleware = [thunk, routerMiddleware(history), authentication]
 
   // ======================================================
   // Store Enhancers

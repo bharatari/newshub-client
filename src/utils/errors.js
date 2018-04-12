@@ -67,10 +67,6 @@ export default {
       header: 'We cannot seem to find that user',
       text: 'Please try again later or contact a member of management for assistance.'
     },
-    'NOT_AUTHENTICATED': {
-      header: 'You will need to re-login to perform that action.',
-      text: 'Please log out and login again or contact a member of management for assistance.'
-    }
   },
   getError(code) {
     return this.errors[code] || this.errors['ERROR'];

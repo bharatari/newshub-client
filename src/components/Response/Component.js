@@ -1,24 +1,15 @@
 import React, { PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import errors from 'utils/errors';
 import { Alert } from 'antd';
 import * as authentication from 'modules/authentication/actions';
 
-class Response extends React.Component {
+export default class Response extends React.Component {
   static propTypes = {
     error: PropTypes.any,
     response: PropTypes.any,
   };
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.error) {
-      if (nextProps.error.message === 'NOT_AUTHENTICATED') {
-        this.props.actions.logout();
-      }
-    }
-  }
   errorText = () => {
     if (this.props.errorText) {
       return this.props.errorText;
@@ -47,15 +38,3 @@ class Response extends React.Component {
     return null;
   }
 }
-
-const mapStateToProps = (state, ownProps) => ({});
-
-const actionCreators = {
-  ...authentication,
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(actionCreators, dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Response);
