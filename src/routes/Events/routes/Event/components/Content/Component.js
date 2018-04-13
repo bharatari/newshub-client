@@ -122,8 +122,10 @@ export default class Content extends React.Component {
               <Button type="danger" onClick={this.handleClose} ghost disabled={!canUpdate}>Close</Button>
             </Button.Group>
 
-            <Deleter id={this.props.event.id} delete={this.props.actions.deleteEvent} success={this.props.deleteEvent.event}
-              error={this.props.deleteEvent.error} requesting={this.props.deleteEvent.requesting} roles={roles} model="event"
+            <p className={classes.activityHeader}>Danger Zone</p>
+            <Deleter buttonClassName={classes.delete} id={this.props.event.id} delete={this.props.actions.deleteEvent}
+              success={this.props.deleteEvent.event} roles={roles} model="event"
+              error={this.props.deleteEvent.error} requesting={this.props.deleteEvent.requesting}
               push={this.props.actions.push} />
 
             <h2 className={classes.activityHeader}>Activity</h2>

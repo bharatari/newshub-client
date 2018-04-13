@@ -31,12 +31,12 @@ export default class Deleter extends React.Component {
     })
   };
   render() {
-    const { roles } = this.props;
+    const { roles, buttonClassName } = this.props;
     const canDelete = access.has(roles, `${this.props.model}:delete`);
 
     return (   
       <div>
-        { canDelete ? <Button type="danger" onClick={this.handleClick} ghost>Delete</Button> : null }
+        { canDelete ? <Button type="danger" className={buttonClassName} onClick={this.handleClick} ghost>Delete</Button> : null }
       </div>
     );
   }
