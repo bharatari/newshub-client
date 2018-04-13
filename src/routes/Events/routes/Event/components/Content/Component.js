@@ -9,6 +9,7 @@ import _ from 'lodash';
 import { Scanner } from '../';
 import { Type, Form } from './components';
 import access from 'utils/access';
+import { animateScroll as scroll } from 'react-scroll';
 
 export default class Content extends React.Component {
   static propTypes = {
@@ -41,7 +42,7 @@ export default class Content extends React.Component {
       title: 'Are you sure you want to delete this?',
       content: 'This action is irreversible.',
       onOk() {
-        self.props.actions.deleteEvent(self.props.id);
+        self.props.actions.deleteEvent(self.props.event.id);
       },
     });
   };
@@ -51,7 +52,11 @@ export default class Content extends React.Component {
     Modal.confirm({
       title: 'Are you sure you want to close this event?',
       onOk() {
-        self.props.actions.close(self.props.id);
+        self.props.actions.updateEvent(self.props.event.id, {
+          closed: true,
+        });
+
+        scroll.scrollToTop();        
       },
     });
   };
