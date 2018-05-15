@@ -25,7 +25,7 @@ class LoginForm extends React.Component {
 
     return (
       <Form onSubmit={handleSubmit} className={classes.form}>
-        <Field name="username" type="text" placeholder="Username" component={Input} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>} />
+        <Field name="email" type="text" placeholder="Email" component={Input} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>} />
       
         <Field name="password" type="password" placeholder="Password" component={Input}  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }}/>} />
 

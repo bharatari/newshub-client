@@ -18,10 +18,6 @@ export default {
   validateSignup(values) {
     let errors = {};
 
-    if (!values.username) {
-      errors.username = 'Required';
-    }
-
     if (!values.email) {
       errors.email = 'Required';
     }

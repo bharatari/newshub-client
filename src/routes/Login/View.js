@@ -21,7 +21,7 @@ export default class LoginView extends React.Component {
   }
   handleSubmit = (values) => {
     this.props.actions.login({
-      username: values.username,
+      email: values.email,
       password: values.password,
     });
   };

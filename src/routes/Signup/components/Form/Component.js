@@ -52,15 +52,6 @@ class SignupForm extends React.Component {
         </div>
         <div className="ui grid">
           <div className="six wide column">
-            <h3>Username</h3>
-            <p>Something short and simple for people to easily tag and refer to you.</p>
-          </div>
-          <div className="ten wide column">
-            <Field name="username" component={renderField} type="text" placeholder="eg. jdoe, johndoe" />
-          </div>
-        </div>
-        <div className="ui grid">
-          <div className="six wide column">
             <h3>Password</h3>
             <p>
               Your password must be at least 6 characters long, and not more than 18 characters long.

@@ -16,13 +16,13 @@ export default class LoginView extends React.Component {
   };
   render() {
     const responseHeader = 'Your user registration was successful.';
-    const responseText = 'You may now log in with your username';
+    const responseText = 'You may now log in with your email address';
 
     return (
       <div>
         <div className={classes.headerSection}>
           <h1 className={classes.header}>Sign up for NewsHub.</h1>
-          <p className={classes.text}>Use whatever email you check most. You'll login with your username.</p>
+          <p className={classes.text}>Use whatever email you check most.</p>
         </div>
         <div className="ui container">
           <div className={classes.main}>

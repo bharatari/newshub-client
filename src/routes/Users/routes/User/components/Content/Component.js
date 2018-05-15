@@ -21,8 +21,6 @@ export default class Content extends React.Component {
       <div>
         <p className={classes.header}>Name</p>
         <p className={classes.content}>{this.props.user.fullName}</p>
-        <p className={classes.header}>Username</p>
-        <p className={classes.content}>{this.props.user.username}</p>
         <p className={classes.header}>Email</p>
         <p className={classes.content}>{this.props.user.email}</p>
         <p className={classes.header}>Created At</p>

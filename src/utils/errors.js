@@ -4,10 +4,6 @@ export default {
       header: 'That email is taken.',
       text: 'Try a different one to continue',
     },
-    'USERNAME_TAKEN': {
-      header: 'That username is taken.',
-      text: 'Try a different one to continue'
-    },
     'ERROR': {
       header: 'Something went wrong. Try again.',
     },
