@@ -13,7 +13,7 @@ export default class Content extends React.Component {
     actions: PropTypes.object,
   };
   render() {
-    const { user: { organization_users: { title, roles }, notes, disabled } } = this.props;
+    const { user: { organization_users: { title, roles, disabled } } } = this.props;
     const edit = access.has(this.props.roles, 'user:update');
     const editNotes = access.has(this.props.roles, 'user:notes:update');
 
@@ -31,8 +31,6 @@ export default class Content extends React.Component {
           <div>
             <p className={classes.header}>Title</p>
             <p className={classes.content}>{title ? title : 'None.'}</p>
-            <p className={classes.header}>Notes</p>
-            <p className={classes.content}>{notes ? notes : 'None.'}</p>
             <p className={classes.header}>Roles</p>
             <p className={classes.content}>{roles ? roles : 'None.'}</p>
             <p className={classes.header}>Disabled</p>
