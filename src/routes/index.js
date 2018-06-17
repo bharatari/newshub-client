@@ -5,7 +5,6 @@ import Root from 'containers/Root';
 import Core from './Core/Route';
 import Dashboard from './Dashboard';
 import Login from './Login/Route';
-import Signup from './Signup/Route';
 import ResetPassword from './ResetPassword';
 import ResetPasswordToken from './ResetPassword/routes/ResetPasswordToken';
 import Reservations from './Reservations/Route';
@@ -56,7 +55,6 @@ export default (store) => (
       </Route>
     </Route>
     <Route component={unauthenticated(Core)}>
-      <Route path="/app/signup" component={Signup} />
       <Route path="/app/login" component={Login} />
     </Route>
     <Route component={Core}>
