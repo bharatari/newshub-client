@@ -2,41 +2,30 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, Table, Response, Card } from 'components/';
+import { Form } from './components';
 
 export default class NewUserView extends React.Component {
-  static propTypes = {
+  handleSubmit = (values) => {
+    this.props.actions.createUser(values);
 
-  };
-  handleClick = () => {
-    this.props.actions.createSignupToken();
+    // if user is existing by email,
+    // just add the new join table details
+    // and ignore first name and last name
+
+    // After entering email address, it'll check the
+    // server to see if the email already exists
+
+    // If so, it'll gray out first name, last name and password
   };
   render() {
-    const button = classNames(
-      'ui button blue button-light',
-      { loading: this.props.requestingToken }
-    );
-
-    let header;
-    let text;
-
-    if (this.props.token) {
-      header = 'The generated token is ' + this.props.token.token;
-      text = 'Provide this to your new user and direct them to the sign up page.';
-    }
-
     return (
       <div>
         <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
-          header="New User" loading={this.props.requestingToken} user={this.props.user}
+          header="New User" loading={this.props.createUser.loading} user={this.props.user}
           roles={this.props.roles}>
           <Card column="sixteen">
-            <Response error={this.props.error} response={this.props.token}
-              successHeader={header} successText={text} />
-            <p className={classes.info}>
-              For members to be able to sign up for an account, they will need a one-time-use token
-              generated from this page.
-            </p>
-            <button className={button} onClick={this.handleClick}>GENERATE TOKEN</button>
+            <Response error={this.props.createUser.error} response={this.props.createUser.user} />
+            <Form createUser={this.props.createUser} onSubmit={this.handleSubmit} />
           </Card>
         </SidebarPage>
       </div>

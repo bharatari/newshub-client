@@ -15,7 +15,7 @@ export default {
       }
     }
   },
-  validateSignup(values) {
+  validateNewUser(values) {
     let errors = {};
 
     if (!values.email) {
@@ -34,8 +34,12 @@ export default {
       }
     }
 
-    if (!values.signupToken) {
-      errors.signupToken = 'Required';
+    if (!values.firstName) {
+      errors.firstName = 'Required';
+    }
+
+    if (!values.lastName) {
+      errors.lastName = 'Required';
     }
 
     return errors;

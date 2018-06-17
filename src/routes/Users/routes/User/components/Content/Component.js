@@ -15,7 +15,6 @@ export default class Content extends React.Component {
   render() {
     const { user: { organization_users: { title, roles, disabled } } } = this.props;
     const edit = access.has(this.props.roles, 'user:update');
-    const editNotes = access.has(this.props.roles, 'user:notes:update');
 
     return (
       <div>
@@ -36,11 +35,6 @@ export default class Content extends React.Component {
             <p className={classes.header}>Disabled</p>
             <p className={classes.content}>{disabled ? 'True' : 'False'}</p>
           </div>
-        }
-        {
-          !edit && editNotes ?
-          <Admin user={this.props.user} actions={this.props.actions} /> :
-          null
         }
       </div>
     );

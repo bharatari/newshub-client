@@ -29,13 +29,8 @@ class LoginForm extends React.Component {
       
         <Field name="password" type="password" placeholder="Password" component={Input}  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }}/>} />
 
-        
         <Button type="primary" htmlType="submit" className={classes.login} loading={requestingLogin} disabled={this.props.requestingLogin || this.props.response}>
           Log In
-        </Button>
-
-        <Button type="default" onClick={this.handleClick} className={classes.register}>
-          Register
         </Button>
 
         <Button type="default" onClick={this.handleResetPassword} className={classes.reset}>
