@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { SidebarPage, Table, TextLoading, Card } from 'components/';
 import { Disabled } from './components';
 import reservation from 'modules/reservation/utils';
+import { Button } from 'antd';
 
 export default class UsersView extends React.Component {
   static propTypes = {

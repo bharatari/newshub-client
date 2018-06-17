@@ -3,6 +3,7 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, Table, Response, Card } from 'components/';
 import { Form } from './components';
+import { Button } from 'antd';
 
 export default class NewReservationView extends React.Component {
   static propTypes = {

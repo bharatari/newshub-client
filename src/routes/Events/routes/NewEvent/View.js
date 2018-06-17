@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { SidebarPage, Table, Card, Modal, Response } from 'components/';
 import { Form, Wizard, ModalContent } from './components';
 import { animateScroll as scroll } from 'react-scroll';
+import { Button } from 'antd';
 import _ from 'lodash';
 
 export default class NewEventView extends React.Component {
