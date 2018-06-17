@@ -3,25 +3,9 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { Input } from 'components/';
+import { Row, Col, Upload, Icon } from 'antd';
 import device from 'modules/device/utils';
-
-const renderField = ({ input, meta: { touched, error }}) => (
-  <div className="field">
-    <div className="ui checkbox">
-      <input className={classes.font} type="checkbox" tabIndex="0" className="hidden" {...input} />
-      <label>Disable Device</label>
-    </div>
-  </div>
-);
-
-const renderInput = ({ input, meta: { touched, error }}) => (
-  <div>
-    <div className="ui input">
-      <input {...input} className={classes.font} />
-    </div>
-    {touched && error && <span className={classes.errorText}>{error}</span>}
-  </div>
-);
 
 class NewDeviceForm extends React.Component {
   static propTypes = {
@@ -35,36 +19,61 @@ class NewDeviceForm extends React.Component {
 
     return (
       <form onSubmit={handleSubmit} className="ui form">
-        <p className={classes.header}>Name</p>
-        <div className="field">
-          <Field name="name" component={renderInput} type="text" className={classes.font} />
-        </div>
-        <p className={classes.header}>Label</p>
-        <div className="field">
-          <Field name="label" component={renderInput} type="text" className={classes.font} />
-        </div>
-        <p className={classes.header}>Description</p>
-        <Field name="description" component="textarea" className={classes.font} />
-        <p className={classes.header}>Image</p>
-        <div className="field">
-          <Field name="image" component={renderInput} type="text" className={classes.font} />
-        </div>
-        <p className={classes.header}>Notes</p>
-        <Field name="notes" component="textarea" className={classes.font} />
-        <p className={classes.header}>Type</p>
-        <div className="field">
-          <Field name="type" component={renderInput} type="text" className={classes.font} />
-        </div>
-        <p className={classes.header}>Barcode</p>
-        <div className="field">
-          <Field name="barcode" component={renderInput} type="text" className={classes.font} />
-        </div>
-        <p className={classes.header}>Quantity</p>
-        <div className="field">
-          <Field name="quantity" component={renderInput} type="number" className={classes.font} />
-        </div>
-        <p className={classes.header}>Disabled</p>
-        <Field name="disabled" component={renderField} type="checkbox" className={classes.font} />
+        <p className={classes.bigHeader}>General</p>
+
+        <Row gutter={16}>
+          <Col span={12}>
+            <p className={classes.header}>Name</p>
+            <Field name="name" component={Input} type="text" className={classes.font} />
+          </Col>
+          <Col span={12}>
+            <p className={classes.header}>Label</p>
+            <Field name="label" component={Input} type="text" className={classes.font} />
+          </Col>        
+        </Row>
+
+        <Row gutter={16}>
+          <Col span={8}>
+            <p className={classes.header}>Type</p>
+            <Field name="type" component={Input} type="text" className={classes.font} />
+          </Col>
+
+          <Col span={8}>
+            <p className={classes.header}>Barcode</p>
+            <Field name="barcode" component={Input} type="text" className={classes.font} />
+          </Col>
+
+          <Col span={8}>
+            <p className={classes.header}>Quantity</p>
+            <Field name="quantity" component={Input} type="number" className={classes.font} />
+          </Col>
+        </Row>
+        
+        <p className={classes.bigHeader}>Thumbnail</p>
+
+        <Upload.Dragger multiple={false} name="image" listType="picture">
+          <p className="ant-upload-drag-icon">
+            <Icon type="inbox" />
+          </p>
+          <p className="ant-upload-text">Click or drag image to this area to upload</p>
+          <p className="ant-upload-hint">Square images work best</p>
+        </Upload.Dragger>
+
+        <Row gutter={16}>
+          <Col span={12}>
+            <p className={classes.header}>Description</p>
+            <Field name="description" component="textarea" className={classes.font} />
+          </Col>
+
+          <Col span={12}>
+            <p className={classes.header}>Notes</p>
+            <Field name="notes" component="textarea" className={classes.font} />
+          </Col>
+        </Row>
+
+       
+
+        
       </form>
     );
   }

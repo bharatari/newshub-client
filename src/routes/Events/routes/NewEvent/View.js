@@ -24,20 +24,13 @@ export default class NewEventView extends React.Component {
     this.refs.form.submit();
   };
   render() {
-    const button = classNames(
-      'ui animated button blue button-light',
-      { loading: this.props.requestingCreateEvent }
-    );
     const disable = this.props.requestingCreateEvent || this.props.createdEvent;
     const loading = this.props.requestingCreateEvent;
+
     const right = (
-      <button className={button} disabled={disable}
-        onClick={this.handleClick}>
-        <div className="visible content">SAVE</div>
-        <div className="hidden content">
-          <i className="checkmark icon"></i>
-        </div>
-      </button>
+      <Button onClick={this.handleClick} loading={loading} disabled={disable} type="primary" ghost>
+        Save
+      </Button>
     );
 
     return (

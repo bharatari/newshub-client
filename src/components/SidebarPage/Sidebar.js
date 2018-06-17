@@ -10,6 +10,7 @@ import access from 'utils/access';
 import * as notifications from 'modules/notifications/actions';
 import * as user from 'modules/user/actions';
 import * as authentication from 'modules/authentication/actions';
+import { Menu, Icon, Layout } from 'antd';
 
 const sidebar = classNames(
   'desktop-only',
@@ -31,6 +32,7 @@ class Sidebar extends React.Component {
   };
   state = {
     switchedOrganization: false,
+    collapsed: true,
   };
   componentDidMount() {
     $('.ui.dropdown')
@@ -44,9 +46,11 @@ class Sidebar extends React.Component {
       return false;
     }
   };
-  handleClick = (route, event) => {
-    event.preventDefault();
-    this.props.actions.push(route.url);
+  onCollapse = (collapsed) => {
+    this.setState({ collapsed });
+  };
+  handleClick = (item, key, keyPath) => {
+    this.props.actions.push(item.key);
   };
   handleLogout = () => {
     this.props.actions.logout();
@@ -180,32 +184,16 @@ class Sidebar extends React.Component {
         const role = access.getRole(route.url);
 
         if (route.sidebar) {
-          if (access.has(this.props.roles, role)) {
-            let boundClick = this.handleClick.bind(this, route);
-            let link;
-            
+          if (access.has(this.props.roles, role)) {            
             if (this.currentRoute(route.url)) {
-              link = classNames(
-                'item',
-                classes.link,
-                classes.active
-              );
-            } else {
-              link = classNames(
-                'item',
-                classes.link
-              );
+
             }
 
-            const icon = classNames(
-              route.icon,
-              classes.icon
-            );
-            
             routes.push(
-              <a href="#" key={route.url} className={link} onClick={boundClick}>
-                <i className={icon}></i><span className={classes.linkText}>{route.label}</span>
-              </a>
+              <Menu.Item key={route.url}>
+                <Icon type={route.icon} />
+                <span>{route.label}</span>
+              </Menu.Item>
             );
           }
         }
@@ -217,25 +205,11 @@ class Sidebar extends React.Component {
     const organization = this.props.user.currentOrganization;
 
     return (
-      <div>
-        <div className={sidebar}>
-          <div className={classes.logo}>
-            <a className={classes.brandLink} href="#"><p className={classes.brand}>{organization.label}</p></a>
-          </div>
-          <div className={list}>
-            {getRoutes()}
-          </div>
-          <hr className={classes.divider} />
-          {getButtons()}
-        </div>
-        <div className={mobileSidebar}>
-          <div className={list}>
-            {getRoutes()}
-          </div>
-          <hr className={classes.divider} />
-          {getButtons()}
-        </div>
-      </div>
+      <Layout.Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+        <Menu mode="inline" theme="dark" onClick={this.handleClick}>
+          {getRoutes()}
+        </Menu>
+      </Layout.Sider>
     )
   }
 };

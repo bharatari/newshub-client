@@ -21,20 +21,15 @@ export default class NewReservationView extends React.Component {
     this.refs.form.submit();
   };
   render() {
-    const button = classNames(
-      'ui animated button blue button-light',
-      { loading: this.props.requesting }
-    );
     const disable = this.props.requesting || this.props.room;
     const loading = this.props.requesting;
 
-    const right = <button className={button} disabled={disable}
-                    onClick={this.handleClick}>
-                    <div className="visible content">SAVE</div>
-                    <div className="hidden content">
-                      <i className="checkmark icon"></i>
-                    </div>
-                  </button>;
+    const right = (
+      <Button onClick={this.handleClick} loading={loading} disabled={disable} type="primary" ghost>
+        Save
+      </Button>
+    );
+
     const message = "Your room has been created.";
 
     return (

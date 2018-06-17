@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
+import { message } from 'antd';
 
 const spinner = classNames(
   'ui active inverted inline loader',
@@ -14,26 +15,28 @@ export default class Loading extends React.Component {
   };
   state = {
     display: this.props.display,
+    hide: null,
   };
   componentWillReceiveProps(nextProps) {
-    this.state.display = nextProps.display;
+    if (nextProps.display) {
+      const hide = message.loading('Loading...', 0);
+
+      this.setState({
+        hide,
+      });
+    } else {
+      if (this.state.hide) {
+        this.state.hide();
+      }
+
+      this.setState({
+        hide: null,
+      });
+    }
   };
   render() {
     return (
-      <CSSTransition
-        in={this.props.display}
-        unmountOnExit={true}
-        key="loading"
-        classNames="notification"
-        appear={true}
-        timeout={{ enter: 500, exit: 500 }}>
-        <li className={classes.notification}>
-          <div>
-            <div className={spinner}></div>
-            <p className={classes.loadingText}>Loading...</p>
-          </div>
-        </li>
-      </CSSTransition>
+      <div></div>
     );
   }
 }

@@ -94,7 +94,8 @@
   margin-bottom: 20px;
   margin-top: 0px !important;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 20px;
+  display: inline-block;
 }
 
 .sidebarContainerHeaderContent {
@@ -118,6 +119,7 @@
 
 .sidebarContainerHeaderRight {
   float: right;
+  display: inline-block;
 }
 
 .sidebarContainerPadding {
@@ -175,6 +177,10 @@
 .organizationDropdown {
   width: 100%;
   position: relative;
+}
+
+.dropdownText {
+  margin-left: 15px;
 }
 
 @media only screen and (max-width: 768px) {

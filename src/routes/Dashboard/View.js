@@ -30,16 +30,9 @@ export default class HomeView extends React.Component {
   render() {
     const { requestingCurrent, requestingUpcoming } = this.props;
 
-    let right;
-    if (this.props.user) {
-      right = <p className={classes.topGreeting}>Hi, <span className={classes.topName}>{this.props.user.firstName}!</span></p>;
-    } else {
-      right = <p className={classes.topGreeting}><span className={classes.topName}></span></p>;
-    }
-
     return (
       <div>
-        <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions} right={right}
+        <SidebarPage currentUrl={this.props.currentUrl} actions={this.props.actions}
           header="Dashboard" user={this.props.user} loading={requestingCurrent || requestingUpcoming}
           roles={this.props.roles}>
           <div className="ui stackable grid">
