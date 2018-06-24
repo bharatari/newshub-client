@@ -6,6 +6,8 @@ import { Form } from './components';
 
 export default class NewUserView extends React.Component {
   handleSubmit = (values) => {
+    delete values.confirmPassword;
+    
     this.props.actions.createUser(values);
 
     // if user is existing by email,

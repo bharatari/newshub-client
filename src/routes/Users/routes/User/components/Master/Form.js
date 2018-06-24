@@ -3,16 +3,9 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-
-const button = classNames(
-  'ui button blue button-light',
-  classes.marginTop
-);
-
-const checkbox = classNames(
-  'hidden',
-  classes.font
-);
+import { Input } from 'components/';
+import { Alert, Row, Col, Icon, Button } from 'antd';
+import user from 'modules/user/utils';
 
 class UserForm extends React.Component {
   static propTypes = {
@@ -26,28 +19,64 @@ class UserForm extends React.Component {
 
     return (
       <form onSubmit={handleSubmit} className="ui form">
-        <p className={classes.header}>Title</p>
-        <Field name="organization_users.title" component="input" type="text" className={classes.font} />
+        <p className={classes.bigHeader}>Profile</p>
+
+        <Row gutter={16}>
+          <Col md={12} sm={24}>
+            <p className={classes.header}>First Name</p>
+            <Field name="firstName" component={Input} type="text" />
+          </Col>
+        
+          <Col md={12} sm={24}>
+            <p className={classes.header}>Last Name</p>
+            <Field name="lastName" component={Input} type="text" />
+          </Col>
+        </Row>
+
+        <Row gutter={16}>
+          <Col md={12} sm={24}>
+            <p className={classes.header}>Email Address</p>
+            <Field name="email" component={Input} type="email" />
+          </Col>
+        
+          <Col md={12} sm={24}>
+            <p className={classes.header}>Title</p>
+            <Field name="organization_users.title" placeholder="What position does this user have?" component={Input} type="text" />
+          </Col>
+        </Row>
+
+        <p className={classes.bigHeader}>Password</p>
+
+        <Row gutter={16}>
+          <Col md={12} sm={24}>
+            <p className={classes.header}>Password</p>
+            <Field name="password" placeholder="This is the new user's password, not your own" component={Input} type="password" />
+          </Col>
+
+          <Col md={12} sm={24}>
+            <p className={classes.header}>Confirm Password</p>
+            <Field name="confirmPassword" placeholder="One more time please" component={Input} type="password" />
+          </Col>
+        </Row>
+
+        <p className={classes.bigHeader}>Details</p>
+       
+        <Row gutter={16}>
+          <Col md={12} sm={24}>
+            <p className={classes.header}>Barcode</p>
+            <Field name="organization_users.barcode" placeholder="A unique barcode value associated to the user" component={Input} type="text" />
+          </Col>
+
+          <Col md={12} sm={24}>
+            <p className={classes.header}>User Code</p>
+            <Field name="organization_users.meta.code" placeholder="A unique identifier such as user initials" component={Input} type="text" />
+          </Col>
+        </Row>
+
         <p className={classes.header}>Roles</p>
-        <Field name="organization_users.roles" component="input" type="text" className={classes.font} />
-        <p className={classes.header}>Barcode</p>
-        <Field name="organization_users.barcode" component="input" type="text" className={classes.font} />
-        <p className={classes.header}>Code</p>
-        <Field name="organization_users.meta.code" component="input" type="text" className={classes.font} />
-        <p className={classes.header}>Options</p>
-        <div className="field">
-          <div className="ui checkbox">
-            <Field name="organization_users.disabled" component="input" type="checkbox" className={classes.font} />
-            <label>Disable User</label>
-          </div>
-        </div>
-        <div className="field">
-          <div className="ui checkbox">
-            <Field name="organization_users.options.deviceManager" component="input" type="checkbox" className={classes.font} />
-            <label>Device Manager</label>
-          </div>
-        </div>
-        <button className={button} type="submit">UPDATE</button>
+        <Field name="organization_users.roles" placeholder="What permissions should this user have?" component={Input} type="text" />
+
+        <Button type="primary" htmlType="submit" loading={this.props.createUser.loading}>Save</Button>
       </form>
     );
   }
@@ -56,6 +85,7 @@ class UserForm extends React.Component {
 UserForm = reduxForm({
   form: 'user',
 })(UserForm);
+
 
 UserForm = connect(
   state => ({

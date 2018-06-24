@@ -41,7 +41,7 @@ class NewUserForm extends React.Component {
         
           <Col md={12} sm={24}>
             <p className={classes.header}>Title</p>
-            <Field name="title" placeholder="What position does this user have?" component={Input} type="text" />
+            <Field name="organization_users.title" placeholder="What position does this user have?" component={Input} type="text" />
           </Col>
         </Row>
 
@@ -64,17 +64,17 @@ class NewUserForm extends React.Component {
         <Row gutter={16}>
           <Col md={12} sm={24}>
             <p className={classes.header}>Barcode</p>
-            <Field name="barcode" placeholder="A unique barcode value associated to the user" component={Input} type="text" />
+            <Field name="organization_users.barcode" placeholder="A unique barcode value associated to the user" component={Input} type="text" />
           </Col>
 
           <Col md={12} sm={24}>
             <p className={classes.header}>User Code</p>
-            <Field name="code" placeholder="A unique identifier such as user initials" component={Input} type="text" />
+            <Field name="organization_users.meta.code" placeholder="A unique identifier such as user initials" component={Input} type="text" />
           </Col>
         </Row>
 
         <p className={classes.header}>Roles</p>
-        <Field name="roles" placeholder="What permissions should this user have?" component={Input} type="text" />
+        <Field name="organization_users.roles" placeholder="What permissions should this user have?" component={Input} type="text" />
 
         <Button type="primary" htmlType="submit" loading={this.props.createUser.loading}>Save</Button>
       </form>
