@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classes from './Styles.scss';
 import classNames from 'classnames';
 import { SidebarPage, FormatDate, TextLoading, Response, Card } from 'components/';
-import { Content } from './components';
+import { Content, Master } from './components';
 
 export default class UserView extends React.Component {
   static propTypes = {
@@ -35,7 +35,7 @@ export default class UserView extends React.Component {
     }
   }
   render() {
-    const { currentUser, user, requestingUser, error, actions, currentUrl, updatedUser, requestingUpdateUser } = this.props;
+    const { currentUser, user, requestingUser, error, actions, currentUrl, updatedUser, updateUser, requestingUpdateUser } = this.props;
     const successHeader = 'You successfully updated this user.';
 
     return (
@@ -48,7 +48,7 @@ export default class UserView extends React.Component {
             successHeader={successHeader} />
             {
               user ? 
-              <Content user={this.props.user} actions={actions} currentUser={currentUser} roles={this.props.roles} /> :
+              <Master user={this.props.user} updateUser={updateUser} actions={actions} currentUser={currentUser} roles={this.props.roles} /> :
               <TextLoading loading={requestingUser} /> 
             }
           </Card>

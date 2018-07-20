@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => ({
   user: state.user.fetchUser.user,
   requestingUser: state.user.fetchUser.requesting,
   error: state.user.fetchUser.error,
+  updateUser: state.user.updateUser,
   updatedUser: state.user.updateUser.user,
   requestingUpdateUser: state.user.updateUser.requesting,
   updateError: state.user.updateUser.error,

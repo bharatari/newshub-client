@@ -6,6 +6,7 @@ import { ImageUploader } from '../';
 import Form from './Form';
 import userUtils from 'modules/user/utils';
 import access from 'utils/access';
+import { Row, Col } from 'antd'; 
 
 export default class Content extends React.Component {
   static propTypes = {
@@ -28,28 +29,34 @@ export default class Content extends React.Component {
 
     return (
       <div>
-        {
-          !edit && this.props.device ?
-          <div>
-            <p className={classes.header}>Name</p>
-            <p className={classes.content}>{this.props.device.name}</p>
-            <p className={classes.header}>Label</p>
-            <p className={classes.content}>{this.props.device.label}</p>
-            <p className={classes.header}>Description</p>
-            <p className={classes.content}>{this.props.device.description}</p>
-            <p className={classes.header}>Type</p>
-            <p className={classes.content}>{this.props.device.type}</p>
-            <p className={classes.header}>Barcode</p>
-            <p className={classes.content}>{this.props.device.barcode}</p>
-            <p className={classes.header}>Quantity</p>
-            <p className={classes.content}>{this.props.device.quantity}</p>
-            { this.props.thumbnail ? <div className={classes.imageBox} style={imageBackground}></div> : null }
-            
-          </div>
-          : null
-        }
-        <p className={classes.header}>Created At</p>
-        <p className={classes.content}><FormatDate date={this.props.device.createdAt} /></p>
+        <Row>
+          <Col span={8}>
+            <div className={classes.imageBox} style={imageBackground}></div> 
+          </Col>
+          
+          <Col span={8}>
+            <h2>{this.props.device.name}</h2>
+            <p>{this.props.device.label}</p>
+            <p>{this.props.device.description}</p>
+          </Col>
+          
+          <Col span={8}>
+            <p>Available</p>
+            <p>{this.props.quantity}</p>
+          </Col>
+        </Row>
+        
+        <Row>
+          <Col span={8}>
+            <p>{this.props.device.type}</p>
+            <p>{this.props.device.barcode}</p>
+          </Col>
+
+          <Col span={8}>
+            <p><FormatDate date={this.props.device.createdAt} /></p>
+          </Col>
+        </Row>
+      
         {
           edit ?
           <div>

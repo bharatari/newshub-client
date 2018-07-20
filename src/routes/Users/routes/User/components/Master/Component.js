@@ -9,12 +9,14 @@ export default class Master extends React.Component {
     user: PropTypes.object,
   };
   handleSubmit = (values) => {
+    delete values.currentOrganizationId;
+
     this.props.actions.updateUser(values, this.props.user.id);
   };
   render() {
     return (
       <div>
-        <Form onSubmit={this.handleSubmit} />
+        <Form onSubmit={this.handleSubmit} updateUser={this.props.updateUser} />
       </div>
     );
   }

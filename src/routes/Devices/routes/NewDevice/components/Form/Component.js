@@ -70,10 +70,6 @@ class NewDeviceForm extends React.Component {
             <Field name="notes" component="textarea" className={classes.font} />
           </Col>
         </Row>
-
-       
-
-        
       </form>
     );
   }

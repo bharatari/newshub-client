@@ -45,20 +45,6 @@ class UserForm extends React.Component {
           </Col>
         </Row>
 
-        <p className={classes.bigHeader}>Password</p>
-
-        <Row gutter={16}>
-          <Col md={12} sm={24}>
-            <p className={classes.header}>Password</p>
-            <Field name="password" placeholder="This is the new user's password, not your own" component={Input} type="password" />
-          </Col>
-
-          <Col md={12} sm={24}>
-            <p className={classes.header}>Confirm Password</p>
-            <Field name="confirmPassword" placeholder="One more time please" component={Input} type="password" />
-          </Col>
-        </Row>
-
         <p className={classes.bigHeader}>Details</p>
        
         <Row gutter={16}>
@@ -76,7 +62,7 @@ class UserForm extends React.Component {
         <p className={classes.header}>Roles</p>
         <Field name="organization_users.roles" placeholder="What permissions should this user have?" component={Input} type="text" />
 
-        <Button type="primary" htmlType="submit" loading={this.props.createUser.loading}>Save</Button>
+        <Button type="primary" htmlType="submit" loading={this.props.updateUser.loading}>Save</Button>
       </form>
     );
   }

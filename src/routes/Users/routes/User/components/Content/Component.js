@@ -5,6 +5,7 @@ import { FormatDate } from 'components/';
 import { Master, Admin } from '../';
 import userUtils from 'modules/user/utils';
 import access from 'utils/access';
+import { Row, Col } from 'antd'; 
 
 export default class Content extends React.Component {
   static propTypes = {
@@ -13,29 +14,42 @@ export default class Content extends React.Component {
     actions: PropTypes.object,
   };
   render() {
+    // Make the form a modal
+    // The main page should be a rich presentation profile-style presentation page
+
+    let imageBackground;
+
+    if (this.props.user.image) {
+      imageBackground = {
+        backgroundImage: 'url(' + this.props.user.image.url + ')',
+      };
+    }
+
     const { user: { organization_users: { title, roles, disabled } } } = this.props;
     const edit = access.has(this.props.roles, 'user:update');
 
     return (
       <div>
-        <p className={classes.header}>Name</p>
-        <p className={classes.content}>{this.props.user.fullName}</p>
-        <p className={classes.header}>Email</p>
-        <p className={classes.content}>{this.props.user.email}</p>
-        <p className={classes.header}>Created At</p>
-        <p className={classes.content}><FormatDate date={this.props.user.createdAt} /></p>
-        {
-          edit ?
-          <Master user={this.props.user} actions={this.props.actions} /> :
-          <div>
-            <p className={classes.header}>Title</p>
-            <p className={classes.content}>{title ? title : 'None.'}</p>
-            <p className={classes.header}>Roles</p>
-            <p className={classes.content}>{roles ? roles : 'None.'}</p>
-            <p className={classes.header}>Disabled</p>
-            <p className={classes.content}>{disabled ? 'True' : 'False'}</p>
-          </div>
-        }
+         <Row gutter={24}>          
+          <Col span={8}>
+            <div className={classes.imageBox} style={imageBackground}></div> 
+            <h2 className={classes.name}>{this.props.user.fullName}</h2>
+            <p>{title}</p>
+            <p>{this.props.user.email}</p>
+          </Col>
+        </Row>
+        
+        <Row>
+          <Col span={8}>
+
+          </Col>
+
+          <Col span={8}>
+            <p><FormatDate date={this.props.user.createdAt} /></p>
+            <p>{roles}</p>
+            <p>{disabled ? 'True' : 'False'}</p>
+          </Col>
+        </Row>
       </div>
     );
   }
