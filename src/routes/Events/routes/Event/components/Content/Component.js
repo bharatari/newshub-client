@@ -73,7 +73,7 @@ export default class Content extends React.Component {
   };
   handleManualLog = (values) => {
     this.props.localActions.createLog({
-      barcode: values.barcode,
+      targetUserId: values.targetUserId,
       eventId: this.props.event.id,
       date: values.date,
       type: values.type,
@@ -96,7 +96,7 @@ export default class Content extends React.Component {
         <Modal title="Manual Log" visible={this.state.visible} okText="Create" cancelText="Cancel" onOk={this.handleOk} onCancel={this.handleCancel}>
           <Response response={manualLog.log} error={manualLog.error} successText="Successfully logged" />
           <Form ref="form" onSearch={this.handleUserSearchSubmit} onSubmit={this.handleManualLog} users={this.props.searchUsers}
-            uniqueKey="barcode" labelKey="fullName" />
+            uniqueKey="id" labelKey="fullName" />
         </Modal>
 
         <Response error={createLogError} />
