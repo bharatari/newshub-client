@@ -53,7 +53,7 @@ class NewDeviceForm extends React.Component {
 
         <Field name="image" component={Uploader} file={this.props.file} uploadFile={this.props.uploadFile} uploadFieldName="file" />
 
-        <Row gutter={16}>
+        <Row gutter={16} style={{ marginTop: '20px' }}>
           <Col span={12}>
             <p className={classes.header}>Description</p>
             <Field name="description" component="textarea" className={classes.font} />
