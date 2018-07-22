@@ -3,7 +3,7 @@ import classes from './Styles.scss';
 import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { Input } from 'components/';
+import { Input, Uploader } from 'components/';
 import { Row, Col, Upload, Icon } from 'antd';
 import device from 'modules/device/utils';
 
@@ -51,13 +51,7 @@ class NewDeviceForm extends React.Component {
         
         <p className={classes.bigHeader}>Thumbnail</p>
 
-        <Upload.Dragger multiple={false} name="image" listType="picture">
-          <p className="ant-upload-drag-icon">
-            <Icon type="inbox" />
-          </p>
-          <p className="ant-upload-text">Click or drag image to this area to upload</p>
-          <p className="ant-upload-hint">Square images work best</p>
-        </Upload.Dragger>
+        <Field name="image" component={Uploader} file={this.props.file} uploadFile={this.props.uploadFile} uploadFieldName="file" />
 
         <Row gutter={16}>
           <Col span={12}>

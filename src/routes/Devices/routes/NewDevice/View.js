@@ -41,7 +41,7 @@ export default class NewReservationView extends React.Component {
           <Card column="sixteen">
             <Response error={this.props.error} response={this.props.device}
               successHeader={message} />
-            <Form ref="form" onSubmit={this.handleSubmit} />
+            <Form ref="form" onSubmit={this.handleSubmit} uploadFile={this.props.actions.uploadFile} file={this.props.file} />
           </Card>
         </SidebarPage>
       </div>

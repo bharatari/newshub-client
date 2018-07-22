@@ -2,6 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import View from './View';
 import * as device from 'modules/device/actions';
+import * as file from 'modules/file/actions';
 import { routerActions } from 'react-router-redux';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -11,11 +12,13 @@ const mapStateToProps = (state, ownProps) => ({
   requesting: state.device.createDevice.requesting,
   error: state.device.createDevice.error,
   roles: state.role.fetchRoles.roles,
+  file: state.file.file,
 });
 
 const actionCreators = {
   ...routerActions,
   ...device,
+  ...file
 };
 
 const mapDispatchToProps = (dispatch) => ({

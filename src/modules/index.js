@@ -5,7 +5,7 @@ import authentication from './authentication/reducer';
 import roomReservation from './roomReservation/reducer';
 import reservation from './reservation/reducer';
 import device from './device/reducer';
-import image from './image/reducer';
+import file from './file/reducer';
 import room from './room/reducer';
 import user from './user/reducer';
 import role from './role/reducer';
@@ -22,7 +22,7 @@ export const makeRootReducer = (asyncReducers) => {
     user,
     router,
     form,
-    image,
+    file,
     room,
     role,
     event,

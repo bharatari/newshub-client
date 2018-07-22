@@ -19,6 +19,7 @@ import Deleter from './Deleter/Component';
 import Input from './Input/Component';
 import AutoComplete from './AutoComplete/Component';
 import Radio from './Radio/Component';
+import Uploader from './Uploader/Component';
 
 export {
   Notifications,
@@ -42,4 +43,5 @@ export {
   Input,
   AutoComplete,
   Radio,
+  Uploader,
 };
