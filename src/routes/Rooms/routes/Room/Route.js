@@ -2,7 +2,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import View from './View';
 import * as room from 'modules/room/actions';
-import * as image from 'modules/image/actions';
 import * as roomReservation from 'modules/roomReservation/actions';
 import { routerActions } from 'react-router-redux';
 

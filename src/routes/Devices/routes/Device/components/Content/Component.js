@@ -19,9 +19,9 @@ export default class Content extends React.Component {
   render() {
     let imageBackground;
 
-    if (this.props.thumbnail) {
+    if (this.props.device.image) {
       imageBackground = {
-        backgroundImage: 'url(' + this.props.thumbnail.url + ')',
+        backgroundImage: 'url(' + this.props.device.image + ')',
       };
     }
 
@@ -61,10 +61,6 @@ export default class Content extends React.Component {
           edit ?
           <div>
             <Form onSubmit={this.handleSubmit} />
-            <p className={classes.header}>IMAGE</p>
-            <ImageUploader device={this.props.device} createImage={this.props.createImage}
-              deleteImage={this.props.deleteImage} updateDevice={this.props.updateDevice}
-              actions={this.props.actions} form={this.props.form} />
           </div> : null
         }
       </div>

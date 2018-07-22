@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input } from 'antd';
+import { Form, Input, Checkbox } from 'antd';
 import { DateTime, AutoComplete, Radio } from 'components/';
 
 export default ({ input, meta: { touched, error }, label, ...props }) => {
@@ -25,10 +25,16 @@ export default ({ input, meta: { touched, error }, label, ...props }) => {
         <AutoComplete {...input} {...props} />
       </Form.Item>
     );
-  } else if (props.type ==="radiogroup") {
+  } else if (props.type === "radiogroup") {
     return (
       <Form.Item validateStatus={status} help={help} label={label}>
         <Radio {...input} {...props} />
+      </Form.Item>
+    );
+  } else if (props.type === "checkbox") {
+    return (
+      <Form.Item validateStatus={status} help={help} label={label}>
+        <Checkbox {...input} {...props} />
       </Form.Item>
     );
   } else {

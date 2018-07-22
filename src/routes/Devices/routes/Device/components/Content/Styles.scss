@@ -1,9 +1,26 @@
+.button {
+  margin-bottom: 20px !important;
+}
+
+.imageBox {
+  height: 400px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
 .header {
   font-family: 'Open Sans';
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  color: gray;
+}
+
+.bigHeader {
+  font-family: 'Open Sans';
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .content {
@@ -19,13 +36,10 @@
   font-weight: 400;
 }
 
-.button {
-  margin-bottom: 20px !important;
-}
-
-.imageBox {
-  height: 400px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-bottom: 10px;
+.errorText {
+  font-family: 'Open Sans';
+  font-weight: 600;
+  color: red;
+  margin-top: 5px;
+  display: block;
 }

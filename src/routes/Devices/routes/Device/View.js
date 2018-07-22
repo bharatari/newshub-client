@@ -14,8 +14,6 @@ export default class UserView extends React.Component {
     updated: false,
   };
   componentDidMount() {
-    this.props.actions.resetDeleteImage();
-    this.props.actions.resetCreateImage();
     this.props.actions.resetUpdateDevice();
     this.props.actions.fetchDevice(this.props.id);
   }
@@ -38,7 +36,7 @@ export default class UserView extends React.Component {
   }
   render() {
     const { user, device, requestingDevice, error, actions, currentUrl, updatedDevice, requestingUpdateDevice } = this.props;
-    const { form, updateDevice, createImage, deleteImage } = this.props;
+    const { form, updateDevice } = this.props;
     const successHeader = 'You successfully updated this device.';
 
     return (
@@ -52,7 +50,6 @@ export default class UserView extends React.Component {
             {
               device ?
               <Content device={this.props.device} actions={actions} updateDevice={this.props.updateDevice}
-                createImage={this.props.createImage} deleteImage={this.props.deleteImage}
                 form={this.props.form} user={this.props.user} roles={this.props.roles} /> :
               <TextLoading loading={requestingDevice} /> 
             }
