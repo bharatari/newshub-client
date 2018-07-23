@@ -3,10 +3,12 @@
 }
 
 .imageBox {
-  height: 400px;
+  width: 300px;
+  height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 10px;
+  float: left;
 }
 
 .header {
@@ -21,6 +23,7 @@
   font-family: 'Open Sans';
   font-size: 24px;
   font-weight: 700;
+  margin-top: 0px !important;
 }
 
 .content {
@@ -42,4 +45,59 @@
   color: red;
   margin-top: 5px;
   display: block;
+}
+
+.mainColumn {
+  display: inline-block;
+}
+
+.mainDetails {
+  padding-left: 30px;
+  display: inline-block;
+}
+
+.deviceLabel {
+  font-family: 'Open Sans';
+  font-weight: 700;
+  font-size: 42px;
+  letter-spacing: -1px;
+}
+
+.deviceName {
+  font-family: 'Open Sans';
+  font-weight: 600;
+  font-size: 14px;
+  color: #4d4d4d;
+  margin-top: -20px;
+  text-transform: uppercase;
+}
+
+.description {
+  font-family: 'Open Sans';
+  font-weight: 500;
+  font-size: 20px;
+  color: rgba(99, 99, 99, 1);
+}
+
+.category {
+  font-family: 'Open Sans';
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 1px;
+  border-radius: 2px;
+  padding: 8px 12px;
+  width: auto;
+  display: inline-block;
+  float: right;
+  margin-top: -30px;
+  box-shadow: 0px 5px 20px 1px rgba(0, 0, 0, 0.12);
+  background-color: black;
+}
+
+.available {
+  font-family: 'Open Sans';
+  text-transform: uppercase;
+  font-weight: 600;
 }

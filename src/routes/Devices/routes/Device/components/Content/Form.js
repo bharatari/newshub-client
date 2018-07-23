@@ -29,28 +29,28 @@ class DeviceForm extends React.Component {
         <Row gutter={16}>
           <Col span={12}>
             <p className={classes.header}>Name</p>
-            <Field name="name" component={Input} type="text" className={classes.font} />
+            <Field name="name" component={Input} type="text" />
           </Col>
           <Col span={12}>
             <p className={classes.header}>Label</p>
-            <Field name="label" component={Input} type="text" className={classes.font} />
+            <Field name="label" component={Input} type="text" />
           </Col>        
         </Row>
 
         <Row gutter={16}>
           <Col span={8}>
             <p className={classes.header}>Type</p>
-            <Field name="type" component={Input} type="text" className={classes.font} />
+            <Field name="type" component={Input} type="text" />
           </Col>
 
           <Col span={8}>
             <p className={classes.header}>Barcode</p>
-            <Field name="barcode" component={Input} type="text" className={classes.font} />
+            <Field name="barcode" component={Input} type="text" />
           </Col>
 
           <Col span={8}>
             <p className={classes.header}>Quantity</p>
-            <Field name="quantity" component={Input} type="number" className={classes.font} />
+            <Field name="quantity" component={Input} type="number" />
           </Col>
         </Row>
         
@@ -64,7 +64,7 @@ class DeviceForm extends React.Component {
           <p className="ant-upload-hint">Square images work best</p>
         </Upload.Dragger>
 
-        <Row gutter={16}>
+        <Row gutter={16} style={{ marginTop: '20px' }}>
           <Col span={12}>
             <p className={classes.header}>Description</p>
             <Field name="description" component={Input} type="textarea" className={classes.font} />
@@ -78,7 +78,7 @@ class DeviceForm extends React.Component {
 
         <Row gutter={16}>
           <p className={classes.header}>Disabled</p>
-          <Field name="disabled" component={Input} className={classes.font} />
+          <Field name="disabled" type="checkbox" component={Input} className={classes.font} />
         </Row>
       </form>
     );
@@ -93,6 +93,9 @@ DeviceForm = connect(
   state => ({
     initialValues: state.device.fetchDevice.device,
   }),
+  null,
+  null,
+  { withRef: true }
 )(DeviceForm);
 
 export default DeviceForm;
