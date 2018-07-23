@@ -51,13 +51,13 @@ export default class Uploader extends React.Component {
     };
   };
   beforeUpload = (file) => {
-    const isLt2M = file.size / 1024 / 1024 < 2;
+    const lessThanLimit = file.size / 1024 / 1024 < 5;
 
-    if (!isLt2M) {
-      message.error('Image must smaller than 2 MB.');
+    if (!lessThanLimit) {
+      message.error('Image must smaller than 5 MB.');
     }
 
-    return isLt2M;
+    return lessThanLimit;
   };
   handleChange = (info) => {
     if (info.file.status === 'uploading') {
@@ -77,11 +77,11 @@ export default class Uploader extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     if (this.state.onSuccess && this.state.onError) {
-      if (this.props.file.requesting && !nextProps.file.requesting) {
-        if (nextProps.file.file) {
-          this.state.onSuccess(nextProps.file.file, this.state.file);
+      if (this.props.createFile.requesting && !nextProps.createFile.requesting) {
+        if (nextProps.createFile.file) {
+          this.state.onSuccess(nextProps.createFile.file, this.state.file);
 
-          const value = nextProps.file.file.url;
+          const value = nextProps.createFile.file.url;
 
           this.props.input.onChange(value);
           this.props.input.onFocus(value);
@@ -89,7 +89,7 @@ export default class Uploader extends React.Component {
         } else {
           message.error('Whoops! Something went wrong there, check your file type and file size and try again.');
 
-          this.props.onError(nextProps.file.error);
+          this.props.onError(nextProps.createFile.error);
         }
 
         this.setState({

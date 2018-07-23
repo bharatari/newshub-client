@@ -24,44 +24,44 @@ class NewDeviceForm extends React.Component {
         <Row gutter={16}>
           <Col span={12}>
             <p className={classes.header}>Name</p>
-            <Field name="name" component={Input} type="text" className={classes.font} />
+            <Field name="name" component={Input} type="text" />
           </Col>
           <Col span={12}>
             <p className={classes.header}>Label</p>
-            <Field name="label" component={Input} type="text" className={classes.font} />
+            <Field name="label" component={Input} type="text" />
           </Col>        
         </Row>
 
         <Row gutter={16}>
           <Col span={8}>
             <p className={classes.header}>Type</p>
-            <Field name="type" component={Input} type="text" className={classes.font} />
+            <Field name="type" component={Input} type="text" />
           </Col>
 
           <Col span={8}>
             <p className={classes.header}>Barcode</p>
-            <Field name="barcode" component={Input} type="text" className={classes.font} />
+            <Field name="barcode" component={Input} type="text" />
           </Col>
 
           <Col span={8}>
             <p className={classes.header}>Quantity</p>
-            <Field name="quantity" component={Input} type="number" className={classes.font} />
+            <Field name="quantity" component={Input} type="number" />
           </Col>
         </Row>
         
         <p className={classes.bigHeader}>Thumbnail</p>
 
-        <Field name="image" component={Uploader} file={this.props.file} uploadFile={this.props.uploadFile} uploadFieldName="file" />
+        <Field name="image" component={Uploader} createFile={this.props.createFile} uploadFile={this.props.uploadFile} uploadFieldName="file" />
 
         <Row gutter={16} style={{ marginTop: '20px' }}>
           <Col span={12}>
             <p className={classes.header}>Description</p>
-            <Field name="description" component="textarea" className={classes.font} />
+            <Field name="description" component="textarea" />
           </Col>
 
           <Col span={12}>
             <p className={classes.header}>Notes</p>
-            <Field name="notes" component="textarea" className={classes.font} />
+            <Field name="notes" component="textarea" />
           </Col>
         </Row>
       </form>

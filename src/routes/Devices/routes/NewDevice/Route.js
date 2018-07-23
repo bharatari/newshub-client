@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => ({
   requesting: state.device.createDevice.requesting,
   error: state.device.createDevice.error,
   roles: state.role.fetchRoles.roles,
-  file: state.file.file,
+  createFile: state.file.createFile,
 });
 
 const actionCreators = {

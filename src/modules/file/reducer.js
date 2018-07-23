@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 
 const initialState = {
-  file: {
+  createFile: {
     requesting: false,
     error: null,
     file: null,
@@ -9,21 +9,21 @@ const initialState = {
 };
 
 export default handleActions({
-  REQUEST_UPLOAD_FILE: (state) => ({
+  REQUEST_CREATE_FILE: (state) => ({
     ...state,
-    file: {
-      ...state.file,
+    createFile: {
+      ...state.createFile,
       requesting: true,
       error: null,
       file: null,
     },
   }),
-  RECEIVE_UPLOAD_FILE: {
+  RECEIVE_CREATE_FILE: {
     next(state, action) {
       return {
         ...state,
-        file: {
-          ...state.file,
+        createFile: {
+          ...state.createFile,
           requesting: false,
           error: null,
           file: action.payload,
@@ -31,11 +31,10 @@ export default handleActions({
       };
     },
     throw(state, action) {
-      console.log(action.payload);
       return {
         ...state,
-        file: {
-          ...state.file,
+        createFile: {
+          ...state.createFile,
           requesting: false,
           error: action.payload,
           file: null,
@@ -43,10 +42,10 @@ export default handleActions({
       };
     },
   },
-  RESET_UPLOAD_FILE: (state, action) => ({
+  RESET_CREATE_FILE: (state, action) => ({
     ...state,
-    file: {
-      ...state.file,
+    createFile: {
+      ...state.createFile,
       requesting: false,
       file: null,
       error: null,
