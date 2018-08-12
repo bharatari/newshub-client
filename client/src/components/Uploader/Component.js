@@ -74,6 +74,16 @@ export default class Uploader extends React.Component {
         loading: false,
       });
     }
+
+    if (info.file.status === 'error') {
+      this.setState({
+        imageUrl: null,
+        loading: false,
+        file: null,
+        onSuccess: null,
+        onError: null,
+      });
+    }
   }
   componentWillReceiveProps(nextProps) {
     if (this.state.onSuccess && this.state.onError) {
@@ -89,7 +99,7 @@ export default class Uploader extends React.Component {
         } else {
           message.error('Whoops! Something went wrong there, check your file type and file size and try again.');
 
-          this.props.onError(nextProps.createFile.error);
+          this.state.onError(nextProps.createFile.error);
         }
 
         this.setState({
@@ -103,6 +113,10 @@ export default class Uploader extends React.Component {
   handleDelete = () => {
     this.setState({
       imageUrl: null,
+      loading: false,
+      file: null,
+      onSuccess: null,
+      onError: null,
     });
   };
   render() {
